@@ -1,0 +1,1 @@
+xcopy /s %localappdata%\MegaMaker\Levels %UserProfile%\desktop
