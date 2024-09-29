@@ -8,6 +8,8 @@ public class Delivery2D : MonoBehaviour
     [SerializeField] float destroyDelay = 0.5f;
     [SerializeField] GameObject driverImage;
     [SerializeField] GameObject passengerImage;
+    [SerializeField] GameObject dropOffImage;
+
 
     bool hasCustomer;
     void OnCollisionEnter2D(Collision2D other)
@@ -21,6 +23,9 @@ public class Delivery2D : MonoBehaviour
             Debug.Log("Customer Dropped Off");
             hasCustomer = false;
             SpriteRenderer passengerRenderer = passengerImage.GetComponent<SpriteRenderer>();
+            SpriteRenderer dropOffCustomerRenderer = dropOffImage.GetComponent<SpriteRenderer>();
+            dropOffCustomerRenderer.sprite = passengerRenderer.sprite;
+            dropOffCustomerRenderer.enabled = true;
             passengerRenderer.enabled = false;
         }
         if (other.tag == "Customer" && !hasCustomer)
@@ -28,6 +33,8 @@ public class Delivery2D : MonoBehaviour
             Debug.Log("Customer Picked Up");
             hasCustomer = true;
             Destroy( other.gameObject, destroyDelay);
+            SpriteRenderer dropOffCustomerRenderer = dropOffImage.GetComponent<SpriteRenderer>();
+            dropOffCustomerRenderer.enabled = false;
             SpriteRenderer customerRenderer = other.GetComponent<SpriteRenderer>();
             SpriteRenderer passengerRenderer = passengerImage.GetComponent<SpriteRenderer>();
             passengerRenderer.sprite = customerRenderer.sprite;
