@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class DeliveryDriverPlayerController2D : MonoBehaviour
 {
-    [SerializeField] float steerSpeed = 1f;
-    [SerializeField] float moveSpeed = 0.01f;
+    [SerializeField] float steerSpeed = 900f;
+    [SerializeField] float moveSpeed = 12f;
 
     void Start()
     {
