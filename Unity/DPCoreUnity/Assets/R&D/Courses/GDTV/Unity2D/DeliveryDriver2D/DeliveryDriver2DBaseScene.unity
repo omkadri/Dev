@@ -844,7 +844,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be6c4252fc3a1a14a9d0a7bbde805725, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FollowTarget: {fileID: 2067758560}
+  followMode: 1
+  followTarget: {fileID: 2067758560}
+  followSpeed: 8
 --- !u!1 &617266831
 GameObject:
   m_ObjectHideFlags: 0
