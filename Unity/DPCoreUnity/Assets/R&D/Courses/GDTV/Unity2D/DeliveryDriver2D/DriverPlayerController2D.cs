@@ -9,9 +9,6 @@ public class DriverPlayerController2D : MonoBehaviour
     float defaultSpeed;
 
     [SerializeField] float boostSpeed = 20f;
-    [SerializeField] float slowSpeed = 8f;
-
-
 
     void Start()
     {
