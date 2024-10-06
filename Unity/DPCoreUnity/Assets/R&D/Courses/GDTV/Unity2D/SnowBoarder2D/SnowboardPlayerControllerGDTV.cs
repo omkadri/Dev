@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SnowboardPlayerController2D : MonoBehaviour
+public class SnowboardPlayerControllerGDTV : MonoBehaviour
 {
     [SerializeField] float torqueAmount = 0.5f;
     Rigidbody2D rb2d;
