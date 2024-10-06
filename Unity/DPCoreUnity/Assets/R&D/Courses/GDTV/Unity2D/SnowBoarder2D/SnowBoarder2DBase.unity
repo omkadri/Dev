@@ -1906,7 +1906,7 @@ Transform:
   m_GameObject: {fileID: 468238116}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.3, y: 3.8, z: 0}
+  m_LocalPosition: {x: 621.8, y: -311.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2181,7 +2181,7 @@ Transform:
   m_GameObject: {fileID: 920500888}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.12296486, y: 3.8, z: -10}
+  m_LocalPosition: {x: 628.97705, y: -311.4, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2330,7 +2330,7 @@ Transform:
   m_GameObject: {fileID: 1027230518}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.12296486, y: 3.8, z: -10}
+  m_LocalPosition: {x: 628.97705, y: -311.4, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2453,37 +2453,6 @@ MonoBehaviour:
   m_MaximumFOV: 60
   m_MinimumOrthoSize: 1
   m_MaximumOrthoSize: 5000
---- !u!1 &1242681251
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1242681252}
-  m_Layer: 0
-  m_Name: Finish Line
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1242681252
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1242681251}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.4129727, y: 5.382311, z: -0.041027866}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1528456929
 GameObject:
   m_ObjectHideFlags: 0
@@ -2515,6 +2484,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61cfdfa21b4be6f4b92222087f4a50dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loadDelay: 1.5
 --- !u!61 &1528456931
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2719,5 +2689,4 @@ SceneRoots:
   - {fileID: 410954159}
   - {fileID: 468238120}
   - {fileID: 1027230520}
-  - {fileID: 1242681252}
   - {fileID: 1528456933}

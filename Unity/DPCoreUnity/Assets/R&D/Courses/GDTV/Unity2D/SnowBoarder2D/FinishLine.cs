@@ -5,12 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class FinishLine : MonoBehaviour
 {
+  [SerializeField] float loadDelay = 1.5f;
   void OnTriggerEnter2D(Collider2D other)
   {
     if (other.tag == "Player")
     {
+        Invoke("ReloadScene", loadDelay);
         Debug.Log("You Finished!");
-        SceneManager.LoadScene(0);
     }
+  }
+
+  void ReloadScene()
+  {
+    SceneManager.LoadScene(0);
   }
 }
