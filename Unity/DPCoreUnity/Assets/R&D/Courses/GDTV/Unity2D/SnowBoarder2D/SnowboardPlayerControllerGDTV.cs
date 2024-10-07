@@ -15,7 +15,7 @@ public class SnowboardPlayerControllerGDTV : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rb2d.AddTorque(-torqueAmount/2);
+        rb2d.AddTorque(-torqueAmount);
 
         if(Input.GetKey(KeyCode.LeftArrow))
         {
@@ -23,7 +23,8 @@ public class SnowboardPlayerControllerGDTV : MonoBehaviour
         }
         else if(Input.GetKey(KeyCode.RightArrow))
         {
-            rb2d.AddTorque(-torqueAmount);
+            rb2d.AddTorque(-torqueAmount*2);
+            //Hello World
         }
     }
 }
