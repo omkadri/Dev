@@ -8,7 +8,7 @@ public class SnowboardPlayerControllerGDTV : MonoBehaviour
     [SerializeField] float torqueAmount = 0.5f;
     [SerializeField] float baseSpeed = 20f;
     [SerializeField] float boostSpeed = 40f;
-
+  
     Rigidbody2D rb2d;
     SurfaceEffector2D surfaceEffector2D;
     // Start is called before the first frame update
@@ -38,7 +38,7 @@ public class SnowboardPlayerControllerGDTV : MonoBehaviour
         }
     }
 
-    private void RotatePlayer()
+    void RotatePlayer()
     {
         rb2d.AddTorque(-torqueAmount);
 
