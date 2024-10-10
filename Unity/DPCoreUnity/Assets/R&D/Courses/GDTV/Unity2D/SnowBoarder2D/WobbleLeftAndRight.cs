@@ -6,11 +6,18 @@ public class RotateLeftRight : MonoBehaviour
 {
     [SerializeField] float rotateSpeed = 50f; // Speed of rotation
     [SerializeField] float maxRotationAngle = 20f; // Maximum rotation angle
-
     float currentAngle = 0f; // Current angle of rotation
     bool rotatingRight = true; // Direction of rotation
-
+    public bool canWobble = true;
     void Update()
+    {
+        if (canWobble)
+        {
+            Rotate();
+        }
+    }
+
+    void Rotate()
     {
         // Calculate rotation amount for this frame
         float rotationAmount = rotateSpeed * Time.deltaTime;
@@ -18,27 +25,33 @@ public class RotateLeftRight : MonoBehaviour
         if (rotatingRight)
         {
             currentAngle += rotationAmount;
-
-            // Check if we've reached the maximum rotation angle
-            if (currentAngle >= maxRotationAngle)
-            {
-                currentAngle = maxRotationAngle; // Clamp to max angle
-                rotatingRight = false; // Change direction
-            }
+            CheckMaxAngle();
         }
         else
         {
             currentAngle -= rotationAmount;
-
-            // Check if we've reached the minimum rotation angle
-            if (currentAngle <= -maxRotationAngle)
-            {
-                currentAngle = -maxRotationAngle; // Clamp to min angle
-                rotatingRight = true; // Change direction
-            }
+            CheckMinAngle();
         }
 
         // Apply the rotation
         transform.rotation = Quaternion.Euler(0, 0, currentAngle);
+    }
+
+    void CheckMaxAngle()
+    {
+        if (currentAngle >= maxRotationAngle)
+        {
+            currentAngle = maxRotationAngle; // Clamp to max angle
+            rotatingRight = false; // Change direction
+        }
+    }
+
+    void CheckMinAngle()
+    {
+        if (currentAngle <= -maxRotationAngle)
+        {
+            currentAngle = -maxRotationAngle; // Clamp to min angle
+            rotatingRight = true; // Change direction
+        }
     }
 }

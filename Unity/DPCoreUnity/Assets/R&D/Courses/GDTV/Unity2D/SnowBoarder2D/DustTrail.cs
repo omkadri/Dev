@@ -5,14 +5,7 @@ using UnityEngine;
 public class DustTrail : MonoBehaviour
 {
     [SerializeField] ParticleSystem trailVXF;
-    [SerializeField] AudioClip trailSFX;
-
-    AudioSource audioSource;
-
-    void Start()
-    {
-        audioSource = GetComponent<AudioSource>();
-    }
+    [SerializeField] AudioSource trailSFXAudioSource;
 
         void OnCollisionEnter2D(Collision2D other)
     {   
@@ -22,9 +15,9 @@ public class DustTrail : MonoBehaviour
             {
                 trailVXF.Play();
             }
-            if (trailSFX != null)
+            if (trailSFXAudioSource != null)
             {
-                audioSource.PlayOneShot(trailSFX);
+                trailSFXAudioSource.Play();
             }            
         }
     }
@@ -35,7 +28,7 @@ public class DustTrail : MonoBehaviour
             if (trailVXF != null)
             {
                 trailVXF.Stop();
-                audioSource.Stop();
+                trailSFXAudioSource.Stop();
             }
         }
     }

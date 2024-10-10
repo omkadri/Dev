@@ -8,7 +8,7 @@ public class SnowboardPlayerControllerGDTV : MonoBehaviour
     [SerializeField] float torqueAmount = 0.5f;
     [SerializeField] float baseSpeed = 20f;
     [SerializeField] float boostSpeed = 40f;
-  
+    public bool canMove = true;
     Rigidbody2D rb2d;
     SurfaceEffector2D surfaceEffector2D;
     // Start is called before the first frame update
@@ -22,10 +22,17 @@ public class SnowboardPlayerControllerGDTV : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        RotatePlayer();
-        RespondToBoost();
+        if (canMove)
+        {
+            RotatePlayer();
+            RespondToBoost();
+        }
     }
-
+    public void DisableControls()
+    {
+        //DisableMovement
+        canMove = false;
+    }
     void RespondToBoost()
     {
         if (Input.GetKey(KeyCode.UpArrow))
@@ -40,11 +47,12 @@ public class SnowboardPlayerControllerGDTV : MonoBehaviour
 
     void RotatePlayer()
     {
+        //player will always torque forward a bit to create the challenge of balance
         rb2d.AddTorque(-torqueAmount);
 
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            rb2d.AddTorque(torqueAmount * 2);
+            rb2d.AddTorque(torqueAmount * 4);
         }
         else if (Input.GetKey(KeyCode.RightArrow))
         {
