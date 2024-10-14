@@ -10,7 +10,7 @@ public enum Suit {
     Joker
 }
 
-[CreateAssetMenu(fileName = "NewCard", menuName = "2D Game Object/Playing Cards/Hearts/Card")]
+[CreateAssetMenu(fileName = "NewCard", menuName = "Game Object/2D/Playing Cards/Hearts/HeartsCard2D")]
 public class HeartsCard2DSO : ScriptableObject {
     public Suit suit;
     public string rank;
