@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-using System.Threading;
 
 public class Quiz : MonoBehaviour
 {
@@ -21,12 +20,23 @@ public class Quiz : MonoBehaviour
 
     [Header("Timer")]
     [SerializeField] Image timerImage;
-    Timer timer;
+    QuizTimer quizTimer;
 
     void Start()
     {
+        quizTimer = FindObjectOfType<QuizTimer>();
         GetNextQuestion();
         //DisplayQuestion();
+    }
+
+    void Update()
+    {
+        timerImage.fillAmount = quizTimer.fillFraction;
+        if(quizTimer.loadNextQuestion)
+        {
+            GetNextQuestion();
+            quizTimer.loadNextQuestion = false;
+        }
     }
 
     void DisplayQuestion()
@@ -68,6 +78,7 @@ public class Quiz : MonoBehaviour
             buttonImage.sprite = correctAnswerSprite;
         }
         SetButtonState(false);
+        quizTimer.CancelTimer();
     }
 
     void SetButtonState(bool state)

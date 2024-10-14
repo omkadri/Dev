@@ -13,7 +13,13 @@ public class QuizTimer : MonoBehaviour
     public bool isAnsweringQuestion;
     public float fillFraction;
     float timerValue;
+    TextMeshProUGUI timerText;
 
+    void Start()
+    {
+        timerText = GetComponentInChildren<TextMeshProUGUI>();
+    }
+    
     void Update()
     {
         UpdateTimer();
@@ -38,6 +44,7 @@ public class QuizTimer : MonoBehaviour
                 {
                     isAnsweringQuestion = false; 
                     timerValue = timeToShowCorrectAnswer;
+                    ToggleTimerTextVisibilty(false);
                 }
             }
             else
@@ -51,6 +58,7 @@ public class QuizTimer : MonoBehaviour
                     isAnsweringQuestion = true;
                     timerValue = timeToCompleteQuestion;
                     loadNextQuestion = true;
+                    ToggleTimerTextVisibilty(true);
                 }
             }
         }
@@ -66,8 +74,6 @@ public class QuizTimer : MonoBehaviour
 
     void UpdateTimerText(float timerValue)
 {
-    TextMeshProUGUI timerText = GetComponentInChildren<TextMeshProUGUI>();
-
     if (timerText != null)
     {
         timerText.text = Mathf.Round(timerValue).ToString();
@@ -77,4 +83,19 @@ public class QuizTimer : MonoBehaviour
         Debug.LogWarning("Timer Text component not found!");
     }
 }
+
+    void ToggleTimerTextVisibilty(bool enabled)
+    {
+        if (timerText != null)
+        {
+            if(enabled)
+            {
+                timerText.enabled = true;
+            }
+            else
+            {
+                timerText.enabled = false;
+            }
+        }
+    }
 }
