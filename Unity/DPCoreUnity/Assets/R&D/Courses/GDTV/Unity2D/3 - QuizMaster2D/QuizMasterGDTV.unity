@@ -311,7 +311,7 @@ GameObject:
   - component: {fileID: 549237559}
   - component: {fileID: 549237558}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: QuestionText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -356,19 +356,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
-    eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt
-    in culpa qui officia deserunt mollit anim id est laborum.
-
-
-
-'
+  m_text: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua.
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 34a2b74f3ae685b4ab6a82ba4afabba0, type: 2}
+  m_sharedMaterial: {fileID: 1784304114353447123, guid: 34a2b74f3ae685b4ab6a82ba4afabba0, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -392,15 +384,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 60
+  m_fontSizeBase: 60
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -766,6 +758,7 @@ GameObject:
   - component: {fileID: 1021166660}
   - component: {fileID: 1021166659}
   - component: {fileID: 1021166658}
+  - component: {fileID: 1021166662}
   m_Layer: 5
   m_Name: QuizCanvas
   m_TagString: Untagged
@@ -857,6 +850,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1021166662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1021166657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d412f86e86756fc42858dad1821d9a20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questionText: {fileID: 549237558}
+  question: {fileID: 11400000, guid: ddcbe41a2f3223949b6d5078743fc76e, type: 2}
 --- !u!1001 &1388770228
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1284,7 +1291,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1860311570
 MonoBehaviour:
   m_ObjectHideFlags: 0
