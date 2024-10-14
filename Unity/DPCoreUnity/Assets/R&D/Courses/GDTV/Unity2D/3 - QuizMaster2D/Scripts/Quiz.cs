@@ -13,6 +13,7 @@ public class Quiz : MonoBehaviour
     [Header("Answers")]
     [SerializeField] GameObject[] answerButtons;
     int correctAnswerIndex;
+    bool hasAnsweredEarly;
 
     [Header("Button Colors")]
     [SerializeField] Sprite defaultAnswerSprite;
@@ -34,8 +35,14 @@ public class Quiz : MonoBehaviour
         timerImage.fillAmount = quizTimer.fillFraction;
         if(quizTimer.loadNextQuestion)
         {
+            hasAnsweredEarly = false;
             GetNextQuestion();
             quizTimer.loadNextQuestion = false;
+        }
+        else if(!hasAnsweredEarly && !quizTimer.isAnsweringQuestion)
+        {
+            DisplayAnswer(-1);// using -1 because we the player did not select an answer. so -1 automatically triggers the else block in Displayanswer()
+            SetButtonState(false);
         }
     }
 
@@ -59,10 +66,18 @@ public class Quiz : MonoBehaviour
 
     public void OnAnswerSelected(int index)
     {
+        hasAnsweredEarly = true;
+        DisplayAnswer(index);
+        SetButtonState(false);
+        quizTimer.CancelTimer();
+    }
+
+    private void DisplayAnswer(int index)
+    {
         Image buttonImage;
-        
+
         //TODO: Implement correct image vs. incorrect image
-        if(index == question.GetCorrectAnswerIndex())
+        if (index == question.GetCorrectAnswerIndex())
         {
             questionText.text = "Correct!!!";
             buttonImage = answerButtons[index].GetComponent<Image>();
@@ -77,8 +92,6 @@ public class Quiz : MonoBehaviour
             buttonImage = answerButtons[correctAnswerIndex].GetComponent<Image>();
             buttonImage.sprite = correctAnswerSprite;
         }
-        SetButtonState(false);
-        quizTimer.CancelTimer();
     }
 
     void SetButtonState(bool state)
