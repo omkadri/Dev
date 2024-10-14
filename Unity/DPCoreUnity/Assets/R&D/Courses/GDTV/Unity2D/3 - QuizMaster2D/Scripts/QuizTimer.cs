@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Microsoft.Unity.VisualStudio.Editor;
+using TMPro;
 using UnityEngine;
 
 public class QuizTimer : MonoBehaviour
@@ -36,7 +37,7 @@ public class QuizTimer : MonoBehaviour
                 }
             }
         }
-        Debug.Log(timerValue);
+        UpdateTimerText(timerValue);
     }
 
     //TODO: Add SetFillAmount() to UIManager
@@ -44,4 +45,18 @@ public class QuizTimer : MonoBehaviour
     {
 
     }
+
+    void UpdateTimerText(float timerValue)
+{
+    TextMeshProUGUI timerText = GetComponentInChildren<TextMeshProUGUI>();
+
+    if (timerText != null)
+    {
+        timerText.text = Mathf.Round(timerValue).ToString();
+    }
+    else
+    {
+        Debug.LogWarning("Timer Text component not found!");
+    }
+}
 }
