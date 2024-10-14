@@ -10,10 +10,17 @@ public class Quiz : MonoBehaviour
     [SerializeField] QuestionSO question;
     [SerializeField] GameObject[] answerButtons;
     int correctAnswerIndex;
+
     [SerializeField] Sprite defaultAnswerSprite;
     [SerializeField] Sprite correctAnswerSprite;
 
     void Start()
+    {
+        GetNextQuestion();
+        //DisplayQuestion();
+    }
+
+    void DisplayQuestion()
     {
         questionText.text = question.GetQuestion();
 
@@ -24,9 +31,18 @@ public class Quiz : MonoBehaviour
         }
     }
 
+    void GetNextQuestion()
+    {
+        SetButtonState(true);
+        SetDefaultButtonSprite();
+        DisplayQuestion();
+    }
+
     public void OnAnswerSelected(int index)
     {
         Image buttonImage;
+        
+        //TODO: Implement correct image vs. incorrect image
         if(index == question.GetCorrectAnswerIndex())
         {
             questionText.text = "Correct!!!";
@@ -41,6 +57,25 @@ public class Quiz : MonoBehaviour
 
             buttonImage = answerButtons[correctAnswerIndex].GetComponent<Image>();
             buttonImage.sprite = correctAnswerSprite;
+        }
+        SetButtonState(false);
+    }
+
+    void SetButtonState(bool state)
+    {
+        for(int i = 0; i < answerButtons.Length; i++)
+        {
+            Button button = answerButtons[i].GetComponent<Button>();
+            button.interactable = state;
+        }
+    }
+
+    void SetDefaultButtonSprite()
+    {
+        for(int i = 0; i < answerButtons.Length; i++)
+        {
+            Image buttonImage = answerButtons[i].GetComponent<Image>();
+            buttonImage.sprite = defaultAnswerSprite;
         }
     }
 }
