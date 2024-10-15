@@ -6,12 +6,12 @@ using UnityEngine.SceneManagement;
 
 public class QuizGameManager : MonoBehaviour
 {
-    Quiz quiz;
-    EndScreen endScreen;
+    QuizGDTV quiz;
+    EndScreenQuizGGTV endScreen;
     void Awake()
     {
-        quiz = FindObjectOfType<Quiz>();
-        endScreen = FindObjectOfType<EndScreen>();
+        quiz = FindObjectOfType<QuizGDTV>();
+        endScreen = FindObjectOfType<EndScreenQuizGGTV>();
     }
 
     void Start()

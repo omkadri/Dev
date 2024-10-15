@@ -4,12 +4,12 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public class Quiz : MonoBehaviour
+public class QuizGDTV : MonoBehaviour
 {
     [Header("Questions")]
     [SerializeField] TextMeshProUGUI questionText;
-    [SerializeField] List<QuestionSO> questions = new List<QuestionSO>();
-    [SerializeField] QuestionSO currentQuestion;
+    [SerializeField] List<QuestionScriptableObjectGDTV> questions = new List<QuestionScriptableObjectGDTV>();
+    [SerializeField] QuestionScriptableObjectGDTV currentQuestion;
     Color defaultQuestionColor;
 
     [Header("Answers")]
@@ -23,11 +23,11 @@ public class Quiz : MonoBehaviour
 
     [Header("Timer")]
     [SerializeField] Image timerImage;
-    QuizTimer quizTimer;
+    QuizTimerGDTV quizTimer;
 
     [Header("Scoring")]
     [SerializeField] TextMeshProUGUI scoreText;
-    ScoreKeeper scoreKeeper;
+    ScoreKeeperGDTV scoreKeeper;
 
     [Header("ProgressBar")]
     [SerializeField] Slider progressBar;
@@ -38,8 +38,8 @@ public class Quiz : MonoBehaviour
 
     void Awake()
     {
-        quizTimer = FindObjectOfType<QuizTimer>();
-        scoreKeeper = FindObjectOfType<ScoreKeeper>();
+        quizTimer = FindObjectOfType<QuizTimerGDTV>();
+        scoreKeeper = FindObjectOfType<ScoreKeeperGDTV>();
     }
 
     void Start()

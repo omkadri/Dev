@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class EndScreen : MonoBehaviour
+public class EndScreenQuizGGTV : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI finalScoreText;
-    ScoreKeeper scoreKeeper;
+    ScoreKeeperGDTV scoreKeeper;
     void Awake()
     {
-        scoreKeeper = FindObjectOfType<ScoreKeeper>();
+        scoreKeeper = FindObjectOfType<ScoreKeeperGDTV>();
     }
 
     public void ShowFinalScore()
