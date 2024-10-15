@@ -10,6 +10,7 @@ public class Quiz : MonoBehaviour
     [SerializeField] TextMeshProUGUI questionText;
     [SerializeField] List<QuestionSO> questions = new List<QuestionSO>();
     [SerializeField] QuestionSO currentQuestion;
+    Color defaultQuestionColor;
 
     [Header("Answers")]
     [SerializeField] GameObject[] answerButtons;
@@ -41,6 +42,7 @@ public class Quiz : MonoBehaviour
         scoreKeeper = FindObjectOfType<ScoreKeeper>();
         progressBar.maxValue = questions.Count;
         progressBar.value = 0;
+        defaultQuestionColor = questionText.color;
     }
 
     void Update()
@@ -80,7 +82,7 @@ public class Quiz : MonoBehaviour
             DisplayQuestion();
             progressBar.value ++;
             scoreKeeper.IncrementTotalQuestionsSeen();
-
+            questionText.color = defaultQuestionColor;
         }  
     }
 
@@ -120,12 +122,14 @@ public class Quiz : MonoBehaviour
             buttonImage = answerButtons[index].GetComponent<Image>();
             buttonImage.sprite = correctAnswerSprite;
             scoreKeeper.IncrementCorrectAnswers();
+            questionText.color = Color.green;
         }
         else
         {
             correctAnswerIndex = currentQuestion.GetCorrectAnswerIndex();
             string correctAnswer = currentQuestion.GetAnswer(correctAnswerIndex);
-            questionText.text = "Wrong!!!\n The Correct Answer is:\n" + correctAnswer;
+            questionText.text = "Wrong!!! The Correct Answer is:\n" + correctAnswer;
+            questionText.color = Color.red;
 
             buttonImage = answerButtons[correctAnswerIndex].GetComponent<Image>();
             buttonImage.sprite = correctAnswerSprite;
