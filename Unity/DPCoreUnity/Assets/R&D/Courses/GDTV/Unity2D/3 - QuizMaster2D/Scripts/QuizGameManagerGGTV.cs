@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
-public class QuizGameManager : MonoBehaviour
+public class QuizGameManagerGDTV : MonoBehaviour
 {
     QuizGDTV quiz;
     EndScreenQuizGGTV endScreen;
