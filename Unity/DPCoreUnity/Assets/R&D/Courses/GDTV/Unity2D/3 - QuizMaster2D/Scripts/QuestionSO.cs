@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Game Object/2D/Quiz Master/Quiz Question", fileName = "New Question")]
+[CreateAssetMenu(menuName = "Game Object/2D/GDTV/Quiz Master/Quiz Question", fileName = "New Question")]
 public class QuestionSO : ScriptableObject
 {
     [TextArea(2, 6)]
