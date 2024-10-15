@@ -172,7 +172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1124,7 +1124,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   questionText: {fileID: 549237558}
-  question: {fileID: 11400000, guid: 245859e7a0ae4fa4a82a74ebbdc4e5ea, type: 2}
+  questions:
+  - {fileID: 11400000, guid: ddcbe41a2f3223949b6d5078743fc76e, type: 2}
+  - {fileID: 11400000, guid: af2b2f68657e6f4489729c5f5361d21d, type: 2}
+  - {fileID: 11400000, guid: a9307c33f620f2c4196ef1e6fb51fdad, type: 2}
+  - {fileID: 11400000, guid: 18b669be7c5353845bc86df50848af94, type: 2}
+  - {fileID: 11400000, guid: dd4a9d7eafd7a0848975e12a1644ecce, type: 2}
+  - {fileID: 11400000, guid: e58bd2eb1b44de141ae477b055cc7e12, type: 2}
+  - {fileID: 11400000, guid: 1fb020468abc66c4eb67432753269f02, type: 2}
+  - {fileID: 11400000, guid: 245859e7a0ae4fa4a82a74ebbdc4e5ea, type: 2}
+  currentQuestion: {fileID: 11400000, guid: ddcbe41a2f3223949b6d5078743fc76e, type: 2}
   answerButtons:
   - {fileID: 1520806843}
   - {fileID: 256281238}
@@ -1132,6 +1141,7 @@ MonoBehaviour:
   - {fileID: 385177607}
   defaultAnswerSprite: {fileID: 21300000, guid: 42537583352cb1a40bb7e547ac335039, type: 3}
   correctAnswerSprite: {fileID: 21300000, guid: ef9e412c79199e14397c6bc30e20856e, type: 3}
+  timerImage: {fileID: 1856597744}
 --- !u!1001 &1388770228
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1843,7 +1853,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeToCompleteQuestion: 30
-  timeToShowCorrectAnswer: 10
+  timeToShowCorrectAnswer: 5
   loadNextQuestion: 0
   isAnsweringQuestion: 0
   fillFraction: 0
