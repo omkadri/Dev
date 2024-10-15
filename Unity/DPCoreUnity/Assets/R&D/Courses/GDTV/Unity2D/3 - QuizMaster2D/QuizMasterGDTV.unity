@@ -1745,27 +1745,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3271271905364530077, guid: d1d112f2f3cca2a43b14d99f96c61caa, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3271271905364530077, guid: d1d112f2f3cca2a43b14d99f96c61caa, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1021166662}
+      objectReference: {fileID: 1178839736}
     - target: {fileID: 3271271905364530077, guid: d1d112f2f3cca2a43b14d99f96c61caa, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3271271905364530077, guid: d1d112f2f3cca2a43b14d99f96c61caa, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnAnswerSelected
+      value: OnReplayLevel
       objectReference: {fileID: 0}
     - target: {fileID: 3271271905364530077, guid: d1d112f2f3cca2a43b14d99f96c61caa, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Quiz, Assembly-CSharp
+      value: QuizGameManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 3271271905364530077, guid: d1d112f2f3cca2a43b14d99f96c61caa, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3271271905364530077, guid: d1d112f2f3cca2a43b14d99f96c61caa, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -1856,6 +1856,50 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d1d112f2f3cca2a43b14d99f96c61caa, type: 3}
+--- !u!1 &1178839734
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1178839735}
+  - component: {fileID: 1178839736}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1178839735
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1178839734}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1178839736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1178839734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28c59d6c284fd834489182c623c1b381, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1208781170
 GameObject:
   m_ObjectHideFlags: 0
@@ -1988,13 +2032,14 @@ GameObject:
   - component: {fileID: 1305619893}
   - component: {fileID: 1305619892}
   - component: {fileID: 1305619891}
+  - component: {fileID: 1305619895}
   m_Layer: 5
   m_Name: EndScreenCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1305619891
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2080,6 +2125,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1305619895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1305619890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54bab82abc8c8f649bf906e950dcf237, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  finalScoreText: {fileID: 758668987}
 --- !u!224 &1358363546 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6795836896270296481, guid: d1d112f2f3cca2a43b14d99f96c61caa, type: 3}
@@ -3259,3 +3317,4 @@ SceneRoots:
   - {fileID: 1021166661}
   - {fileID: 1305619894}
   - {fileID: 1860311573}
+  - {fileID: 1178839735}
