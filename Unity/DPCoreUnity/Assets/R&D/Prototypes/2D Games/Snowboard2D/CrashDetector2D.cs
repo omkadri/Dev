@@ -18,6 +18,7 @@ void OnTriggerEnter2D(Collider2D other)
         if (!hasCrashed)
         {
             hasCrashed = true;
+            //TODO: Abstract this into a GameManager class
             FindObjectOfType<SnowboardPlayerController2D>().DisableControls();
             crashParticle.Play();
             Debug.Log("You Crashed!");
@@ -26,11 +27,14 @@ void OnTriggerEnter2D(Collider2D other)
               //Play audio once
               crashSFXAudioSource.Play();
             }
+            //TODO: Abstract this into GameManager Class
             Invoke("ReloadScene", loadDelay);
         }
 
     }
 }
+
+  //TODO: Abstract this into GameScenManager Class
   void ReloadScene()
   {
     SceneManager.LoadScene(0);
