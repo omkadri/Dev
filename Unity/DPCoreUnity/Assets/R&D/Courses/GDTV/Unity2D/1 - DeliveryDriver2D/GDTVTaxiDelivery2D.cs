@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Delivery2D : MonoBehaviour
+public class GDTVTaxiDelivery2D : MonoBehaviour
 {
     [SerializeField] float destroyDelay = 0.5f;
     [SerializeField] GameObject driverImage;

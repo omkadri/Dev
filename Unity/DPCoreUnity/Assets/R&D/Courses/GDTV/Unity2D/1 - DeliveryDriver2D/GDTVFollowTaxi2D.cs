@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FollowTaxi2D : MonoBehaviour
+public class GDTVFollowTaxi2D : MonoBehaviour
 {
     public enum FollowMode
     {

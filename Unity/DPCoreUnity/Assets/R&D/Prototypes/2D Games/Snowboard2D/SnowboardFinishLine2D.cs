@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class FinishLine2D : MonoBehaviour
+public class SnowboardFinishLine2D : MonoBehaviour
 {
   [SerializeField] float loadDelay = 1.5f;
   [SerializeField] ParticleSystem finishParticleA;

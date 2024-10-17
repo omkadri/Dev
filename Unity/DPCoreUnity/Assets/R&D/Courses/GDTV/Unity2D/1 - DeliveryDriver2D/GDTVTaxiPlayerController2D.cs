@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DriverPlayerController2D : MonoBehaviour
+public class GDTVTaxiPlayerController2D : MonoBehaviour
 {
     [SerializeField] float steerSpeed = 900f;
     [SerializeField] float moveSpeed = 12f;

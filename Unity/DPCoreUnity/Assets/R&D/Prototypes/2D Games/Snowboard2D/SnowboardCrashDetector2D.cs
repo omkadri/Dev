@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class CrashDetector2D : MonoBehaviour
+public class SnowboardCrashDetector2D : MonoBehaviour
 {
 [SerializeField] ParticleSystem crashParticle;
 [SerializeField] AudioSource crashSFXAudioSource;

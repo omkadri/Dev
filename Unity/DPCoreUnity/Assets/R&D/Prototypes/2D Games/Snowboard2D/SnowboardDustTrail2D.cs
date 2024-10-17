@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DustTrail2D : MonoBehaviour
+public class SnowboardDustTrail2D : MonoBehaviour
 {
     [SerializeField] ParticleSystem trailVXF;
     [SerializeField] AudioSource trailSFXAudioSource;
