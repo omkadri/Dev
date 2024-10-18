@@ -14,6 +14,7 @@ public class SnowboardFinishLine2D : MonoBehaviour
   {
     if (other.tag == "Player")
     {
+      //Create OnComplete callback
         Debug.Log("You Finished!");
         finishParticleA.Play();
         finishParticleB.Play();

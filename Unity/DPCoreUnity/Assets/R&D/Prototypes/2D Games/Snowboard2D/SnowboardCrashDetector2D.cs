@@ -21,6 +21,7 @@ void OnTriggerEnter2D(Collider2D other)
             //TODO: Abstract this into a GameManager class
             FindObjectOfType<SnowboardPlayerController2D>().DisableControls();
             crashParticle.Play();
+            //Create OnSnowboardCrashed callback
             Debug.Log("You Crashed!");
             if (crashSFXAudioSource != null)
             {

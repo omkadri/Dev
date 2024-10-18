@@ -30,9 +30,11 @@ public class SnowboardPlayerController2D : MonoBehaviour
     }
     public void DisableControls()
     {
-        //DisableMovement
+        //Create OnSnowboardCrash callback
         canMove = false;
     }
+
+    //Create OnSnowboardBoost callback
     void RespondToBoost()
     {
         if (Input.GetKey(KeyCode.UpArrow))

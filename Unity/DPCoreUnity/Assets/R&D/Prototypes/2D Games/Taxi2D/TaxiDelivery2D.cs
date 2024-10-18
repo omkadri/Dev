@@ -18,6 +18,8 @@ public class TaxiDelivery2D : MonoBehaviour
     }
      void OnTriggerEnter2D(Collider2D other)
     {
+
+        //TODO: Create OnTaxiDropOff callback
         if (other.tag == "DropOff" && hasCustomer)
         {
             Debug.Log("Customer Dropped Off");
@@ -30,6 +32,7 @@ public class TaxiDelivery2D : MonoBehaviour
         }
         if (other.tag == "Customer" && !hasCustomer)
         {
+            //TODO: Create OnTaxiPickupUp callback
             Debug.Log("Customer Picked Up");
             hasCustomer = true;
             Destroy( other.gameObject, destroyDelay);
