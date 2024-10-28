@@ -387,6 +387,7 @@ GameObject:
   - component: {fileID: 1198125885}
   - component: {fileID: 1198125890}
   - component: {fileID: 1198125889}
+  - component: {fileID: 1198125891}
   m_Layer: 0
   m_Name: FlappyPlayer2D
   m_TagString: Untagged
@@ -407,8 +408,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpForce: 10
-  riseSprite: {fileID: 21300000, guid: c8b1d45a82fc70742b9ed626c18d358f, type: 3}
-  fallSprite: {fileID: 21300000, guid: f5ff4507414398d4096f5cd283d1378e, type: 3}
 --- !u!50 &1198125886
 Rigidbody2D:
   serializedVersion: 4
@@ -563,6 +562,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.2, y: 1.32}
   m_EdgeRadius: 0
+--- !u!95 &1198125891
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1198125884}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 486240cbd5ddb68428086c0f70f7ed07, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1221964771
 GameObject:
   m_ObjectHideFlags: 0
