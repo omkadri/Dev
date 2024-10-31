@@ -7,19 +7,27 @@ using UnityEngine.InputSystem;
 public class TileVaniaPlayerMovementGDTV : MonoBehaviour
 {
     Vector2 moveInput;
+    Rigidbody2D rb2d;
+    [SerializeField] float runSpeed = 10f;
     void Start()
     {
-        
+        rb2d = GetComponent<Rigidbody2D>();
     }
 
     void Update()
     {
-        
+        Run();   
     }
 
     void OnMove(InputValue value)
     {
         moveInput = value.Get<Vector2>();
         Debug.Log(moveInput);
+    }
+
+    void Run()
+    {
+        Vector2 playerVelocity = new Vector2(moveInput.x * runSpeed, rb2d.velocity.y);
+        rb2d.velocity = playerVelocity;
     }
 }
