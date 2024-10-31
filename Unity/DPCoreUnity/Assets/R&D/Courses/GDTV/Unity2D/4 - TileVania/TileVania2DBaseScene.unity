@@ -7355,7 +7355,7 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!1001 &244171957355788885
+--- !u!1001 &5444254597363296217
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -7363,49 +7363,49 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2107759603093396190, guid: 7b43bbc3ddcbeab49b64c794c5307189, type: 3}
+    - target: {fileID: 1860608082673055773, guid: 7b43bbc3ddcbeab49b64c794c5307189, type: 3}
+      propertyPath: m_Name
+      value: TileVaniaPlayer2D
+      objectReference: {fileID: 0}
+    - target: {fileID: 6727937786325587224, guid: 7b43bbc3ddcbeab49b64c794c5307189, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.59
       objectReference: {fileID: 0}
-    - target: {fileID: 2107759603093396190, guid: 7b43bbc3ddcbeab49b64c794c5307189, type: 3}
+    - target: {fileID: 6727937786325587224, guid: 7b43bbc3ddcbeab49b64c794c5307189, type: 3}
       propertyPath: m_LocalPosition.y
       value: -1.43
       objectReference: {fileID: 0}
-    - target: {fileID: 2107759603093396190, guid: 7b43bbc3ddcbeab49b64c794c5307189, type: 3}
+    - target: {fileID: 6727937786325587224, guid: 7b43bbc3ddcbeab49b64c794c5307189, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2107759603093396190, guid: 7b43bbc3ddcbeab49b64c794c5307189, type: 3}
+    - target: {fileID: 6727937786325587224, guid: 7b43bbc3ddcbeab49b64c794c5307189, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 2107759603093396190, guid: 7b43bbc3ddcbeab49b64c794c5307189, type: 3}
+    - target: {fileID: 6727937786325587224, guid: 7b43bbc3ddcbeab49b64c794c5307189, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2107759603093396190, guid: 7b43bbc3ddcbeab49b64c794c5307189, type: 3}
+    - target: {fileID: 6727937786325587224, guid: 7b43bbc3ddcbeab49b64c794c5307189, type: 3}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2107759603093396190, guid: 7b43bbc3ddcbeab49b64c794c5307189, type: 3}
+    - target: {fileID: 6727937786325587224, guid: 7b43bbc3ddcbeab49b64c794c5307189, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2107759603093396190, guid: 7b43bbc3ddcbeab49b64c794c5307189, type: 3}
+    - target: {fileID: 6727937786325587224, guid: 7b43bbc3ddcbeab49b64c794c5307189, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2107759603093396190, guid: 7b43bbc3ddcbeab49b64c794c5307189, type: 3}
+    - target: {fileID: 6727937786325587224, guid: 7b43bbc3ddcbeab49b64c794c5307189, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2107759603093396190, guid: 7b43bbc3ddcbeab49b64c794c5307189, type: 3}
+    - target: {fileID: 6727937786325587224, guid: 7b43bbc3ddcbeab49b64c794c5307189, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5307407803494915639, guid: 7b43bbc3ddcbeab49b64c794c5307189, type: 3}
-      propertyPath: m_Name
-      value: TileVaniaPlayer2D
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7419,4 +7419,4 @@ SceneRoots:
   - {fileID: 187936067}
   - {fileID: 503208544}
   - {fileID: 1404899842}
-  - {fileID: 244171957355788885}
+  - {fileID: 5444254597363296217}
