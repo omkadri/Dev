@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -16,7 +17,8 @@ public class TileVaniaPlayerMovementGDTV : MonoBehaviour
 
     void Update()
     {
-        Run();   
+        Run();
+        FlipSprite();
     }
 
     void OnMove(InputValue value)
@@ -29,5 +31,15 @@ public class TileVaniaPlayerMovementGDTV : MonoBehaviour
     {
         Vector2 playerVelocity = new Vector2(moveInput.x * runSpeed, rb2d.velocity.y);
         rb2d.velocity = playerVelocity;
+    }
+
+    private void FlipSprite()
+    {
+        bool playerHasHorizontalSpeed = Mathf.Abs(rb2d.velocity.x) > Mathf.Epsilon;//this prevents sprite from fliping back to facing forward after it stops moving
+
+        if (playerHasHorizontalSpeed)
+        {
+            transform.localScale = new Vector2(Mathf.Sign(rb2d.velocity.x), 1f);
+        }
     }
 }
