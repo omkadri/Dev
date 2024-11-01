@@ -8,6 +8,7 @@ using UnityEngine.InputSystem;
 public class TileVaniaPlayerMovementGDTV : MonoBehaviour
 {
     [SerializeField] float runSpeed = 10f;
+    [SerializeField] float jumpSpeed = 5f;
     Vector2 moveInput;
     Rigidbody2D rb2d;
     Animator animator;
@@ -27,6 +28,14 @@ public class TileVaniaPlayerMovementGDTV : MonoBehaviour
     {
         moveInput = value.Get<Vector2>();
         Debug.Log(moveInput);
+    }
+
+    void OnJump(InputValue value)
+    {
+        if(value.isPressed)
+        {
+                rb2d.velocity += new Vector2(0f, jumpSpeed);
+        }
     }
 
     void Run()
