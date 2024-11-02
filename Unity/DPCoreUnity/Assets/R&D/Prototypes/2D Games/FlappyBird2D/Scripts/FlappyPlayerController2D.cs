@@ -14,11 +14,8 @@ public class FlappyPlayerController2D : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    void Update()
+    void OnJump()
     {
-        if (Input.GetButtonDown("Jump"))
-        {
             rb.velocity = Vector2.up * jumpForce;
-        }
     }
 }
