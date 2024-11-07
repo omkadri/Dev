@@ -34251,22 +34251,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: TileVaniaPlayer2D
       objectReference: {fileID: 0}
-    - target: {fileID: 1860608082673055773, guid: 7b43bbc3ddcbeab49b64c794c5307189, type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 2049110762491366003, guid: 7b43bbc3ddcbeab49b64c794c5307189, type: 3}
-      propertyPath: m_BodyType
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2049110762491366003, guid: 7b43bbc3ddcbeab49b64c794c5307189, type: 3}
-      propertyPath: m_GravityScale
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 2049110762491366003, guid: 7b43bbc3ddcbeab49b64c794c5307189, type: 3}
-      propertyPath: m_CollisionDetection
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6727937786325587224, guid: 7b43bbc3ddcbeab49b64c794c5307189, type: 3}
       propertyPath: m_LocalPosition.x
       value: -11.48
@@ -34306,10 +34290,6 @@ PrefabInstance:
     - target: {fileID: 6727937786325587224, guid: 7b43bbc3ddcbeab49b64c794c5307189, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7452698279142081288, guid: 7b43bbc3ddcbeab49b64c794c5307189, type: 3}
-      propertyPath: jumpSpeed
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
