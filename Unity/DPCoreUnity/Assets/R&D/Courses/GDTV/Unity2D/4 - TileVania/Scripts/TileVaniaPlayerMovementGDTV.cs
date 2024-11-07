@@ -76,10 +76,13 @@ public class TileVaniaPlayerMovementGDTV : MonoBehaviour
         if ( !capsuleCollider.IsTouchingLayers( LayerMask.GetMask( "Climbing" ) ) )
         {
             rb2d.gravityScale = defaultPlayerGravity;
+            animator.SetBool("IsClimbing", false);
             return;
         }
         Vector2 climbVelocity = new Vector2(rb2d.velocity.x, moveInput.y * climbSpeed);
         rb2d.velocity = climbVelocity;
         rb2d.gravityScale = 0f;
+        bool playerHasVerticalSpeed = Mathf.Abs(rb2d.velocity.y) > Mathf.Epsilon;
+        animator.SetBool("IsClimbing", playerHasVerticalSpeed);
     }
 }
