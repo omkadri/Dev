@@ -14,18 +14,20 @@ public class TileVaniaPlayerMovementGDTV : MonoBehaviour
     Rigidbody2D rb2d;
     Animator animator;
     CapsuleCollider2D capsuleCollider;
+    float defaultPlayerGravity;
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         capsuleCollider = GetComponent<CapsuleCollider2D>();
+        defaultPlayerGravity = rb2d.gravityScale;
     }
 
     void Update()
     {
         Run();
         FlipSprite();
-        ClimbLadder();
+        Climb();
     }
 
 
@@ -69,14 +71,15 @@ public class TileVaniaPlayerMovementGDTV : MonoBehaviour
         }
     }
 
-    void ClimbLadder()
+    void Climb()
     {
         if ( !capsuleCollider.IsTouchingLayers( LayerMask.GetMask( "Climbing" ) ) )
         {
+            rb2d.gravityScale = defaultPlayerGravity;
             return;
         }
         Vector2 climbVelocity = new Vector2(rb2d.velocity.x, moveInput.y * climbSpeed);
         rb2d.velocity = climbVelocity;
-
+        rb2d.gravityScale = 0f;
     }
 }
