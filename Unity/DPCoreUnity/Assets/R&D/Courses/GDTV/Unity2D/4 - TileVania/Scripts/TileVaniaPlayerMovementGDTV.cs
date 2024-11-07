@@ -9,6 +9,7 @@ public class TileVaniaPlayerMovementGDTV : MonoBehaviour
 {
     [SerializeField] float runSpeed = 10f;
     [SerializeField] float jumpSpeed = 5f;
+    [SerializeField] float climbSpeed = 5f;
     Vector2 moveInput;
     Rigidbody2D rb2d;
     Animator animator;
@@ -24,6 +25,7 @@ public class TileVaniaPlayerMovementGDTV : MonoBehaviour
     {
         Run();
         FlipSprite();
+        ClimbLadder();
     }
 
 
@@ -65,5 +67,16 @@ public class TileVaniaPlayerMovementGDTV : MonoBehaviour
         {
             transform.localScale = new Vector2(Mathf.Sign(rb2d.velocity.x), 1f);
         }
+    }
+
+    void ClimbLadder()
+    {
+        if ( !capsuleCollider.IsTouchingLayers( LayerMask.GetMask( "Climbing" ) ) )
+        {
+            return;
+        }
+        Vector2 climbVelocity = new Vector2(rb2d.velocity.x, moveInput.y * climbSpeed);
+        rb2d.velocity = climbVelocity;
+
     }
 }
