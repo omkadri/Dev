@@ -13,13 +13,15 @@ public class TileVaniaPlayerMovementGDTV : MonoBehaviour
     Vector2 moveInput;
     Rigidbody2D rb2d;
     Animator animator;
-    CapsuleCollider2D capsuleCollider;
+    CapsuleCollider2D bodyCollider;
+    BoxCollider2D feetCollider;
     float defaultPlayerGravity;
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        capsuleCollider = GetComponent<CapsuleCollider2D>();
+        bodyCollider = GetComponent<CapsuleCollider2D>();
+        feetCollider = GetComponent<BoxCollider2D>();
         defaultPlayerGravity = rb2d.gravityScale;
     }
 
@@ -39,7 +41,7 @@ public class TileVaniaPlayerMovementGDTV : MonoBehaviour
 
     void OnJump( InputValue value )
     {
-        if ( !capsuleCollider.IsTouchingLayers( LayerMask.GetMask( "Ground" ) ) )
+        if ( !feetCollider.IsTouchingLayers( LayerMask.GetMask( "Ground" ) ) )
         {
             return;
         }
@@ -73,7 +75,7 @@ public class TileVaniaPlayerMovementGDTV : MonoBehaviour
 
     void Climb()
     {
-        if ( !capsuleCollider.IsTouchingLayers( LayerMask.GetMask( "Climbing" ) ) )
+        if ( !bodyCollider.IsTouchingLayers( LayerMask.GetMask( "Climbing" ) ) )
         {
             rb2d.gravityScale = defaultPlayerGravity;
             animator.SetBool("IsClimbing", false);
