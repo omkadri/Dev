@@ -10,6 +10,7 @@ public class TileVaniaPlayerMovementGDTV : MonoBehaviour
     [SerializeField] float runSpeed = 10f;
     [SerializeField] float jumpSpeed = 5f;
     [SerializeField] float climbSpeed = 5f;
+    [SerializeField] Vector2 deathKnockback = new Vector2( 20f, 20f );
     bool isAlive;
     Vector2 moveInput;
     Rigidbody2D rb2d;
@@ -99,6 +100,8 @@ public class TileVaniaPlayerMovementGDTV : MonoBehaviour
         if ( bodyCollider.IsTouchingLayers( LayerMask.GetMask( "Enemies" ) ) )
         {
             isAlive = false;
+            animator.SetTrigger("Dying");
+            rb2d.velocity = deathKnockback;
         }
     }
 }
