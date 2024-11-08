@@ -10,6 +10,7 @@ public class TileVaniaPlayerMovementGDTV : MonoBehaviour
     [SerializeField] float runSpeed = 10f;
     [SerializeField] float jumpSpeed = 5f;
     [SerializeField] float climbSpeed = 5f;
+    bool isAlive;
     Vector2 moveInput;
     Rigidbody2D rb2d;
     Animator animator;
@@ -18,6 +19,7 @@ public class TileVaniaPlayerMovementGDTV : MonoBehaviour
     float defaultPlayerGravity;
     void Start()
     {
+        isAlive = true;
         rb2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         bodyCollider = GetComponent<CapsuleCollider2D>();
@@ -27,20 +29,24 @@ public class TileVaniaPlayerMovementGDTV : MonoBehaviour
 
     void Update()
     {
+        if ( !isAlive ) { return; }
         Run();
         FlipSprite();
         Climb();
+        Die();
     }
 
 
     void OnMove( InputValue value )
     {
+        if ( !isAlive ) { return; }
         moveInput = value.Get<Vector2>();
         Debug.Log( moveInput );
     }
 
     void OnJump( InputValue value )
     {
+        if ( !isAlive ) { return; }
         if ( !feetCollider.IsTouchingLayers( LayerMask.GetMask( "Ground" ) ) )
         {
             return;
@@ -86,5 +92,13 @@ public class TileVaniaPlayerMovementGDTV : MonoBehaviour
         rb2d.gravityScale = 0f;
         bool playerHasVerticalSpeed = Mathf.Abs(rb2d.velocity.y) > Mathf.Epsilon;
         animator.SetBool("IsClimbing", playerHasVerticalSpeed);
+    }
+
+    void Die()
+    {
+        if ( bodyCollider.IsTouchingLayers( LayerMask.GetMask( "Enemies" ) ) )
+        {
+            isAlive = false;
+        }
     }
 }
