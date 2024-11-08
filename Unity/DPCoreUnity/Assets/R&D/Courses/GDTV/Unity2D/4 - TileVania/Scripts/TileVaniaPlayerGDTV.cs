@@ -2,15 +2,18 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class TileVaniaPlayerMovementGDTV : MonoBehaviour
+public class TileVaniaPlayerGDTV : MonoBehaviour
 {
     [SerializeField] float runSpeed = 10f;
     [SerializeField] float jumpSpeed = 5f;
     [SerializeField] float climbSpeed = 5f;
     [SerializeField] Vector2 deathKnockback = new Vector2( 20f, 20f );
+    [SerializeField] GameObject projectile;
+    [SerializeField] Transform projectileWeapon;
     bool isAlive;
     Vector2 moveInput;
     Rigidbody2D rb2d;
@@ -60,6 +63,12 @@ public class TileVaniaPlayerMovementGDTV : MonoBehaviour
         {
             rb2d.velocity += new Vector2(0f, jumpSpeed);
         }
+    }
+
+    void OnFire( InputValue value )
+    {
+        if ( !isAlive ) { return; }
+        Instantiate( projectile, projectileWeapon.position, transform.rotation );
     }
 
     void Run()
