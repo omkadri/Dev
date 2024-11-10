@@ -30,6 +30,7 @@ TagManager:
   - Enemies
   - Hazards
   - Projectile
+  - Interactables
   - 
   - 
   - 
@@ -69,11 +70,14 @@ TagManager:
   - name: Projectile
     uniqueID: 1419198795
     locked: 0
-  - name: Enemies
-    uniqueID: 2149319419
-    locked: 0
   - name: Hazards
     uniqueID: 4252263845
+    locked: 0
+  - name: Interactables
+    uniqueID: 2537688429
+    locked: 0
+  - name: Enemies
+    uniqueID: 2149319419
     locked: 0
   - name: Player
     uniqueID: 3479684073

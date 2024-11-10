@@ -78,7 +78,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -815283223
-  m_SortingLayer: 9
+  m_SortingLayer: 10
   m_SortingOrder: 0
   m_Sprite: {fileID: 823847309, guid: af63069337f4a984c84aa5d311700dc6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -219,9 +219,9 @@ MonoBehaviour:
   runSpeed: 5
   jumpSpeed: 10
   climbSpeed: 5
-  deathKnockback: {x: 0, y: 20}
-  projectile: {fileID: 0}
-  projectileWeapon: {fileID: 0}
+  deathKnockback: {x: -2, y: 20}
+  projectile: {fileID: 7578543172150961644, guid: 31da20feae0fcd14aaa003526c92e4b6, type: 3}
+  projectileWeapon: {fileID: 8383675681807860881}
 --- !u!61 &1583999030856935778
 BoxCollider2D:
   m_ObjectHideFlags: 0
