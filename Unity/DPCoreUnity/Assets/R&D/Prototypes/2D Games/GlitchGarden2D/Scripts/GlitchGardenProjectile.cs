@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Projectile : MonoBehaviour
+public class GlitchGardenProjectile : MonoBehaviour
 {
     [SerializeField] float movementSpeed = 1;
     [SerializeField] float damageAmount = 50f;
