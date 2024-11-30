@@ -4,20 +4,13 @@ using UnityEngine;
 
 public class TileVaniaCoinPickupGDTV : MonoBehaviour
 {
-    void Start()
-    {
-        
-    }
+    [SerializeField] AudioClip coinPickupSFX;
 
-    void Update()
-    {
-        
-    }
-    
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Player")
         {
+            AudioSource.PlayClipAtPoint( coinPickupSFX, Camera.main.transform.position );
             Destroy( gameObject );
         }
     }
