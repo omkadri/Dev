@@ -5,13 +5,13 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.SocialPlatforms;
 
-public class TileVaniaGameSession : MonoBehaviour
+public class TileVaniaGameSessionGDTV : MonoBehaviour
 {
     [SerializeField] int playerLives = 3;
     [SerializeField] string gameOverSceneName;
     void Awake()
     {
-        int numGameSessions = FindObjectsOfType<TileVaniaGameSession>().Length;
+        int numGameSessions = FindObjectsOfType<TileVaniaGameSessionGDTV>().Length;
         if ( numGameSessions > 1 ) // ensures that only one game session can exits at a time
         {
             Destroy( gameObject );
