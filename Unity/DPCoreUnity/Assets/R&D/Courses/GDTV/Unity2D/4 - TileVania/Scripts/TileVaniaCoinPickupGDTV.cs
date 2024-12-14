@@ -5,12 +5,18 @@ using UnityEngine;
 public class TileVaniaCoinPickupGDTV : MonoBehaviour
 {
     [SerializeField] AudioClip coinPickupSFX;
+    [SerializeField] int pointsForCoinPickup = 100;
 
-    void OnTriggerEnter2D(Collider2D other)
+    bool wasCollected = false;
+
+    void OnTriggerEnter2D( Collider2D other )
     {
-        if (other.tag == "Player")
+        if ( other.tag == "Player" && !wasCollected )
         {
+            wasCollected = true;
+            FindObjectOfType<TileVaniaGameSessionGDTV>().AddToScore( pointsForCoinPickup );
             AudioSource.PlayClipAtPoint( coinPickupSFX, Camera.main.transform.position );
+            gameObject.SetActive( false );
             Destroy( gameObject );
         }
     }
