@@ -7,12 +7,12 @@ public class TileVania2DProjectileGDTV : MonoBehaviour
 {
     Rigidbody2D rb2d;
     [SerializeField] float projectileSpeed = 20f;
-    TileVaniaPlayerGDTV player;// xSpeed ensures bullet is shooting in the direction that the player is facing
+    TileVania2DPlayerGDTV player;// xSpeed ensures bullet is shooting in the direction that the player is facing
     float xSpeed;
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
-        player = FindObjectOfType<TileVaniaPlayerGDTV>();
+        player = FindObjectOfType<TileVania2DPlayerGDTV>();
         xSpeed = player.transform.localScale.x * projectileSpeed;
     }
 

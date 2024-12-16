@@ -4,7 +4,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class TileVaniaLevelExitGDTV : MonoBehaviour
+public class TileVania2DLevelExitGDTV : MonoBehaviour
 {
     [SerializeField] float levelLoadDelay = 1f;
     [SerializeField] string nextSceneName;
@@ -19,6 +19,7 @@ public class TileVaniaLevelExitGDTV : MonoBehaviour
 
     IEnumerator LoadNextLevel()
     {
+        FindObjectOfType<TileVania2DScenePersistGDTV>().ResetScenePersist();
         yield return new WaitForSecondsRealtime( levelLoadDelay );
         SceneManager.LoadScene( nextSceneName );
     }

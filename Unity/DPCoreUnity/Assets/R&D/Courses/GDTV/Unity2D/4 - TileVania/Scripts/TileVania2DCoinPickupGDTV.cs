@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TileVaniaCoinPickupGDTV : MonoBehaviour
+public class TileVania2DCoinPickupGDTV : MonoBehaviour
 {
     [SerializeField] AudioClip coinPickupSFX;
     [SerializeField] int pointsForCoinPickup = 100;
@@ -14,7 +14,7 @@ public class TileVaniaCoinPickupGDTV : MonoBehaviour
         if ( other.tag == "Player" && !wasCollected )
         {
             wasCollected = true;
-            FindObjectOfType<TileVaniaGameSessionGDTV>().AddToScore( pointsForCoinPickup );
+            FindObjectOfType<TileVania2DGameSessionGDTV>().AddToScore( pointsForCoinPickup );
             AudioSource.PlayClipAtPoint( coinPickupSFX, Camera.main.transform.position );
             gameObject.SetActive( false );
             Destroy( gameObject );

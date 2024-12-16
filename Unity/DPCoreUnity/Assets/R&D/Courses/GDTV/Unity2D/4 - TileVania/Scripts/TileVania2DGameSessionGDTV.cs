@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.SocialPlatforms;
 
-public class TileVaniaGameSessionGDTV : MonoBehaviour
+public class TileVania2DGameSessionGDTV : MonoBehaviour
 {
     [SerializeField] int playerLives = 3;
     [SerializeField] int score = 0;
@@ -17,7 +17,7 @@ public class TileVaniaGameSessionGDTV : MonoBehaviour
     
     void Awake()
     {
-        int numGameSessions = FindObjectsOfType<TileVaniaGameSessionGDTV>().Length;
+        int numGameSessions = FindObjectsOfType<TileVania2DGameSessionGDTV>().Length;
         if ( numGameSessions > 1 ) // ensures that only one game session can exits at a time
         {
             Destroy( gameObject );
@@ -62,6 +62,7 @@ public class TileVaniaGameSessionGDTV : MonoBehaviour
 
     void ResetGameSession()
     {
+        FindObjectOfType<TileVania2DScenePersistGDTV>().ResetScenePersist();
         SceneManager.LoadScene( gameOverSceneName );
         Destroy( gameObject ); //allows future game sessions to exist without duplication
     }

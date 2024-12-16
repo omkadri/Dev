@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TileVaniaEnemyMovementGDTV : MonoBehaviour
+public class TileVania2DEnemyMovementGDTV : MonoBehaviour
 {
     Rigidbody2D rb2d;
     [SerializeField] float moveSpeed = 1f;

@@ -6,7 +6,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class TileVaniaPlayerGDTV : MonoBehaviour
+public class TileVania2DPlayerGDTV : MonoBehaviour
 {
     [SerializeField] float runSpeed = 10f;
     [SerializeField] float jumpSpeed = 5f;
@@ -111,7 +111,7 @@ public class TileVaniaPlayerGDTV : MonoBehaviour
             isAlive = false;
             animator.SetTrigger("Dying");
             rb2d.velocity = deathKnockback;
-            FindObjectOfType<TileVaniaGameSessionGDTV>().ProcessPlayerDeath();
+            FindObjectOfType<TileVania2DGameSessionGDTV>().ProcessPlayerDeath();
         }
     }
 }
