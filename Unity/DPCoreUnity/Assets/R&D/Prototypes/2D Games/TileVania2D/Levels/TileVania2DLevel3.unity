@@ -34170,6 +34170,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3914371871108929440, guid: 687e066b22ac6ac48849936c0bfe427f, type: 3}
+      propertyPath: gameOverSceneName
+      value: TileVania2DLevel1
+      objectReference: {fileID: 0}
     - target: {fileID: 4205854044113158849, guid: 687e066b22ac6ac48849936c0bfe427f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -34417,6 +34421,18 @@ PrefabInstance:
       propertyPath: m_BoundingShape2D
       value: 
       objectReference: {fileID: 1644261710}
+    - target: {fileID: 8183426307354036646, guid: 6c0e497d0b122d04789d8c82e8852f71, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -11.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8183426307354036646, guid: 6c0e497d0b122d04789d8c82e8852f71, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.31
+      objectReference: {fileID: 0}
+    - target: {fileID: 8520143839429800184, guid: 6c0e497d0b122d04789d8c82e8852f71, type: 3}
+      propertyPath: orthographic size
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
