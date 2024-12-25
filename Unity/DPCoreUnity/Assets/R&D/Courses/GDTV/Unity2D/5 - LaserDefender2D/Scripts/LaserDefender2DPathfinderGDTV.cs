@@ -4,12 +4,19 @@ using UnityEngine;
 
 public class LaserDefender2DPathfinderGDTV : MonoBehaviour
 {
-    [SerializeField] LaserDefender2DWaveConfigSOGDTV waveConfig;
+    LaserDefender2DEnemySpawnerGDTV enemySpawner;
+    LaserDefender2DWaveConfigSOGDTV waveConfig;
     List<Transform> waypoints;
     int waypointIndex = 0;
 
+    void Awake()
+    {
+        enemySpawner = FindObjectOfType<LaserDefender2DEnemySpawnerGDTV>();
+    }
+
     void Start()
     {
+        waveConfig = enemySpawner.GetCurrentWave();
         waypoints = waveConfig.GetWaypoints();
         transform.position = waypoints[waypointIndex].position;
     }

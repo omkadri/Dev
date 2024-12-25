@@ -6,8 +6,19 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Game Object/2D/GDTV/LaserDefender2D/Wave Config", fileName = "New Wave Config")]
 public class LaserDefender2DWaveConfigSOGDTV : ScriptableObject
 {
+    [SerializeField] List<GameObject> enemyPrefabs;
     [SerializeField] Transform pathPrefab;
     [SerializeField] float moveSpeed = 5f;
+
+    public int GetEnemyCount()
+    {
+        return enemyPrefabs.Count;
+    }
+
+    public GameObject GetEnemyPrefab( int index )
+    {
+        return enemyPrefabs[index];
+    }
 
     public Transform GetStartingWaypoint()
     {
