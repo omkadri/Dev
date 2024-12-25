@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Game Object/2D/GDTV/Quiz Master/Quiz Question", fileName = "New Question")]
-public class QuestionScriptableObjectGDTV : ScriptableObject
+[CreateAssetMenu(menuName = "Game Object/2D/QuizMaster2D/Quiz Master Question", fileName = "New Question")]
+public class QuizMaster2DQuestionSO : ScriptableObject
 {
     [TextArea(2, 6)]
     [SerializeField] string question = "Enter New Question Text";

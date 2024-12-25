@@ -4,14 +4,14 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
-public class QuizMasterGameManager : MonoBehaviour
+public class QuizMaster2DGameManager : MonoBehaviour
 {
-    QuizMaster quiz;
-    QuizMasterEndScreen endScreen;
+    QuizMaster2D quiz;
+    QuizMaster2DEndScreen endScreen;
     void Awake()
     {
-        quiz = FindObjectOfType<QuizMaster>();
-        endScreen = FindObjectOfType<QuizMasterEndScreen>();
+        quiz = FindObjectOfType<QuizMaster2D>();
+        endScreen = FindObjectOfType<QuizMaster2DEndScreen>();
     }
 
     void Start()

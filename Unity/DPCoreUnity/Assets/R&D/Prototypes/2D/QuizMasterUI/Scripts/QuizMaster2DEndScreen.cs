@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class QuizMasterEndScreen : MonoBehaviour
+public class QuizMaster2DEndScreen : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI finalScoreText;
-    QuizMasterScoreKeeper scoreKeeper;
+    QuizMaster2DScoreKeeper scoreKeeper;
     void Awake()
     {
-        scoreKeeper = FindObjectOfType<QuizMasterScoreKeeper>();
+        scoreKeeper = FindObjectOfType<QuizMaster2DScoreKeeper>();
     }
 
     public void ShowFinalScore()

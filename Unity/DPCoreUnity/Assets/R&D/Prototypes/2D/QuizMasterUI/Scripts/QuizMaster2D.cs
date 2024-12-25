@@ -4,12 +4,12 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public class QuizMaster : MonoBehaviour
+public class QuizMaster2D : MonoBehaviour
 {
     [Header("Questions")]
     [SerializeField] TextMeshProUGUI questionText;
-    [SerializeField] List<QuizMasterQuestionSO> questions = new List<QuizMasterQuestionSO>();
-    [SerializeField] QuizMasterQuestionSO currentQuestion;
+    [SerializeField] List<QuizMaster2DQuestionSO> questions = new List<QuizMaster2DQuestionSO>();
+    [SerializeField] QuizMaster2DQuestionSO currentQuestion;
     Color defaultQuestionColor;
 
     [Header("Answers")]
@@ -23,11 +23,11 @@ public class QuizMaster : MonoBehaviour
 
     [Header("Timer")]
     [SerializeField] Image timerImage;
-    QuizMasterTimer quizTimer;
+    QuizMaster2DTimer quizTimer;
 
     [Header("Scoring")]
     [SerializeField] TextMeshProUGUI scoreText;
-    QuizMasterScoreKeeper scoreKeeper;
+    QuizMaster2DScoreKeeper scoreKeeper;
 
     [Header("ProgressBar")]
     [SerializeField] Slider progressBar;
@@ -38,8 +38,8 @@ public class QuizMaster : MonoBehaviour
 
     void Awake()
     {
-        quizTimer = FindObjectOfType<QuizMasterTimer>();
-        scoreKeeper = FindObjectOfType<QuizMasterScoreKeeper>();
+        quizTimer = FindObjectOfType<QuizMaster2DTimer>();
+        scoreKeeper = FindObjectOfType<QuizMaster2DScoreKeeper>();
     }
 
     void Start()

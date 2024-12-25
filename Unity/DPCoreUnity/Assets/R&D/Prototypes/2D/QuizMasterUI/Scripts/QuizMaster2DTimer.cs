@@ -4,7 +4,7 @@ using Microsoft.Unity.VisualStudio.Editor;
 using TMPro;
 using UnityEngine;
 
-public class QuizMasterTimer : MonoBehaviour
+public class QuizMaster2DTimer : MonoBehaviour
 {
     [SerializeField] float timeToCompleteQuestion = 30f;
     [SerializeField] float timeToShowCorrectAnswer = 10f;
