@@ -9,6 +9,9 @@ public class LaserDefender2DWaveConfigSOGDTV : ScriptableObject
     [SerializeField] List<GameObject> enemyPrefabs;
     [SerializeField] Transform pathPrefab;
     [SerializeField] float moveSpeed = 5f;
+    [SerializeField] float timeBetweenEnemySpawns = 1f;
+    [SerializeField] float spawnTimeVariance = 0f;
+    [SerializeField] float minSpawnTime = 0.2f;
 
     public int GetEnemyCount()
     {
@@ -38,5 +41,11 @@ public class LaserDefender2DWaveConfigSOGDTV : ScriptableObject
     public float GetMoveSpeed()
     {
         return moveSpeed;
+    }
+
+    public float GetRandomSpawnTime()
+    {
+        float spawnTime = Random.Range( ( timeBetweenEnemySpawns - spawnTimeVariance ), ( timeBetweenEnemySpawns + spawnTimeVariance ) );
+        return Mathf.Clamp( spawnTime, minSpawnTime, float.MaxValue );//we only want to clamp the min, so max is set to float.MaxValue
     }
 }
