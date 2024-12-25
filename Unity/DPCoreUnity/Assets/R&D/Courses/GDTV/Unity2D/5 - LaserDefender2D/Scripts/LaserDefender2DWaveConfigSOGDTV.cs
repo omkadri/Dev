@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.IO.Enumeration;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Wave Config", fileName = "New Wave Config" )]
-public class WaveConfigSO : ScriptableObject
+[CreateAssetMenu(menuName = "Game Object/2D/GDTV/LaserDefender2D/Wave Config", fileName = "New Wave Config")]
+public class LaserDefender2DWaveConfigSOGDTV : ScriptableObject
 {
     [SerializeField] Transform pathPrefab;
     [SerializeField] float moveSpeed = 5f;

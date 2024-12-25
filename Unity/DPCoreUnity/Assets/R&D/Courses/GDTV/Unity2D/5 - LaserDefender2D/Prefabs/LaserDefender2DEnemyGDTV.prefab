@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8031625506827513551}
   - component: {fileID: 7768361336356332763}
+  - component: {fileID: 1996017503353070881}
   m_Layer: 0
   m_Name: LaserDefender2DEnemyGDTV
   m_TagString: Untagged
@@ -84,3 +85,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1996017503353070881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6551838771646942758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45466da6d0d8ebd44bab3aefd5bf9e3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waveConfig: {fileID: 11400000, guid: c459f516673270d4bb686931ac573a57, type: 2}
