@@ -20,5 +20,4 @@ public class TileVania2DCoinPickup : MonoBehaviour
             Destroy( gameObject );
         }
     }
-
 }

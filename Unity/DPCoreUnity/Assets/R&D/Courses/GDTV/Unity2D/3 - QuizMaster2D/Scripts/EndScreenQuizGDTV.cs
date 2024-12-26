@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class EndScreenQuizGGTV : MonoBehaviour
+public class EndScreenQuizGDTV : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI finalScoreText;
     ScoreKeeperGDTV scoreKeeper;

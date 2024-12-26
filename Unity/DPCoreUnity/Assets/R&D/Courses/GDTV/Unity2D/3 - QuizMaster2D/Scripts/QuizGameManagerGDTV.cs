@@ -7,11 +7,11 @@ using UnityEngine.SceneManagement;
 public class QuizGameManagerGDTV : MonoBehaviour
 {
     QuizGDTV quiz;
-    EndScreenQuizGGTV endScreen;
+    EndScreenQuizGDTV endScreen;
     void Awake()
     {
         quiz = FindObjectOfType<QuizGDTV>();
-        endScreen = FindObjectOfType<EndScreenQuizGGTV>();
+        endScreen = FindObjectOfType<EndScreenQuizGDTV>();
     }
 
     void Start()
