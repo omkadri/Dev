@@ -10,8 +10,8 @@ public class QuizMaster2DGameManager : MonoBehaviour
     QuizMaster2DEndScreen endScreen;
     void Awake()
     {
-        quiz = FindObjectOfType<QuizMaster2D>();
-        endScreen = FindObjectOfType<QuizMaster2DEndScreen>();
+        quiz = FindFirstObjectByType<QuizMaster2D>();
+        endScreen = FindFirstObjectByType<QuizMaster2DEndScreen>();
     }
 
     void Start()

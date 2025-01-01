@@ -38,8 +38,8 @@ public class QuizGDTV : MonoBehaviour
 
     void Awake()
     {
-        quizTimer = FindObjectOfType<QuizTimerGDTV>();
-        scoreKeeper = FindObjectOfType<ScoreKeeperGDTV>();
+        quizTimer = FindFirstObjectByType<QuizTimerGDTV>();
+        scoreKeeper = FindFirstObjectByType<ScoreKeeperGDTV>();
     }
 
     void Start()

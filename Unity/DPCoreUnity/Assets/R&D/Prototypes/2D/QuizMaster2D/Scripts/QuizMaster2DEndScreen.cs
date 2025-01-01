@@ -9,7 +9,7 @@ public class QuizMaster2DEndScreen : MonoBehaviour
     QuizMaster2DScoreKeeper scoreKeeper;
     void Awake()
     {
-        scoreKeeper = FindObjectOfType<QuizMaster2DScoreKeeper>();
+        scoreKeeper = FindFirstObjectByType<QuizMaster2DScoreKeeper>();
     }
 
     public void ShowFinalScore()

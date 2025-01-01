@@ -15,7 +15,7 @@ public class SnowboardPlayerController2D : MonoBehaviour
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
-        surfaceEffector2D = FindObjectOfType<SurfaceEffector2D>(); //works when only one of the object type is in the scene
+        surfaceEffector2D = FindFirstObjectByType<SurfaceEffector2D>(); //works when only one of the object type is in the scene
         surfaceEffector2D.speed = baseSpeed; 
     }
 

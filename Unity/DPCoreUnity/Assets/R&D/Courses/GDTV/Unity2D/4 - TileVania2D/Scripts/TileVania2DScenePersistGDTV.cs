@@ -6,7 +6,7 @@ public class TileVania2DScenePersistGDTV : MonoBehaviour
 {
     void Awake()
     {
-        int numScenePersists = FindObjectsOfType<TileVania2DScenePersistGDTV>().Length;
+        int numScenePersists = FindObjectsByType<TileVania2DScenePersistGDTV>( FindObjectsSortMode.None ).Length;
         if ( numScenePersists > 1 ) // ensures that only one scenePersist can exist at a time
         {
             Destroy( gameObject );

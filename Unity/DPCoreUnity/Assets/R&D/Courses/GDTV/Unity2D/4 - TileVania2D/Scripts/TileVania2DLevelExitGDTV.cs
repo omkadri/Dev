@@ -19,7 +19,7 @@ public class TileVania2DLevelExitGDTV : MonoBehaviour
 
     IEnumerator LoadNextLevel()
     {
-        FindObjectOfType<TileVania2DScenePersistGDTV>().ResetScenePersist();
+        FindFirstObjectByType<TileVania2DScenePersistGDTV>().ResetScenePersist();
         yield return new WaitForSecondsRealtime( levelLoadDelay );
         SceneManager.LoadScene( nextSceneName );
     }

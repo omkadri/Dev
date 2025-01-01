@@ -14,7 +14,7 @@ public class TileVania2DCoinPickup : MonoBehaviour
         if ( other.tag == "Player" && !wasCollected )
         {
             wasCollected = true;
-            FindObjectOfType<TileVania2DGameSession>().AddToScore( pointsForCoinPickup );
+            FindFirstObjectByType<TileVania2DGameSession>().AddToScore( pointsForCoinPickup );
             AudioSource.PlayClipAtPoint( coinPickupSFX, Camera.main.transform.position );
             gameObject.SetActive( false );
             Destroy( gameObject );

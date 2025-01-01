@@ -18,7 +18,7 @@ void OnTriggerEnter2D(Collider2D other)
         if (!hasCrashed)
         {
             hasCrashed = true;
-            FindObjectOfType<SnowboardPlayerControllerGDTV>().DisableControls();
+            FindFirstObjectByType<SnowboardPlayerControllerGDTV>().DisableControls();
             crashParticle.Play();
             Debug.Log("You Crashed!");
             if (crashSFXAudioSource != null)

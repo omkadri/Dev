@@ -17,7 +17,7 @@ public class TileVania2DGameSession : MonoBehaviour
     
     void Awake()
     {
-        int numGameSessions = FindObjectsOfType<TileVania2DGameSession>().Length;
+        int numGameSessions = FindObjectsByType<TileVania2DGameSession>( FindObjectsSortMode.None ).Length;
         if ( numGameSessions > 1 ) // ensures that only one game session can exits at a time
         {
             Destroy( gameObject );
@@ -62,7 +62,7 @@ public class TileVania2DGameSession : MonoBehaviour
 
     void ResetGameSession()
     {
-        FindObjectOfType<TileVania2DScenePersist>().ResetScenePersist();
+        FindFirstObjectByType<TileVania2DScenePersist>().ResetScenePersist();
         SceneManager.LoadScene( gameOverSceneName );
         Destroy( gameObject ); //allows future game sessions to exist without duplication
     }

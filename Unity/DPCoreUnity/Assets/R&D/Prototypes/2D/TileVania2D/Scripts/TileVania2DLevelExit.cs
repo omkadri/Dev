@@ -19,7 +19,7 @@ public class TileVania2DLevelExit : MonoBehaviour
 
     IEnumerator LoadNextLevel()
     {
-        FindObjectOfType<TileVania2DScenePersist>().ResetScenePersist();
+        FindFirstObjectByType<TileVania2DScenePersist>().ResetScenePersist();
         yield return new WaitForSecondsRealtime( levelLoadDelay );
         SceneManager.LoadScene( nextSceneName );
     }

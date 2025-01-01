@@ -9,7 +9,7 @@ public class EndScreenQuizGDTV : MonoBehaviour
     ScoreKeeperGDTV scoreKeeper;
     void Awake()
     {
-        scoreKeeper = FindObjectOfType<ScoreKeeperGDTV>();
+        scoreKeeper = FindFirstObjectByType<ScoreKeeperGDTV>();
     }
 
     public void ShowFinalScore()

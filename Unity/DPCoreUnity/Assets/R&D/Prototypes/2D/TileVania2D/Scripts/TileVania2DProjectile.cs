@@ -12,7 +12,7 @@ public class TileVania2DProjectile : MonoBehaviour
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
-        player = FindObjectOfType<TileVania2DPlayer>();
+        player = FindFirstObjectByType<TileVania2DPlayer>();
         xSpeed = player.transform.localScale.x * projectileSpeed;
     }
 

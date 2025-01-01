@@ -19,7 +19,7 @@ void OnTriggerEnter2D(Collider2D other)
         {
             hasCrashed = true;
             //TODO: Abstract this into a GameManager class
-            FindObjectOfType<SnowboardPlayerController2D>().DisableControls();
+            FindFirstObjectByType<SnowboardPlayerController2D>().DisableControls();
             crashParticle.Play();
             //Create OnSnowboardCrashed callback
             Debug.Log("You Crashed!");

@@ -38,8 +38,8 @@ public class QuizMaster2D : MonoBehaviour
 
     void Awake()
     {
-        quizTimer = FindObjectOfType<QuizMaster2DTimer>();
-        scoreKeeper = FindObjectOfType<QuizMaster2DScoreKeeper>();
+        quizTimer = FindFirstObjectByType<QuizMaster2DTimer>();
+        scoreKeeper = FindFirstObjectByType<QuizMaster2DScoreKeeper>();
     }
 
     void Start()

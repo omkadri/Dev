@@ -10,8 +10,8 @@ public class QuizGameManagerGDTV : MonoBehaviour
     EndScreenQuizGDTV endScreen;
     void Awake()
     {
-        quiz = FindObjectOfType<QuizGDTV>();
-        endScreen = FindObjectOfType<EndScreenQuizGDTV>();
+        quiz = FindFirstObjectByType<QuizGDTV>();
+        endScreen = FindFirstObjectByType<EndScreenQuizGDTV>();
     }
 
     void Start()

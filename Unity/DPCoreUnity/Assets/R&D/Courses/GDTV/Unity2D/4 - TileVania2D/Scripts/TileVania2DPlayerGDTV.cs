@@ -111,7 +111,7 @@ public class TileVania2DPlayerGDTV : MonoBehaviour
             isAlive = false;
             animator.SetTrigger("Dying");
             rb2d.linearVelocity = deathKnockback;
-            FindObjectOfType<TileVania2DGameSessionGDTV>().ProcessPlayerDeath();
+            FindFirstObjectByType<TileVania2DGameSessionGDTV>().ProcessPlayerDeath();
         }
     }
 }

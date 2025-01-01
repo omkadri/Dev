@@ -11,7 +11,7 @@ public class LaserDefender2DPathfinderGDTV : MonoBehaviour
 
     void Awake()
     {
-        enemySpawner = FindObjectOfType<LaserDefender2DEnemySpawnerGDTV>();
+        enemySpawner = FindFirstObjectByType<LaserDefender2DEnemySpawnerGDTV>();
     }
 
     void Start()
