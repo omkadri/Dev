@@ -1,11 +1,11 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class LaserDefender2DHealthGDTV : MonoBehaviour
 {
     [SerializeField] int health = 50;
+    [SerializeField] ParticleSystem hitVFX;
 
     void OnTriggerEnter2D( Collider2D other)
     {
@@ -14,6 +14,7 @@ public class LaserDefender2DHealthGDTV : MonoBehaviour
         if( damageDealer != null )
         {
             TakeDamage( damageDealer.GetDamage() );
+            PlayHitVFX();
             damageDealer.Hit();
         }
     }
@@ -24,6 +25,16 @@ public class LaserDefender2DHealthGDTV : MonoBehaviour
         if( health <= 0 )
         {
             Destroy( gameObject );
+        }
+    }
+
+    void PlayHitVFX()
+    {
+        if( hitVFX != null )
+        {
+            ParticleSystem instance = Instantiate( hitVFX, transform.position, Quaternion.identity );
+            float timeBeforeDestruction = instance.main.duration + instance.main.startLifetime.constantMax;
+            Destroy( instance.gameObject, timeBeforeDestruction );
         }
     }
 }
