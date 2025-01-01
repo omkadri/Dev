@@ -16,6 +16,13 @@ public class LaserDefender2DPlayerControllerGDTV : MonoBehaviour
     Vector2 minBounds;
     Vector2 maxBounds;
 
+    LaserDefender2DShooterGDTV shooter;
+
+    void Awake()
+    {
+        shooter = GetComponent<LaserDefender2DShooterGDTV>();
+    }
+
     void Start()
     {
         InitBounds();
@@ -45,6 +52,13 @@ public class LaserDefender2DPlayerControllerGDTV : MonoBehaviour
     void OnMove( InputValue value )
     {
         rawInput = value.Get<Vector2>();
-        Debug.Log( rawInput );
+    }
+
+    void OnFire( InputValue value )
+    {
+        if( shooter != null )
+        {
+            shooter.isFiring = value.isPressed;
+        }
     }
 }
