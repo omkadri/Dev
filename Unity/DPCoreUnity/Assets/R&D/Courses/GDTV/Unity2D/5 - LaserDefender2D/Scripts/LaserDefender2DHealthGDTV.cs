@@ -7,6 +7,14 @@ public class LaserDefender2DHealthGDTV : MonoBehaviour
     [SerializeField] int health = 50;
     [SerializeField] ParticleSystem hitVFX;
 
+    [SerializeField] bool applyCameraShake = false;
+    LaserDefender2DCameraShakeGDTV cameraShake;
+
+    void Awake()
+    {
+        cameraShake = Camera.main.GetComponent<LaserDefender2DCameraShakeGDTV>();
+    }
+
     void OnTriggerEnter2D( Collider2D other)
     {
         LaserDefender2DDamageDealerGDTV damageDealer = other.GetComponent<LaserDefender2DDamageDealerGDTV>();
@@ -15,6 +23,7 @@ public class LaserDefender2DHealthGDTV : MonoBehaviour
         {
             TakeDamage( damageDealer.GetDamage() );
             PlayHitVFX();
+            ShakeCamera();
             damageDealer.Hit();
         }
     }
@@ -35,6 +44,14 @@ public class LaserDefender2DHealthGDTV : MonoBehaviour
             ParticleSystem instance = Instantiate( hitVFX, transform.position, Quaternion.identity );
             float timeBeforeDestruction = instance.main.duration + instance.main.startLifetime.constantMax;
             Destroy( instance.gameObject, timeBeforeDestruction );
+        }
+    }
+
+    void ShakeCamera()
+    {
+        if( cameraShake != null && applyCameraShake )
+        {
+            cameraShake.Play();
         }
     }
 }
