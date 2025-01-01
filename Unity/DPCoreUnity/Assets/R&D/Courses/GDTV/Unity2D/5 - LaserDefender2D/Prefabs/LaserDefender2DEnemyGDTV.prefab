@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1996017503353070881}
   - component: {fileID: -8622293185824497887}
   - component: {fileID: -4754386519485423186}
+  - component: {fileID: 7693331325988297154}
   m_Layer: 11
   m_Name: LaserDefender2DEnemyGDTV
   m_TagString: Untagged
@@ -189,3 +190,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
+--- !u!114 &7693331325988297154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6551838771646942758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8fb4a2197dcd7649b787d8de3c89260, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 4908109798670496705, guid: 503d9f81d69be5646b7725c8ad130ee1, type: 3}
+  projectileSpeed: 10
+  projectileLifetime: 5
+  baseFireRate: 1
+  useEnemyAI: 1
+  fireRateVariance: 0.5
+  minFireRate: 0.1
+  isFiring: 0

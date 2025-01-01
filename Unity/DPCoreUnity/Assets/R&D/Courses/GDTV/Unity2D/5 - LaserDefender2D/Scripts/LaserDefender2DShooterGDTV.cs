@@ -1,21 +1,29 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class LaserDefender2DShooterGDTV : MonoBehaviour
 {
+    [Header( "General" )]
     [SerializeField] GameObject projectilePrefab;
     [SerializeField] float projectileSpeed = 10f;
     [SerializeField] float projectileLifetime = 5f;
-    [SerializeField] float fireRate = 0.2f;
+    [SerializeField] float baseFireRate = 0.2f;
 
-    public bool isFiring;
+    [Header( "Enemy AI" )]
+    [SerializeField] bool useEnemyAI;
+    [SerializeField] float fireRateVariance = 0f;
+    [SerializeField] float minFireRate = 0.1f;
+
+    [HideInInspector] public bool isFiring;
 
     Coroutine firingCoroutine;
 
     void Start()
     {
-        
+        if ( useEnemyAI )
+        {
+            isFiring = true;
+        }   
     }
 
     void Update()
@@ -44,10 +52,22 @@ public class LaserDefender2DShooterGDTV : MonoBehaviour
             Rigidbody2D rb2d = instance.GetComponent<Rigidbody2D>();
             if ( rb2d != null )
             {
-                rb2d.velocity = transform.up * projectileSpeed;
+                if( useEnemyAI )
+                {
+                    rb2d.velocity = -transform.up * projectileSpeed; //the negative sign reverses the projectile to come towards the player
+                }
+                else
+                {
+                    rb2d.velocity = transform.up * projectileSpeed;
+                }
             }
             Destroy( instance, projectileLifetime );
-            yield return new WaitForSecondsRealtime( fireRate );
+            
+            float timeToNextProjectile = Random.Range( ( baseFireRate - fireRateVariance ), ( baseFireRate + fireRateVariance ) );
+
+            timeToNextProjectile = Mathf.Clamp( timeToNextProjectile, minFireRate, float.MaxValue );
+            
+            yield return new WaitForSecondsRealtime( timeToNextProjectile );
         }
     }
 }

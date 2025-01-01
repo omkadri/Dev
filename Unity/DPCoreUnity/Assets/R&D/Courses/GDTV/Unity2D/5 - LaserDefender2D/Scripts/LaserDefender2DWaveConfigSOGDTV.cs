@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.IO.Enumeration;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Game Object/2D/GDTV/LaserDefender2D/Wave Config", fileName = "New Wave Config")]
