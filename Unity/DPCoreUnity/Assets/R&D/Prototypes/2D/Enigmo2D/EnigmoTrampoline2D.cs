@@ -14,7 +14,7 @@ public class Trampoline : MonoBehaviour
             if (rb != null)
             {
                 // Get the incoming velocity
-                Vector2 incomingVelocity = rb.velocity;
+                Vector2 incomingVelocity = rb.linearVelocity;
 
                 // Get the trampoline's up direction
                 Vector2 trampolineNormal = transform.up; // This is the normal direction of the trampoline
@@ -36,7 +36,7 @@ public class Trampoline : MonoBehaviour
                 }
 
                 // Apply the bounce force in the modified direction
-                rb.velocity = bounceDirection.normalized * bounceForce; // Scale to the desired bounce force
+                rb.linearVelocity = bounceDirection.normalized * bounceForce; // Scale to the desired bounce force
             }
         }
     }

@@ -16,6 +16,6 @@ public class FlappyPlayerController2D : MonoBehaviour
 
     void OnJump()
     {
-            rb.velocity = Vector2.up * jumpForce;
+            rb.linearVelocity = Vector2.up * jumpForce;
     }
 }

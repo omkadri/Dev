@@ -57,11 +57,11 @@ public class TileVania2DPlayer : MonoBehaviour
         }
         if(value.isPressed)
         {
-            rb2d.velocity += new Vector2(0f, jumpSpeed);
+            rb2d.linearVelocity += new Vector2(0f, jumpSpeed);
         }
         if(value.isPressed)
         {
-            rb2d.velocity += new Vector2(0f, jumpSpeed);
+            rb2d.linearVelocity += new Vector2(0f, jumpSpeed);
         }
     }
 
@@ -73,19 +73,19 @@ public class TileVania2DPlayer : MonoBehaviour
 
     void Run()
     {
-        Vector2 playerVelocity = new Vector2(moveInput.x * runSpeed, rb2d.velocity.y);
-        rb2d.velocity = playerVelocity;
-        bool playerHasHorizontalSpeed = Mathf.Abs(rb2d.velocity.x) > Mathf.Epsilon;//this prevents sprite from fliping back to facing forward after it stops moving
+        Vector2 playerVelocity = new Vector2(moveInput.x * runSpeed, rb2d.linearVelocity.y);
+        rb2d.linearVelocity = playerVelocity;
+        bool playerHasHorizontalSpeed = Mathf.Abs(rb2d.linearVelocity.x) > Mathf.Epsilon;//this prevents sprite from fliping back to facing forward after it stops moving
         animator.SetBool("IsRunning", playerHasHorizontalSpeed);
     }
 
     private void FlipSprite()
     {
-        bool playerHasHorizontalSpeed = Mathf.Abs(rb2d.velocity.x) > Mathf.Epsilon;//this prevents sprite from fliping back to facing forward after it stops moving
+        bool playerHasHorizontalSpeed = Mathf.Abs(rb2d.linearVelocity.x) > Mathf.Epsilon;//this prevents sprite from fliping back to facing forward after it stops moving
 
         if (playerHasHorizontalSpeed)
         {
-            transform.localScale = new Vector2(Mathf.Sign(rb2d.velocity.x), 1f);
+            transform.localScale = new Vector2(Mathf.Sign(rb2d.linearVelocity.x), 1f);
         }
     }
 
@@ -97,10 +97,10 @@ public class TileVania2DPlayer : MonoBehaviour
             animator.SetBool("IsClimbing", false);
             return;
         }
-        Vector2 climbVelocity = new Vector2(rb2d.velocity.x, moveInput.y * climbSpeed);
-        rb2d.velocity = climbVelocity;
+        Vector2 climbVelocity = new Vector2(rb2d.linearVelocity.x, moveInput.y * climbSpeed);
+        rb2d.linearVelocity = climbVelocity;
         rb2d.gravityScale = 0f;
-        bool playerHasVerticalSpeed = Mathf.Abs(rb2d.velocity.y) > Mathf.Epsilon;
+        bool playerHasVerticalSpeed = Mathf.Abs(rb2d.linearVelocity.y) > Mathf.Epsilon;
         animator.SetBool("IsClimbing", playerHasVerticalSpeed);
     }
 
@@ -110,7 +110,7 @@ public class TileVania2DPlayer : MonoBehaviour
         {
             isAlive = false;
             animator.SetTrigger("Dying");
-            rb2d.velocity = deathKnockback;
+            rb2d.linearVelocity = deathKnockback;
             FindObjectOfType<TileVania2DGameSession>().ProcessPlayerDeath();
         }
     }

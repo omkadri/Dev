@@ -18,7 +18,7 @@ public class TileVania2DProjectile : MonoBehaviour
 
     void Update()
     {
-        rb2d.velocity = new Vector2( xSpeed, 0f );
+        rb2d.linearVelocity = new Vector2( xSpeed, 0f );
     }
 
     void OnTriggerEnter2D( Collider2D other )

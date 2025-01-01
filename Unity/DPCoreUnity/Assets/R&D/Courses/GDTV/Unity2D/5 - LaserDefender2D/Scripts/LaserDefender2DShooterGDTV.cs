@@ -54,11 +54,11 @@ public class LaserDefender2DShooterGDTV : MonoBehaviour
             {
                 if( useEnemyAI )
                 {
-                    rb2d.velocity = -transform.up * projectileSpeed; //the negative sign reverses the projectile to come towards the player
+                    rb2d.linearVelocity = -transform.up * projectileSpeed; //the negative sign reverses the projectile to come towards the player
                 }
                 else
                 {
-                    rb2d.velocity = transform.up * projectileSpeed;
+                    rb2d.linearVelocity = transform.up * projectileSpeed;
                 }
             }
             Destroy( instance, projectileLifetime );

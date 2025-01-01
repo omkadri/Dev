@@ -13,7 +13,7 @@ public class TileVania2DEnemyMovement : MonoBehaviour
 
     void Update()
     {
-        rb2d.velocity = new Vector2( moveSpeed,0f );
+        rb2d.linearVelocity = new Vector2( moveSpeed,0f );
     }
 
     void OnTriggerExit2D( Collider2D other )
@@ -24,6 +24,6 @@ public class TileVania2DEnemyMovement : MonoBehaviour
 
     void FlipEnemyFacing()
     {
-        transform.localScale = new Vector2( -( Mathf.Sign( rb2d.velocity.x ) ), 1f );
+        transform.localScale = new Vector2( -( Mathf.Sign( rb2d.linearVelocity.x ) ), 1f );
     }
 }
