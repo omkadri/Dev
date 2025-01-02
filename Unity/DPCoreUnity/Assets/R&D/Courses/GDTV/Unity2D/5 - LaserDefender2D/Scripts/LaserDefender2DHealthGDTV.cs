@@ -5,17 +5,23 @@ using UnityEngine;
 public class LaserDefender2DHealthGDTV : MonoBehaviour
 {
     [SerializeField] int health = 50;
+    [SerializeField] int scorePerEnemyKill = 50;
     [SerializeField] ParticleSystem hitVFX;
 
-    [SerializeField] bool applyCameraShake = false;
+    [SerializeField] bool isPlayer = false;
     [SerializeField] bool usingEnemyAI = false;
+
+    [SerializeField] bool applyCameraShake = false;
     LaserDefender2DCameraShakeGDTV cameraShake;
+
     LaserDefender2DAudioPlayerGDTV audioPlayer;
+    LaserDefender2DScoreKeeperGDTV scoreKeeper;
 
     void Awake()
     {
         cameraShake = Camera.main.GetComponent<LaserDefender2DCameraShakeGDTV>();
         audioPlayer = FindFirstObjectByType<LaserDefender2DAudioPlayerGDTV>();
+        scoreKeeper = FindFirstObjectByType<LaserDefender2DScoreKeeperGDTV>();
     }
 
     void OnTriggerEnter2D( Collider2D other)
@@ -31,18 +37,32 @@ public class LaserDefender2DHealthGDTV : MonoBehaviour
         }
     }
 
+    public int GetHealthAmount()
+    {
+        return health;
+    }
+
     private void TakeDamage( int damage )
     {
         PlayDamageSFX();
         health -= damage;
         if( health <= 0 )
         {
-            if( !usingEnemyAI )
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        if ( !isPlayer )
+        {
+            scoreKeeper.ModifyScore( scorePerEnemyKill );
+        }
+        if( !usingEnemyAI )
             {
                 audioPlayer.PlayPlayerDeathSFX();
             }
-            Destroy( gameObject );
-        }
+        Destroy( gameObject );
     }
 
     void PlayHitVFX()
