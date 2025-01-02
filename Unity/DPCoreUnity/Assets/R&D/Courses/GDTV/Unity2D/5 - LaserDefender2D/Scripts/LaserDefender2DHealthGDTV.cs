@@ -8,11 +8,14 @@ public class LaserDefender2DHealthGDTV : MonoBehaviour
     [SerializeField] ParticleSystem hitVFX;
 
     [SerializeField] bool applyCameraShake = false;
+    [SerializeField] bool usingEnemyAI = false;
     LaserDefender2DCameraShakeGDTV cameraShake;
+    LaserDefender2DAudioPlayerGDTV audioPlayer;
 
     void Awake()
     {
         cameraShake = Camera.main.GetComponent<LaserDefender2DCameraShakeGDTV>();
+        audioPlayer = FindFirstObjectByType<LaserDefender2DAudioPlayerGDTV>();
     }
 
     void OnTriggerEnter2D( Collider2D other)
@@ -30,9 +33,14 @@ public class LaserDefender2DHealthGDTV : MonoBehaviour
 
     private void TakeDamage( int damage )
     {
+        PlayDamageSFX();
         health -= damage;
         if( health <= 0 )
         {
+            if( !usingEnemyAI )
+            {
+                audioPlayer.PlayPlayerDeathSFX();
+            }
             Destroy( gameObject );
         }
     }
@@ -52,6 +60,21 @@ public class LaserDefender2DHealthGDTV : MonoBehaviour
         if( cameraShake != null && applyCameraShake )
         {
             cameraShake.Play();
+        }
+    }
+
+    void PlayDamageSFX()
+    {
+        if(audioPlayer != null)
+        {
+            if( usingEnemyAI )
+            {
+                audioPlayer.PlayEnemyDamageSFX();
+            }
+            else
+            {
+                audioPlayer.PlayPlayerDamageSFX();
+            }
         }
     }
 }

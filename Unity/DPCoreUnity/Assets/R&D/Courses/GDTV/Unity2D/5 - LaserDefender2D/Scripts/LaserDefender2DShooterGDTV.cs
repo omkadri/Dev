@@ -17,6 +17,12 @@ public class LaserDefender2DShooterGDTV : MonoBehaviour
     [HideInInspector] public bool isFiring;
 
     Coroutine firingCoroutine;
+    LaserDefender2DAudioPlayerGDTV audioPlayer;
+
+    void Awake()
+    {
+        audioPlayer = FindFirstObjectByType<LaserDefender2DAudioPlayerGDTV>();
+    }
 
     void Start()
     {
@@ -62,12 +68,29 @@ public class LaserDefender2DShooterGDTV : MonoBehaviour
                 }
             }
             Destroy( instance, projectileLifetime );
-            
+
             float timeToNextProjectile = Random.Range( ( baseFireRate - fireRateVariance ), ( baseFireRate + fireRateVariance ) );
 
             timeToNextProjectile = Mathf.Clamp( timeToNextProjectile, minFireRate, float.MaxValue );
+
+            PlayShootingSFX();
             
             yield return new WaitForSecondsRealtime( timeToNextProjectile );
+        }
+    }
+
+    void PlayShootingSFX()
+    {
+        if( audioPlayer != null )
+        {
+            if( useEnemyAI )
+            {
+                audioPlayer.PlayEnemyShootingSFX();
+            }
+            else
+            {
+                audioPlayer.PlayPlayerShootingSFX();
+            }
         }
     }
 }
