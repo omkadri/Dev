@@ -62,6 +62,7 @@ public class LaserDefender2DHealthGDTV : MonoBehaviour
         }
         if( !usingEnemyAI )
             {
+                audioPlayer.GetComponent<AudioSource>().Stop(); //stops the music for a moment of silence
                 audioPlayer.PlayPlayerDeathSFX();
                 sceneManager.LoadGameOverScene();
             }
