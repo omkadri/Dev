@@ -16,12 +16,14 @@ public class LaserDefender2DHealthGDTV : MonoBehaviour
 
     LaserDefender2DAudioPlayerGDTV audioPlayer;
     LaserDefender2DScoreKeeperGDTV scoreKeeper;
+    LaserDefender2DSceneManagerGDTV sceneManager;
 
     void Awake()
     {
         cameraShake = Camera.main.GetComponent<LaserDefender2DCameraShakeGDTV>();
         audioPlayer = FindFirstObjectByType<LaserDefender2DAudioPlayerGDTV>();
         scoreKeeper = FindFirstObjectByType<LaserDefender2DScoreKeeperGDTV>();
+        sceneManager = FindFirstObjectByType<LaserDefender2DSceneManagerGDTV>();
     }
 
     void OnTriggerEnter2D( Collider2D other)
@@ -61,6 +63,7 @@ public class LaserDefender2DHealthGDTV : MonoBehaviour
         if( !usingEnemyAI )
             {
                 audioPlayer.PlayPlayerDeathSFX();
+                sceneManager.LoadGameOverScene();
             }
         Destroy( gameObject );
     }

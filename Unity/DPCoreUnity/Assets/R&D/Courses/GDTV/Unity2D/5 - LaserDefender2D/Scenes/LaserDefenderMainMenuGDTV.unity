@@ -201,7 +201,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 116945040}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1242671044}
+        m_TargetAssemblyTypeName: LaserDefender2DSceneManagerGDTV, Assembly-CSharp
+        m_MethodName: LoadGameScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &116945040
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -513,6 +525,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 714688059}
   m_CullTransparentMesh: 1
+--- !u!114 &1242671044 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1676339201764231870, guid: 37f5e21f5a057e4439385267ddc54ad2, type: 3}
+  m_PrefabInstance: {fileID: 8168118982348296381}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fbd139ed7288e64587c9394566310d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1273409503
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1102,7 +1125,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1787298614}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1242671044}
+        m_TargetAssemblyTypeName: LaserDefender2DSceneManagerGDTV, Assembly-CSharp
+        m_MethodName: QuitGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1787298614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1417,6 +1452,63 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &8168118982348296381
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7560891647388753268, guid: 37f5e21f5a057e4439385267ddc54ad2, type: 3}
+      propertyPath: m_Name
+      value: LaserDefender2DSceneManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 9027684814540282798, guid: 37f5e21f5a057e4439385267ddc54ad2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9027684814540282798, guid: 37f5e21f5a057e4439385267ddc54ad2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9027684814540282798, guid: 37f5e21f5a057e4439385267ddc54ad2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9027684814540282798, guid: 37f5e21f5a057e4439385267ddc54ad2, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9027684814540282798, guid: 37f5e21f5a057e4439385267ddc54ad2, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9027684814540282798, guid: 37f5e21f5a057e4439385267ddc54ad2, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9027684814540282798, guid: 37f5e21f5a057e4439385267ddc54ad2, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9027684814540282798, guid: 37f5e21f5a057e4439385267ddc54ad2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9027684814540282798, guid: 37f5e21f5a057e4439385267ddc54ad2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9027684814540282798, guid: 37f5e21f5a057e4439385267ddc54ad2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 37f5e21f5a057e4439385267ddc54ad2, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -1426,3 +1518,4 @@ SceneRoots:
   - {fileID: 1821846506}
   - {fileID: 1623758172}
   - {fileID: 1849260559}
+  - {fileID: 8168118982348296381}
