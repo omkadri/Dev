@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class LaserDefender2DUIDisplay : MonoBehaviour
+public class LaserDefender2DUIDisplayGDTV : MonoBehaviour
 {
     [Header( "Health" )]
     [SerializeField] Slider healthSlider;
