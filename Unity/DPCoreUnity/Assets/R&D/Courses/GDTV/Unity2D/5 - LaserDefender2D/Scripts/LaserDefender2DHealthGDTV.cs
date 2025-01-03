@@ -37,7 +37,7 @@ public class LaserDefender2DHealthGDTV : MonoBehaviour
         }
     }
 
-    public int GetHealthAmount()
+    public int GetHealth()
     {
         return health;
     }
