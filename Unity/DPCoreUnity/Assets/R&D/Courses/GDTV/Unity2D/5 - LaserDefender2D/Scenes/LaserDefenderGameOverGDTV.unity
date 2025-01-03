@@ -119,6 +119,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &90626983 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1134010316969571364, guid: 7af2047ae859e38469fc1338bf452766, type: 3}
+  m_PrefabInstance: {fileID: 1115252071}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34945e47f15d5b24796bcaa59f971048, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &116945037
 GameObject:
   m_ObjectHideFlags: 0
@@ -536,6 +547,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1676339201764231870, guid: 37f5e21f5a057e4439385267ddc54ad2, type: 3}
+      propertyPath: scoreKeeper
+      value: 
+      objectReference: {fileID: 90626983}
+    - target: {fileID: 1676339201764231870, guid: 37f5e21f5a057e4439385267ddc54ad2, type: 3}
       propertyPath: gameOverLoadDelay
       value: 4
       objectReference: {fileID: 0}
@@ -735,6 +750,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 714688059}
   m_CullTransparentMesh: 1
+--- !u!1001 &1115252071
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2237129266372377918, guid: 7af2047ae859e38469fc1338bf452766, type: 3}
+      propertyPath: m_Name
+      value: LaserDefender2DScoreKeeperGDTV
+      objectReference: {fileID: 0}
+    - target: {fileID: 4805393865911472865, guid: 7af2047ae859e38469fc1338bf452766, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4805393865911472865, guid: 7af2047ae859e38469fc1338bf452766, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4805393865911472865, guid: 7af2047ae859e38469fc1338bf452766, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4805393865911472865, guid: 7af2047ae859e38469fc1338bf452766, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4805393865911472865, guid: 7af2047ae859e38469fc1338bf452766, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4805393865911472865, guid: 7af2047ae859e38469fc1338bf452766, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4805393865911472865, guid: 7af2047ae859e38469fc1338bf452766, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4805393865911472865, guid: 7af2047ae859e38469fc1338bf452766, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4805393865911472865, guid: 7af2047ae859e38469fc1338bf452766, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4805393865911472865, guid: 7af2047ae859e38469fc1338bf452766, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7af2047ae859e38469fc1338bf452766, type: 3}
 --- !u!1001 &1140279312
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -753,7 +825,7 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: ea6a0534ed0e9db42b2d5c793c98c6ef, type: 3}
     - target: {fileID: 5147645668636594102, guid: 6322ef1bc7f48ac4ebd3873183e92f96, type: 3}
       propertyPath: m_Name
-      value: LaserDefender2DAudioPlayerGDTV (1)
+      value: LaserDefender2DAudioPlayerGDTV
       objectReference: {fileID: 0}
     - target: {fileID: 5202520385959013256, guid: 6322ef1bc7f48ac4ebd3873183e92f96, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1013,6 +1085,7 @@ GameObject:
   - component: {fileID: 1623758171}
   - component: {fileID: 1623758170}
   - component: {fileID: 1623758169}
+  - component: {fileID: 1623758173}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1106,6 +1179,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1623758173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1623758168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0b5c72344a0fc74f8ed17c7aa691e9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreText: {fileID: 269579828}
 --- !u!1 &1722828535
 GameObject:
   m_ObjectHideFlags: 0
@@ -1439,67 +1525,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1787298611}
   m_CullTransparentMesh: 1
---- !u!1001 &1821846506
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 5147645668636594102, guid: 6322ef1bc7f48ac4ebd3873183e92f96, type: 3}
-      propertyPath: m_Name
-      value: LaserDefender2DAudioPlayerGDTV
-      objectReference: {fileID: 0}
-    - target: {fileID: 5147645668636594102, guid: 6322ef1bc7f48ac4ebd3873183e92f96, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5202520385959013256, guid: 6322ef1bc7f48ac4ebd3873183e92f96, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5202520385959013256, guid: 6322ef1bc7f48ac4ebd3873183e92f96, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5202520385959013256, guid: 6322ef1bc7f48ac4ebd3873183e92f96, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5202520385959013256, guid: 6322ef1bc7f48ac4ebd3873183e92f96, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5202520385959013256, guid: 6322ef1bc7f48ac4ebd3873183e92f96, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5202520385959013256, guid: 6322ef1bc7f48ac4ebd3873183e92f96, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5202520385959013256, guid: 6322ef1bc7f48ac4ebd3873183e92f96, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5202520385959013256, guid: 6322ef1bc7f48ac4ebd3873183e92f96, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5202520385959013256, guid: 6322ef1bc7f48ac4ebd3873183e92f96, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5202520385959013256, guid: 6322ef1bc7f48ac4ebd3873183e92f96, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 6322ef1bc7f48ac4ebd3873183e92f96, type: 3}
 --- !u!1 &1821957269
 GameObject:
   m_ObjectHideFlags: 0
@@ -1721,8 +1746,8 @@ SceneRoots:
   m_Roots:
   - {fileID: 545209690}
   - {fileID: 1273409503}
-  - {fileID: 1821846506}
   - {fileID: 1623758172}
   - {fileID: 1849260559}
   - {fileID: 549557952}
   - {fileID: 1140279312}
+  - {fileID: 1115252071}
