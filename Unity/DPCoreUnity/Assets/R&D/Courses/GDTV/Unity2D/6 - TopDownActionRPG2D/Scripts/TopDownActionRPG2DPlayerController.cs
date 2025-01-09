@@ -8,11 +8,15 @@ public class TopDownActionRPG2DPlayerController : MonoBehaviour
     private TopDownActionRPG2DInputActions playerInputActions;
     Vector2 movement;
     Rigidbody2D rb2d;
+    Animator animator;
+    SpriteRenderer spriteRenderer;
 
     void Awake()
     {
         playerInputActions = new TopDownActionRPG2DInputActions(); //TODO: add TopDownActionRPG2DInputActions as a component instead
         rb2d = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     void OnEnable()
@@ -27,6 +31,7 @@ public class TopDownActionRPG2DPlayerController : MonoBehaviour
 
     void FixedUpdate()//we use this for handling physics
     {
+        AdjustPlayerFacingDirection();
         Move();
     }
 
@@ -34,11 +39,27 @@ public class TopDownActionRPG2DPlayerController : MonoBehaviour
     {
         movement = playerInputActions.Movement.Move.ReadValue<Vector2>();
 
-        Debug.Log( movement.x );
+        animator.SetFloat( "moveX", movement.x );
+        animator.SetFloat( "moveY", movement.y );
     }
 
     void Move()
     {
         rb2d.MovePosition( rb2d.position + movement * ( moveSpeed * Time.fixedDeltaTime ) );//we use fixedDeltaTime because we are in FixedUpdate()
+    }
+
+    void AdjustPlayerFacingDirection()
+    {
+        Vector3 mousePos = Input.mousePosition;
+        Vector3 playerScreenPoint = Camera.main.WorldToScreenPoint( transform.position );
+
+        if ( mousePos.x < playerScreenPoint.x )
+        {
+            spriteRenderer.flipX = true;
+        }
+        else
+        {
+            spriteRenderer.flipX = false;
+        }
     }
 }
