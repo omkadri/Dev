@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Scripting.APIUpdating;
 
@@ -10,6 +11,9 @@ public class GDTVTopDownAction2DPlayerController : MonoBehaviour
     Rigidbody2D rb2d;
     Animator animator;
     SpriteRenderer spriteRenderer;
+
+    [HideInInspector]
+    public bool isFacingLeft = false;
 
     void Awake()
     {
@@ -56,10 +60,12 @@ public class GDTVTopDownAction2DPlayerController : MonoBehaviour
         if ( mousePos.x < playerScreenPoint.x )
         {
             spriteRenderer.flipX = true;
+            isFacingLeft = true;
         }
         else
         {
             spriteRenderer.flipX = false;
+            isFacingLeft = false;
         }
     }
 }

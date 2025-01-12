@@ -2,10 +2,15 @@ using UnityEngine;
 
 public class GDTVTopDownAction2DSword : MonoBehaviour
 {
+    [SerializeField] GameObject slashAnimPrefab;
+    [SerializeField] Transform slashAnimSpawnPoint;
+
     GDTVTopDownAction2DInputActions playerInputActions;
     Animator animator; 
     GDTVTopDownAction2DPlayerController playerController;
     GDTVTopDownAction2DActiveWeapon activeWeapon;
+
+    GameObject slashAnim;
 
     void Awake()
     {
@@ -33,6 +38,9 @@ public class GDTVTopDownAction2DSword : MonoBehaviour
     void Attack()
     {
         animator.SetTrigger( "Attack" );
+        
+        slashAnim = Instantiate( slashAnimPrefab, slashAnimSpawnPoint.position, Quaternion.identity );
+        slashAnim.transform.parent = this.transform.parent;
     }
 
     void MouseFollowWithOffset() //orients the sword relative to the mouse
@@ -49,6 +57,26 @@ public class GDTVTopDownAction2DSword : MonoBehaviour
         else
         {
             activeWeapon.transform.rotation = Quaternion.Euler( 0, 0, angle );
+        }
+    }
+
+    public void SwingUpFlipAnimation()
+    {
+        slashAnim.gameObject.transform.rotation = Quaternion.Euler( -180, 0, 0 );
+
+        if( playerController.isFacingLeft )
+        {
+            slashAnim.GetComponent<SpriteRenderer>().flipX = true;
+        }
+    }
+
+    public void SwingDownFlipAnimation()
+    {
+        slashAnim.gameObject.transform.rotation = Quaternion.Euler( 0, 0, 0 );
+
+        if( playerController.isFacingLeft )
+        {
+            slashAnim.GetComponent<SpriteRenderer>().flipX = true;
         }
     }
 }
