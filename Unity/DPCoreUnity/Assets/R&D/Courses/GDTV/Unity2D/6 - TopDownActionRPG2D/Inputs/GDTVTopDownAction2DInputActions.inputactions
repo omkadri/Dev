@@ -1,5 +1,5 @@
 {
-    "name": "TopDownActionRPG2DInputActions",
+    "name": "GDTVTopDownAction2DInputActions",
     "maps": [
         {
             "name": "Movement",
@@ -70,6 +70,34 @@
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
+                }
+            ]
+        },
+        {
+            "name": "Combat",
+            "id": "123dd22d-83ba-4766-8efa-af457c51ca0a",
+            "actions": [
+                {
+                    "name": "Attack",
+                    "type": "Button",
+                    "id": "73520077-019e-46f9-8cc3-3773d57fc6f4",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "4e4708a1-499c-47a6-9cdf-848683925e69",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
