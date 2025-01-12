@@ -1,13 +1,7 @@
 fileFormatVersion: 2
-guid: 5f9cf381bee48ac4284f561e5694f163
+guid: 22e55f3aa995670478ac11b5d6a0c583
 TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: -1071302430762533504
-    second: Hero_Idle_0
-  - first:
-      213: 402119133011603176
-    second: Hero_Idle_1
+  internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -142,45 +136,67 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Hero_Idle_0
+      name: Slime_Sheet_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 96
-        height: 64
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 08df26f7d18f121f0800000000000000
-      internalID: -1071302430762533504
+      spriteID: 045d0367e308e6e4195e7b807f55f96e
+      internalID: -560313092
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hero_Idle_1
+      name: Slime_Sheet_1
       rect:
         serializedVersion: 2
-        x: 96
+        x: 32
         y: 0
-        width: 96
-        height: 64
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 8ee6b80983d949500800000000000000
-      internalID: 402119133011603176
+      spriteID: aaf6a8d3d2a714340bff732e7ed3dc70
+      internalID: -2060410448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slime_Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d03fac1607c1d94ca8234512ffadad8
+      internalID: 2128812911
       vertices: []
       indices: 
       edges: []
@@ -189,7 +205,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 634393341e17dd24084cf7fa806c045b
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -199,8 +215,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Hero_Idle_0: -1071302430762533504
-      Hero_Idle_1: 402119133011603176
+      Slime_Sheet_0: -560313092
+      Slime_Sheet_1: -2060410448
+      Slime_Sheet_2: 2128812911
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class GlitchGarden2DDefender : MonoBehaviour
 {
-    #pragma warning disable CS0414
+    #pragma warning disable CS0414//INVESTIGATE WHAT THIS IS
     [SerializeField] int starCost = 100;
-
 }

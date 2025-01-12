@@ -14,16 +14,16 @@ public class GlitchGarden2DAttackerSpawner : MonoBehaviour
 
     IEnumerator Start()
     {
-        while (spawn) // while spawn = true
+        while( spawn ) // while spawn = true
         {
-            yield return new WaitForSeconds(UnityEngine.Random.Range(minSpawnDelay, maxSpawnDelay));
+            yield return new WaitForSeconds( UnityEngine.Random.Range( minSpawnDelay, maxSpawnDelay ) );
             SpawnAttacker();
         }
     }
 
     private void SpawnAttacker()
     {
-        Instantiate(attackerPrefab, transform.position, transform.rotation);
+        Instantiate( attackerPrefab, transform.position, transform.rotation );
     }
 
     void Update()

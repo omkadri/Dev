@@ -8,10 +8,10 @@ public class GlitchGarden2DAttacker : MonoBehaviour
 
     void Update()
     {
-        transform.Translate(Vector2.left* currentSpeed * Time.deltaTime);
+        transform.Translate( Vector2.left* currentSpeed * Time.deltaTime );
     }
 
-    public void SetMovementSpeed(float speed) //this is referred to as passing in
+    public void SetMovementSpeed( float speed ) //this is referred to as passing in
                 //This function is being called by the animation event in the unity editor. SPELLING MATTERS!!!!!
     {
         currentSpeed = speed;

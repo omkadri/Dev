@@ -7,23 +7,26 @@ public class GlitchGarden2DHealth : MonoBehaviour
     [SerializeField] float health = 100f;
     [SerializeField] GameObject deathVFX;
 
-    public void DealDamage(float damage)
+    public void DealDamage( float damage )
     {
         health -= damage;
-        if (health <= 0)
+        if ( health <= 0 )
         {
             TriggerDeathVFX();
-            Destroy(gameObject);
+            Destroy( gameObject );
         }
     }
 
     private void TriggerDeathVFX()
     {
         //protects us against null returns
-        if (!deathVFX) { return; }
+        if ( !deathVFX )
+        { 
+            return;
+        }
 
         //instantiates vfx particle, and then destroy it
-        GameObject deathVFXObject = Instantiate(deathVFX, transform.position, transform.rotation);
-        Destroy(deathVFXObject, 1f);
+        GameObject deathVFXObject = Instantiate( deathVFX, transform.position, transform.rotation );
+        Destroy( deathVFXObject, 1f );
     }
 }

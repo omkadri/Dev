@@ -19,14 +19,14 @@ public class GlitchGarden2DStarDisplay : MonoBehaviour
     }
 
     //earning stars
-    public void AddStars(int amount)
+    public void AddStars( int amount )
     {
         stars += amount;
         UpdateDisplay();
     }
 
     //using stars
-    public void SpendStars(int amount)
+    public void SpendStars( int amount )
     {
         if (stars >= amount)//stops us from spending more stars then we have
         {

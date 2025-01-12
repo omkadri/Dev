@@ -1,19 +1,19 @@
 using UnityEngine;
 using UnityEngine.Scripting.APIUpdating;
 
-public class TopDownActionRPG2DPlayerController : MonoBehaviour
+public class GDTVTopDownAction2DPlayerController : MonoBehaviour
 {
     [SerializeField] float moveSpeed = 1f;
 
-    private TopDownActionRPG2DInputActions playerInputActions;
-    Vector2 movement;
+    private GDTVTopDownAction2DInputActions playerInputActions;
+    Vector2 moveDirection;
     Rigidbody2D rb2d;
     Animator animator;
     SpriteRenderer spriteRenderer;
 
     void Awake()
     {
-        playerInputActions = new TopDownActionRPG2DInputActions(); //TODO: add TopDownActionRPG2DInputActions as a component instead
+        playerInputActions = new GDTVTopDownAction2DInputActions(); //TODO: add TopDownActionRPG2DInputActions as a component instead
         rb2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -37,15 +37,15 @@ public class TopDownActionRPG2DPlayerController : MonoBehaviour
 
     void PlayerInput()
     {
-        movement = playerInputActions.Movement.Move.ReadValue<Vector2>();
+        moveDirection = playerInputActions.Movement.Move.ReadValue<Vector2>();
 
-        animator.SetFloat( "moveX", movement.x );
-        animator.SetFloat( "moveY", movement.y );
+        animator.SetFloat( "moveX", moveDirection.x );
+        animator.SetFloat( "moveY", moveDirection.y );
     }
 
     void Move()
     {
-        rb2d.MovePosition( rb2d.position + movement * ( moveSpeed * Time.fixedDeltaTime ) );//we use fixedDeltaTime because we are in FixedUpdate()
+        rb2d.MovePosition( rb2d.position + moveDirection * ( moveSpeed * Time.fixedDeltaTime ) );//we use fixedDeltaTime because we are in FixedUpdate()
     }
 
     void AdjustPlayerFacingDirection()

@@ -11,20 +11,20 @@ public class GlitchGarden2DSceneManager : MonoBehaviour
     void Start()
     {
         currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        if (currentSceneIndex == 0)
+        if ( currentSceneIndex == 0 )
         {
-            StartCoroutine(WaitForTime());
+            StartCoroutine( WaitForTime() );
         }
     }
         IEnumerator WaitForTime()
         {
-            yield return new WaitForSeconds(timeToWait);
+            yield return new WaitForSeconds( timeToWait );
             LoadNextScene(); 
         }
 
         public void LoadNextScene()
         {
-            SceneManager.LoadScene(currentSceneIndex + 1); //because in build index, Loading screen is 0 and Start Screen is 1
+            SceneManager.LoadScene( currentSceneIndex + 1 ); //because in build index, Loading screen is 0 and Start Screen is 1
         }
 
     }

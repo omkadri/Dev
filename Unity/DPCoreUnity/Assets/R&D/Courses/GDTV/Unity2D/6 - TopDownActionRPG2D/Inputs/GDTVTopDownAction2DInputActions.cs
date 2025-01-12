@@ -15,10 +15,10 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
-public partial class @TopDownActionRPG2DInputActions: IInputActionCollection2, IDisposable
+public partial class GDTVTopDownAction2DInputActions: IInputActionCollection2, IDisposable
 {
     public InputActionAsset asset { get; }
-    public @TopDownActionRPG2DInputActions()
+    public GDTVTopDownAction2DInputActions()
     {
         asset = InputActionAsset.FromJson(@"{
     ""name"": ""TopDownActionRPG2DInputActions"",
@@ -103,7 +103,7 @@ public partial class @TopDownActionRPG2DInputActions: IInputActionCollection2, I
         m_Movement_Move = m_Movement.FindAction("Move", throwIfNotFound: true);
     }
 
-    ~@TopDownActionRPG2DInputActions()
+    ~GDTVTopDownAction2DInputActions()
     {
         UnityEngine.Debug.Assert(!m_Movement.enabled, "This will cause a leak and performance issues, TopDownActionRPG2DInputActions.Movement.Disable() has not been called.");
     }
@@ -170,8 +170,8 @@ public partial class @TopDownActionRPG2DInputActions: IInputActionCollection2, I
     private readonly InputAction m_Movement_Move;
     public struct MovementActions
     {
-        private @TopDownActionRPG2DInputActions m_Wrapper;
-        public MovementActions(@TopDownActionRPG2DInputActions wrapper) { m_Wrapper = wrapper; }
+        private GDTVTopDownAction2DInputActions m_Wrapper;
+        public MovementActions(GDTVTopDownAction2DInputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Movement_Move;
         public InputActionMap Get() { return m_Wrapper.m_Movement; }
         public void Enable() { Get().Enable(); }
