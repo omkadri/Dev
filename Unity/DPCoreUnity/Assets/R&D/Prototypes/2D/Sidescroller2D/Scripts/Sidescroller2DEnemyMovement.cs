@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Sidescroller2DEnemyMovement : MonoBehaviour
+public class SideScroller2DEnemyMovement : MonoBehaviour
 {
     Rigidbody2D rb2d;
     [SerializeField] float moveSpeed = 1f;

@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.SocialPlatforms;
 
-public class Sidescroller2DGameSession : MonoBehaviour
+public class SideScroller2DGameSession : MonoBehaviour
 {
     [SerializeField] int playerLives = 3;
     [SerializeField] int score = 0;
@@ -17,7 +17,7 @@ public class Sidescroller2DGameSession : MonoBehaviour
     
     void Awake()
     {
-        int numGameSessions = FindObjectsByType<Sidescroller2DGameSession>( FindObjectsSortMode.None ).Length;
+        int numGameSessions = FindObjectsByType<SideScroller2DGameSession>( FindObjectsSortMode.None ).Length;
         if ( numGameSessions > 1 ) // ensures that only one game session can exits at a time
         {
             Destroy( gameObject );
@@ -62,7 +62,7 @@ public class Sidescroller2DGameSession : MonoBehaviour
 
     void ResetGameSession()
     {
-        FindFirstObjectByType<Sidescroller2DScenePersist>().ResetScenePersist();
+        FindFirstObjectByType<SideScroller2DScenePersist>().ResetScenePersist();
         SceneManager.LoadScene( gameOverSceneName );
         Destroy( gameObject ); //allows future game sessions to exist without duplication
     }

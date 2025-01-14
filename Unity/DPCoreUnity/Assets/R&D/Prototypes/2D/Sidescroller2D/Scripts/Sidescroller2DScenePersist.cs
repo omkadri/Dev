@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Sidescroller2DScenePersist : MonoBehaviour
+public class SideScroller2DScenePersist : MonoBehaviour
 {
     void Awake()
     {
-        int numScenePersists = FindObjectsByType<Sidescroller2DScenePersist>( FindObjectsSortMode.None ).Length;
+        int numScenePersists = FindObjectsByType<SideScroller2DScenePersist>( FindObjectsSortMode.None ).Length;
         if ( numScenePersists > 1 ) // ensures that only one scenePersist can exist at a time
         {
             Destroy( gameObject );

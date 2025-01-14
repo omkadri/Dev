@@ -6,7 +6,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Sidescroller2DPlayer : MonoBehaviour
+public class SideScroller2DPlayer : MonoBehaviour
 {
     [SerializeField] float runSpeed = 10f;
     [SerializeField] float jumpSpeed = 5f;
@@ -111,7 +111,7 @@ public class Sidescroller2DPlayer : MonoBehaviour
             isAlive = false;
             animator.SetTrigger("Dying");
             rb2d.linearVelocity = deathKnockback;
-            FindFirstObjectByType<Sidescroller2DGameSession>().ProcessPlayerDeath();
+            FindFirstObjectByType<SideScroller2DGameSession>().ProcessPlayerDeath();
         }
     }
 }

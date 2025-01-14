@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Sidescroller2DProjectile : MonoBehaviour
+public class SideScroller2DProjectile : MonoBehaviour
 {
     Rigidbody2D rb2d;
     [SerializeField] float projectileSpeed = 20f;
-    Sidescroller2DPlayer player;// xSpeed ensures bullet is shooting in the direction that the player is facing
+    SideScroller2DPlayer player;// xSpeed ensures bullet is shooting in the direction that the player is facing
     float xSpeed;
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
-        player = FindFirstObjectByType<Sidescroller2DPlayer>();
+        player = FindFirstObjectByType<SideScroller2DPlayer>();
         xSpeed = player.transform.localScale.x * projectileSpeed;
     }
 

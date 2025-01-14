@@ -4,7 +4,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Sidescroller2DLevelExit : MonoBehaviour
+public class SideScroller2DLevelExit : MonoBehaviour
 {
     [SerializeField] float levelLoadDelay = 1f;
     [SerializeField] string nextSceneName;
@@ -19,7 +19,7 @@ public class Sidescroller2DLevelExit : MonoBehaviour
 
     IEnumerator LoadNextLevel()
     {
-        FindFirstObjectByType<Sidescroller2DScenePersist>().ResetScenePersist();
+        FindFirstObjectByType<SideScroller2DScenePersist>().ResetScenePersist();
         yield return new WaitForSecondsRealtime( levelLoadDelay );
         SceneManager.LoadScene( nextSceneName );
     }

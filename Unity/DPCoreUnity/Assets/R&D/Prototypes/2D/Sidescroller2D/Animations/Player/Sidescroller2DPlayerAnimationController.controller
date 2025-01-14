@@ -139,7 +139,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Sidescroller2DPlayerRunning
+  m_Name: SideScroller2DPlayerRunning
   m_Speed: 1.5
   m_CycleOffset: 0
   m_Transitions:
@@ -165,7 +165,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Sidescroller2DPlayerAnimationController
+  m_Name: SideScroller2DPlayerAnimationController
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: IsRunning
@@ -206,7 +206,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Sidescroller2DPlayerDeath
+  m_Name: SideScroller2DPlayerDeath
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -232,7 +232,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Sidescroller2DPlayerClimbing
+  m_Name: SideScroller2DPlayerClimbing
   m_Speed: 0.5
   m_CycleOffset: 0
   m_Transitions:
@@ -284,7 +284,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Sidescroller2DPlayerIdling
+  m_Name: SideScroller2DPlayerIdling
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
