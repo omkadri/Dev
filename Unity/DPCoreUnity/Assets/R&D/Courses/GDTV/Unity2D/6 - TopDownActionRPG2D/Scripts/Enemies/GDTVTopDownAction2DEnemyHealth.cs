@@ -4,6 +4,7 @@ using UnityEngine;
 public class GDTVTopDownAction2DEnemyHealth : MonoBehaviour
 {
     [SerializeField] int startingHealth = 3;
+    [SerializeField] GameObject deathVFXPrefab;
 
     GDTVTopDownAction2DKnockback knockback;
     GDTVTopDownAction2DDamageFlash damageFlash;
@@ -41,6 +42,7 @@ public class GDTVTopDownAction2DEnemyHealth : MonoBehaviour
     {
         if ( currentHealth <= 0 )
         {
+            Instantiate( deathVFXPrefab, transform.position, Quaternion.identity );
             Destroy( gameObject );
         }
     }

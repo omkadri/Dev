@@ -197,6 +197,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 3
+  deathVFXPrefab: {fileID: 6212351686557051007, guid: 117655891e1456c4dac9e69c800009f6, type: 3}
 --- !u!114 &-7686788988901028093
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -224,7 +225,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageFlashMat: {fileID: 2100000, guid: e3b0eefa63a22fc4ea68334963869ad1, type: 2}
-  restoreDefaultMatTime: 0.2
+  restoreDefaultMatTime: 0.1
 --- !u!1 &3609506738650915831
 GameObject:
   m_ObjectHideFlags: 0
