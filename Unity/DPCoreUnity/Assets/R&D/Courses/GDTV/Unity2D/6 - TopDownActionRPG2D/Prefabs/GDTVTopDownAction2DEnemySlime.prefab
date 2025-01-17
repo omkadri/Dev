@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 7282620688802930788}
   - component: {fileID: -8051359839609618965}
   - component: {fileID: -7686788988901028093}
+  - component: {fileID: 1626172071864075418}
   m_Layer: 0
   m_Name: GDTVTopDownAction2DEnemySlime
   m_TagString: Untagged
@@ -208,6 +209,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c23dace771e0354eae77881de2a7ddf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gettingKnockedBack: 0
+  knockbackTime: 0.2
+--- !u!114 &1626172071864075418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410066733901262945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 404345df963900f41a623c6e069d6c4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageFlashMat: {fileID: 2100000, guid: e3b0eefa63a22fc4ea68334963869ad1, type: 2}
+  restoreDefaultMatTime: 0.2
 --- !u!1 &3609506738650915831
 GameObject:
   m_ObjectHideFlags: 0

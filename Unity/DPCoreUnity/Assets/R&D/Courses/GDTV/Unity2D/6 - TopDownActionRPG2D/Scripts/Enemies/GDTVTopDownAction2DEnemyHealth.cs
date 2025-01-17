@@ -1,15 +1,20 @@
+using System.Collections;
 using UnityEngine;
 
 public class GDTVTopDownAction2DEnemyHealth : MonoBehaviour
 {
     [SerializeField] int startingHealth = 3;
-    [SerializeField] GDTVTopDownAction2DKnockback knockback;
+
+    GDTVTopDownAction2DKnockback knockback;
+    GDTVTopDownAction2DDamageFlash damageFlash;
+
 
     int currentHealth;
 
     void Awake()
     {
         knockback = GetComponent<GDTVTopDownAction2DKnockback>();
+        damageFlash = GetComponent<GDTVTopDownAction2DDamageFlash>();
     }
 
     void Start()
@@ -22,10 +27,17 @@ public class GDTVTopDownAction2DEnemyHealth : MonoBehaviour
     {
         currentHealth -= damage;
         knockback.GetKnockback( GDTVTopDownAction2DPlayerController.Instance.transform, 15f );
-        DetectDeath();
+        StartCoroutine( damageFlash.DamageFlashRoutine() );
+        StartCoroutine( CheckDetectDeathRoutine() );
     }
 
-    public void DetectDeath()
+    IEnumerator CheckDetectDeathRoutine()
+    {
+        yield return new WaitForSeconds( damageFlash.GetRestoreMatTime() );
+        Die();
+    }
+
+    public void Die()
     {
         if ( currentHealth <= 0 )
         {
