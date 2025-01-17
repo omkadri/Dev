@@ -4,6 +4,7 @@ using UnityEngine.Scripting.APIUpdating;
 
 public class GDTVTopDownAction2DPlayerController : MonoBehaviour
 {
+    public static GDTVTopDownAction2DPlayerController Instance;
     [SerializeField] float moveSpeed = 1f;
 
     private GDTVTopDownAction2DInputActions playerInputActions;
@@ -17,6 +18,7 @@ public class GDTVTopDownAction2DPlayerController : MonoBehaviour
 
     void Awake()
     {
+        Instance = this;
         playerInputActions = new GDTVTopDownAction2DInputActions(); //TODO: add TopDownActionRPG2DInputActions as a component instead
         rb2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();

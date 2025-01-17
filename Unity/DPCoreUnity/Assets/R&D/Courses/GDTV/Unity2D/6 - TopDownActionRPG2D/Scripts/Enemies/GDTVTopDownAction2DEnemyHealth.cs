@@ -3,8 +3,14 @@ using UnityEngine;
 public class GDTVTopDownAction2DEnemyHealth : MonoBehaviour
 {
     [SerializeField] int startingHealth = 3;
+    [SerializeField] GDTVTopDownAction2DKnockback knockback;
 
     int currentHealth;
+
+    void Awake()
+    {
+        knockback = GetComponent<GDTVTopDownAction2DKnockback>();
+    }
 
     void Start()
     {
@@ -15,7 +21,7 @@ public class GDTVTopDownAction2DEnemyHealth : MonoBehaviour
     public void TakeDamage( int damage )
     {
         currentHealth -= damage;
-        Debug.Log( currentHealth );
+        knockback.GetKnockback( GDTVTopDownAction2DPlayerController.Instance.transform, 15f );
         DetectDeath();
     }
 

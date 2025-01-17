@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8734657610674076414}
   - component: {fileID: 7282620688802930788}
   - component: {fileID: -8051359839609618965}
+  - component: {fileID: -7686788988901028093}
   m_Layer: 0
   m_Name: GDTVTopDownAction2DEnemySlime
   m_TagString: Untagged
@@ -195,6 +196,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 3
+--- !u!114 &-7686788988901028093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410066733901262945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c23dace771e0354eae77881de2a7ddf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3609506738650915831
 GameObject:
   m_ObjectHideFlags: 0
