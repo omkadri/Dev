@@ -4,6 +4,7 @@ public class GDTVTopDownAction2DSword : MonoBehaviour
 {
     [SerializeField] GameObject slashAnimPrefab;
     [SerializeField] Transform slashAnimSpawnPoint;
+    [SerializeField] Transform weaponCollider;
 
     GDTVTopDownAction2DInputActions playerInputActions;
     Animator animator; 
@@ -38,6 +39,7 @@ public class GDTVTopDownAction2DSword : MonoBehaviour
     void Attack()
     {
         animator.SetTrigger( "Attack" );
+        weaponCollider.gameObject.SetActive( true );
         
         slashAnim = Instantiate( slashAnimPrefab, slashAnimSpawnPoint.position, Quaternion.identity );
         slashAnim.transform.parent = this.transform.parent;
@@ -53,14 +55,21 @@ public class GDTVTopDownAction2DSword : MonoBehaviour
         if ( mousePosition.x < playerPosition.x )
         {
             activeWeapon.transform.rotation = Quaternion.Euler( 0, -180, angle );
+            weaponCollider.transform.rotation = Quaternion.Euler( 0, -180, 0 );
         }
         else
         {
             activeWeapon.transform.rotation = Quaternion.Euler( 0, 0, angle );
+            weaponCollider.transform.rotation = Quaternion.Euler( 0, 0, 0 );
         }
     }
 
-    public void SwingUpFlipAnimation()
+    public void DoneAttackingAnimEvent()
+    {
+        weaponCollider.gameObject.SetActive( false );
+    }
+
+    public void SwingUpFlipAnimEvent()
     {
         slashAnim.gameObject.transform.rotation = Quaternion.Euler( -180, 0, 0 );
 
@@ -70,7 +79,7 @@ public class GDTVTopDownAction2DSword : MonoBehaviour
         }
     }
 
-    public void SwingDownFlipAnimation()
+    public void SwingDownFlipAnimEvent()
     {
         slashAnim.gameObject.transform.rotation = Quaternion.Euler( 0, 0, 0 );
 
