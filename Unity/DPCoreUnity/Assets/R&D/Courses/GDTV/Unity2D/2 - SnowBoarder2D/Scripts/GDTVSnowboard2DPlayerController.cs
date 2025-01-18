@@ -12,6 +12,8 @@ public class GDTVSnowboard2DPlayerController : MonoBehaviour
     Rigidbody2D rb2d;
     SurfaceEffector2D surfaceEffector2D;
     // Start is called before the first frame update
+    
+    
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
@@ -19,23 +21,24 @@ public class GDTVSnowboard2DPlayerController : MonoBehaviour
         surfaceEffector2D.speed = baseSpeed; 
     }
 
-    // Update is called once per frame
+
     void Update()
     {
-        if (canMove)
+        if ( canMove )
         {
             RotatePlayer();
             RespondToBoost();
         }
     }
+
+
     public void DisableControls()
     {
-        //DisableMovement
         canMove = false;
     }
     void RespondToBoost()
     {
-        if (Input.GetKey(KeyCode.UpArrow))
+        if ( Input.GetKey( KeyCode.UpArrow ) )
         {
             surfaceEffector2D.speed = boostSpeed;
         }
@@ -45,18 +48,19 @@ public class GDTVSnowboard2DPlayerController : MonoBehaviour
         }
     }
 
+
     void RotatePlayer()
     {
         //player will always torque forward a bit to create the challenge of balance
-        rb2d.AddTorque(-torqueAmount);
+        rb2d.AddTorque( -torqueAmount );
 
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if ( Input.GetKey( KeyCode.LeftArrow ) )
         {
-            rb2d.AddTorque(torqueAmount * 4);
+            rb2d.AddTorque( torqueAmount * 4 );
         }
-        else if (Input.GetKey(KeyCode.RightArrow))
+        else if ( Input.GetKey( KeyCode.RightArrow ) )
         {
-            rb2d.AddTorque(-torqueAmount * 2);
+            rb2d.AddTorque( -torqueAmount * 2 );
         }
     }
 }

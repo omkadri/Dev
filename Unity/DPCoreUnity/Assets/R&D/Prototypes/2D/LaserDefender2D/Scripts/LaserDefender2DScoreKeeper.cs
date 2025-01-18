@@ -8,10 +8,12 @@ public class LaserDefender2DScoreKeeper : MonoBehaviour
 
     static LaserDefender2DScoreKeeper instance;
 
+
     void Awake()
     {
         ManageSingleton();
     }
+
 
     void ManageSingleton()
     {
@@ -27,10 +29,12 @@ public class LaserDefender2DScoreKeeper : MonoBehaviour
         }
     }
 
+
     public int GetCurrentScore()
     {
         return currentScore;
     }
+
 
     public void ModifyScore( int value )
     {
@@ -38,6 +42,7 @@ public class LaserDefender2DScoreKeeper : MonoBehaviour
         Mathf.Clamp( currentScore, 0, int.MaxValue );
         Debug.Log( currentScore );
     }
+    
 
     public void ResetScore()
     {

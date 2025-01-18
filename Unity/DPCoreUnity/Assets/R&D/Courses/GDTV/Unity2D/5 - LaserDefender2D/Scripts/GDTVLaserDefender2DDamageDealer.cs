@@ -11,6 +11,7 @@ public class GDTVLaserDefender2DDamageDealer : MonoBehaviour
         return damage;
     }
 
+
     public void Hit()
     {
         Destroy( gameObject );

@@ -6,21 +6,26 @@ public class SideScroller2DEnemyMovement : MonoBehaviour
 {
     Rigidbody2D rb2d;
     [SerializeField] float moveSpeed = 1f;
+
+
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
     }
+
 
     void Update()
     {
         rb2d.linearVelocity = new Vector2( moveSpeed,0f );
     }
 
+
     void OnTriggerExit2D( Collider2D other )
     {
         moveSpeed = -moveSpeed;
         FlipEnemyFacing();
     }
+
 
     void FlipEnemyFacing()
     {

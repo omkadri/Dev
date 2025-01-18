@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GDTVTileVania2DScenePersist : MonoBehaviour
 {
+
+    
     void Awake()
     {
         int numScenePersists = FindObjectsByType<GDTVTileVania2DScenePersist>( FindObjectsSortMode.None ).Length;
@@ -16,6 +18,7 @@ public class GDTVTileVania2DScenePersist : MonoBehaviour
             DontDestroyOnLoad( gameObject ); //ensures that scenePersist is being carried over into the next scene
         }
     }
+
 
     public void ResetScenePersist()
     {

@@ -12,15 +12,18 @@ public class GDTVLaserDefender2DUIDisplay : MonoBehaviour
     [SerializeField] TextMeshProUGUI scoreText;
     GDTVLaserDefender2DScoreKeeper scoreKeeper;
 
+
     void Awake()
     {
         scoreKeeper = FindFirstObjectByType<GDTVLaserDefender2DScoreKeeper>();
     }
 
+
     void Start()
     {
         healthSlider.maxValue = playerHealth.GetHealth();
     }
+    
 
     void Update()
     {

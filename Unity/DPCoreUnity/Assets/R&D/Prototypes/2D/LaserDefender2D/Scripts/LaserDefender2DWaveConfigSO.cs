@@ -11,20 +11,24 @@ public class LaserDefender2DWaveConfigSO : ScriptableObject
     [SerializeField] float spawnTimeVariance = 0f;
     [SerializeField] float minSpawnTime = 0.2f;
 
+
     public int GetEnemyCount()
     {
         return enemyPrefabs.Count;
     }
+
 
     public GameObject GetEnemyPrefab( int index )
     {
         return enemyPrefabs[index];
     }
 
+
     public Transform GetStartingWaypoint()
     {
         return pathPrefab.GetChild( 0 );
     }
+
 
     public List<Transform> GetWaypoints()
     {
@@ -36,10 +40,12 @@ public class LaserDefender2DWaveConfigSO : ScriptableObject
         return waypoints;
     }
 
+
     public float GetMoveSpeed()
     {
         return moveSpeed;
     }
+
 
     public float GetRandomSpawnTime()
     {

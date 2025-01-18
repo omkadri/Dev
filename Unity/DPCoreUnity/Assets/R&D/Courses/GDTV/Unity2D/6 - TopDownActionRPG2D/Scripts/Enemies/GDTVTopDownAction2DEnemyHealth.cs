@@ -12,11 +12,13 @@ public class GDTVTopDownAction2DEnemyHealth : MonoBehaviour
 
     int currentHealth;
 
+
     void Awake()
     {
         knockback = GetComponent<GDTVTopDownAction2DKnockback>();
         damageFlash = GetComponent<GDTVTopDownAction2DDamageFlash>();
     }
+
 
     void Start()
     {
@@ -32,11 +34,13 @@ public class GDTVTopDownAction2DEnemyHealth : MonoBehaviour
         StartCoroutine( CheckDetectDeathRoutine() );
     }
 
+
     IEnumerator CheckDetectDeathRoutine()
     {
         yield return new WaitForSeconds( damageFlash.GetRestoreMatTime() );
         Die();
     }
+
 
     public void Die()
     {

@@ -19,10 +19,12 @@ public class GDTVLaserDefender2DShooter : MonoBehaviour
     Coroutine firingCoroutine;
     GDTVLaserDefender2DAudioPlayer audioPlayer;
 
+
     void Awake()
     {
         audioPlayer = FindFirstObjectByType<GDTVLaserDefender2DAudioPlayer>();
     }
+
 
     void Start()
     {
@@ -32,25 +34,28 @@ public class GDTVLaserDefender2DShooter : MonoBehaviour
         }   
     }
 
+
     void Update()
     {
         Fire();
     }
 
+
     void Fire()
     {
         if( isFiring && firingCoroutine == null )//ensure that firingCoroutine is not being called twice
         {
-            firingCoroutine = StartCoroutine( FireContinuously() );
+            firingCoroutine = StartCoroutine( FireContinuouslyRoutine() );
         }
-        else if( !isFiring && firingCoroutine != null)
+        else if( !isFiring && firingCoroutine != null )
         {
             StopCoroutine( firingCoroutine );
             firingCoroutine = null;
         }
     }
 
-    IEnumerator FireContinuously()
+
+    IEnumerator FireContinuouslyRoutine()
     {
         while( true )
         {
@@ -78,6 +83,7 @@ public class GDTVLaserDefender2DShooter : MonoBehaviour
             yield return new WaitForSecondsRealtime( timeToNextProjectile );
         }
     }
+
 
     void PlayShootingSFX()
     {

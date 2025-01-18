@@ -12,6 +12,7 @@ public class GDTVSnowboard2DCrashDetector : MonoBehaviour
 [SerializeField] float loadDelay = 2.5f;
 bool hasCrashed = false;
 
+
 void OnTriggerEnter2D( Collider2D other )
 {
     if ( other.tag == "Ground" )
@@ -32,6 +33,8 @@ void OnTriggerEnter2D( Collider2D other )
 
     }
 }
+
+
   void ReloadScene()
   {
     SceneManager.LoadScene( "GDTVSnowboard2DBaseScene" );

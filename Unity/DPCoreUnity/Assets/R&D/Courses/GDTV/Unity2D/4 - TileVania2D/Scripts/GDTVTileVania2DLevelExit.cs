@@ -9,15 +9,17 @@ public class GDTVTileVania2DLevelExit : MonoBehaviour
     [SerializeField] float levelLoadDelay = 1f;
     [SerializeField] string nextSceneName;
 
-    void OnTriggerEnter2D(Collider2D other)
+
+    void OnTriggerEnter2D( Collider2D other )
     {
-        if (other.tag == "Player")
+        if ( other.tag == "Player" )
         {
-            StartCoroutine( LoadNextLevel() );
+            StartCoroutine( LoadNextLevelRoutine() );
         }
     }
 
-    IEnumerator LoadNextLevel()
+
+    IEnumerator LoadNextLevelRoutine()
     {
         FindFirstObjectByType<GDTVTileVania2DScenePersist>().ResetScenePersist();
         yield return new WaitForSecondsRealtime( levelLoadDelay );

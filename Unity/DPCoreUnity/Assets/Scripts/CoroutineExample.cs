@@ -5,10 +5,10 @@ public class GenericCoroutineExample : MonoBehaviour
 {
     void Start()
     {
-        StartCoroutine(PerformActionAfterDelay(3f));
+        StartCoroutine(PerformActionAfterDelayRoutine(3f));
     }
 
-    IEnumerator PerformActionAfterDelay(float delay)
+    IEnumerator PerformActionAfterDelayRoutine(float delay)
     {
         yield return new WaitForSeconds(delay);
 

@@ -7,10 +7,13 @@ public class QuizMaster2DEndScreen : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI finalScoreText;
     QuizMaster2DScoreKeeper scoreKeeper;
+
+    
     void Awake()
     {
         scoreKeeper = FindFirstObjectByType<QuizMaster2DScoreKeeper>();
     }
+
 
     public void ShowFinalScore()
     {

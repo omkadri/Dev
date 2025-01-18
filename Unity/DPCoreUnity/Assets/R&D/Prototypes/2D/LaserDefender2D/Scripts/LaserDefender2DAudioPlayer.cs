@@ -8,7 +8,6 @@ public class LaserDefender2DAudioPlayer : MonoBehaviour
     [SerializeField] AudioClip enemyShootingSFX;
     [SerializeField] [Range( 0f,1f )] float enemyShootingVolume = 1f;
     
-
     [Header( "Damage SFX" )]
     [SerializeField] AudioClip playerDamageSFX;
     [SerializeField] [Range( 0f,1f )] float playerDamageVolume = 1f;
@@ -26,6 +25,7 @@ public class LaserDefender2DAudioPlayer : MonoBehaviour
         }
     }
 
+
     public void PlayEnemyShootingSFX()
     {
         if( enemyShootingSFX != null )
@@ -33,6 +33,7 @@ public class LaserDefender2DAudioPlayer : MonoBehaviour
             AudioSource.PlayClipAtPoint( enemyShootingSFX, Camera.main.transform.position, enemyShootingVolume );
         }
     }
+
 
     public void PlayPlayerDamageSFX()
     {
@@ -42,6 +43,7 @@ public class LaserDefender2DAudioPlayer : MonoBehaviour
         }
     }
 
+
     public void PlayPlayerDeathSFX()
     {
         if( playerDeathSFX != null )
@@ -49,6 +51,7 @@ public class LaserDefender2DAudioPlayer : MonoBehaviour
             AudioSource.PlayClipAtPoint( playerDeathSFX, Camera.main.transform.position, playerDeathVolume );
         }
     }
+
 
     public void PlayEnemyDamageSFX()
     {

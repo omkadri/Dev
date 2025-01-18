@@ -11,15 +11,19 @@ public class Driver2DTaxiDelivery : MonoBehaviour
     [SerializeField] GameObject dropOffImage;
 
     bool hasCustomer;
-    void OnCollisionEnter2D(Collision2D other)
+
+
+    void OnCollisionEnter2D( Collision2D other )
     {
-        Debug.Log("Ouch"!);
+        Debug.Log( "Ouch!" );
     }
-     void OnTriggerEnter2D(Collider2D other)
+
+
+     void OnTriggerEnter2D( Collider2D other )
     {
-        if (other.tag == "DropOff" && hasCustomer)
+        if ( other.tag == "DropOff" && hasCustomer )
         {
-            Debug.Log("Customer Dropped Off");
+            Debug.Log( "Customer Dropped Off" );
             hasCustomer = false;
             
             SpriteRenderer passengerRenderer = passengerImage.GetComponent<SpriteRenderer>();
@@ -28,12 +32,12 @@ public class Driver2DTaxiDelivery : MonoBehaviour
             dropOffCustomerRenderer.enabled = true;
             passengerRenderer.enabled = false;
         }
-        if (other.tag == "Customer" && !hasCustomer)
+        if ( other.tag == "Customer" && !hasCustomer )
         {
-            Debug.Log("Customer Picked Up");
+            Debug.Log( "Customer Picked Up" );
 
             hasCustomer = true;
-            Destroy( other.gameObject, destroyDelay);
+            Destroy( other.gameObject, destroyDelay );
 
             SpriteRenderer dropOffCustomerRenderer = dropOffImage.GetComponent<SpriteRenderer>();
             dropOffCustomerRenderer.enabled = false;

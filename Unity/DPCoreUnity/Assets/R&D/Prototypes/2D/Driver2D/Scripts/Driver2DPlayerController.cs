@@ -11,27 +11,32 @@ public class Driver2DPlayerController : MonoBehaviour
 
     [SerializeField] float boostSpeed = 20f;
 
+
     void Start()
     {
         defaultSpeed = moveSpeed;
     }
 
+
     void Update()
     {
-        float steerAmount = Input.GetAxis("Horizontal");
-        float moveAmount = Input.GetAxis("Vertical");
-        transform.Rotate(0, 0, ( -steerAmount * steerSpeed ) * Time.deltaTime );
+        float steerAmount = Input.GetAxis( "Horizontal" );
+        float moveAmount = Input.GetAxis( "Vertical" );
+        transform.Rotate( 0, 0, ( -steerAmount * steerSpeed ) * Time.deltaTime );
         transform.Translate( 0, ( moveAmount * moveSpeed ) * Time.deltaTime, 0 );
     }
     
-    void OnCollisionEnter2D(Collision2D other)
+
+    void OnCollisionEnter2D( Collision2D other )
     {
         if ( other.gameObject.tag != "Boost" )
         {
             moveSpeed = defaultSpeed;
         }
     }
-    void OnTriggerEnter2D(Collider2D other)
+
+
+    void OnTriggerEnter2D( Collider2D other )
     {
         if( enableBoost && other.tag == "Boost" )
         {

@@ -17,6 +17,7 @@ public class SideScroller2DScenePersist : MonoBehaviour
         }
     }
 
+
     public void ResetScenePersist()
     {
         Destroy( gameObject ); // we don't want one scenePersist object going into another scene

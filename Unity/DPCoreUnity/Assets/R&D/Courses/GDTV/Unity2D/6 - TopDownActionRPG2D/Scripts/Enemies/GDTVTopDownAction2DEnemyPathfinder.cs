@@ -9,11 +9,13 @@ public class GDTVTopDownAction2DEnemyPathfinder : MonoBehaviour
     Vector2 moveDirection;
     GDTVTopDownAction2DKnockback knockback;
 
+
     void Awake()
     {
         knockback = GetComponent<GDTVTopDownAction2DKnockback>();
         rb2d = GetComponent<Rigidbody2D>();
     }
+
 
     void FixedUpdate()
     {
@@ -23,6 +25,7 @@ public class GDTVTopDownAction2DEnemyPathfinder : MonoBehaviour
         }
         rb2d.MovePosition( rb2d.position + moveDirection * ( moveSpeed * Time.fixedDeltaTime ) );
     }
+    
 
     public void MoveTo( Vector2 targetPosition )
     {

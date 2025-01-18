@@ -9,17 +9,20 @@ public class LaserDefender2DCameraShake : MonoBehaviour
 
     Vector3 initialPosition;
 
+
     void Start()
     {
         initialPosition = transform.position;
     }
 
+
     public void Play()
     {
-        StartCoroutine( Shake() );
+        StartCoroutine( ShakeRoutine() );
     }
 
-    IEnumerator Shake()
+
+    IEnumerator ShakeRoutine()
     {
         float elapsedTime = 0;
         while( elapsedTime < shakeDuration )

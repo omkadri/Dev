@@ -9,23 +9,24 @@ public class RocketPlayerController2D : MonoBehaviour
 
     private bool isMoving = false; // Track if the rocket is moving
 
+
     void Update()
     {
         // Check for input to start moving
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) // Left mouse button (or touch)
+        if ( Input.GetKeyDown( KeyCode.Space ) || Input.GetMouseButtonDown( 0 ) ) // Left mouse button (or touch)
         // Change this to any key you want
         {
             isMoving = true; // Set moving to true when the key is pressed
         }
         
-        if (isMoving)
+        if ( isMoving )
         {
             // Steer the rocket regardless of whether it's moving or not
-            float steerAmount = Input.GetAxis("Horizontal");
-            transform.Rotate(0, 0, (-steerAmount * steerSpeed) * Time.deltaTime);
+            float steerAmount = Input.GetAxis( "Horizontal" );
+            transform.Rotate( 0, 0, ( -steerAmount * steerSpeed ) * Time.deltaTime );
 
             // Move the rocket if isMoving is true
-            transform.Translate(0, moveSpeed * Time.deltaTime, 0);
+            transform.Translate( 0, moveSpeed * Time.deltaTime, 0 );
         }
     }
 }

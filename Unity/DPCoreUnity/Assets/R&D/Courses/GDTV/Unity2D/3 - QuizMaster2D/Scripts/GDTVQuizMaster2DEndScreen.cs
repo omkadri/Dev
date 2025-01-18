@@ -7,10 +7,13 @@ public class GDTVQuizMaster2DEndScreen : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI finalScoreText;
     GDTVQuizMaster2DScoreKeeper scoreKeeper;
+    
+    
     void Awake()
     {
         scoreKeeper = FindFirstObjectByType<GDTVQuizMaster2DScoreKeeper>();
     }
+
 
     public void ShowFinalScore()
     {

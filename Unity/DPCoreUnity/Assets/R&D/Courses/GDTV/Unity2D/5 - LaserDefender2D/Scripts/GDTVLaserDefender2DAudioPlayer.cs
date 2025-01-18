@@ -26,6 +26,7 @@ public class GDTVLaserDefender2DAudioPlayer : MonoBehaviour
         }
     }
 
+
     public void PlayEnemyShootingSFX()
     {
         if( enemyShootingSFX != null )
@@ -33,6 +34,7 @@ public class GDTVLaserDefender2DAudioPlayer : MonoBehaviour
             AudioSource.PlayClipAtPoint( enemyShootingSFX, Camera.main.transform.position, enemyShootingVolume );
         }
     }
+
 
     public void PlayPlayerDamageSFX()
     {
@@ -42,6 +44,7 @@ public class GDTVLaserDefender2DAudioPlayer : MonoBehaviour
         }
     }
 
+
     public void PlayPlayerDeathSFX()
     {
         if( playerDeathSFX != null )
@@ -49,6 +52,7 @@ public class GDTVLaserDefender2DAudioPlayer : MonoBehaviour
             AudioSource.PlayClipAtPoint( playerDeathSFX, Camera.main.transform.position, playerDeathVolume );
         }
     }
+    
 
     public void PlayEnemyDamageSFX()
     {

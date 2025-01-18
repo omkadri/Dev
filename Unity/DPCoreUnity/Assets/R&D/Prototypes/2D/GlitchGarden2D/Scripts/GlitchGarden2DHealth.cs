@@ -7,6 +7,7 @@ public class GlitchGarden2DHealth : MonoBehaviour
     [SerializeField] float health = 100f;
     [SerializeField] GameObject deathVFX;
 
+
     public void DealDamage( float damage )
     {
         health -= damage;
@@ -16,6 +17,7 @@ public class GlitchGarden2DHealth : MonoBehaviour
             Destroy( gameObject );
         }
     }
+    
 
     private void TriggerDeathVFX()
     {

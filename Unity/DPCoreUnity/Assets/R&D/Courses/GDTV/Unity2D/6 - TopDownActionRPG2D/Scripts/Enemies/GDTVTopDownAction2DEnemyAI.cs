@@ -11,16 +11,19 @@ public class GDTVTopDownAction2DEnemyAI : MonoBehaviour
     State state;
     GDTVTopDownAction2DEnemyPathfinder enemyPathfinding;
 
+
     void Awake()
     {
         enemyPathfinding = GetComponent<GDTVTopDownAction2DEnemyPathfinder>();
         state = State.Roaming;
     }
 
+
     void Start()
     {
         StartCoroutine( RoamingRoutine() );
     }
+
 
     IEnumerator RoamingRoutine()
     {
@@ -31,6 +34,7 @@ public class GDTVTopDownAction2DEnemyAI : MonoBehaviour
             yield return new WaitForSeconds( 2f );
         }
     }
+
 
     Vector2 GetRoamingPosition()
     {

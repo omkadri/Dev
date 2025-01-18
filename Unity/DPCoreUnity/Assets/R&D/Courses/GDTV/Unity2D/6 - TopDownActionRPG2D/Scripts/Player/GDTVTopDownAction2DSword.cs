@@ -13,6 +13,7 @@ public class GDTVTopDownAction2DSword : MonoBehaviour
 
     GameObject slashAnim;
 
+
     void Awake()
     {
         playerController = GetComponentInParent<GDTVTopDownAction2DPlayerController>();
@@ -21,20 +22,24 @@ public class GDTVTopDownAction2DSword : MonoBehaviour
         playerInputActions = new GDTVTopDownAction2DInputActions();
     }
 
+
     void OnEnable()
     {
         playerInputActions.Enable();
     }
+
 
     void Start()
     {
         playerInputActions.Combat.Attack.started += _ => Attack();
     }
 
+
     void Update()
     {
         MouseFollowWithOffset();
     }
+
 
     void Attack()
     {
@@ -44,6 +49,7 @@ public class GDTVTopDownAction2DSword : MonoBehaviour
         slashAnim = Instantiate( slashAnimPrefab, slashAnimSpawnPoint.position, Quaternion.identity );
         slashAnim.transform.parent = this.transform.parent;
     }
+
 
     void MouseFollowWithOffset() //orients the sword relative to the mouse
     {
@@ -64,10 +70,12 @@ public class GDTVTopDownAction2DSword : MonoBehaviour
         }
     }
 
+
     public void DoneAttackingAnimEvent()
     {
         weaponCollider.gameObject.SetActive( false );
     }
+
 
     public void SwingUpFlipAnimEvent()
     {
@@ -78,6 +86,7 @@ public class GDTVTopDownAction2DSword : MonoBehaviour
             slashAnim.GetComponent<SpriteRenderer>().flipX = true;
         }
     }
+    
 
     public void SwingDownFlipAnimEvent()
     {

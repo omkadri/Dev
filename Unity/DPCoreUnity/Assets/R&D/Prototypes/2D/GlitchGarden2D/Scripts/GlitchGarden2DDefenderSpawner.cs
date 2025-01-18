@@ -7,16 +7,19 @@ public class GlitchGarden2DDefenderSpawner : MonoBehaviour
     //[SerializeField]  --removed Serialization so designers do not mess it up
     GlitchGarden2DDefender defender;
 
+
     private void OnMouseDown()
     {
         SpawnDefender( GetSquareClicked() );
         //this passes the mouse vector data to the spawner
     }
 
+
     public void SetSelectedDefender( GlitchGarden2DDefender defenderToSelect )
     {
         defender = defenderToSelect;
     }
+
 
     private Vector2 GetSquareClicked()
     {
@@ -31,6 +34,7 @@ public class GlitchGarden2DDefenderSpawner : MonoBehaviour
         
         return gridPos;
     }
+    
 
     private Vector2 SnapToGrid( Vector2 rawWorldPos )
     {
@@ -39,6 +43,7 @@ public class GlitchGarden2DDefenderSpawner : MonoBehaviour
         return new Vector2( newX, newY );
     }
 
+
     private void SpawnDefender( Vector2 inGameMousePos ) //this function cannot run without getting the inGameMousePos vector
     {
         if ( defender )
@@ -46,8 +51,6 @@ public class GlitchGarden2DDefenderSpawner : MonoBehaviour
             GlitchGarden2DDefender newDefender = Instantiate( defender, inGameMousePos, Quaternion.identity ) as GlitchGarden2DDefender;
             //"as gameObject" allows us to see the instance in the unity hierarchy, as well as interact with it
         }
-
     }
-
 }
 

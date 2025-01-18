@@ -18,20 +18,24 @@ public class GDTVLaserDefender2DPlayerController : MonoBehaviour
 
     GDTVLaserDefender2DShooter shooter;
 
+
     void Awake()
     {
         shooter = GetComponent<GDTVLaserDefender2DShooter>();
     }
+
 
     void Start()
     {
         InitBounds();
     }
 
+
     void Update()
     {
         Move();
     }
+
 
     void InitBounds()
     {
@@ -39,6 +43,7 @@ public class GDTVLaserDefender2DPlayerController : MonoBehaviour
         minBounds = mainCamera.ViewportToWorldPoint( new Vector2( 0, 0 ) );
         maxBounds = mainCamera.ViewportToWorldPoint( new Vector2( 1, 1 ) );
     }
+
 
     void Move()
     {
@@ -49,10 +54,12 @@ public class GDTVLaserDefender2DPlayerController : MonoBehaviour
         transform.position = newPos;
     }
 
+
     void OnMove( InputValue value )
     {
         rawInput = value.Get<Vector2>();
     }
+    
 
     void OnFire( InputValue value )
     {

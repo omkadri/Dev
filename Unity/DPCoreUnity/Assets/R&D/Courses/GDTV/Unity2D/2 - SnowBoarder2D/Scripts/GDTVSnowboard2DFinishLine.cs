@@ -10,20 +10,22 @@ public class GDTVSnowboard2DFinishLine : MonoBehaviour
   [SerializeField] ParticleSystem finishParticleB;
   [SerializeField] AudioClip finishSFX;
   
-  void OnTriggerEnter2D(Collider2D other)
+
+  void OnTriggerEnter2D( Collider2D other )
   {
-    if (other.tag == "Player")
+    if ( other.tag == "Player" )
     {
-        Debug.Log("You Finished!");
+        Debug.Log( "You Finished!" );
         finishParticleA.Play();
         finishParticleB.Play();
-        if (finishSFX != null)
+        if ( finishSFX != null )
         {
-          GetComponent<AudioSource>().PlayOneShot(finishSFX);
+          GetComponent<AudioSource>().PlayOneShot( finishSFX );
         }
-        Invoke("ReloadScene", loadDelay);
+        Invoke( "ReloadScene", loadDelay );
     }
   }
+
 
   void ReloadScene()
   {

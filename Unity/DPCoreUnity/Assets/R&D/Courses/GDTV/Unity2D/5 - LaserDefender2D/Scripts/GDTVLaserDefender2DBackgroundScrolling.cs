@@ -11,6 +11,7 @@ public class GDTVLaserDefender2DBackgroundScrolling : MonoBehaviour
         material = GetComponent<SpriteRenderer>().material;
     }
 
+
     void Update()
     {
         offset = moveSpeed * Time.deltaTime;

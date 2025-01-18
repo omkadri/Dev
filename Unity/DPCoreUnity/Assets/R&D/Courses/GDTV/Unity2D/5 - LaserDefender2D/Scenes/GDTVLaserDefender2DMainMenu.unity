@@ -1525,6 +1525,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1676339201764231870, guid: 37f5e21f5a057e4439385267ddc54ad2, type: 3}
+      propertyPath: gameOverSceneName
+      value: GDTVLaserDefender2DGameOver
+      objectReference: {fileID: 0}
+    - target: {fileID: 1676339201764231870, guid: 37f5e21f5a057e4439385267ddc54ad2, type: 3}
+      propertyPath: mainMenuSceneName
+      value: GDTVLaserDefender2DMainMenu
+      objectReference: {fileID: 0}
     - target: {fileID: 7560891647388753268, guid: 37f5e21f5a057e4439385267ddc54ad2, type: 3}
       propertyPath: m_Name
       value: LaserDefender2DSceneManager

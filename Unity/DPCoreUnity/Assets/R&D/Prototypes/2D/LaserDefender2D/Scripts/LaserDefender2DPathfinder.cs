@@ -9,10 +9,12 @@ public class LaserDefender2DPathfinder : MonoBehaviour
     List<Transform> waypoints;
     int waypointIndex = 0;
 
+
     void Awake()
     {
         enemySpawner = FindFirstObjectByType<LaserDefender2DEnemySpawner>();
     }
+
 
     void Start()
     {
@@ -21,10 +23,12 @@ public class LaserDefender2DPathfinder : MonoBehaviour
         transform.position = waypoints[waypointIndex].position;
     }
 
+
     void Update()
     {
         FollowPath();   
     }
+
 
     void FollowPath()
     {
@@ -33,7 +37,7 @@ public class LaserDefender2DPathfinder : MonoBehaviour
             Vector3 targetPosition = waypoints[waypointIndex].position;
             float delta = waveConfig.GetMoveSpeed() * Time.deltaTime;
             transform.position = Vector2.MoveTowards( transform.position, targetPosition, delta );
-            if(transform.position == targetPosition)
+            if( transform.position == targetPosition )
             {
                 waypointIndex++;
             }

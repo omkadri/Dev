@@ -16,6 +16,7 @@ public class GDTVTopDownAction2DPlayerController : MonoBehaviour
     [HideInInspector]
     public bool isFacingLeft = false;
 
+
     void Awake()
     {
         Instance = this;
@@ -25,21 +26,25 @@ public class GDTVTopDownAction2DPlayerController : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
+
     void OnEnable()
     {
         playerInputActions.Enable();
     }
+
 
     void Update()
     {
         PlayerInput();
     }
 
+
     void FixedUpdate()//we use this for handling physics
     {
         AdjustPlayerFacingDirection();
         Move();
     }
+
 
     void PlayerInput()
     {
@@ -49,10 +54,12 @@ public class GDTVTopDownAction2DPlayerController : MonoBehaviour
         animator.SetFloat( "moveY", moveDirection.y );
     }
 
+
     void Move()
     {
         rb2d.MovePosition( rb2d.position + moveDirection * ( moveSpeed * Time.fixedDeltaTime ) );//we use fixedDeltaTime because we are in FixedUpdate()
     }
+
 
     void AdjustPlayerFacingDirection()
     {

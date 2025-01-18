@@ -9,16 +9,19 @@ public class GDTVTopDownAction2DDamageFlash : MonoBehaviour
     Material defaultMat;
     SpriteRenderer spriteRenderer;
 
+
     void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         defaultMat = spriteRenderer.material;
     }
 
+
     public float GetRestoreMatTime()
     {
         return restoreDefaultMatTime;
     }
+
 
     public IEnumerator DamageFlashRoutine()
     {

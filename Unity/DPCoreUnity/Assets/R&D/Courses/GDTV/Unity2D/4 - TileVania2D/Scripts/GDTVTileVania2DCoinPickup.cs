@@ -9,6 +9,7 @@ public class GDTVTileVania2DCoinPickup : MonoBehaviour
 
     bool wasCollected = false;
 
+
     void OnTriggerEnter2D( Collider2D other )
     {
         if ( other.tag == "Player" && !wasCollected )

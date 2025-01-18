@@ -28,11 +28,13 @@ public class GDTVTileVania2DGameSession : MonoBehaviour
         }
     }
 
+
     void Start()
     {
         livesText.text = playerLives.ToString();
         scoreText.text = score.ToString();
     }
+
 
     public void ProcessPlayerDeath()
     {
@@ -46,11 +48,13 @@ public class GDTVTileVania2DGameSession : MonoBehaviour
         }
     }
 
+
     public void AddToScore( int pointsToAdd )
     {
         score += pointsToAdd;
         scoreText.text = score.ToString();
     }
+
 
     private void TakeLife()
     {
@@ -59,6 +63,7 @@ public class GDTVTileVania2DGameSession : MonoBehaviour
         SceneManager.LoadScene( currentSceneIndex );
         livesText.text = playerLives.ToString();
     }
+    
 
     void ResetGameSession()
     {

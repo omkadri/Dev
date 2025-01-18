@@ -18,6 +18,7 @@ public class LaserDefender2DHealth : MonoBehaviour
     LaserDefender2DScoreKeeper scoreKeeper;
     LaserDefender2DSceneManager sceneManager;
 
+
     void Awake()
     {
         cameraShake = Camera.main.GetComponent<LaserDefender2DCameraShake>();
@@ -25,6 +26,7 @@ public class LaserDefender2DHealth : MonoBehaviour
         scoreKeeper = FindFirstObjectByType<LaserDefender2DScoreKeeper>();
         sceneManager = FindFirstObjectByType<LaserDefender2DSceneManager>();
     }
+
 
     void OnTriggerEnter2D( Collider2D other)
     {
@@ -39,10 +41,12 @@ public class LaserDefender2DHealth : MonoBehaviour
         }
     }
 
+
     public int GetHealth()
     {
         return health;
     }
+
 
     private void TakeDamage( int damage )
     {
@@ -53,6 +57,7 @@ public class LaserDefender2DHealth : MonoBehaviour
             Die();
         }
     }
+
 
     void Die()
     {
@@ -69,6 +74,7 @@ public class LaserDefender2DHealth : MonoBehaviour
         Destroy( gameObject );
     }
 
+
     void PlayHitVFX()
     {
         if( hitVFX != null )
@@ -79,6 +85,7 @@ public class LaserDefender2DHealth : MonoBehaviour
         }
     }
 
+
     void ShakeCamera()
     {
         if( cameraShake != null && applyCameraShake )
@@ -87,9 +94,10 @@ public class LaserDefender2DHealth : MonoBehaviour
         }
     }
 
+
     void PlayDamageSFX()
     {
-        if(audioPlayer != null)
+        if( audioPlayer != null )
         {
             if( usingEnemyAI )
             {

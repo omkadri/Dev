@@ -9,10 +9,12 @@ public class GDTVTopDownAction2DKnockback : MonoBehaviour
 
     Rigidbody2D rb2d;
 
+
     void Awake()
     {
         rb2d = GetComponent<Rigidbody2D>();
     }
+
 
     public void GetKnockback( Transform damageSource, float knockbackThrust )
     {
@@ -21,6 +23,7 @@ public class GDTVTopDownAction2DKnockback : MonoBehaviour
         rb2d.AddForce( difference, ForceMode2D.Impulse );
         StartCoroutine( KnockbackRoutine() );
     }
+
 
     IEnumerator KnockbackRoutine()
     {

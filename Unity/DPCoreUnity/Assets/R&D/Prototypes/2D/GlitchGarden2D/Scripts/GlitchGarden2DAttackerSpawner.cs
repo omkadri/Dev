@@ -21,10 +21,12 @@ public class GlitchGarden2DAttackerSpawner : MonoBehaviour
         }
     }
 
+
     private void SpawnAttacker()
     {
         Instantiate( attackerPrefab, transform.position, transform.rotation );
     }
+
 
     void Update()
     {

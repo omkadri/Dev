@@ -9,17 +9,20 @@ public class GDTVLaserDefender2DEnemySpawner : MonoBehaviour
     [SerializeField] bool isLooping;
     GDTVLaserDefender2DWaveConfigSO currentWave;
     
+
     void Start()
     {
-        StartCoroutine ( SpawnEnemyWaves() );
+        StartCoroutine ( SpawnEnemyWavesRoutine() );
     }
+
 
     public GDTVLaserDefender2DWaveConfigSO GetCurrentWave()
     {
         return currentWave;
     }
 
-    IEnumerator SpawnEnemyWaves()
+
+    IEnumerator SpawnEnemyWavesRoutine()
     {
         do
         {

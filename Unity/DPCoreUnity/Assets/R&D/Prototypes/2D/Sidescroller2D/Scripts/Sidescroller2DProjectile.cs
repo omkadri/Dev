@@ -9,6 +9,8 @@ public class SideScroller2DProjectile : MonoBehaviour
     [SerializeField] float projectileSpeed = 20f;
     SideScroller2DPlayer player;// xSpeed ensures bullet is shooting in the direction that the player is facing
     float xSpeed;
+
+
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
@@ -16,23 +18,26 @@ public class SideScroller2DProjectile : MonoBehaviour
         xSpeed = player.transform.localScale.x * projectileSpeed;
     }
 
+
     void Update()
     {
         rb2d.linearVelocity = new Vector2( xSpeed, 0f );
     }
 
+
     void OnTriggerEnter2D( Collider2D other )
     {
-        if(other.tag == "Enemy")
+        if( other.tag == "Enemy" )
         {
-            Destroy(other.gameObject);
+            Destroy( other.gameObject );
         }  
-        Destroy(gameObject);
+        Destroy( gameObject );
     }
 
-    void OnCollisionEnter2D(Collision2D other)
+
+    void OnCollisionEnter2D( Collision2D other )
     {
-        Destroy(gameObject);
+        Destroy( gameObject );
     }
 
 }

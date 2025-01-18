@@ -35,12 +35,12 @@ public class QuizMaster2D : MonoBehaviour
     public bool isComplete;
 
 
-
     void Awake()
     {
         quizTimer = FindFirstObjectByType<QuizMaster2DTimer>();
         scoreKeeper = FindFirstObjectByType<QuizMaster2DScoreKeeper>();
     }
+
 
     void Start()
     {
@@ -49,12 +49,13 @@ public class QuizMaster2D : MonoBehaviour
         defaultQuestionColor = questionText.color;  
     }
 
+
     void Update()
     {
         timerImage.fillAmount = quizTimer.fillFraction;
-        if(quizTimer.loadNextQuestion)
+        if( quizTimer.loadNextQuestion )
         {
-            if(progressBar.value == progressBar.maxValue)
+            if( progressBar.value == progressBar.maxValue )
             {
                 isComplete = true;
                 return;
@@ -64,29 +65,31 @@ public class QuizMaster2D : MonoBehaviour
             GetNextQuestion();
             quizTimer.loadNextQuestion = false;
         }
-        else if(!hasAnsweredEarly && !quizTimer.isAnsweringQuestion)
+        else if( !hasAnsweredEarly && !quizTimer.isAnsweringQuestion )
         {
-            DisplayAnswer(-1);// using -1 because we the player did not select an answer. so -1 automatically triggers the else block in Displayanswer()
-            SetButtonState(false);
+            DisplayAnswer( -1 );// using -1 because we the player did not select an answer. so -1 automatically triggers the else block in Displayanswer()
+            SetButtonState( false );
         }
     }
+
 
     void DisplayQuestion()
     {
         questionText.text = currentQuestion.GetQuestion();
 
-        for (int i = 0; i < answerButtons.Length; i++)
+        for ( int i = 0; i < answerButtons.Length; i++ )
         {
             TextMeshProUGUI buttonText = answerButtons[i].GetComponentInChildren<TextMeshProUGUI>();
-            buttonText.text = currentQuestion.GetAnswer(i);
+            buttonText.text = currentQuestion.GetAnswer( i );
         }
     }
+
 
     void GetNextQuestion()
     {
         if(questions.Count > 0)
         {
-            SetButtonState(true);
+            SetButtonState( true );
             SetDefaultButtonSprite();
             GetRandomQuestion();
             DisplayQuestion();
@@ -96,32 +99,35 @@ public class QuizMaster2D : MonoBehaviour
         }  
     }
 
+
     void GetRandomQuestion()
     {
-        int index = Random.Range(0, questions.Count);
+        int index = Random.Range( 0, questions.Count );
         currentQuestion = questions[index];
 
-        if(questions.Contains(currentQuestion))
+        if( questions.Contains( currentQuestion ) )
         {
-            questions.Remove(currentQuestion);
+            questions.Remove( currentQuestion );
         }
     }
 
-    public void OnAnswerSelected(int index)
+
+    public void OnAnswerSelected( int index )
     {
         hasAnsweredEarly = true;
-        DisplayAnswer(index);
-        SetButtonState(false);
+        DisplayAnswer( index );
+        SetButtonState( false );
         quizTimer.CancelTimer();
         scoreText.text = "Score: " + scoreKeeper.CalculateScore() + "%";
     }
+
 
     private void DisplayAnswer(int index)
     {
         Image buttonImage;
 
         //TODO: Implement correct image vs. incorrect image
-        if (index == currentQuestion.GetCorrectAnswerIndex())
+        if ( index == currentQuestion.GetCorrectAnswerIndex() )
         {
             questionText.text = "Correct!!!";
             buttonImage = answerButtons[index].GetComponent<Image>();
@@ -132,7 +138,7 @@ public class QuizMaster2D : MonoBehaviour
         else
         {
             correctAnswerIndex = currentQuestion.GetCorrectAnswerIndex();
-            string correctAnswer = currentQuestion.GetAnswer(correctAnswerIndex);
+            string correctAnswer = currentQuestion.GetAnswer( correctAnswerIndex );
             questionText.text = "Wrong!!! The Correct Answer is:\n" + correctAnswer;
             questionText.color = Color.red;
 
@@ -141,18 +147,20 @@ public class QuizMaster2D : MonoBehaviour
         }
     }
 
+
     void SetButtonState(bool state)
     {
-        for(int i = 0; i < answerButtons.Length; i++)
+        for( int i = 0; i < answerButtons.Length; i++ )
         {
             Button button = answerButtons[i].GetComponent<Button>();
             button.interactable = state;
         }
     }
 
+
     void SetDefaultButtonSprite()
     {
-        for(int i = 0; i < answerButtons.Length; i++)
+        for( int i = 0; i < answerButtons.Length; i++ )
         {
             Image buttonImage = answerButtons[i].GetComponent<Image>();
             buttonImage.sprite = defaultAnswerSprite;
