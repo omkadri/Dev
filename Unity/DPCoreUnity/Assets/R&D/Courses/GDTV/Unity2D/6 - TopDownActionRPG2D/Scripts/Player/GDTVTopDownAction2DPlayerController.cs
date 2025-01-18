@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Scripting.APIUpdating;
@@ -6,6 +7,10 @@ public class GDTVTopDownAction2DPlayerController : MonoBehaviour
 {
     public static GDTVTopDownAction2DPlayerController Instance;
     [SerializeField] float moveSpeed = 1f;
+    [SerializeField] float dashSpeed = 4f;
+    [SerializeField] float dashTime = 0.2f;
+    [SerializeField] TrailRenderer dashTrailRenderer;
+    [SerializeField] float dashCooldown = 0.25f;
 
     private GDTVTopDownAction2DInputActions playerInputActions;
     Vector2 moveDirection;
@@ -15,6 +20,7 @@ public class GDTVTopDownAction2DPlayerController : MonoBehaviour
 
     [HideInInspector]
     public bool isFacingLeft = false;
+    bool isDashing = false;
 
 
     void Awake()
@@ -24,6 +30,12 @@ public class GDTVTopDownAction2DPlayerController : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+
+
+    void Start()
+    {
+        playerInputActions.Combat.Dash.performed += _ => Dash();
     }
 
 
@@ -76,5 +88,27 @@ public class GDTVTopDownAction2DPlayerController : MonoBehaviour
             spriteRenderer.flipX = false;
             isFacingLeft = false;
         }
+    }
+
+
+    //TODO: Investigate making dash its own class
+    void Dash()
+    {
+        if( !isDashing )
+        {
+            isDashing = true;
+            moveSpeed *= dashSpeed;
+            dashTrailRenderer.emitting = true;
+            StartCoroutine( EndDashRoutine() );
+        }
+    }
+
+    IEnumerator EndDashRoutine()
+    {
+        yield return new WaitForSeconds( dashTime );
+        moveSpeed /= dashSpeed;
+        dashTrailRenderer.emitting = false;
+        yield return new WaitForSeconds( dashCooldown );
+        isDashing = false;
     }
 }
