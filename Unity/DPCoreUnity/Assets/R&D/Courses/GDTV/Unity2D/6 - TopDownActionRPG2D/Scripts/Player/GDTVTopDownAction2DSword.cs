@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class GDTVTopDownAction2DSword : MonoBehaviour
@@ -5,11 +6,14 @@ public class GDTVTopDownAction2DSword : MonoBehaviour
     [SerializeField] GameObject slashAnimPrefab;
     [SerializeField] Transform slashAnimSpawnPoint;
     [SerializeField] Transform weaponCollider;
+    [SerializeField] float swordAttackCooldown = 0.5f;
 
     GDTVTopDownAction2DInputActions playerInputActions;
     Animator animator; 
     GDTVTopDownAction2DPlayerController playerController;
     GDTVTopDownAction2DActiveWeapon activeWeapon;
+    bool attackButtonDown = false;
+    bool isAttacking = false;
 
     GameObject slashAnim;
 
@@ -31,23 +35,42 @@ public class GDTVTopDownAction2DSword : MonoBehaviour
 
     void Start()
     {
-        playerInputActions.Combat.Attack.started += _ => Attack();
+        playerInputActions.Combat.Attack.started += _ => StartAttacking(); // += _ => is a way to subscribe a function to an input action
+        playerInputActions.Combat.Attack.canceled += _ => StopAttacking();
     }
 
 
     void Update()
     {
         MouseFollowWithOffset();
+        Attack();
+    }
+
+
+    void StartAttacking()
+    {
+        attackButtonDown = true;
+    }
+
+
+    void StopAttacking()
+    {
+        
+        attackButtonDown = false;
     }
 
 
     void Attack()
     {
-        animator.SetTrigger( "Attack" );
-        weaponCollider.gameObject.SetActive( true );
-        
-        slashAnim = Instantiate( slashAnimPrefab, slashAnimSpawnPoint.position, Quaternion.identity );
-        slashAnim.transform.parent = this.transform.parent;
+        if( attackButtonDown && !isAttacking )
+        {
+            isAttacking = true;
+            animator.SetTrigger( "Attack" );
+            weaponCollider.gameObject.SetActive( true );
+            slashAnim = Instantiate( slashAnimPrefab, slashAnimSpawnPoint.position, Quaternion.identity );
+            slashAnim.transform.parent = this.transform.parent;
+            StartCoroutine( AttackCooldownRoutine() );
+        }
     }
 
 
@@ -68,6 +91,13 @@ public class GDTVTopDownAction2DSword : MonoBehaviour
             activeWeapon.transform.rotation = Quaternion.Euler( 0, 0, angle );
             weaponCollider.transform.rotation = Quaternion.Euler( 0, 0, 0 );
         }
+    }
+
+
+    IEnumerator AttackCooldownRoutine()
+    {
+        yield return new WaitForSeconds( swordAttackCooldown );
+        isAttacking = false;
     }
 
 
