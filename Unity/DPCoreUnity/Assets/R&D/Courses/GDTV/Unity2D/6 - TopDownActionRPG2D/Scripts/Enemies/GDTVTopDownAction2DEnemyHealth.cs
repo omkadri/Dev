@@ -5,6 +5,7 @@ public class GDTVTopDownAction2DEnemyHealth : MonoBehaviour
 {
     [SerializeField] int startingHealth = 3;
     [SerializeField] GameObject deathVFXPrefab;
+    [SerializeField] float knockbackThrust = 15f;
 
     GDTVTopDownAction2DKnockback knockback;
     GDTVTopDownAction2DDamageFlash damageFlash;
@@ -29,7 +30,7 @@ public class GDTVTopDownAction2DEnemyHealth : MonoBehaviour
     public void TakeDamage( int damage )
     {
         currentHealth -= damage;
-        knockback.GetKnockback( GDTVTopDownAction2DPlayerController.Instance.transform, 15f );
+        knockback.GetKnockback( GDTVTopDownAction2DPlayerController.Instance.transform, knockbackThrust );
         StartCoroutine( damageFlash.DamageFlashRoutine() );
         StartCoroutine( CheckDetectDeathRoutine() );
     }

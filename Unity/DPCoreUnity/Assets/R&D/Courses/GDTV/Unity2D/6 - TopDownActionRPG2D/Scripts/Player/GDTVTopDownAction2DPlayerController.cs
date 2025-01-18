@@ -20,6 +20,7 @@ public class GDTVTopDownAction2DPlayerController : MonoBehaviour
 
     [HideInInspector]
     public bool isFacingLeft = false;
+    float startingMoveSpeed;
     bool isDashing = false;
 
 
@@ -36,6 +37,7 @@ public class GDTVTopDownAction2DPlayerController : MonoBehaviour
     void Start()
     {
         playerInputActions.Combat.Dash.performed += _ => Dash();
+        startingMoveSpeed = moveSpeed;
     }
 
 
@@ -106,7 +108,7 @@ public class GDTVTopDownAction2DPlayerController : MonoBehaviour
     IEnumerator EndDashRoutine()
     {
         yield return new WaitForSeconds( dashTime );
-        moveSpeed /= dashSpeed;
+        moveSpeed = startingMoveSpeed;
         dashTrailRenderer.emitting = false;
         yield return new WaitForSeconds( dashCooldown );
         isDashing = false;

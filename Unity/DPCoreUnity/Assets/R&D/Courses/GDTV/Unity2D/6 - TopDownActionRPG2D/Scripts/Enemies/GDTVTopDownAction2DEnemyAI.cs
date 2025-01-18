@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class GDTVTopDownAction2DEnemyAI : MonoBehaviour
 {
+    [SerializeField] float roamDirectionChangeTime = 2f;
     enum State
     {
         Roaming
@@ -31,7 +32,7 @@ public class GDTVTopDownAction2DEnemyAI : MonoBehaviour
         {
             Vector2 roamPosition = GetRoamingPosition();
             enemyPathfinding.MoveTo( roamPosition );
-            yield return new WaitForSeconds( 2f );
+            yield return new WaitForSeconds( roamDirectionChangeTime );
         }
     }
 
