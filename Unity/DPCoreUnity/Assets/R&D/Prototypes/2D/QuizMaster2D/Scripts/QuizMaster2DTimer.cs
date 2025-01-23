@@ -40,7 +40,7 @@ public class QuizMaster2DTimer : MonoBehaviour
         {
             if ( isAnsweringQuestion )
             {
-                if( timerValue > 0 )
+                if ( timerValue > 0 )
                 {
                     fillFraction = timerValue / timeToCompleteQuestion;
                 }
@@ -53,7 +53,7 @@ public class QuizMaster2DTimer : MonoBehaviour
             }
             else
             {
-                if( timerValue > 0 )
+                if ( timerValue > 0 )
                 {
                     fillFraction = timerValue / timeToShowCorrectAnswer;
                 }
@@ -88,7 +88,7 @@ public class QuizMaster2DTimer : MonoBehaviour
     {
         if ( timerText != null )
         {
-            if( enabled )
+            if ( enabled )
             {
                 timerText.enabled = true;
             }

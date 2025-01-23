@@ -11,7 +11,7 @@ public class SingletonExampleA : MonoBehaviour
     void ManageSingleton()
     {
         int instanceCount = FindObjectsByType(GetType(), FindObjectsSortMode.None).Length;
-        if( instanceCount > 1 )
+        if ( instanceCount > 1 )
         {
             gameObject.SetActive( false );
             Destroy( gameObject );

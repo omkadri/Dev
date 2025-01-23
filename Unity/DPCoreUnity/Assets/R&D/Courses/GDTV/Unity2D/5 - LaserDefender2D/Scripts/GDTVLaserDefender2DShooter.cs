@@ -43,11 +43,11 @@ public class GDTVLaserDefender2DShooter : MonoBehaviour
 
     void Fire()
     {
-        if( isFiring && firingCoroutine == null )//ensure that firingCoroutine is not being called twice
+        if ( isFiring && firingCoroutine == null )//ensure that firingCoroutine is not being called twice
         {
             firingCoroutine = StartCoroutine( FireContinuouslyRoutine() );
         }
-        else if( !isFiring && firingCoroutine != null )
+        else if ( !isFiring && firingCoroutine != null )
         {
             StopCoroutine( firingCoroutine );
             firingCoroutine = null;
@@ -63,7 +63,7 @@ public class GDTVLaserDefender2DShooter : MonoBehaviour
             Rigidbody2D rb2d = instance.GetComponent<Rigidbody2D>();
             if ( rb2d != null )
             {
-                if( useEnemyAI )
+                if ( useEnemyAI )
                 {
                     rb2d.linearVelocity = -transform.up * projectileSpeed; //the negative sign reverses the projectile to come towards the player
                 }
@@ -87,9 +87,9 @@ public class GDTVLaserDefender2DShooter : MonoBehaviour
 
     void PlayShootingSFX()
     {
-        if( audioPlayer != null )
+        if ( audioPlayer != null )
         {
-            if( useEnemyAI )
+            if ( useEnemyAI )
             {
                 audioPlayer.PlayEnemyShootingSFX();
             }

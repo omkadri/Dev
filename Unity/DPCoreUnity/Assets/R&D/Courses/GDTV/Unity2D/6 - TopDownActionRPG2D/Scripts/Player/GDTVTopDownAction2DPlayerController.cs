@@ -96,7 +96,7 @@ public class GDTVTopDownAction2DPlayerController : MonoBehaviour
     //TODO: Investigate making dash its own class
     void Dash()
     {
-        if( !isDashing )
+        if ( !isDashing )
         {
             isDashing = true;
             moveSpeed *= dashSpeed;

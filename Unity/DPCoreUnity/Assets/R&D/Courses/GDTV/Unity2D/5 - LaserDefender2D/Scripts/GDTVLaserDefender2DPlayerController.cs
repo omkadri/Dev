@@ -63,7 +63,7 @@ public class GDTVLaserDefender2DPlayerController : MonoBehaviour
 
     void OnFire( InputValue value )
     {
-        if( shooter != null )
+        if ( shooter != null )
         {
             shooter.isFiring = value.isPressed;
         }

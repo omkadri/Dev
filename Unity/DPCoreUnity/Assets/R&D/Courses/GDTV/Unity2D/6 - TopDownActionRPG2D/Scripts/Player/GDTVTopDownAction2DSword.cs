@@ -62,7 +62,7 @@ public class GDTVTopDownAction2DSword : MonoBehaviour
 
     void Attack()
     {
-        if( attackButtonDown && !isAttacking )
+        if ( attackButtonDown && !isAttacking )
         {
             isAttacking = true;
             animator.SetTrigger( "Attack" );
@@ -111,7 +111,7 @@ public class GDTVTopDownAction2DSword : MonoBehaviour
     {
         slashAnim.gameObject.transform.rotation = Quaternion.Euler( -180, 0, 0 );
 
-        if( playerController.isFacingLeft )
+        if ( playerController.isFacingLeft )
         {
             slashAnim.GetComponent<SpriteRenderer>().flipX = true;
         }
@@ -122,7 +122,7 @@ public class GDTVTopDownAction2DSword : MonoBehaviour
     {
         slashAnim.gameObject.transform.rotation = Quaternion.Euler( 0, 0, 0 );
 
-        if( playerController.isFacingLeft )
+        if ( playerController.isFacingLeft )
         {
             slashAnim.GetComponent<SpriteRenderer>().flipX = true;
         }

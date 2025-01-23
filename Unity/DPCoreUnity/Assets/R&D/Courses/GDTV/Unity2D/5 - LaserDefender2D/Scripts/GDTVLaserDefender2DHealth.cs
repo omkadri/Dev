@@ -32,7 +32,7 @@ public class GDTVLaserDefender2DHealth : MonoBehaviour
     {
         GDTVLaserDefender2DDamageDealer damageDealer = other.GetComponent<GDTVLaserDefender2DDamageDealer>();
 
-        if( damageDealer != null )
+        if ( damageDealer != null )
         {
             TakeDamage( damageDealer.GetDamage() );
             PlayHitVFX();
@@ -52,7 +52,7 @@ public class GDTVLaserDefender2DHealth : MonoBehaviour
     {
         PlayDamageSFX();
         health -= damage;
-        if( health <= 0 )
+        if ( health <= 0 )
         {
             Die();
         }
@@ -65,7 +65,7 @@ public class GDTVLaserDefender2DHealth : MonoBehaviour
         {
             scoreKeeper.ModifyScore( scorePerEnemyKill );
         }
-        if( !usingEnemyAI )
+        if ( !usingEnemyAI )
             {
                 audioPlayer.GetComponent<AudioSource>().Stop(); //stops the music for a moment of silence
                 audioPlayer.PlayPlayerDeathSFX();
@@ -77,7 +77,7 @@ public class GDTVLaserDefender2DHealth : MonoBehaviour
 
     void PlayHitVFX()
     {
-        if( hitVFX != null )
+        if ( hitVFX != null )
         {
             ParticleSystem instance = Instantiate( hitVFX, transform.position, Quaternion.identity );
             float timeBeforeDestruction = instance.main.duration + instance.main.startLifetime.constantMax;
@@ -88,7 +88,7 @@ public class GDTVLaserDefender2DHealth : MonoBehaviour
 
     void ShakeCamera()
     {
-        if( cameraShake != null && applyCameraShake )
+        if ( cameraShake != null && applyCameraShake )
         {
             cameraShake.Play();
         }
@@ -97,9 +97,9 @@ public class GDTVLaserDefender2DHealth : MonoBehaviour
 
     void PlayDamageSFX()
     {
-        if( audioPlayer != null )
+        if ( audioPlayer != null )
         {
-            if( usingEnemyAI )
+            if ( usingEnemyAI )
             {
                 audioPlayer.PlayEnemyDamageSFX();
             }

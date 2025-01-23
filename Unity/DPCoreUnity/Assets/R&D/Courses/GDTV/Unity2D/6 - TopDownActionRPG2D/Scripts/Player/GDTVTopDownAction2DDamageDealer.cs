@@ -7,7 +7,7 @@ public class GDTVTopDownAction2DDamageDealer : MonoBehaviour
 
     void OnTriggerEnter2D( Collider2D other )
     {
-        if( other.gameObject.GetComponent<GDTVTopDownAction2DEnemyHealth>() )
+        if ( other.gameObject.GetComponent<GDTVTopDownAction2DEnemyHealth>() )
         {
             GDTVTopDownAction2DEnemyHealth enemyHealth = other.gameObject.GetComponent<GDTVTopDownAction2DEnemyHealth>();
             enemyHealth.TakeDamage( damageAmount );

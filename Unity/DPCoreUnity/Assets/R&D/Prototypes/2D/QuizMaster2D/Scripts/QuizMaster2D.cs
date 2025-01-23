@@ -53,9 +53,9 @@ public class QuizMaster2D : MonoBehaviour
     void Update()
     {
         timerImage.fillAmount = quizTimer.fillFraction;
-        if( quizTimer.loadNextQuestion )
+        if ( quizTimer.loadNextQuestion )
         {
-            if( progressBar.value == progressBar.maxValue )
+            if ( progressBar.value == progressBar.maxValue )
             {
                 isComplete = true;
                 return;
@@ -65,7 +65,7 @@ public class QuizMaster2D : MonoBehaviour
             GetNextQuestion();
             quizTimer.loadNextQuestion = false;
         }
-        else if( !hasAnsweredEarly && !quizTimer.isAnsweringQuestion )
+        else if ( !hasAnsweredEarly && !quizTimer.isAnsweringQuestion )
         {
             DisplayAnswer( -1 );// using -1 because we the player did not select an answer. so -1 automatically triggers the else block in Displayanswer()
             SetButtonState( false );
@@ -87,7 +87,7 @@ public class QuizMaster2D : MonoBehaviour
 
     void GetNextQuestion()
     {
-        if(questions.Count > 0)
+        if (questions.Count > 0)
         {
             SetButtonState( true );
             SetDefaultButtonSprite();
@@ -105,7 +105,7 @@ public class QuizMaster2D : MonoBehaviour
         int index = Random.Range( 0, questions.Count );
         currentQuestion = questions[index];
 
-        if( questions.Contains( currentQuestion ) )
+        if ( questions.Contains( currentQuestion ) )
         {
             questions.Remove( currentQuestion );
         }

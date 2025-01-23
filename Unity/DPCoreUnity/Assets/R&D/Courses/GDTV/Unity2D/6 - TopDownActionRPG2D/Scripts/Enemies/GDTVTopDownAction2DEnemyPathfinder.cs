@@ -19,7 +19,7 @@ public class GDTVTopDownAction2DEnemyPathfinder : MonoBehaviour
 
     void FixedUpdate()
     {
-        if( knockback.gettingKnockedBack )
+        if ( knockback.gettingKnockedBack )
         {
             return;
         }

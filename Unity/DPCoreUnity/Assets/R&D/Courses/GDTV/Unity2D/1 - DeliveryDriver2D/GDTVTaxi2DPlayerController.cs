@@ -36,11 +36,11 @@ public class GDTVTaxi2DPlayerController : MonoBehaviour
     
     void OnTriggerEnter2D( Collider2D other )
     {
-        if( other.tag == "Boost" )
+        if ( other.tag == "Boost" )
         {
             moveSpeed = boostSpeed;
         }
-        if( other.tag != "Boost" && other.tag != "Road" && other.tag != "Customer" )
+        if ( other.tag != "Boost" && other.tag != "Road" && other.tag != "Customer" )
         {
             moveSpeed = defaultSpeed;
         }

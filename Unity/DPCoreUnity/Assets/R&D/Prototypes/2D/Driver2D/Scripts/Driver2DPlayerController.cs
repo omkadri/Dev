@@ -38,7 +38,7 @@ public class Driver2DPlayerController : MonoBehaviour
 
     void OnTriggerEnter2D( Collider2D other )
     {
-        if( enableBoost && other.tag == "Boost" )
+        if ( enableBoost && other.tag == "Boost" )
         {
             moveSpeed = boostSpeed;
         }

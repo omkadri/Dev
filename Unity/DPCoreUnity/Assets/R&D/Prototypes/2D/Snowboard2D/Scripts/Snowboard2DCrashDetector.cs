@@ -24,7 +24,7 @@ void OnTriggerEnter2D( Collider2D other )
       crashParticle.Play();
       //Create OnSnowboardCrashed callback
       Debug.Log( "You Crashed!" );
-      if( crashSFXAudioSource != null )
+      if ( crashSFXAudioSource != null )
       {
         //Play audio once
         crashSFXAudioSource.Play();

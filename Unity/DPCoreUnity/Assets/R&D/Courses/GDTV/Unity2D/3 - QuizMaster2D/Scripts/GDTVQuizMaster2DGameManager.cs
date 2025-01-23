@@ -26,7 +26,7 @@ public class GDTVQuizMaster2DGameManager : MonoBehaviour
 
     void Update()
     {
-        if( quiz.isComplete )
+        if ( quiz.isComplete )
         {
             quiz.gameObject.SetActive( false );
             endScreen.gameObject.SetActive( true );

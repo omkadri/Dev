@@ -59,11 +59,11 @@ public class GDTVTileVania2DPlayer : MonoBehaviour
         {
             return;
         }
-        if( value.isPressed )
+        if ( value.isPressed )
         {
             rb2d.linearVelocity += new Vector2( 0f, jumpSpeed );
         }
-        if( value.isPressed )
+        if ( value.isPressed )
         {
             rb2d.linearVelocity += new Vector2( 0f, jumpSpeed );
         }

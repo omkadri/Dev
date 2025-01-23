@@ -19,7 +19,7 @@ public class Snowboard2DFinishLine : MonoBehaviour
         Debug.Log( "You Finished!" );
         finishParticleA.Play();
         finishParticleB.Play();
-        if( finishSFX != null )
+        if ( finishSFX != null )
         {
           GetComponent<AudioSource>().PlayOneShot(finishSFX);
         }

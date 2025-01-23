@@ -17,7 +17,7 @@ public class LaserDefender2DScoreKeeper : MonoBehaviour
 
     void ManageSingleton()
     {
-        if( instance != null )
+        if ( instance != null )
         {
             gameObject.SetActive( false );
             Destroy( gameObject );
