@@ -5,6 +5,7 @@ public class GDTVSingleton<T> : MonoBehaviour where T : GDTVSingleton<T>
     static T instance;
     public static T Instance { get { return instance; } }
 
+
     protected virtual void Awake()
     {
         if (  instance != null && this.gameObject != null)

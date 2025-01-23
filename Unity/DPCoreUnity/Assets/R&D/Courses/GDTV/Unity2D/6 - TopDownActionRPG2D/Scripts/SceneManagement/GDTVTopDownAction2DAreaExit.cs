@@ -5,6 +5,8 @@ public class GDTVTopDownAction2DAreaExit : MonoBehaviour
 {
     [SerializeField] string sceneToLoad;
     [SerializeField] string sceneTransitionName;
+
+    
     void OnTriggerEnter2D( Collider2D other )
     {
         if ( other.gameObject.GetComponent<GDTVTopDownAction2DPlayerController>() )
