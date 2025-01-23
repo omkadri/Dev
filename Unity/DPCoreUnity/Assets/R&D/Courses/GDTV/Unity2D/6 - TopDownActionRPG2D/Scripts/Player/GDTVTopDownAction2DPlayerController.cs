@@ -3,9 +3,8 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Scripting.APIUpdating;
 
-public class GDTVTopDownAction2DPlayerController : MonoBehaviour
+public class GDTVTopDownAction2DPlayerController : GDTVSingleton<GDTVTopDownAction2DPlayerController>
 {
-    public static GDTVTopDownAction2DPlayerController Instance;
     [SerializeField] float moveSpeed = 1f;
     [SerializeField] float dashSpeed = 4f;
     [SerializeField] float dashTime = 0.2f;
@@ -24,9 +23,10 @@ public class GDTVTopDownAction2DPlayerController : MonoBehaviour
     bool isDashing = false;
 
 
-    void Awake()
+    protected override void Awake()
     {
-        Instance = this;
+        base.Awake();
+        
         playerInputActions = new GDTVTopDownAction2DInputActions(); //TODO: add TopDownActionRPG2DInputActions as a component instead
         rb2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
