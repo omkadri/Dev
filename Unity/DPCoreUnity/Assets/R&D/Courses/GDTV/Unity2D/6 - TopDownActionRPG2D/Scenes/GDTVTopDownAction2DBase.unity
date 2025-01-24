@@ -6832,12 +6832,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 258713661}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1421028623}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &288685865 stripped
 Transform:
@@ -28440,7 +28440,7 @@ Transform:
   m_GameObject: {fileID: 1231304491}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 17.771112, y: 1.49041, z: -10}
+  m_LocalPosition: {x: 17.784548, y: 1.49041, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -28924,7 +28924,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1421028623}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Managers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28939,10 +28939,12 @@ Transform:
   m_GameObject: {fileID: 1421028622}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.4348983, y: 0.22656697, z: -0.2755658}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 258713663}
+  - {fileID: 1960167298}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1425220215 stripped
@@ -32821,12 +32823,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1960167296}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1421028623}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &2051487349 stripped
 Transform:
@@ -33217,6 +33219,4 @@ SceneRoots:
   - {fileID: 1888430095}
   - {fileID: 1459531301}
   - {fileID: 4758965347762215374}
-  - {fileID: 258713663}
-  - {fileID: 1960167298}
   - {fileID: 1421028623}

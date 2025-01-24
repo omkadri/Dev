@@ -17,6 +17,9 @@ public class GDTVSingleton<T> : MonoBehaviour where T : GDTVSingleton<T>
             instance = (T)this;
         }
 
-        DontDestroyOnLoad( gameObject );
+        if ( !gameObject.transform.parent )
+        {
+            DontDestroyOnLoad( gameObject );
+        }
     }
 }
