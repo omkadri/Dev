@@ -28274,6 +28274,87 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
   CustomBlends: {fileID: 0}
+--- !u!1001 &1237207117
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2901531165097953252, guid: ef9bd8daf537bbd4fbf75503f908d369, type: 3}
+      propertyPath: sceneToLoad
+      value: GDTVTopDownAction2DScene1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2901531165097953252, guid: ef9bd8daf537bbd4fbf75503f908d369, type: 3}
+      propertyPath: sceneTransitionName
+      value: East_Entrance
+      objectReference: {fileID: 0}
+    - target: {fileID: 3424785559289705174, guid: ef9bd8daf537bbd4fbf75503f908d369, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -25.03823
+      objectReference: {fileID: 0}
+    - target: {fileID: 3424785559289705174, guid: ef9bd8daf537bbd4fbf75503f908d369, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.6631231
+      objectReference: {fileID: 0}
+    - target: {fileID: 3424785559289705174, guid: ef9bd8daf537bbd4fbf75503f908d369, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3424785559289705174, guid: ef9bd8daf537bbd4fbf75503f908d369, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.00000058114523
+      objectReference: {fileID: 0}
+    - target: {fileID: 3424785559289705174, guid: ef9bd8daf537bbd4fbf75503f908d369, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3424785559289705174, guid: ef9bd8daf537bbd4fbf75503f908d369, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3424785559289705174, guid: ef9bd8daf537bbd4fbf75503f908d369, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3424785559289705174, guid: ef9bd8daf537bbd4fbf75503f908d369, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3424785559289705174, guid: ef9bd8daf537bbd4fbf75503f908d369, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3424785559289705174, guid: ef9bd8daf537bbd4fbf75503f908d369, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 5914787902830315221, guid: ef9bd8daf537bbd4fbf75503f908d369, type: 3}
+      propertyPath: m_Flip.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6132762594156505109, guid: ef9bd8daf537bbd4fbf75503f908d369, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.98
+      objectReference: {fileID: 0}
+    - target: {fileID: 6132762594156505109, guid: ef9bd8daf537bbd4fbf75503f908d369, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 6843754747395714675, guid: ef9bd8daf537bbd4fbf75503f908d369, type: 3}
+      propertyPath: m_Name
+      value: GDTVTopDownAction2DAreaExit
+      objectReference: {fileID: 0}
+    - target: {fileID: 8655106703290592211, guid: ef9bd8daf537bbd4fbf75503f908d369, type: 3}
+      propertyPath: transitionName
+      value: West_Entrance
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ef9bd8daf537bbd4fbf75503f908d369, type: 3}
 --- !u!1001 &1245765057
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32150,145 +32231,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1fa0b3e8920112f4890b110fc8a3c16b, type: 3}
---- !u!1 &1967965199897119606
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4695562248344225061}
-  - component: {fileID: 4005614297137957340}
-  m_Layer: 0
-  m_Name: GDTVTopDownAction2DAreaEntrance
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &2146860583047738064
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7189466792475980608}
-  - component: {fileID: 6636372344255825477}
-  - component: {fileID: 7708363732175487309}
-  m_Layer: 0
-  m_Name: GDTVTopDownAction2DAreaExit
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &4005614297137957340
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1967965199897119606}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d2c9b6126b8c0440805d1418df0d973, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  transitionName: West_Entrance
---- !u!4 &4695562248344225061
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1967965199897119606}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.16, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7189466792475980608}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &6636372344255825477
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2146860583047738064}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0.3460064, y: 0.57667863}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 1.6920128, y: 2.3840282}
-  m_EdgeRadius: 0
---- !u!4 &7189466792475980608
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2146860583047738064}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -26.64, y: 1.02, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 4695562248344225061}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7708363732175487309
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2146860583047738064}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d467ca63b9165bd428a4f94605e3f36d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneToLoad: GDTVTopDownAction2DScene1
-  sceneTransitionName: East_Entrance
 --- !u!1001 &7778540732143836568
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32361,4 +32303,4 @@ SceneRoots:
   - {fileID: 594280847268920300}
   - {fileID: 1888430095}
   - {fileID: 1459531301}
-  - {fileID: 7189466792475980608}
+  - {fileID: 1237207117}
