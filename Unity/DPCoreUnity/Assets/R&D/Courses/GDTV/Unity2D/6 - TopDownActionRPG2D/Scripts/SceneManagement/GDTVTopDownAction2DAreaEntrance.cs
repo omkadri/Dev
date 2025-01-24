@@ -11,6 +11,7 @@ public class GDTVTopDownAction2DAreaEntrance : MonoBehaviour
         {
             GDTVTopDownAction2DPlayerController.Instance.transform.position = this.transform.position;
             GDTVTopDownAction2DCameraController.Instance.SetPlayerCameraFollow();
+            GDTVTopDownAction2DScreenFade.Instance.FadeToClear();
         }
     }
 }
