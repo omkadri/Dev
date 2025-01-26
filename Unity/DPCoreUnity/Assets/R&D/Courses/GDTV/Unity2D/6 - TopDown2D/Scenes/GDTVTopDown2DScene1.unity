@@ -6695,7 +6695,7 @@ GameObject:
   - component: {fileID: 65746858}
   - component: {fileID: 65746857}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6775,7 +6775,7 @@ GameObject:
   - component: {fileID: 102770394}
   - component: {fileID: 102770393}
   m_Layer: 5
-  m_Name: Active Highlight
+  m_Name: ActiveHighlight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7378,7 +7378,7 @@ GameObject:
   - component: {fileID: 547468414}
   - component: {fileID: 547468413}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7559,7 +7559,7 @@ GameObject:
   - component: {fileID: 609871019}
   - component: {fileID: 609871018}
   m_Layer: 5
-  m_Name: Equipped Item
+  m_Name: EquippedItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7632,8 +7632,9 @@ GameObject:
   m_Component:
   - component: {fileID: 634351346}
   - component: {fileID: 634351347}
+  - component: {fileID: 634351348}
   m_Layer: 5
-  m_Name: Active Inventory
+  m_Name: ActiveInventory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7687,6 +7688,18 @@ MonoBehaviour:
   m_Spacing: {x: 25, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2
+--- !u!114 &634351348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 634351345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04dafa27eaaba11478510ba03e05d669, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &660319734
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7756,7 +7769,7 @@ GameObject:
   - component: {fileID: 663630491}
   - component: {fileID: 663630490}
   m_Layer: 5
-  m_Name: Equipped Item
+  m_Name: EquippedItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25045,7 +25058,7 @@ GameObject:
   - component: {fileID: 833755044}
   - component: {fileID: 833755043}
   m_Layer: 5
-  m_Name: Active Highlight
+  m_Name: ActiveHighlight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25118,7 +25131,7 @@ GameObject:
   m_Component:
   - component: {fileID: 834168440}
   m_Layer: 5
-  m_Name: Inventory Slot 4
+  m_Name: InventorySlot4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25136,8 +25149,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 851061501}
   - {fileID: 102770392}
+  - {fileID: 851061501}
   - {fileID: 663630489}
   m_Father: {fileID: 634351346}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -25158,7 +25171,7 @@ GameObject:
   - component: {fileID: 851061503}
   - component: {fileID: 851061502}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25233,7 +25246,7 @@ GameObject:
   - component: {fileID: 853807542}
   - component: {fileID: 853807541}
   m_Layer: 5
-  m_Name: Equipped Item
+  m_Name: EquippedItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25541,7 +25554,7 @@ GameObject:
   m_Component:
   - component: {fileID: 947343353}
   m_Layer: 5
-  m_Name: Inventory Slot 1
+  m_Name: InventorySlot1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25559,8 +25572,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1748673779}
   - {fileID: 1167446616}
+  - {fileID: 1748673779}
   - {fileID: 1354343301}
   m_Father: {fileID: 634351346}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -29525,7 +29538,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1111641079}
   m_Layer: 5
-  m_Name: Inventory Slot 2
+  m_Name: InventorySlot2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29543,8 +29556,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 547468412}
   - {fileID: 2049827479}
+  - {fileID: 547468412}
   - {fileID: 853807540}
   m_Father: {fileID: 634351346}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -29565,7 +29578,7 @@ GameObject:
   - component: {fileID: 1167446618}
   - component: {fileID: 1167446617}
   m_Layer: 5
-  m_Name: Active Highlight
+  m_Name: ActiveHighlight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29948,7 +29961,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1285153544}
   m_Layer: 5
-  m_Name: Inventory Slot 5
+  m_Name: InventorySlot5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29966,8 +29979,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1450990174}
   - {fileID: 833755042}
+  - {fileID: 1450990174}
   - {fileID: 609871017}
   m_Father: {fileID: 634351346}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -30415,7 +30428,7 @@ GameObject:
   - component: {fileID: 1354343303}
   - component: {fileID: 1354343302}
   m_Layer: 5
-  m_Name: Equipped Item
+  m_Name: EquippedItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30598,7 +30611,7 @@ GameObject:
   - component: {fileID: 1450990176}
   - component: {fileID: 1450990175}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34290,7 +34303,7 @@ GameObject:
   - component: {fileID: 1617235104}
   - component: {fileID: 1617235103}
   m_Layer: 5
-  m_Name: Active Highlight
+  m_Name: ActiveHighlight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34303,7 +34316,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1617235101}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -34370,7 +34383,7 @@ GameObject:
   - component: {fileID: 1744078893}
   - component: {fileID: 1744078892}
   m_Layer: 5
-  m_Name: Equipped Item
+  m_Name: EquippedItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34445,7 +34458,7 @@ GameObject:
   - component: {fileID: 1748673781}
   - component: {fileID: 1748673780}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34683,7 +34696,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1905422964}
   m_Layer: 5
-  m_Name: Inventory Slot 3
+  m_Name: InventorySlot3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34701,8 +34714,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 65746856}
   - {fileID: 1617235102}
+  - {fileID: 65746856}
   - {fileID: 1744078891}
   m_Father: {fileID: 634351346}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -34824,7 +34837,7 @@ GameObject:
   - component: {fileID: 2049827481}
   - component: {fileID: 2049827480}
   m_Layer: 5
-  m_Name: Active Highlight
+  m_Name: ActiveHighlight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
