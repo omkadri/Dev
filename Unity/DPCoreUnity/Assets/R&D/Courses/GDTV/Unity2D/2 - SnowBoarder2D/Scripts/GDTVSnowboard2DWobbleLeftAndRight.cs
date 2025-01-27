@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class GDTVSnowboard2DWobbleLeftAndRight : MonoBehaviour
 {
-    [SerializeField] float rotateSpeed = 50f; // Speed of rotation
-    [SerializeField] float maxRotationAngle = 20f; // Maximum rotation angle
-    float currentAngle = 0f; // Current angle of rotation
-    bool rotatingRight = true; // Direction of rotation
+    [SerializeField] float rotateSpeed = 50f;
+    [SerializeField] float maxRotationAngle = 20f;
+    float currentAngle = 0f;
+    bool rotatingRight = true;
     public bool canWobble = true;
     
     
@@ -45,8 +45,8 @@ public class GDTVSnowboard2DWobbleLeftAndRight : MonoBehaviour
     {
         if ( currentAngle >= maxRotationAngle )
         {
-            currentAngle = maxRotationAngle; // Clamp to max angle
-            rotatingRight = false; // Change direction
+            currentAngle = maxRotationAngle;
+            rotatingRight = false;
         }
     }
 
@@ -55,8 +55,8 @@ public class GDTVSnowboard2DWobbleLeftAndRight : MonoBehaviour
     {
         if ( currentAngle <= -maxRotationAngle )
         {
-            currentAngle = -maxRotationAngle; // Clamp to min angle
-            rotatingRight = true; // Change direction
+            currentAngle = -maxRotationAngle;
+            rotatingRight = true;
         }
     }
 }

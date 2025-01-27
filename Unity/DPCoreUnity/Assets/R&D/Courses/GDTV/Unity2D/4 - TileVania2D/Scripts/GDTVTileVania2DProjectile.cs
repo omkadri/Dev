@@ -7,7 +7,7 @@ public class GDTVTileVania2DProjectile : MonoBehaviour
 {
     Rigidbody2D rb2d;
     [SerializeField] float projectileSpeed = 20f;
-    GDTVTileVania2DPlayer player;// xSpeed ensures bullet is shooting in the direction that the player is facing
+    GDTVTileVania2DPlayer player;
     float xSpeed;
 
 

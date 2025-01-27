@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Wobble2D : MonoBehaviour
 {
-    [SerializeField] float rotateSpeed = 50f; // Speed of rotation
-    [SerializeField] float maxRotationAngle = 20f; // Maximum rotation angle
-    float currentAngle = 0f; // Current angle of rotation
-    bool rotatingRight = true; // Direction of rotation
+    [SerializeField] float rotateSpeed = 50f;
+    [SerializeField] float maxRotationAngle = 20f;
+    float currentAngle = 0f;
+    bool rotatingRight = true;
     public bool canWobble = true;
     void Update()
     {
@@ -19,7 +19,6 @@ public class Wobble2D : MonoBehaviour
 
     void Rotate()
     {
-        // Calculate rotation amount for this frame
         float rotationAmount = rotateSpeed * Time.deltaTime;
 
         if (rotatingRight)
@@ -33,7 +32,6 @@ public class Wobble2D : MonoBehaviour
             CheckMinAngle();
         }
 
-        // Apply the rotation
         transform.rotation = Quaternion.Euler(0, 0, currentAngle);
     }
 
@@ -41,8 +39,8 @@ public class Wobble2D : MonoBehaviour
     {
         if (currentAngle >= maxRotationAngle)
         {
-            currentAngle = maxRotationAngle; // Clamp to max angle
-            rotatingRight = false; // Change direction
+            currentAngle = maxRotationAngle;
+            rotatingRight = false;
         }
     }
 
@@ -50,8 +48,8 @@ public class Wobble2D : MonoBehaviour
     {
         if (currentAngle <= -maxRotationAngle)
         {
-            currentAngle = -maxRotationAngle; // Clamp to min angle
-            rotatingRight = true; // Change direction
+            currentAngle = -maxRotationAngle;
+            rotatingRight = true;
         }
     }
 }

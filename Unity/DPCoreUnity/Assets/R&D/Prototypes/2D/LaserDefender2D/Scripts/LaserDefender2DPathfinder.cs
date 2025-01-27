@@ -34,10 +34,10 @@ public class LaserDefender2DPathfinder : MonoBehaviour
     {
         if ( waypointIndex < waypoints.Count )
         {
-            Vector3 targetPosition = waypoints[waypointIndex].position;
+            Vector3 targetPos = waypoints[waypointIndex].position;
             float delta = waveConfig.GetMoveSpeed() * Time.deltaTime;
-            transform.position = Vector2.MoveTowards( transform.position, targetPosition, delta );
-            if ( transform.position == targetPosition )
+            transform.position = Vector2.MoveTowards( transform.position, targetPos, delta );
+            if ( transform.position == targetPos )
             {
                 waypointIndex++;
             }

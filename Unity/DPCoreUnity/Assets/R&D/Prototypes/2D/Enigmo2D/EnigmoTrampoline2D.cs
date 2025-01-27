@@ -1,43 +1,33 @@
 using UnityEngine;
 
-public class Trampoline : MonoBehaviour
+public class EnigmoTrampoline2D : MonoBehaviour
 {
-    public float bounceForce = 10f; // Adjust this value to control the bounce strength
-    public bool reverseDirection = false; // Exposed bool to reverse the bounce direction
+    public float bounceForce = 10f;
+    public bool reverseDir = false;
 
 
     void OnTriggerEnter2D( Collider2D other )
     {
-        // Check if the object is the ball (you can also use tags)
         if ( other.CompareTag( "Ball" ) )
         {
-            Rigidbody2D rb = other.GetComponent<Rigidbody2D>();
-            if ( rb != null )
+            Rigidbody2D rb2D = other.GetComponent<Rigidbody2D>();
+            if ( rb2D != null )
             {
-                // Get the incoming velocity
-                Vector2 incomingVelocity = rb.linearVelocity;
-
-                // Get the trampoline's up direction
-                Vector2 trampolineNormal = transform.up; // This is the normal direction of the trampoline
-
-                // Calculate the reflection
-                Vector2 bounceDirection = Vector2.Reflect( incomingVelocity, trampolineNormal );
-
-                // Calculate the angle to rotate the bounce direction by half
+                Vector2 incomingVelocity = rb2D.linearVelocity;
+                Vector2 trampolineNormal = transform.up;
+                Vector2 bounceDir = Vector2.Reflect( incomingVelocity, trampolineNormal );
+                
                 float angle = Vector2.SignedAngle( incomingVelocity, trampolineNormal );
                 float halfAngle = angle / 2;
 
-                // Rotate the bounce direction by half the angle
-                bounceDirection = Quaternion.Euler( 0, 0, halfAngle ) * bounceDirection;
+                bounceDir = Quaternion.Euler( 0, 0, halfAngle ) * bounceDir;
 
-                // Reverse the direction if the bool is true
-                if ( reverseDirection )
+                if ( reverseDir )
                 {
-                    bounceDirection = -bounceDirection; // Reverse the bounce direction
+                    bounceDir = -bounceDir;
                 }
 
-                // Apply the bounce force in the modified direction
-                rb.linearVelocity = bounceDirection.normalized * bounceForce; // Scale to the desired bounce force
+                rb2D.linearVelocity = bounceDir.normalized * bounceForce;
             }
         }
     }

@@ -5,19 +5,19 @@ using UnityEngine;
 public class FlappyPlayerController2D : MonoBehaviour
 {
     public float jumpForce = 5f;
-    private Rigidbody2D rb;
+    private Rigidbody2D rb2d;
     private SpriteRenderer spriteRenderer;
 
 
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        rb2d = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
     
 
     void OnJump()
     {
-            rb.linearVelocity = Vector2.up * jumpForce;
+            rb2d.linearVelocity = Vector2.up * jumpForce;
     }
 }

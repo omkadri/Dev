@@ -30,14 +30,14 @@ public class GDTVTopDown2DEnemyAI : MonoBehaviour
     {
         while( state == State.Roaming )
         {
-            Vector2 roamPosition = GetRoamingPosition();
-            enemyPathfinding.MoveTo( roamPosition );
+            Vector2 roamPos = GetRoamingPos();
+            enemyPathfinding.MoveTo( roamPos );
             yield return new WaitForSeconds( roamDirectionChangeTime );
         }
     }
 
 
-    Vector2 GetRoamingPosition()
+    Vector2 GetRoamingPos()
     {
         return new Vector2( Random.Range( -1f, 1f ), Random.Range( -1f, 1f ) ).normalized;
     }

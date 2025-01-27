@@ -6,7 +6,7 @@ public class GDTVTopDown2DEnemyPathfinder : MonoBehaviour
     [SerializeField] float moveSpeed = 2f;
     
     Rigidbody2D rb2d;
-    Vector2 moveDirection;
+    Vector2 moveDir;
     GDTVTopDown2DKnockback knockback;
 
 
@@ -23,12 +23,12 @@ public class GDTVTopDown2DEnemyPathfinder : MonoBehaviour
         {
             return;
         }
-        rb2d.MovePosition( rb2d.position + moveDirection * ( moveSpeed * Time.fixedDeltaTime ) );
+        rb2d.MovePosition( rb2d.position + moveDir * ( moveSpeed * Time.fixedDeltaTime ) );
     }
     
 
-    public void MoveTo( Vector2 targetPosition )
+    public void MoveTo( Vector2 targetPos )
     {
-        moveDirection = targetPosition;
+        moveDir = targetPos;
     }
 }

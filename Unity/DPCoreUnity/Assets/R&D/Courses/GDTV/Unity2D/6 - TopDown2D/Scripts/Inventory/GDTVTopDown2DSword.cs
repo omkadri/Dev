@@ -76,12 +76,12 @@ public class GDTVTopDown2DSword : MonoBehaviour
 
     void MouseFollowWithOffset() //orients the sword relative to the mouse
     {
-        Vector2 mousePosition = Input.mousePosition;
-        Vector2 playerPosition = Camera.main.WorldToScreenPoint( playerController.transform.position );
+        Vector2 mousePos = Input.mousePosition;
+        Vector2 playerPos = Camera.main.WorldToScreenPoint( playerController.transform.position );
 
-        float angle = Mathf.Atan2( mousePosition.y - playerPosition.y, Mathf.Abs( mousePosition.x - playerPosition.x ) ) * Mathf.Rad2Deg;
+        float angle = Mathf.Atan2( mousePos.y - playerPos.y, Mathf.Abs( mousePos.x - playerPos.x ) ) * Mathf.Rad2Deg;
         
-        if ( mousePosition.x < playerPosition.x )
+        if ( mousePos.x < playerPos.x )
         {
             activeWeapon.transform.rotation = Quaternion.Euler( 0, -180, angle );
             weaponCollider.transform.rotation = Quaternion.Euler( 0, -180, 0 );

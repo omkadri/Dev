@@ -7,7 +7,7 @@ public class Snake2D : MonoBehaviour
     public float moveSpeed = 20f;
     private float moveTimer;
     private float moveInterval;
-    public Vector2 direction = Vector2.right;
+    public Vector2 dir = Vector2.right;
 
 
     void Start()
@@ -18,11 +18,10 @@ public class Snake2D : MonoBehaviour
 
     void Update()
     {
-        // Handle input for direction changes
-        if ( Input.GetKeyDown( KeyCode.UpArrow ) && direction != Vector2.down ) direction = Vector2.up;
-        if ( Input.GetKeyDown( KeyCode.DownArrow ) && direction != Vector2.up ) direction = Vector2.down;
-        if ( Input.GetKeyDown( KeyCode.LeftArrow ) && direction != Vector2.right ) direction = Vector2.left;
-        if ( Input.GetKeyDown( KeyCode.RightArrow ) && direction != Vector2.left ) direction = Vector2.right;
+        if ( Input.GetKeyDown( KeyCode.UpArrow ) && dir != Vector2.down ) dir = Vector2.up;
+        if ( Input.GetKeyDown( KeyCode.DownArrow ) && dir != Vector2.up ) dir = Vector2.down;
+        if ( Input.GetKeyDown( KeyCode.LeftArrow ) && dir != Vector2.right ) dir = Vector2.left;
+        if ( Input.GetKeyDown( KeyCode.RightArrow ) && dir != Vector2.left ) dir = Vector2.right;
     }
 
 
@@ -39,14 +38,12 @@ public class Snake2D : MonoBehaviour
 
     void Move()
     {
-        // Calculate new position for the head
-        Vector2 newPosition = ( Vector2 )transform.position + direction; // Use Vector2
-        transform.position = newPosition;
+        Vector2 newPos = ( Vector2 )transform.position + dir; // Use Vector2
+        transform.position = newPos;
 
-        // Rotate the snake head
-        if ( direction == Vector2.up ) transform.rotation = Quaternion.Euler( 0, 0, 90 );
-        else if ( direction == Vector2.down ) transform.rotation = Quaternion.Euler( 0, 0, 270 );
-        else if ( direction == Vector2.left ) transform.rotation = Quaternion.Euler( 0, 0, 180 );
-        else if ( direction == Vector2.right ) transform.rotation = Quaternion.Euler( 0, 0, 0 );
+        if ( dir == Vector2.up ) transform.rotation = Quaternion.Euler( 0, 0, 90 );
+        else if ( dir == Vector2.down ) transform.rotation = Quaternion.Euler( 0, 0, 270 );
+        else if ( dir == Vector2.left ) transform.rotation = Quaternion.Euler( 0, 0, 180 );
+        else if ( dir == Vector2.right ) transform.rotation = Quaternion.Euler( 0, 0, 0 );
     }
 }

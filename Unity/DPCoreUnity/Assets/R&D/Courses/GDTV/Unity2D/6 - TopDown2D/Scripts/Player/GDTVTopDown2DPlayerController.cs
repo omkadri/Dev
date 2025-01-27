@@ -12,7 +12,7 @@ public class GDTVTopDown2DPlayerController : GDTVSingleton<GDTVTopDown2DPlayerCo
     [SerializeField] float dashCooldown = 0.25f;
 
     private GDTVTopDown2DInputActions playerInputActions;
-    Vector2 moveDirection;
+    Vector2 moveDir;
     Rigidbody2D rb2d;
     Animator animator;
     SpriteRenderer spriteRenderer;
@@ -55,27 +55,27 @@ public class GDTVTopDown2DPlayerController : GDTVSingleton<GDTVTopDown2DPlayerCo
 
     void FixedUpdate()//we use this for handling physics
     {
-        AdjustPlayerFacingDirection();
+        AdjustPlayerFacingDir();
         Move();
     }
 
 
     void PlayerInput()
     {
-        moveDirection = playerInputActions.Movement.Move.ReadValue<Vector2>();
+        moveDir = playerInputActions.Movement.Move.ReadValue<Vector2>();
 
-        animator.SetFloat( "moveX", moveDirection.x );
-        animator.SetFloat( "moveY", moveDirection.y );
+        animator.SetFloat( "moveX", moveDir.x );
+        animator.SetFloat( "moveY", moveDir.y );
     }
 
 
     void Move()
     {
-        rb2d.MovePosition( rb2d.position + moveDirection * ( moveSpeed * Time.fixedDeltaTime ) );//we use fixedDeltaTime because we are in FixedUpdate()
+        rb2d.MovePosition( rb2d.position + moveDir * ( moveSpeed * Time.fixedDeltaTime ) );//we use fixedDeltaTime because we are in FixedUpdate()
     }
 
 
-    void AdjustPlayerFacingDirection()
+    void AdjustPlayerFacingDir()
     {
         Vector3 mousePos = Input.mousePosition;
         Vector3 playerScreenPoint = Camera.main.WorldToScreenPoint( transform.position );
