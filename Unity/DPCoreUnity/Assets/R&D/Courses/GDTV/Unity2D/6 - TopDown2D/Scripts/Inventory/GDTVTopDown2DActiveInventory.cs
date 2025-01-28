@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GDTVTopDown2DActiveInventory : MonoBehaviour
@@ -41,5 +42,13 @@ public class GDTVTopDown2DActiveInventory : MonoBehaviour
         }
 
         this.transform.GetChild( indexNum ).GetChild( 0 ).gameObject.SetActive( true );//this will only work if active highlight is the first child
+
+        ChangeActiveWeapon();
+    }
+
+
+    void ChangeActiveWeapon()
+    {
+        Debug.Log( transform.GetChild( activeSlotIndexNum ).GetComponent<GDTVTopDown2DInventorySlot>().GetWeaponInfo().weaponPrefab.name );
     }
 }
