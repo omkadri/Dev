@@ -1,19 +1,16 @@
 using System.Collections;
 using UnityEngine;
 
-public class GDTVTopDown2DSword : MonoBehaviour
+public class GDTVTopDown2DSword : MonoBehaviour, GDTVTopDown2DIWeapon
 {
     [SerializeField] GameObject slashAnimPrefab;
     [SerializeField] Transform slashAnimSpawnPoint;
     [SerializeField] Transform weaponCollider;
     [SerializeField] float swordAttackCooldown = 0.5f;
 
-    GDTVTopDown2DInputActions playerInputActions;
     Animator animator; 
     GDTVTopDown2DPlayerController playerController;
     GDTVTopDown2DActiveWeapon activeWeapon;
-    bool attackButtonDown = false;
-    bool isAttacking = false;
 
     GameObject slashAnim;
 
@@ -23,54 +20,23 @@ public class GDTVTopDown2DSword : MonoBehaviour
         playerController = GetComponentInParent<GDTVTopDown2DPlayerController>();
         activeWeapon = GetComponentInParent<GDTVTopDown2DActiveWeapon>();
         animator = GetComponent<Animator>();
-        playerInputActions = new GDTVTopDown2DInputActions();
-    }
-
-
-    void OnEnable()
-    {
-        playerInputActions.Enable();
-    }
-
-
-    void Start()
-    {
-        playerInputActions.Combat.Attack.started += _ => StartAttacking(); // += _ => is a way to subscribe a function to an input action
-        playerInputActions.Combat.Attack.canceled += _ => StopAttacking();
     }
 
 
     void Update()
     {
         MouseFollowWithOffset();
-        Attack();
     }
 
 
-    void StartAttacking()
+    public void Attack()
     {
-        attackButtonDown = true;
-    }
-
-
-    void StopAttacking()
-    {
-        
-        attackButtonDown = false;
-    }
-
-
-    void Attack()
-    {
-        if ( attackButtonDown && !isAttacking )
-        {
-            isAttacking = true;
-            animator.SetTrigger( "Attack" );
-            weaponCollider.gameObject.SetActive( true );
-            slashAnim = Instantiate( slashAnimPrefab, slashAnimSpawnPoint.position, Quaternion.identity );
-            slashAnim.transform.parent = this.transform.parent;
-            StartCoroutine( AttackCooldownRoutine() );
-        }
+        //isAttacking = true;
+        animator.SetTrigger( "Attack" );
+        weaponCollider.gameObject.SetActive( true );
+        slashAnim = Instantiate( slashAnimPrefab, slashAnimSpawnPoint.position, Quaternion.identity );
+        slashAnim.transform.parent = this.transform.parent;
+        StartCoroutine( AttackCooldownRoutine() );
     }
 
 
@@ -97,7 +63,7 @@ public class GDTVTopDown2DSword : MonoBehaviour
     IEnumerator AttackCooldownRoutine()
     {
         yield return new WaitForSeconds( swordAttackCooldown );
-        isAttacking = false;
+        GDTVTopDown2DActiveWeapon.Instance.ToggleIsAttacking( false );
     }
 
 

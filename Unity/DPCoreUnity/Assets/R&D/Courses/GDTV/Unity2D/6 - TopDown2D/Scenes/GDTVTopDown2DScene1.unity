@@ -6943,7 +6943,7 @@ GameObject:
   - component: {fileID: 236692556}
   - component: {fileID: 236692555}
   m_Layer: 8
-  m_Name: Sword
+  m_Name: GDTVTopDown2DSword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25389,6 +25389,50 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2382954841098570737, guid: 1fa0b3e8920112f4890b110fc8a3c16b, type: 3}
   m_PrefabInstance: {fileID: 450939783}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &882331145
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 882331146}
+  - component: {fileID: 882331147}
+  m_Layer: 8
+  m_Name: GDTVTopDown2DStaff
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &882331146
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 882331145}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: 0.70698816, w: 0.7072254}
+  m_LocalPosition: {x: 0.51, y: 0.65, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1343388721}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 89.981}
+--- !u!114 &882331147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 882331145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fed7b42475b80404ba33e801586fdfc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &911551849 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2340782476934595336, guid: e49358cff9a81a84cb94aa4eef5dad09, type: 3}
@@ -28456,6 +28500,50 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2340782476934595336, guid: e49358cff9a81a84cb94aa4eef5dad09, type: 3}
   m_PrefabInstance: {fileID: 1857342212}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1047348479
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1047348480}
+  - component: {fileID: 1047348481}
+  m_Layer: 8
+  m_Name: GDTVTopDown2DBow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1047348480
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1047348479}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: 0.70698816, w: 0.7072254}
+  m_LocalPosition: {x: 0.51, y: 0.65, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1343388721}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 89.981}
+--- !u!114 &1047348481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1047348479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ae8da87dc89c5044b6af98f9f55dcb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1054689017
 GameObject:
   m_ObjectHideFlags: 0
@@ -30344,6 +30432,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 236692554}
+  - {fileID: 882331146}
+  - {fileID: 1047348480}
   - {fileID: 1846289469}
   m_Father: {fileID: 1507464710}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -30359,6 +30449,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bacf4ac3c0634a48adb3634718dd607, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentActiveWeapon: {fileID: 236692555}
 --- !u!1001 &1353262319
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34541,7 +34632,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1846289469}
   m_Layer: 8
-  m_Name: SlashAnimationSpawnPoint
+  m_Name: GDTVSlashAnimationSpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

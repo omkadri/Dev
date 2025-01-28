@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class GDTVTopDownActiveInventory : MonoBehaviour
+public class GDTVTopDown2DActiveInventory : MonoBehaviour
 {
     int activeSlotIndexNum;
 

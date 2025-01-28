@@ -1,16 +1,10 @@
 using UnityEngine;
 
-public class GDTVTopDown2DBow : MonoBehaviour
+public class GDTVTopDown2DBow : MonoBehaviour, GDTVTopDown2DIWeapon
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public void Attack()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Debug.Log( "Bow Attack" );
+        GDTVTopDown2DActiveWeapon.Instance.ToggleIsAttacking( false );
     }
 }
