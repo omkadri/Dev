@@ -30287,7 +30287,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bacf4ac3c0634a48adb3634718dd607, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentActiveWeapon: {fileID: 0}
 --- !u!1001 &1353262319
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30828,8 +30827,10 @@ MonoBehaviour:
   moveSpeed: 4
   dashSpeed: 4
   dashTime: 0.2
-  dashTrailRenderer: {fileID: 961599605}
   dashCooldown: 0.25
+  dashTrailRenderer: {fileID: 961599605}
+  weaponCollider: {fileID: 1064867527}
+  slashAnimationSpawnPoint: {fileID: 1846289469}
   isFacingLeft: 0
 --- !u!50 &1507464712
 Rigidbody2D:

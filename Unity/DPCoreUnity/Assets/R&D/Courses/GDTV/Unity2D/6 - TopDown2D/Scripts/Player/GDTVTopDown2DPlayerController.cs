@@ -8,8 +8,10 @@ public class GDTVTopDown2DPlayerController : GDTVSingleton<GDTVTopDown2DPlayerCo
     [SerializeField] float moveSpeed = 1f;
     [SerializeField] float dashSpeed = 4f;
     [SerializeField] float dashTime = 0.2f;
-    [SerializeField] TrailRenderer dashTrailRenderer;
     [SerializeField] float dashCooldown = 0.25f;
+    [SerializeField] TrailRenderer dashTrailRenderer;
+    [SerializeField] Transform weaponCollider;
+    [SerializeField] Transform slashAnimationSpawnPoint;
 
     private GDTVTopDown2DInputActions playerInputActions;
     Vector2 moveDir;
@@ -57,6 +59,18 @@ public class GDTVTopDown2DPlayerController : GDTVSingleton<GDTVTopDown2DPlayerCo
     {
         AdjustPlayerFacingDir();
         Move();
+    }
+
+
+    public Transform GetWeaponCollider()
+    {
+        return weaponCollider;
+    }
+
+
+    public Transform GetSlashAnimSpawnPoint()
+    {
+        return weaponCollider;
     }
 
 

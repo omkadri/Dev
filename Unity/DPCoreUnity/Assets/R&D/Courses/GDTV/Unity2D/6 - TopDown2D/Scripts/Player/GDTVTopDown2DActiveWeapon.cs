@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class GDTVTopDown2DActiveWeapon : GDTVSingleton<GDTVTopDown2DActiveWeapon>
 {
-    [SerializeField] MonoBehaviour currentActiveWeapon;
+    public MonoBehaviour CurrentActiveWeapon { get; set; }
     
     GDTVTopDown2DInputActions inputActions;
 
@@ -37,6 +37,18 @@ public class GDTVTopDown2DActiveWeapon : GDTVSingleton<GDTVTopDown2DActiveWeapon
     }
 
 
+    public void NewWeapon( MonoBehaviour newWeapon )
+    {
+        CurrentActiveWeapon = newWeapon;
+    }
+
+
+    public void SetWeaponNull()
+    {
+        CurrentActiveWeapon = null;
+    }
+
+
     public void ToggleIsAttacking( bool value )
     {
         isAttacking = value;
@@ -60,7 +72,7 @@ public class GDTVTopDown2DActiveWeapon : GDTVSingleton<GDTVTopDown2DActiveWeapon
         if( attackButtonDown && !isAttacking )
         {
             isAttacking = true;
-            ( currentActiveWeapon as GDTVTopDown2DIWeapon ).Attack();
+            ( CurrentActiveWeapon as GDTVTopDown2DIWeapon ).Attack();
         }   
     }
 }
