@@ -4,7 +4,7 @@ using UnityEngine;
 public class GDTVTopDown2DSword : MonoBehaviour, GDTVTopDown2DIWeapon
 {
     [SerializeField] GameObject slashAnimPrefab;
-    [SerializeField] float swordAttackCooldown = 0.5f;
+    [SerializeField] GDTVTopDown2DWeaponInfoSO weaponInfo;
 
     Animator animator; 
     Transform weaponCollider;
@@ -33,39 +33,16 @@ public class GDTVTopDown2DSword : MonoBehaviour, GDTVTopDown2DIWeapon
 
     public void Attack()
     {
-        //isAttacking = true;
         animator.SetTrigger( "Attack" );
         weaponCollider.gameObject.SetActive( true );
         slashAnim = Instantiate( slashAnimPrefab, slashAnimSpawnPoint.position, Quaternion.identity );
         slashAnim.transform.parent = this.transform.parent;
-        StartCoroutine( AttackCooldownRoutine() );
     }
 
 
-    void MouseFollowWithOffset() //orients the sword relative to the mouse
+    public GDTVTopDown2DWeaponInfoSO GetWeaponInfo()
     {
-        Vector2 mousePos = Input.mousePosition;
-        Vector2 playerPos = Camera.main.WorldToScreenPoint( GDTVTopDown2DPlayerController.Instance.transform.position );
-
-        float angle = Mathf.Atan2( mousePos.y - playerPos.y, Mathf.Abs( mousePos.x - playerPos.x ) ) * Mathf.Rad2Deg;
-        
-        if ( mousePos.x < playerPos.x )
-        {
-            GDTVTopDown2DActiveWeapon.Instance.transform.rotation = Quaternion.Euler( 0, -180, angle );
-            weaponCollider.transform.rotation = Quaternion.Euler( 0, -180, 0 );
-        }
-        else
-        {
-            GDTVTopDown2DActiveWeapon.Instance.transform.rotation = Quaternion.Euler( 0, 0, angle );
-            weaponCollider.transform.rotation = Quaternion.Euler( 0, 0, 0 );
-        }
-    }
-
-
-    IEnumerator AttackCooldownRoutine()
-    {
-        yield return new WaitForSeconds( swordAttackCooldown );
-        GDTVTopDown2DActiveWeapon.Instance.ToggleIsAttacking( false );
+        return weaponInfo;
     }
 
 
@@ -93,6 +70,26 @@ public class GDTVTopDown2DSword : MonoBehaviour, GDTVTopDown2DIWeapon
         if ( GDTVTopDown2DPlayerController.Instance.isFacingLeft )
         {
             slashAnim.GetComponent<SpriteRenderer>().flipX = true;
+        }
+    }
+
+
+    void MouseFollowWithOffset() //orients the sword relative to the mouse
+    {
+        Vector2 mousePos = Input.mousePosition;
+        Vector2 playerPos = Camera.main.WorldToScreenPoint( GDTVTopDown2DPlayerController.Instance.transform.position );
+
+        float angle = Mathf.Atan2( mousePos.y - playerPos.y, Mathf.Abs( mousePos.x - playerPos.x ) ) * Mathf.Rad2Deg;
+        
+        if ( mousePos.x < playerPos.x )
+        {
+            GDTVTopDown2DActiveWeapon.Instance.transform.rotation = Quaternion.Euler( 0, -180, angle );
+            weaponCollider.transform.rotation = Quaternion.Euler( 0, -180, 0 );
+        }
+        else
+        {
+            GDTVTopDown2DActiveWeapon.Instance.transform.rotation = Quaternion.Euler( 0, 0, angle );
+            weaponCollider.transform.rotation = Quaternion.Euler( 0, 0, 0 );
         }
     }
 }

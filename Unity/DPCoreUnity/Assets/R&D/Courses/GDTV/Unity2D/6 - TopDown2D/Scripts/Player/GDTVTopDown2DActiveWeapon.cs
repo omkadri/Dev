@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class GDTVTopDown2DActiveWeapon : GDTVSingleton<GDTVTopDown2DActiveWeapon>
@@ -5,6 +6,8 @@ public class GDTVTopDown2DActiveWeapon : GDTVSingleton<GDTVTopDown2DActiveWeapon
     public MonoBehaviour CurrentActiveWeapon { get; set; }
     
     GDTVTopDown2DInputActions inputActions;
+    float timeBetweenAttacks;
+
 
     bool attackButtonDown = false;
     bool isAttacking = false;
@@ -28,6 +31,8 @@ public class GDTVTopDown2DActiveWeapon : GDTVSingleton<GDTVTopDown2DActiveWeapon
     {
         inputActions.Combat.Attack.started += _ => StartAttacking(); // += _ => is a way to subscribe a function to an input action
         inputActions.Combat.Attack.canceled += _ => StopAttacking();
+
+        AttackCooldown();
     }
 
 
@@ -40,6 +45,8 @@ public class GDTVTopDown2DActiveWeapon : GDTVSingleton<GDTVTopDown2DActiveWeapon
     public void NewWeapon( MonoBehaviour newWeapon )
     {
         CurrentActiveWeapon = newWeapon;
+        AttackCooldown();
+        timeBetweenAttacks = ( CurrentActiveWeapon as GDTVTopDown2DIWeapon).GetWeaponInfo().weaponCooldown;
     }
 
 
@@ -49,9 +56,18 @@ public class GDTVTopDown2DActiveWeapon : GDTVSingleton<GDTVTopDown2DActiveWeapon
     }
 
 
-    public void ToggleIsAttacking( bool value )
+    void AttackCooldown()
     {
-        isAttacking = value;
+        isAttacking = true;
+        StopAllCoroutines();
+        StartCoroutine( TimeBetweenAttacksRoutine() );
+    }
+
+
+    IEnumerator TimeBetweenAttacksRoutine()
+    {
+        yield return new WaitForSeconds( timeBetweenAttacks );
+        isAttacking = false;
     }
 
 
@@ -71,7 +87,7 @@ public class GDTVTopDown2DActiveWeapon : GDTVSingleton<GDTVTopDown2DActiveWeapon
     {
         if( attackButtonDown && !isAttacking )
         {
-            isAttacking = true;
+            AttackCooldown();
             ( CurrentActiveWeapon as GDTVTopDown2DIWeapon ).Attack();
         }   
     }
