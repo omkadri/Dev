@@ -45,7 +45,7 @@ public class GDTVTopDown2DActiveWeapon : GDTVSingleton<GDTVTopDown2DActiveWeapon
     public void NewWeapon( MonoBehaviour newWeapon )
     {
         CurrentActiveWeapon = newWeapon;
-        AttackCooldown();
+        AttackCooldown();//TODO: Ensure that this call does not mess with future Coroutines
         timeBetweenAttacks = ( CurrentActiveWeapon as GDTVTopDown2DIWeapon).GetWeaponInfo().weaponCooldown;
     }
 
