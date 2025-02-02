@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4098570621349050650}
   - component: {fileID: 8810598607922225594}
   - component: {fileID: -3610993667867904574}
+  - component: {fileID: 3974912374543700389}
   m_Layer: 0
   m_Name: GDTVBush
   m_TagString: Untagged
@@ -139,3 +140,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyVFX: {fileID: 3591497457709468928, guid: 041b60a9513e3ac4b8b1b9463b8bf5ba, type: 3}
+--- !u!114 &3974912374543700389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4223877015214277430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60c2360ca30309b458f29ba76026355d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotateSpeed: 5
+  maxRotationAngle: 1
+  canWobble: 1
