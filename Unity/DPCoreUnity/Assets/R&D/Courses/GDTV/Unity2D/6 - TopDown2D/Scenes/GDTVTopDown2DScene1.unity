@@ -210,6 +210,7 @@ GameObject:
   - component: {fileID: 57138512}
   - component: {fileID: 57138511}
   - component: {fileID: 57138513}
+  - component: {fileID: 57138514}
   m_Layer: 0
   m_Name: Canopy
   m_TagString: Untagged
@@ -6573,6 +6574,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parralaxOffset: -0.15
+--- !u!114 &57138514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 57138507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84c82f3f05f9c5846be7289b00d1e781, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &62420402
 GameObject:
   m_ObjectHideFlags: 0
@@ -29619,7 +29632,7 @@ Camera:
   far clip plane: 5000
   field of view: 40
   orthographic: 1
-  orthographic size: 6
+  orthographic size: 8
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -29644,7 +29657,7 @@ Transform:
   m_GameObject: {fileID: 1231304491}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 17.73544, y: 1.49, z: -10}
+  m_LocalPosition: {x: 14.18059, y: 1.49, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -30967,6 +30980,7 @@ GameObject:
   - component: {fileID: 1576300947}
   - component: {fileID: 1576300946}
   - component: {fileID: 1576300945}
+  - component: {fileID: 1576300950}
   m_Layer: 0
   m_Name: Ledge
   m_TagString: Untagged
@@ -34000,6 +34014,18 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &1576300950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1576300943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84c82f3f05f9c5846be7289b00d1e781, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1579303619
 GameObject:
   m_ObjectHideFlags: 0
@@ -34059,7 +34085,7 @@ MonoBehaviour:
     CustomLookAtTarget: 0
   Lens:
     FieldOfView: 40
-    OrthographicSize: 6
+    OrthographicSize: 8
     NearClipPlane: 0.1
     FarClipPlane: 5000
     Dutch: 0

@@ -9,8 +9,8 @@ public class GDTVTopDown2DBow : MonoBehaviour, GDTVTopDown2DIWeapon
 
     Animator animator;
 
-    readonly int FIRE_HASH = Animator.StringToHash( "Fire" );//We convert the string into a hash because strings are more expensive in memory. 
-                                                            //the hash represents the string as an integer, which allows for faster processing
+    readonly int FIRE_HASH = Animator.StringToHash( "Fire" );
+
 
     void Awake()
     {
@@ -23,6 +23,7 @@ public class GDTVTopDown2DBow : MonoBehaviour, GDTVTopDown2DIWeapon
         Debug.Log( "Bow Attack" );
         animator.SetTrigger( FIRE_HASH );
         GameObject newArrow = Instantiate( arrowPrefab, arrowSpawnPoint.transform.position, GDTVTopDown2DActiveWeapon.Instance.transform.rotation );
+        newArrow.GetComponent<GDTVTopDown2DProjectile>().UpdateWeaponInfo( weaponInfo );
     }
 
 

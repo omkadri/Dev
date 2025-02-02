@@ -154,7 +154,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!96 &7371147200559697884
 TrailRenderer:
@@ -211,7 +211,7 @@ TrailRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.083864555
+        value: 0.19999921
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -296,3 +296,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd96da14f45c4cb4484db83033ea4e39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 15
+  hitVFXPrefab: {fileID: 6212351686557051007, guid: 98a98da0f90aa4b4895013278e3fbcfd, type: 3}
