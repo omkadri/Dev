@@ -5,40 +5,40 @@ using UnityEngine.SceneManagement;
 
 public class Snowboard2DCrashDetector : MonoBehaviour
 {
-[SerializeField] ParticleSystem crashParticle;
-[SerializeField] AudioSource crashSFXAudioSource;
+  [SerializeField] ParticleSystem crashParticle;
+  [SerializeField] AudioSource crashSFXAudioSource;
 
-[SerializeField] float loadDelay = 2.5f;
-bool hasCrashed = false;
+  [SerializeField] float loadDelay = 2.5f;
+  bool hasCrashed = false;
 
 
-void OnTriggerEnter2D( Collider2D other )
-{
-  if ( other.tag == "Ground" )
+  void OnTriggerEnter2D( Collider2D other )
   {
-    if ( !hasCrashed )
+    if ( other.tag == "Ground" )
     {
-      hasCrashed = true;
-      //TODO: Abstract this into a GameManager class
-      FindFirstObjectByType<Snowboard2DPlayerController>().DisableControls();
-      crashParticle.Play();
-      //Create OnSnowboardCrashed callback
-      Debug.Log( "You Crashed!" );
-      if ( crashSFXAudioSource != null )
+      if ( !hasCrashed )
       {
-        //Play audio once
-        crashSFXAudioSource.Play();
+        hasCrashed = true;
+        //TODO: Abstract this into a GameManager class
+        FindFirstObjectByType<Snowboard2DPlayerController>().DisableControls();
+        crashParticle.Play();
+        //Create OnSnowboardCrashed callback
+        Debug.Log( "You Crashed!" );
+        if ( crashSFXAudioSource != null )
+        {
+          //Play audio once
+          crashSFXAudioSource.Play();
+        }
+        //TODO: Abstract this into GameManager Class
+        Invoke( "ReloadScene", loadDelay );
       }
-      //TODO: Abstract this into GameManager Class
-      Invoke( "ReloadScene", loadDelay );
+
     }
-
   }
-}
 
 
-void ReloadScene()
-{
-  SceneManager.LoadScene( "Snowboard2DBaseScene" );
-}
+  void ReloadScene()
+  {
+    SceneManager.LoadScene( "Snowboard2DBaseScene" );
+  }
 }
