@@ -36,10 +36,6 @@ public class GDTVTopDown2DProjectile : MonoBehaviour
 
         if ( !other.isTrigger && ( enemyHealth || indestructible ) )
         {
-            if ( enemyHealth )
-            {
-                enemyHealth.TakeDamage( weaponInfo.weaponDamage );//TODO: Investigate using enemyHealth?.TakeDamage() on this line and other similar lines.
-            }
             Instantiate( hitVFXPrefab, transform.position, transform.rotation );
             Destroy( gameObject );
         }

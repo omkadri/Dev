@@ -2,7 +2,14 @@ using UnityEngine;
 
 public class GDTVTopDown2DDamageDealer : MonoBehaviour
 {
-    [SerializeField] int damageAmount = 1;
+    int damageAmount;
+
+
+    void Start()
+    {
+        MonoBehaviour currentActiveWeapon = GDTVTopDown2DActiveWeapon.Instance.CurrentActiveWeapon;
+        damageAmount = ( currentActiveWeapon as GDTVTopDown2DIWeapon ).GetWeaponInfo().weaponDamage;
+    }
 
 
     void OnTriggerEnter2D( Collider2D other )

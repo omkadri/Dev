@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7371147200559697884}
   - component: {fileID: 6232650205917712108}
   - component: {fileID: 4506777831674522186}
+  - component: {fileID: -6874421180750470590}
   m_Layer: 0
   m_Name: GDTVTopDown2DArrow
   m_TagString: Untagged
@@ -298,3 +299,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 15
   hitVFXPrefab: {fileID: 6212351686557051007, guid: 98a98da0f90aa4b4895013278e3fbcfd, type: 3}
+--- !u!114 &-6874421180750470590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7160443088325270981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e096a0ab9c039d48b8783683768ceba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageAmount: 1
