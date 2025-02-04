@@ -8,12 +8,14 @@ public class GDTVTopDown2DEnemyPathfinder : MonoBehaviour
     Rigidbody2D rb2d;
     Vector2 moveDir;
     GDTVTopDown2DKnockback knockback;
+    SpriteRenderer spriteRenderer;
 
 
     void Awake()
     {
         knockback = GetComponent<GDTVTopDown2DKnockback>();
         rb2d = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
 
@@ -24,6 +26,15 @@ public class GDTVTopDown2DEnemyPathfinder : MonoBehaviour
             return;
         }
         rb2d.MovePosition( rb2d.position + moveDir * ( moveSpeed * Time.fixedDeltaTime ) );
+        
+        if ( moveDir.x < 0 )
+        {
+            spriteRenderer.flipX = true;
+        }
+        else
+        {
+            spriteRenderer.flipX = false;
+        }
     }
     
 

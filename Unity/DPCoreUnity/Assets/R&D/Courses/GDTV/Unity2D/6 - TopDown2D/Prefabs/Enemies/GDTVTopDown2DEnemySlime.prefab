@@ -17,6 +17,9 @@ GameObject:
   - component: {fileID: -8051359839609618965}
   - component: {fileID: -7686788988901028093}
   - component: {fileID: 1626172071864075418}
+  - component: {fileID: 4494148314539308405}
+  - component: {fileID: 1793896813211098531}
+  - component: {fileID: 6951786852490135206}
   m_Layer: 0
   m_Name: GDTVTopDown2DEnemySlime
   m_TagString: Untagged
@@ -171,6 +174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 241d78e0d5d39c9489f59666857f05cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  roamDirectionChangeTime: 2
 --- !u!114 &7282620688802930788
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -198,6 +202,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingHealth: 3
   deathVFXPrefab: {fileID: 6212351686557051007, guid: 117655891e1456c4dac9e69c800009f6, type: 3}
+  knockbackThrust: 15
 --- !u!114 &-7686788988901028093
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -226,6 +231,52 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageFlashMat: {fileID: 2100000, guid: e3b0eefa63a22fc4ea68334963869ad1, type: 2}
   restoreDefaultMatTime: 0.1
+--- !u!95 &4494148314539308405
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410066733901262945}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 99515e3254803f149ac78d4a0379c2a0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1793896813211098531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410066733901262945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf5f54da74a4e8843ac93f6d8ab1df2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!210 &6951786852490135206
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410066733901262945}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortAtRoot: 0
 --- !u!1 &3609506738650915831
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class GDTVAnimationRandomizer : MonoBehaviour
+public class GDTVAnimationStartTimeRandomizer : MonoBehaviour
 {
     Animator animator;
 
