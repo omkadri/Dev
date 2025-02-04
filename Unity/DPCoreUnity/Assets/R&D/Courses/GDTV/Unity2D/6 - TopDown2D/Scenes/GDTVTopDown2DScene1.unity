@@ -30927,6 +30927,9 @@ GameObject:
   - component: {fileID: 1507464713}
   - component: {fileID: 1507464714}
   - component: {fileID: 1507464715}
+  - component: {fileID: 1507464718}
+  - component: {fileID: 1507464717}
+  - component: {fileID: 1507464716}
   m_Layer: 8
   m_Name: GDTVTopDown2DPlayer
   m_TagString: Untagged
@@ -31126,6 +31129,49 @@ SortingGroup:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_SortAtRoot: 0
+--- !u!114 &1507464716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1507464708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 404345df963900f41a623c6e069d6c4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageFlashMat: {fileID: 2100000, guid: e3b0eefa63a22fc4ea68334963869ad1, type: 2}
+  restoreDefaultMatTime: 0.2
+--- !u!114 &1507464717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1507464708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c23dace771e0354eae77881de2a7ddf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gettingKnockedBack: 0
+  knockbackTime: 0.2
+--- !u!114 &1507464718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1507464708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a229f38f832db0d4499ac49ae6468148, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 3
+  knockbackThrustAmount: 10
+  damageRecoveryTime: 1
 --- !u!4 &1545176656 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2340782476934595336, guid: e49358cff9a81a84cb94aa4eef5dad09, type: 3}

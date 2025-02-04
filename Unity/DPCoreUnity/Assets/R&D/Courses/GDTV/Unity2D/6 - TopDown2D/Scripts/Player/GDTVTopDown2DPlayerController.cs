@@ -18,6 +18,7 @@ public class GDTVTopDown2DPlayerController : GDTVSingleton<GDTVTopDown2DPlayerCo
     Rigidbody2D rb2d;
     Animator animator;
     SpriteRenderer spriteRenderer;
+    GDTVTopDown2DKnockback knockback;
 
     [HideInInspector]
     public bool isFacingLeft = false;
@@ -33,6 +34,7 @@ public class GDTVTopDown2DPlayerController : GDTVSingleton<GDTVTopDown2DPlayerCo
         rb2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        knockback = GetComponent<GDTVTopDown2DKnockback>();
     }
 
 
@@ -85,6 +87,11 @@ public class GDTVTopDown2DPlayerController : GDTVSingleton<GDTVTopDown2DPlayerCo
 
     void Move()
     {
+        if ( knockback.gettingKnockedBack )
+        {
+            return;
+        }
+        
         rb2d.MovePosition( rb2d.position + moveDir * ( moveSpeed * Time.fixedDeltaTime ) );//we use fixedDeltaTime because we are in FixedUpdate()
     }
 

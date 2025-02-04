@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GlitchGarden2DProjectile : MonoBehaviour
 {
-    [SerializeField] float movementSpeed = 1;
+    [SerializeField] float movementSpeed = 1f;
     [SerializeField] float damageAmount = 50f;
 
 

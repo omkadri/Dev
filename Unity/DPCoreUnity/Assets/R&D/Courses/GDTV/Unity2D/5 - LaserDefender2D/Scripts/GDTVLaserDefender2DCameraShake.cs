@@ -24,7 +24,7 @@ public class GDTVLaserDefender2DCameraShake : MonoBehaviour
 
     IEnumerator ShakeRoutine()
     {
-        float elapsedTime = 0;
+        float elapsedTime = 0f;
         while( elapsedTime < shakeDuration )
         {
             transform.position = initialPos + ( Vector3 )Random.insideUnitCircle * shakeMagnitude; //insideUnitCircle is a position inside of a 1 by 1 circle
