@@ -56,14 +56,19 @@ public class GDTVTopDown2DActiveInventory : MonoBehaviour
             Destroy( GDTVTopDown2DActiveWeapon.Instance.CurrentActiveWeapon.gameObject );
         }
 
-        if ( !transform.GetChild( activeSlotIndexNum ).GetComponentInChildren<GDTVTopDown2DInventorySlot>() )
+        Transform childTransform = transform.GetChild( activeSlotIndexNum );
+        GDTVTopDown2DInventorySlot inventorySlot = childTransform.GetComponentInChildren<GDTVTopDown2DInventorySlot>();
+        GDTVTopDown2DWeaponInfoSO weaponInfo = inventorySlot?.GetWeaponInfo();
+        GameObject weaponToSpawn = weaponInfo?.weaponPrefab;
+
+        if ( weaponInfo == null )
         {
             GDTVTopDown2DActiveWeapon.Instance.SetWeaponNull();
             return;
         }
 
-        GameObject weaponToSpawn = transform.GetChild( activeSlotIndexNum ).GetComponentInChildren<GDTVTopDown2DInventorySlot>().GetWeaponInfo().weaponPrefab;
-        Debug.Log( transform.GetChild( activeSlotIndexNum ).GetComponent<GDTVTopDown2DInventorySlot>().GetWeaponInfo().weaponPrefab.name + " Equipped");
+
+        Debug.Log( weaponToSpawn.name + " Equipped");
 
         GameObject newWeapon = Instantiate( weaponToSpawn, GDTVTopDown2DActiveWeapon.Instance.transform.position, Quaternion.identity );
         GDTVTopDown2DActiveWeapon.Instance.transform.rotation = Quaternion.Euler( 0, 0, 0 );

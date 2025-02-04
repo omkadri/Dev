@@ -85,7 +85,7 @@ public class GDTVTopDown2DActiveWeapon : GDTVSingleton<GDTVTopDown2DActiveWeapon
 
     void Attack()
     {
-        if( attackButtonDown && !isAttacking )
+        if( attackButtonDown && !isAttacking && CurrentActiveWeapon )
         {
             AttackCooldown();
             ( CurrentActiveWeapon as GDTVTopDown2DIWeapon ).Attack();

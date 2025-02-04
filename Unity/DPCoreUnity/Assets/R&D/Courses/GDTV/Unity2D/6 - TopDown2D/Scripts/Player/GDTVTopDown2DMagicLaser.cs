@@ -1,10 +1,11 @@
 using System.Collections;
 using UnityEngine;
 
-public class GDTVTopDown2DMagicLaser : MonoBehaviour
+public class GDTVTopDown2DStaffLaser : MonoBehaviour
 {
     [SerializeField] float laserGrowTime = 2f;
 
+    bool isGrowing = true;
     float laserRange;
     SpriteRenderer spriteRenderer;
     CapsuleCollider2D capsuleCollider2D;
@@ -23,6 +24,15 @@ public class GDTVTopDown2DMagicLaser : MonoBehaviour
     }
 
 
+    void OnTriggerEnter2D( Collider2D other )
+    {
+        if ( other.gameObject.GetComponent<GDTVTopDown2DIndestructible>() && !other.isTrigger )
+        {
+            isGrowing = false;
+        }
+    }
+
+
     public void UpdateLaserRange( float laserRange )
     {
         this.laserRange = laserRange;
@@ -34,7 +44,7 @@ public class GDTVTopDown2DMagicLaser : MonoBehaviour
     {
         float timePassed = 0;
 
-        while ( spriteRenderer.size.x < laserRange )
+        while ( spriteRenderer.size.x < laserRange && isGrowing )
         {
             timePassed += Time.deltaTime;
             float linaerT = timePassed / laserGrowTime;

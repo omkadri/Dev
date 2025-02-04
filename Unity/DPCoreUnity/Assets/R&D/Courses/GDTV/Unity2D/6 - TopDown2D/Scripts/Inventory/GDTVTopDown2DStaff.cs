@@ -34,7 +34,7 @@ public class GDTVTopDown2DStaff : MonoBehaviour, GDTVTopDown2DIWeapon
     public void SpawnStaffProjectileAnimEvent()
     {
         GameObject newLaser = Instantiate( magicLaser, magicLaserSpawnPoint.position, quaternion.identity );
-        newLaser.GetComponent<GDTVTopDown2DMagicLaser>().UpdateLaserRange( weaponInfo.weaponRange );
+        newLaser.GetComponent<GDTVTopDown2DStaffLaser>().UpdateLaserRange( weaponInfo.weaponRange );
     }
 
 
