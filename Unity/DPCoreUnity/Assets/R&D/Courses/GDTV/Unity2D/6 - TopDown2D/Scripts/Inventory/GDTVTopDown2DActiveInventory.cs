@@ -28,6 +28,12 @@ public class GDTVTopDown2DActiveInventory : MonoBehaviour
     }
 
 
+    void OnDisable()
+    {
+        inputActions?.Disable();
+    }
+
+
     void ToggleActiveSlot( int numValue )
     {
         ToggleActiveHighlight( numValue - 1 );

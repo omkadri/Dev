@@ -6,6 +6,12 @@ public class GDTVTopDown2DCameraController : GDTVSingleton<GDTVTopDown2DCameraCo
     CinemachineCamera cinemachineCamera;
 
 
+    void Start()
+    {
+        SetPlayerCameraFollow();
+    }
+
+
     public void SetPlayerCameraFollow()
     {
         cinemachineCamera = FindFirstObjectByType<CinemachineCamera>();

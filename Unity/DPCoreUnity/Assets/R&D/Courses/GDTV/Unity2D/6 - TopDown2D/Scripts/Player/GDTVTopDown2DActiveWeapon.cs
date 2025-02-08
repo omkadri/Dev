@@ -27,6 +27,12 @@ public class GDTVTopDown2DActiveWeapon : GDTVSingleton<GDTVTopDown2DActiveWeapon
     }
 
 
+    void OnDisable()
+    {
+        inputActions?.Disable();
+    }
+
+
     void Start()
     {
         inputActions.Combat.Attack.started += _ => StartAttacking(); // += _ => is a way to subscribe a function to an input action

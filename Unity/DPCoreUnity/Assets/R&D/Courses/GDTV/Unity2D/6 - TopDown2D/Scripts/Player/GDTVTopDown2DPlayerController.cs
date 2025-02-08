@@ -13,7 +13,7 @@ public class GDTVTopDown2DPlayerController : GDTVSingleton<GDTVTopDown2DPlayerCo
     [SerializeField] Transform weaponCollider;
     [SerializeField] Transform slashAnimationSpawnPoint;
 
-    private GDTVTopDown2DInputActions playerInputActions;
+    private GDTVTopDown2DInputActions inputActions;
     Vector2 moveDir;
     Rigidbody2D rb2d;
     Animator animator;
@@ -30,7 +30,7 @@ public class GDTVTopDown2DPlayerController : GDTVSingleton<GDTVTopDown2DPlayerCo
     {
         base.Awake();
         
-        playerInputActions = new GDTVTopDown2DInputActions(); //TODO: add GDTVTopDown2DInputActions as a component instead
+        inputActions = new GDTVTopDown2DInputActions(); //TODO: add GDTVTopDown2DInputActions as a component instead
         rb2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -40,14 +40,20 @@ public class GDTVTopDown2DPlayerController : GDTVSingleton<GDTVTopDown2DPlayerCo
 
     void Start()
     {
-        playerInputActions.Combat.Dash.performed += _ => Dash();
+        inputActions.Combat.Dash.performed += _ => Dash();
         startingMoveSpeed = moveSpeed;
     }
 
 
     void OnEnable()
     {
-        playerInputActions.Enable();
+        inputActions.Enable();
+    }
+    
+
+    void OnDisable()
+    {
+        inputActions?.Disable();//This is importants for preventing memory leaks. any script that enables inputAction via callback must also disable them via callback
     }
 
 
@@ -78,7 +84,7 @@ public class GDTVTopDown2DPlayerController : GDTVSingleton<GDTVTopDown2DPlayerCo
 
     void PlayerInput()
     {
-        moveDir = playerInputActions.Movement.Move.ReadValue<Vector2>();
+        moveDir = inputActions.Movement.Move.ReadValue<Vector2>();
 
         animator.SetFloat( "moveX", moveDir.x );
         animator.SetFloat( "moveY", moveDir.y );
