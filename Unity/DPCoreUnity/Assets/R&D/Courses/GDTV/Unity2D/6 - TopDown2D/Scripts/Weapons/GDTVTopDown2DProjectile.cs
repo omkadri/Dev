@@ -5,8 +5,9 @@ public class GDTVTopDown2DProjectile : MonoBehaviour
 {
     [SerializeField] float moveSpeed = 22f;
     [SerializeField] GameObject hitVFXPrefab;
+    [SerializeField] bool isEnemyProjectile = false;
+    [SerializeField ]float projectileRange = 10f;
 
-    GDTVTopDown2DWeaponInfoSO weaponInfo;
     Vector3 startPos;
 
 
@@ -23,9 +24,9 @@ public class GDTVTopDown2DProjectile : MonoBehaviour
     }
 
 
-    public void UpdateWeaponInfo( GDTVTopDown2DWeaponInfoSO weaponInfo )
+    public void UpdateProjectileRange( float projectileRange )
     {
-        this.weaponInfo = weaponInfo;
+        this.projectileRange = projectileRange;
     }
 
 
@@ -33,9 +34,14 @@ public class GDTVTopDown2DProjectile : MonoBehaviour
     {
         GDTVTopDown2DEnemyHealth enemyHealth = other.gameObject.GetComponent<GDTVTopDown2DEnemyHealth>();
         GDTVTopDown2DIndestructible indestructible = other.gameObject.GetComponent<GDTVTopDown2DIndestructible>();
+        GDTVTopDown2DPlayerHealth playerHealth = other.gameObject.GetComponent<GDTVTopDown2DPlayerHealth>();
 
-        if ( !other.isTrigger && ( enemyHealth || indestructible ) )
+        if ( !other.isTrigger && ( enemyHealth || playerHealth || indestructible ) )
         {
+            if ( playerHealth && isEnemyProjectile )
+            {
+                playerHealth.TakeDamage( 1, transform );//TODO: fix magic number
+            }
             Instantiate( hitVFXPrefab, transform.position, transform.rotation );
             Destroy( gameObject );
         }
@@ -44,7 +50,7 @@ public class GDTVTopDown2DProjectile : MonoBehaviour
 
     void DetectFireDistance()
     {
-        if ( Vector3.Distance( transform.position, startPos ) > weaponInfo.weaponRange )
+        if ( Vector3.Distance( transform.position, startPos ) > projectileRange )
         {
             Destroy( gameObject );
         }

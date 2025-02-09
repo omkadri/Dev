@@ -31,17 +31,22 @@ public class GDTVTopDown2DPlayerHealth : MonoBehaviour
     {
         GDTVTopDown2DEnemyAI enemyAI = other.gameObject.GetComponent<GDTVTopDown2DEnemyAI>();
 
-        if ( enemyAI && canTakeDamage )
+        if ( enemyAI )
         {
-            TakeDamage( 1 );
-            knockback.GetKnockback( other.gameObject.transform, knockbackThrustAmount );
-            StartCoroutine( damageFlash.DamageFlashRoutine() );
+            TakeDamage( 1, other.transform );//TODO: fix magic number
         }
     }
 
 
-    void TakeDamage( int damageAmount )
+    public void TakeDamage( int damageAmount, Transform hitTransform )
     {
+        if ( !canTakeDamage )
+        {
+            return;
+        }
+
+        knockback.GetKnockback( hitTransform, knockbackThrustAmount );
+        StartCoroutine( damageFlash.DamageFlashRoutine() );
         canTakeDamage = false;
         currentHealth -= damageAmount;
         Debug.Log( damageAmount + " damage taken!" );
