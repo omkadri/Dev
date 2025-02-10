@@ -1,17 +1,28 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GDTVTopDown2DEnemyAI : MonoBehaviour
 {
-    [SerializeField] float roamDirectionChangeTime = 2f;
+    [SerializeField] float roamDirChangeTime = 2f;
+    [SerializeField] float attackRange = 5f;
+    [SerializeField] MonoBehaviour enemyType;
+    [SerializeField] float attackCooldown = 2f;
+    [SerializeField] bool stopMovingWhileAttacking = false;
+
+    bool canAttack = true;
+
     enum State
     {
-        Roaming
+        Roaming,
+        Attacking
     }
+
+    Vector2 roamPos;
+    float timeRoaming = 0f;
 
     State state;
     GDTVTopDown2DEnemyPathfinder enemyPathfinding;
-
 
     void Awake()
     {
@@ -22,23 +33,88 @@ public class GDTVTopDown2DEnemyAI : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine( RoamingRoutine() );
+        roamPos = GetRoamingPos();
     }
 
 
-    IEnumerator RoamingRoutine()
+    void Update()
     {
-        while( state == State.Roaming )
+        MovementStateControl();
+    }
+
+
+    void MovementStateControl()
+    {
+        switch ( state )
         {
-            Vector2 roamPos = GetRoamingPos();
-            enemyPathfinding.MoveTo( roamPos );
-            yield return new WaitForSeconds( roamDirectionChangeTime );
+            default:
+            case State.Roaming:
+                Roaming();
+            break;
+
+            case State.Attacking:
+                Attacking();
+            break;
         }
+    }
+
+
+    void Roaming()
+    {
+        timeRoaming += Time.deltaTime;
+
+        enemyPathfinding.MoveTo( roamPos );
+
+        if ( Vector2.Distance( transform.position, GDTVTopDown2DPlayerController.Instance.transform.position ) < attackRange )
+        {
+            state = State.Attacking;
+        }
+
+        if ( timeRoaming > roamDirChangeTime )
+        {
+            roamPos = GetRoamingPos();
+        }
+    }
+
+
+    void Attacking()
+    {
+        if (Vector2.Distance(transform.position, GDTVTopDown2DPlayerController.Instance.transform.position) > attackRange)
+        {
+            state = State.Roaming;
+        }
+
+        if ( attackRange != 0 && canAttack )
+        {
+            canAttack = false;
+        
+            ( enemyType as GDTVTopDown2DIEnemy ).Attack();
+
+
+            if( stopMovingWhileAttacking )
+            {
+                enemyPathfinding.StopMoving();
+            }
+            else
+            {
+                enemyPathfinding.MoveTo( roamPos );
+            }
+
+            StartCoroutine( AttackCooldownRoutine() );
+        }
+    }
+
+
+    IEnumerator AttackCooldownRoutine()
+    {
+        yield return new WaitForSeconds( attackCooldown );
+        canAttack = true;
     }
 
 
     Vector2 GetRoamingPos()
     {
+        timeRoaming = 0f;
         return new Vector2( Random.Range( -1f, 1f ), Random.Range( -1f, 1f ) ).normalized;
     }
 }

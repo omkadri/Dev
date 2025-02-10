@@ -107,6 +107,7 @@ GameObject:
   - component: {fileID: 9125942893179069574}
   - component: {fileID: 6598938023235026094}
   - component: {fileID: 3543704368177926831}
+  - component: {fileID: 1086105390007503785}
   m_Layer: 0
   m_Name: GDTVTopDown2DEnemyGhost
   m_TagString: Untagged
@@ -122,7 +123,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8360166439048909118}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.17, y: 3.54, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -261,7 +262,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 241d78e0d5d39c9489f59666857f05cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roamDirectionChangeTime: 2
+  roamDirChangeTime: 2
+  attackRange: 5
+  enemyType: {fileID: 1086105390007503785}
+  attackCooldown: 2
+  stopMovingWhileAttacking: 1
 --- !u!114 &2933343110120482169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -364,3 +369,16 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1086105390007503785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8360166439048909118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49b3b855f5e6ebb46920eda92d15dcf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 1506420051299673228, guid: 26d5c012b975da940ae4cd072598d792, type: 3}

@@ -38,12 +38,17 @@ public class GDTVTopDown2DProjectile : MonoBehaviour
 
         if ( !other.isTrigger && ( enemyHealth || playerHealth || indestructible ) )
         {
-            if ( playerHealth && isEnemyProjectile )
+            if ( ( playerHealth && isEnemyProjectile || ( enemyHealth && !isEnemyProjectile ) ) )
             {
-                playerHealth.TakeDamage( 1, transform );//TODO: fix magic number
+                playerHealth?.TakeDamage( 1, transform );//TODO: fix magic number
+                Instantiate( hitVFXPrefab, transform.position, transform.rotation );
+                Destroy( gameObject );
             }
-            Instantiate( hitVFXPrefab, transform.position, transform.rotation );
-            Destroy( gameObject );
+            else if ( !other.isTrigger && indestructible )
+            {
+                Instantiate( hitVFXPrefab, transform.position, transform.rotation );
+                Destroy( gameObject );
+            }
         }
     }
 
