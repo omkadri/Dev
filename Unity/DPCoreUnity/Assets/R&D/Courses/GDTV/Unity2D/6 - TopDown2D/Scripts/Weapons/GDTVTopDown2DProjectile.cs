@@ -30,7 +30,7 @@ public class GDTVTopDown2DProjectile : MonoBehaviour
     }
 
 
-    public void UpdateSpeed( float moveSpeed )
+    public void UpdateMoveSpeed( float moveSpeed )
     {
         this.projectileRange = moveSpeed;
     }
