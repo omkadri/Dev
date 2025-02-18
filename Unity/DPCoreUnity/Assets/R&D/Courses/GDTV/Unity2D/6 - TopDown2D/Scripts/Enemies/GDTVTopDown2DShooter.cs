@@ -30,28 +30,45 @@ public class GDTVTopDown2DShooter : MonoBehaviour, GDTVTopDown2DIEnemy
     {
         isShooting = true;
 
-        float startAngle, currentAngle, angleStep;
+        float startAngle, currentAngle, angleStep, endAngle;
         float timeBetweenProjectiles = 0f;
 
-        TargetConeOfInfluence(out startAngle, out currentAngle, out angleStep);
+        TargetConeOfInfluence( out startAngle, out currentAngle, out angleStep, out endAngle );
 
         if ( stagger )
         {
             timeBetweenProjectiles = timeBetweenBursts / projectilesPerBurst;
         }
 
-        for (int i = 0; i < burstCount; i++)
+        for ( int i = 0; i < burstCount; i++ )
         {
-            for (int j = 0; j < projectilesPerBurst; j++)
+            if ( !oscillate )
             {
-                Vector2 pos = FindProjectileSpawnPos(currentAngle);
+                TargetConeOfInfluence( out startAngle, out currentAngle, out angleStep, out endAngle );
+            }
 
-                GameObject newProjectile = Instantiate(projectilePrefab, pos, Quaternion.identity);
+            if ( oscillate && i % 2 != 1 )//TODO: Learn and understand the modulus operator
+            {
+                TargetConeOfInfluence( out startAngle, out currentAngle, out angleStep, out endAngle );
+            }
+            else if ( oscillate )
+            {
+                currentAngle = endAngle;
+                endAngle = startAngle;
+                startAngle = currentAngle;
+                angleStep *= -1;
+            }
+
+            for ( int j = 0; j < projectilesPerBurst; j++ )
+            {
+                Vector2 pos = FindProjectileSpawnPos( currentAngle );
+
+                GameObject newProjectile = Instantiate( projectilePrefab, pos, Quaternion.identity );
                 newProjectile.transform.right = newProjectile.transform.position - transform.position;
 
-                if (newProjectile.TryGetComponent(out GDTVTopDown2DProjectile projectile))//TODO: research and understand TryGetComponent() 
+                if ( newProjectile.TryGetComponent( out GDTVTopDown2DProjectile projectile ) )//TODO: research and understand TryGetComponent() 
                 {
-                    projectile.UpdateMoveSpeed(projectileMoveSpeed);
+                    projectile.UpdateMoveSpeed( projectileMoveSpeed );
                 }
 
                 currentAngle += angleStep;
@@ -63,29 +80,31 @@ public class GDTVTopDown2DShooter : MonoBehaviour, GDTVTopDown2DIEnemy
             }
 
             currentAngle = startAngle;
-
-            yield return new WaitForSeconds(timeBetweenBursts);
-            TargetConeOfInfluence(out startAngle, out currentAngle, out angleStep);
+            
+            if ( !stagger )
+            {
+                yield return new WaitForSeconds( timeBetweenBursts );
+            }
         }
 
-        yield return new WaitForSeconds(restTime);
+        yield return new WaitForSeconds( restTime );
         isShooting = false;
     }
 
 
-    void TargetConeOfInfluence(out float startAngle, out float currentAngle, out float angleStep)
+    void TargetConeOfInfluence( out float startAngle, out float currentAngle, out float angleStep, out float endAngle )
     {
         Vector2 targetDir = GDTVTopDown2DPlayerController.Instance.transform.position - transform.position;
         //TODO: understand the use of triggonmetry for cone of influence
-        float targetAngle = Mathf.Atan2(targetDir.y, targetDir.x) * Mathf.Rad2Deg;
+        float targetAngle = Mathf.Atan2( targetDir.y, targetDir.x ) * Mathf.Rad2Deg;
         startAngle = targetAngle;
-        float endAngle = targetAngle;
+        endAngle = targetAngle;
         currentAngle = targetAngle;
         float halfAngleSpread = 0f;
         angleStep = 0f;
-        if (angleSpread != 0)
+        if ( angleSpread != 0 )
         {
-            angleStep = angleSpread / (projectilesPerBurst - 1);
+            angleStep = angleSpread / ( projectilesPerBurst - 1 );
             halfAngleSpread = angleSpread / 2f;
             startAngle = targetAngle - halfAngleSpread;
             endAngle = targetAngle + halfAngleSpread;
