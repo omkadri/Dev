@@ -11,6 +11,8 @@ public class GDTVTopDown2DShooter : MonoBehaviour, GDTVTopDown2DIEnemy
     [SerializeField] float startingDistance = 0.1f;
     [SerializeField] float timeBetweenBursts;
     [SerializeField] float restTime = 1f;
+    [SerializeField] bool stagger;
+    [SerializeField] bool oscillate;
 
     bool isShooting = false;
     
@@ -27,8 +29,16 @@ public class GDTVTopDown2DShooter : MonoBehaviour, GDTVTopDown2DIEnemy
     IEnumerator ShootRoutine()
     {
         isShooting = true;
+
         float startAngle, currentAngle, angleStep;
+        float timeBetweenProjectiles = 0f;
+
         TargetConeOfInfluence(out startAngle, out currentAngle, out angleStep);
+
+        if ( stagger )
+        {
+            timeBetweenProjectiles = timeBetweenBursts / projectilesPerBurst;
+        }
 
         for (int i = 0; i < burstCount; i++)
         {
@@ -45,6 +55,11 @@ public class GDTVTopDown2DShooter : MonoBehaviour, GDTVTopDown2DIEnemy
                 }
 
                 currentAngle += angleStep;
+
+                if ( stagger )
+                {
+                    yield return new WaitForSeconds( timeBetweenProjectiles );
+                }
             }
 
             currentAngle = startAngle;
@@ -56,6 +71,7 @@ public class GDTVTopDown2DShooter : MonoBehaviour, GDTVTopDown2DIEnemy
         yield return new WaitForSeconds(restTime);
         isShooting = false;
     }
+
 
     void TargetConeOfInfluence(out float startAngle, out float currentAngle, out float angleStep)
     {
@@ -76,6 +92,7 @@ public class GDTVTopDown2DShooter : MonoBehaviour, GDTVTopDown2DIEnemy
             currentAngle = startAngle;
         }
     }
+
 
     Vector2 FindProjectileSpawnPos( float currentAngle )
     {
