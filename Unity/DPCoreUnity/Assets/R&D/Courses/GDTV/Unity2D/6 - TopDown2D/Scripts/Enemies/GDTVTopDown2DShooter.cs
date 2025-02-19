@@ -1,4 +1,5 @@
 using System.Collections;
+using UnityEditor.EditorTools;
 using UnityEngine;
 
 public class GDTVTopDown2DShooter : MonoBehaviour, GDTVTopDown2DIEnemy
@@ -11,11 +12,27 @@ public class GDTVTopDown2DShooter : MonoBehaviour, GDTVTopDown2DIEnemy
     [SerializeField] float startingDistance = 0.1f;
     [SerializeField] float timeBetweenBursts;
     [SerializeField] float restTime = 1f;
-    [SerializeField] bool stagger;
     [SerializeField] bool oscillate;
+    [Tooltip( "Oscillate must be enabled for stagger to work properly." )]
+    [SerializeField] bool stagger;
+    
 
     bool isShooting = false;
-    
+
+
+    void OnValidate() //We use this to prevent properties from having invalid values.
+    {
+        if ( !oscillate ) { stagger = false; } //TODO: investigate not being able to turn on stagger independently
+        if ( projectilesPerBurst < 1 ) { projectilesPerBurst = 1; }
+        if ( burstCount < 1 ) { burstCount = 1; }
+        if ( timeBetweenBursts < 0.1f ) { timeBetweenBursts = 0.1f; }
+        if ( restTime < 0.1f ) { restTime = 0.1f; }
+        if ( startingDistance < 0.1f ) { startingDistance = 0.1f; }
+        if ( angleSpread == 0 ) { projectilesPerBurst = 1; }
+        if ( projectileMoveSpeed <= 0 ) { projectileMoveSpeed = 0.1f; }
+
+    }
+
 
     public void Attack()
     {
@@ -80,7 +97,7 @@ public class GDTVTopDown2DShooter : MonoBehaviour, GDTVTopDown2DIEnemy
             }
 
             currentAngle = startAngle;
-            
+
             if ( !stagger )
             {
                 yield return new WaitForSeconds( timeBetweenBursts );
