@@ -20,7 +20,7 @@ public class GDTVTopDown2DShooter : MonoBehaviour, GDTVTopDown2DIEnemy
     bool isShooting = false;
 
 
-    void OnValidate() //We use this to prevent properties from having invalid values.
+    void OnValidate() //We use this to prevent serialized properties from having invalid values.
     {
         if ( !oscillate ) { stagger = false; } //TODO: investigate not being able to turn on stagger independently
         if ( projectilesPerBurst < 1 ) { projectilesPerBurst = 1; }

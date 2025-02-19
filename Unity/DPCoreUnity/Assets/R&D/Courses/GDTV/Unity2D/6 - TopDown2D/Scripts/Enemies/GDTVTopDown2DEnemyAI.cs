@@ -5,7 +5,7 @@ using UnityEngine;
 public class GDTVTopDown2DEnemyAI : MonoBehaviour
 {
     [SerializeField] float roamDirChangeTime = 2f;
-    [SerializeField] float attackRange = 5f;
+    [SerializeField] float attackRange = 0f;
     [SerializeField] MonoBehaviour enemyType;
     [SerializeField] float attackCooldown = 2f;
     [SerializeField] bool stopMovingWhileAttacking = false;
