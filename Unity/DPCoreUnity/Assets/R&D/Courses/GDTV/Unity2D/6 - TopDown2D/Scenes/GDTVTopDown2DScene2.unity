@@ -36330,6 +36330,7 @@ GameObject:
   - component: {fileID: 1530485968278045227}
   - component: {fileID: 3712724557585509117}
   - component: {fileID: 5411842113706930680}
+  - component: {fileID: 7315329059432389926}
   m_Layer: 0
   m_Name: GDTVTopDown2DEnemyGrape
   m_TagString: Untagged
@@ -36446,10 +36447,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roamDirChangeTime: 2
-  attackRange: 0
-  enemyType: {fileID: 0}
+  attackRange: 5
+  enemyType: {fileID: 7315329059432389926}
   attackCooldown: 2
-  stopMovingWhileAttacking: 0
+  stopMovingWhileAttacking: 1
 --- !u!1001 &6841456860940577808
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36562,6 +36563,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!114 &7315329059432389926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3374275223926097727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 449ef81be2a0dee42b66e6741e801fbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grapeProjectilePrefab: {fileID: 2741573173719412393, guid: c9918679d0c642d43a82c33ebd4908ab, type: 3}
 --- !u!1001 &7778540732143836568
 PrefabInstance:
   m_ObjectHideFlags: 0
