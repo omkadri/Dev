@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1082808686522049516}
   - component: {fileID: 5789532648188951754}
   - component: {fileID: 6209497569711857097}
+  - component: {fileID: -14206313857238566}
   m_Layer: 0
   m_Name: GDTVTopDown2DEnemyGrapeProjectile
   m_TagString: Untagged
@@ -152,3 +153,42 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0.0019208789}
   m_Radius: 0.3059913
+--- !u!114 &-14206313857238566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2741573173719412393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c83a69cdde5905438cdc7f98b050e71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 1
+  animCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.99999535
+      value: 0.0012225341
+      inSlope: -2.0196376
+      outSlope: -2.0196376
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.20444071
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  heightY: 5.5
+  grapeProjectileShadow: {fileID: 8253537732020480985, guid: c5da537e9670a67458ce65482a774ac5, type: 3}

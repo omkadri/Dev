@@ -36255,6 +36255,63 @@ CapsuleCollider2D:
   m_Offset: {x: -0.009476844, y: -0.018956186}
   m_Size: {x: 0.9322982, y: 0.7111885}
   m_Direction: 1
+--- !u!1001 &2263961660241722540
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6294307100852036206, guid: c5da537e9670a67458ce65482a774ac5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6294307100852036206, guid: c5da537e9670a67458ce65482a774ac5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6294307100852036206, guid: c5da537e9670a67458ce65482a774ac5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6294307100852036206, guid: c5da537e9670a67458ce65482a774ac5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6294307100852036206, guid: c5da537e9670a67458ce65482a774ac5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6294307100852036206, guid: c5da537e9670a67458ce65482a774ac5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6294307100852036206, guid: c5da537e9670a67458ce65482a774ac5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6294307100852036206, guid: c5da537e9670a67458ce65482a774ac5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6294307100852036206, guid: c5da537e9670a67458ce65482a774ac5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6294307100852036206, guid: c5da537e9670a67458ce65482a774ac5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8253537732020480985, guid: c5da537e9670a67458ce65482a774ac5, type: 3}
+      propertyPath: m_Name
+      value: GDTVTopDown2DGrapeShadow
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c5da537e9670a67458ce65482a774ac5, type: 3}
 --- !u!212 &3292318123710028363
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -36449,7 +36506,7 @@ MonoBehaviour:
   roamDirChangeTime: 2
   attackRange: 5
   enemyType: {fileID: 7315329059432389926}
-  attackCooldown: 2
+  attackCooldown: 1
   stopMovingWhileAttacking: 1
 --- !u!1001 &6841456860940577808
 PrefabInstance:
@@ -36666,3 +36723,4 @@ SceneRoots:
   - {fileID: 1728172916}
   - {fileID: 386357016}
   - {fileID: 948603601}
+  - {fileID: 2263961660241722540}
