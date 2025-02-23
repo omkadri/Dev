@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class GDTVTopDown2DGrapeProjectile : MonoBehaviour //TODO: Investigate renaming projectile to something else (throwable, or launchable)
@@ -7,6 +8,7 @@ public class GDTVTopDown2DGrapeProjectile : MonoBehaviour //TODO: Investigate re
     [SerializeField] AnimationCurve animCurve;
     [SerializeField] float heightY = 3f;
     [SerializeField] GameObject grapeProjectileShadow;
+    [SerializeField] GameObject grapeSplatterPrefab;
 
 
     void Start()
@@ -37,6 +39,7 @@ public class GDTVTopDown2DGrapeProjectile : MonoBehaviour //TODO: Investigate re
             yield return null;
         }
 
+        Instantiate( grapeSplatterPrefab, transform.position, quaternion.identity );
         Destroy( gameObject );
     }
 
