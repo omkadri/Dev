@@ -45,6 +45,7 @@ public class GDTVTopDown2DPlayerHealth : MonoBehaviour
             return;
         }
 
+        GDTVTopDown2DScreenShakeManager.Instance.ShakeScreen();
         knockback.GetKnockback( hitTransform, knockbackThrustAmount );
         StartCoroutine( damageFlash.DamageFlashRoutine() );
         canTakeDamage = false;
