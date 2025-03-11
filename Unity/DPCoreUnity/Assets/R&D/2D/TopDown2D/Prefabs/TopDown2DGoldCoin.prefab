@@ -128,6 +128,32 @@ MonoBehaviour:
   pickupDistance: 3
   accelerationRate: 0.7
   moveSpeed: 3
+  animCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.9652118
+      value: -0.015910413
+      inSlope: -2.4869797
+      outSlope: -2.4869797
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.053565983
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  heightY: 1.5
+  popDuration: 0.5
 --- !u!70 &3814351453628826807
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
