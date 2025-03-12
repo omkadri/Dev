@@ -9,6 +9,8 @@ public class TopDown2DPlayerHealth : Singleton<TopDown2DPlayerHealth>
     [SerializeField] float knockbackThrustAmount = 10f;
     [SerializeField] float damageRecoveryTime = 1f;
 
+    const string PLAYER_HEALTH_SLIDER_TEXT = "PlayerHealthSlider";
+
     Slider healthSlider;
     int currentHealth;
     bool canTakeDamage = true;
@@ -94,7 +96,7 @@ public class TopDown2DPlayerHealth : Singleton<TopDown2DPlayerHealth>
     {
         if ( !healthSlider )
         {
-            healthSlider = GameObject.Find( "HealthSlider" ).GetComponent<Slider>();//TODO: find alternative to hard string reference
+            healthSlider = GameObject.Find( PLAYER_HEALTH_SLIDER_TEXT ).GetComponent<Slider>();//TODO: find alternative to hard string reference
         }
 
         healthSlider.maxValue = maxHealth;

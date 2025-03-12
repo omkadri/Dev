@@ -93,6 +93,7 @@ public class TopDown2DPickup : MonoBehaviour
         switch( pickupType )
         {
             case PickupType.CoinPickup:
+                TopDown2DEconomyManager.Instance.UpdateCurrency();
                 Debug.Log( "Coin Pickup" );
                 break;
             case PickupType.HealthPickup:
