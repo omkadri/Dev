@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,6 +7,7 @@ public class TopDown2DPlayerStamina : Singleton<TopDown2DPlayerStamina>
     public int CurrentStamina { get; private set; }
 
     [SerializeField] Sprite fullStaminaImage, emptyStaminaImage;
+    [SerializeField] int timeBetweenStaminaRefresh = 3;
 
     Transform staminaContainer;
     int startingStamina = 3; //TODO: Make this a serialized field
@@ -44,6 +46,16 @@ public class TopDown2DPlayerStamina : Singleton<TopDown2DPlayerStamina>
     }
 
 
+    IEnumerator RefreshStaminaRoutine()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds( timeBetweenStaminaRefresh );
+            RefreshStamina();
+        }
+    }
+
+
     void UpdateStaminaImages()
     {
         for ( int i = 0; i < maxStamina; i++ )
@@ -56,6 +68,12 @@ public class TopDown2DPlayerStamina : Singleton<TopDown2DPlayerStamina>
             {
                 staminaContainer.GetChild( i ).GetComponent<Image>().sprite = emptyStaminaImage;
             }
+        }
+
+        if (CurrentStamina < maxStamina )
+        {
+            StopAllCoroutines(); //TODO: will need to fix this if additional coroutines are added to this class
+            StartCoroutine( RefreshStaminaRoutine() ); //TODO: Move this to a better location
         }
     }
 }

@@ -94,14 +94,12 @@ public class TopDown2DPickup : MonoBehaviour
         {
             case PickupType.CoinPickup:
                 TopDown2DEconomyManager.Instance.UpdateCurrency();
-                Debug.Log( "Coin Pickup" );
                 break;
             case PickupType.HealthPickup:
                 TopDown2DPlayerHealth.Instance.HealPlayer();
-                Debug.Log( "Health Pickup" );
                 break;
             case PickupType.StaminaPickup:
-                Debug.Log( "Stamina Pickup" );
+                TopDown2DPlayerStamina.Instance.RefreshStamina();
                 break;
         }
     }
