@@ -123,8 +123,9 @@ public class TopDown2DPlayerController : Singleton<TopDown2DPlayerController>
     //TODO: Investigate making dash its own class
     void Dash()
     {
-        if ( !isDashing )
+        if ( !isDashing && TopDown2DPlayerStamina.Instance.CurrentStamina > 0 )
         {
+            TopDown2DPlayerStamina.Instance.UseStamina();
             isDashing = true;
             moveSpeed *= dashSpeed;
             dashTrailRenderer.emitting = true;
