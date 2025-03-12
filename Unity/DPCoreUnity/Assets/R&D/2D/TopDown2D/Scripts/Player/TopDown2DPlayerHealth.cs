@@ -1,5 +1,7 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TopDown2DPlayerHealth : Singleton<TopDown2DPlayerHealth>
 {
@@ -7,6 +9,7 @@ public class TopDown2DPlayerHealth : Singleton<TopDown2DPlayerHealth>
     [SerializeField] float knockbackThrustAmount = 10f;
     [SerializeField] float damageRecoveryTime = 1f;
 
+    Slider healthSlider;
     int currentHealth;
     bool canTakeDamage = true;
 
@@ -25,6 +28,7 @@ public class TopDown2DPlayerHealth : Singleton<TopDown2DPlayerHealth>
     void Start()
     {
         currentHealth = maxHealth;
+        UpdateHealthSlider();
     }
 
 
@@ -41,7 +45,11 @@ public class TopDown2DPlayerHealth : Singleton<TopDown2DPlayerHealth>
 
     public void HealPlayer()
     {
-        currentHealth += 1;
+        if ( currentHealth < maxHealth )
+        {
+            currentHealth += 1;
+            UpdateHealthSlider();
+        }
     }
 
 
@@ -60,6 +68,18 @@ public class TopDown2DPlayerHealth : Singleton<TopDown2DPlayerHealth>
         Debug.Log( damageAmount + " damage taken!" );
         Debug.Log( "Current health is: " + currentHealth );
         StartCoroutine( DamageRecoveryRoutine() );
+        UpdateHealthSlider();
+        CheckIfPlayerDeath();
+    }
+
+
+    void CheckIfPlayerDeath()
+    {
+        if ( currentHealth <= 0 )
+        {
+            currentHealth = 0;
+            Debug.Log( "Player has Died" );
+        }
     }
 
 
@@ -67,5 +87,17 @@ public class TopDown2DPlayerHealth : Singleton<TopDown2DPlayerHealth>
     {
         yield return new WaitForSeconds( damageRecoveryTime );
         canTakeDamage = true;
+    }
+
+
+    void UpdateHealthSlider()
+    {
+        if ( !healthSlider )
+        {
+            healthSlider = GameObject.Find( "HealthSlider" ).GetComponent<Slider>();//TODO: find alternative to hard string reference
+        }
+
+        healthSlider.maxValue = maxHealth;
+        healthSlider.value = currentHealth;
     }
 }
