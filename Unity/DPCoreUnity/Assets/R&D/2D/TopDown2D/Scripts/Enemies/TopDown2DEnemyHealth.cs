@@ -39,15 +39,16 @@ public class TopDown2DEnemyHealth : MonoBehaviour
     IEnumerator CheckDetectDeathRoutine()
     {
         yield return new WaitForSeconds( damageFlash.GetRestoreMatTime() );
-        Die();
+        DetectDeath();
     }
 
 
-    public void Die()
+    public void DetectDeath()
     {
         if ( currentHealth <= 0 )
         {
             Instantiate( deathVFXPrefab, transform.position, Quaternion.identity );
+            GetComponent<TopDown2DPickupSpawner>().DropItems();
             Destroy( gameObject );
         }
     }

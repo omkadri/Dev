@@ -69,11 +69,11 @@ public class TopDown2DPlayerHealth : Singleton<TopDown2DPlayerHealth>
         Debug.Log( "Current health is: " + currentHealth );
         StartCoroutine( DamageRecoveryRoutine() );
         UpdateHealthSlider();
-        CheckIfPlayerDeath();
+        DetectDeath();
     }
 
 
-    void CheckIfPlayerDeath()
+    void DetectDeath()
     {
         if ( currentHealth <= 0 )
         {

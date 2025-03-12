@@ -108,6 +108,7 @@ GameObject:
   - component: {fileID: 7558289038153827584}
   - component: {fileID: 2719813409279884906}
   - component: {fileID: 8694750036071048263}
+  - component: {fileID: -474329050545578184}
   m_Layer: 0
   m_Name: TopDown2DEnemyGrape
   m_TagString: Untagged
@@ -382,3 +383,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grapeProjectilePrefab: {fileID: 2741573173719412393, guid: c9918679d0c642d43a82c33ebd4908ab, type: 3}
+--- !u!114 &-474329050545578184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8588187304085768506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d213d96876974e64680c7d1039169773, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coinPickup: {fileID: 5341562547912748411, guid: f0c1de0da065a764e89b48a7109ddff2, type: 3}
+  healthPickup: {fileID: 5341562547912748411, guid: 567c3cc6f64491d4394ed531d3d4266a, type: 3}
+  staminaPickup: {fileID: 5341562547912748411, guid: 493065d4d1e18864c9bf987911ebccc7, type: 3}

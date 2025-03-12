@@ -20,6 +20,7 @@ GameObject:
   - component: {fileID: 4494148314539308405}
   - component: {fileID: 1793896813211098531}
   - component: {fileID: 6951786852490135206}
+  - component: {fileID: 837250682807191396}
   m_Layer: 0
   m_Name: TopDown2DEnemySlime
   m_TagString: Untagged
@@ -281,6 +282,21 @@ SortingGroup:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_SortAtRoot: 0
+--- !u!114 &837250682807191396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410066733901262945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d213d96876974e64680c7d1039169773, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coinPickup: {fileID: 5341562547912748411, guid: f0c1de0da065a764e89b48a7109ddff2, type: 3}
+  healthPickup: {fileID: 5341562547912748411, guid: 567c3cc6f64491d4394ed531d3d4266a, type: 3}
+  staminaPickup: {fileID: 5341562547912748411, guid: 493065d4d1e18864c9bf987911ebccc7, type: 3}
 --- !u!1 &3609506738650915831
 GameObject:
   m_ObjectHideFlags: 0
