@@ -3,6 +3,14 @@ using UnityEngine;
 
 public class TopDown2DPickup : MonoBehaviour
 {
+    enum PickupType
+    {
+        CoinPickup,
+        HealthPickup,
+        EnergyPickup,
+    }
+
+    [SerializeField] PickupType pickupType;
     [SerializeField] float pickupDistance = 5f;
     [SerializeField] float accelerationRate = .2f;
     [SerializeField] float moveSpeed = 3f;
@@ -52,6 +60,7 @@ public class TopDown2DPickup : MonoBehaviour
     {
         if ( other.gameObject.GetComponent<TopDown2DPlayerController>() )
         {
+            DetectPickupType();
             Destroy( gameObject );
         }
     }
@@ -75,6 +84,24 @@ public class TopDown2DPickup : MonoBehaviour
             transform.position = Vector2.Lerp( startPos, endPos, linearT ) + new Vector2( 0f, height );
 
             yield return null;
+        }
+    }
+
+
+    void DetectPickupType()
+    {
+        switch( pickupType )
+        {
+            case PickupType.CoinPickup:
+                Debug.Log( "Coin Pickup" );
+                break;
+            case PickupType.HealthPickup:
+                TopDown2DPlayerHealth.Instance.HealPlayer();
+                Debug.Log( "Health Pickup" );
+                break;
+            case PickupType.EnergyPickup:
+                Debug.Log( "Energy Pickup" );
+                break;
         }
     }
 }

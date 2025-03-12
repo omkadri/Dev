@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class TopDown2DPlayerHealth : MonoBehaviour
+public class TopDown2DPlayerHealth : Singleton<TopDown2DPlayerHealth>
 {
     [SerializeField] int maxHealth = 3;
     [SerializeField] float knockbackThrustAmount = 10f;
@@ -14,8 +14,9 @@ public class TopDown2DPlayerHealth : MonoBehaviour
     TopDown2DDamageFlash damageFlash;
 
 
-    void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         knockback = GetComponent<TopDown2DKnockback>();
         damageFlash = GetComponent<TopDown2DDamageFlash>();
     }
@@ -35,6 +36,12 @@ public class TopDown2DPlayerHealth : MonoBehaviour
         {
             TakeDamage( 1, other.transform );//TODO: fix magic number
         }
+    }
+
+
+    public void HealPlayer()
+    {
+        currentHealth += 1;
     }
 
 
