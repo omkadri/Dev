@@ -7,7 +7,7 @@ public class TopDown2DPickup : MonoBehaviour
     {
         CoinPickup,
         HealthPickup,
-        EnergyPickup,
+        StaminaPickup,
     }
 
     [SerializeField] PickupType pickupType;
@@ -99,8 +99,8 @@ public class TopDown2DPickup : MonoBehaviour
                 TopDown2DPlayerHealth.Instance.HealPlayer();
                 Debug.Log( "Health Pickup" );
                 break;
-            case PickupType.EnergyPickup:
-                Debug.Log( "Energy Pickup" );
+            case PickupType.StaminaPickup:
+                Debug.Log( "Stamina Pickup" );
                 break;
         }
     }

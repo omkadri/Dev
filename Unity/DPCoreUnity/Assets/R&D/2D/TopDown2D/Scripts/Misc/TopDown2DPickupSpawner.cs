@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class TopDown2DPickupSpawner : MonoBehaviour
 {
-    [SerializeField] GameObject coinPickup, healthPickup, energyPickup;
+    [SerializeField] GameObject coinPickup, healthPickup, staminaPickup;
 
 
     public void DropItems()
@@ -16,7 +16,7 @@ public class TopDown2DPickupSpawner : MonoBehaviour
 
         if ( randomNum == 2 )
         {
-            Instantiate( energyPickup, transform.position, Quaternion.identity );
+            Instantiate( staminaPickup, transform.position, Quaternion.identity );
         }
 
         if ( randomNum == 3 )
