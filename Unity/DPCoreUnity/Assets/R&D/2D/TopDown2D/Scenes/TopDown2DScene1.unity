@@ -28987,6 +28987,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fullStaminaImage: {fileID: 21300000, guid: ad1feb0eb13f7394fb192e991cd7048e, type: 3}
   emptyStaminaImage: {fileID: 21300000, guid: 20faae4ecd7e5124e82ec0d0de811593, type: 3}
+  timeBetweenStaminaRefresh: 3
 --- !u!4 &1545176656 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2340782476934595336, guid: e49358cff9a81a84cb94aa4eef5dad09, type: 3}
@@ -33121,6 +33122,14 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5053146836259990070, guid: bb3564eb3c33eed4f9f45a30b758ca45, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5053146836259990070, guid: bb3564eb3c33eed4f9f45a30b758ca45, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5688698266856783217, guid: bb3564eb3c33eed4f9f45a30b758ca45, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -33144,6 +33153,14 @@ PrefabInstance:
     - target: {fileID: 5688698266856783217, guid: bb3564eb3c33eed4f9f45a30b758ca45, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6254613075531503001, guid: bb3564eb3c33eed4f9f45a30b758ca45, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 6254613075531503001, guid: bb3564eb3c33eed4f9f45a30b758ca45, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 7599829572604385180, guid: bb3564eb3c33eed4f9f45a30b758ca45, type: 3}
       propertyPath: m_AnchorMax.y
