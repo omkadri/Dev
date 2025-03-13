@@ -63,6 +63,11 @@ public class TopDown2DActiveInventory : Singleton<TopDown2DActiveInventory>
 
     void ChangeActiveWeapon()
     {
+        if ( TopDown2DPlayerHealth.Instance.IsDead )
+        {
+            return;
+        }
+
         if ( TopDown2DActiveWeapon.Instance.CurrentActiveWeapon != null )
         {
             Destroy( TopDown2DActiveWeapon.Instance.CurrentActiveWeapon.gameObject );
