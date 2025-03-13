@@ -33,15 +33,24 @@ public class TopDown2DPlayerStamina : Singleton<TopDown2DPlayerStamina>
     {
         CurrentStamina--;
         UpdateStaminaImages();
+        StopAllCoroutines(); //TODO: will need to fix this if additional coroutines are added to this class
+        StartCoroutine( RefreshStaminaRoutine() );
     }
 
 
     public void RefreshStamina()
     {
-        if ( CurrentStamina < maxStamina )
+        if ( CurrentStamina < maxStamina && !TopDown2DPlayerHealth.Instance.IsDead )
         {
             CurrentStamina++;
         }
+        UpdateStaminaImages();
+    }
+
+
+    public void ReplenishStamina()
+    {
+        CurrentStamina = startingStamina;
         UpdateStaminaImages();
     }
 
@@ -60,20 +69,17 @@ public class TopDown2DPlayerStamina : Singleton<TopDown2DPlayerStamina>
     {
         for ( int i = 0; i < maxStamina; i++ )
         {
+            Transform child = staminaContainer.GetChild( i );
+            Image image = child?.GetComponent<Image>();
+
             if ( i <= CurrentStamina - 1 )
             {
-                staminaContainer.GetChild( i ).GetComponent<Image>().sprite = fullStaminaImage;
+                image.sprite = fullStaminaImage;
             }
             else
             {
-                staminaContainer.GetChild( i ).GetComponent<Image>().sprite = emptyStaminaImage;
+                image.sprite = emptyStaminaImage;
             }
-        }
-
-        if (CurrentStamina < maxStamina )
-        {
-            StopAllCoroutines(); //TODO: will need to fix this if additional coroutines are added to this class
-            StartCoroutine( RefreshStaminaRoutine() ); //TODO: Move this to a better location
         }
     }
 }

@@ -100,6 +100,7 @@ public class TopDown2DPlayerHealth : Singleton<TopDown2DPlayerHealth>
     {
         yield return new WaitForSeconds( deathSceneLoadDelay );
         Destroy( gameObject );
+        TopDown2DPlayerStamina.Instance.ReplenishStamina();//TODO: Find a better location for this????
         SceneManager.LoadScene( playerDeathLoadScene );
     }
 
