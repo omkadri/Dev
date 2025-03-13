@@ -95,7 +95,7 @@ public class TopDown2DPlayerController : Singleton<TopDown2DPlayerController>
 
     void Move()
     {
-        if ( knockback.gettingKnockedBack || TopDown2DPlayerHealth.Instance.isDead )
+        if ( knockback.gettingKnockedBack || TopDown2DPlayerHealth.Instance.IsDead )
         {
             return;
         }

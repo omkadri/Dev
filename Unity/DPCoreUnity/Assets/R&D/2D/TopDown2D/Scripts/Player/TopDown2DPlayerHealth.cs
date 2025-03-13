@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class TopDown2DPlayerHealth : Singleton<TopDown2DPlayerHealth>
 {
-    public bool isDead { get; set; }
+    public bool IsDead { get; set; }
 
     [Header( "Player Damage" )]
     [SerializeField] int maxHealth = 3;
@@ -37,7 +37,7 @@ public class TopDown2DPlayerHealth : Singleton<TopDown2DPlayerHealth>
 
     void Start()
     {
-        isDead = false;
+        IsDead = false;
         currentHealth = maxHealth;
         UpdateHealthSlider();
     }
@@ -84,9 +84,9 @@ public class TopDown2DPlayerHealth : Singleton<TopDown2DPlayerHealth>
 
     void DetectDeath()
     {
-        if ( currentHealth <= 0 && !isDead )
+        if ( currentHealth <= 0 && !IsDead )
         {
-            isDead = true;
+            IsDead = true;
             Destroy( TopDown2DActiveWeapon.Instance.gameObject );
             currentHealth = 0;
             GetComponent<Animator>().SetTrigger( PLAYER_DEATH_HASH );
