@@ -42,6 +42,8 @@ public class TopDown2DPlayerController : Singleton<TopDown2DPlayerController>
     {
         inputActions.Combat.Dash.performed += _ => Dash();
         startingMoveSpeed = moveSpeed;
+
+        TopDown2DActiveInventory.Instance.EquipStartingWeapon();
     }
 
 
@@ -53,7 +55,7 @@ public class TopDown2DPlayerController : Singleton<TopDown2DPlayerController>
 
     void OnDisable()
     {
-        inputActions?.Disable();//This is importants for preventing memory leaks. any script that enables inputAction via callback must also disable them via callback
+        inputActions?.Disable();//This is important for preventing memory leaks. any script that enables inputAction via callback must also disable them via callback
     }
 
 
@@ -93,7 +95,7 @@ public class TopDown2DPlayerController : Singleton<TopDown2DPlayerController>
 
     void Move()
     {
-        if ( knockback.gettingKnockedBack )
+        if ( knockback.gettingKnockedBack || TopDown2DPlayerHealth.Instance.isDead )
         {
             return;
         }

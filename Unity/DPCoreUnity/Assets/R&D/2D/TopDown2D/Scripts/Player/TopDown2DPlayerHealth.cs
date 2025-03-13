@@ -2,21 +2,29 @@ using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class TopDown2DPlayerHealth : Singleton<TopDown2DPlayerHealth>
 {
+    public bool isDead { get; set; }
+
+    [Header( "Player Damage" )]
     [SerializeField] int maxHealth = 3;
     [SerializeField] float knockbackThrustAmount = 10f;
     [SerializeField] float damageRecoveryTime = 1f;
 
-    const string PLAYER_HEALTH_SLIDER_REF = "PlayerHealthSlider";
+    [Header( "Player Death" )]
+    [SerializeField] string playerDeathLoadScene;
+    [SerializeField] float deathSceneLoadDelay = 2f; //TODO: should this be an int???
 
     Slider healthSlider;
     int currentHealth;
     bool canTakeDamage = true;
-
     TopDown2DKnockback knockback;
     TopDown2DDamageFlash damageFlash;
+    const string PLAYER_HEALTH_SLIDER_REF = "PlayerHealthSlider";
+
+    readonly int PLAYER_DEATH_HASH = Animator.StringToHash( "Death" );
 
 
     protected override void Awake()
@@ -29,6 +37,7 @@ public class TopDown2DPlayerHealth : Singleton<TopDown2DPlayerHealth>
 
     void Start()
     {
+        isDead = false;
         currentHealth = maxHealth;
         UpdateHealthSlider();
     }
@@ -67,8 +76,6 @@ public class TopDown2DPlayerHealth : Singleton<TopDown2DPlayerHealth>
         StartCoroutine( damageFlash.DamageFlashRoutine() );
         canTakeDamage = false;
         currentHealth -= damageAmount;
-        Debug.Log( damageAmount + " damage taken!" );
-        Debug.Log( "Current health is: " + currentHealth );
         StartCoroutine( DamageRecoveryRoutine() );
         UpdateHealthSlider();
         DetectDeath();
@@ -77,11 +84,23 @@ public class TopDown2DPlayerHealth : Singleton<TopDown2DPlayerHealth>
 
     void DetectDeath()
     {
-        if ( currentHealth <= 0 )
+        if ( currentHealth <= 0 && !isDead )
         {
+            isDead = true;
+            Destroy( TopDown2DActiveWeapon.Instance.gameObject );
             currentHealth = 0;
+            GetComponent<Animator>().SetTrigger( PLAYER_DEATH_HASH );
+            StartCoroutine( DeathLoadSceneRoutine() );
             Debug.Log( "Player has Died" );
         }
+    }
+
+
+    IEnumerator DeathLoadSceneRoutine()
+    {
+        yield return new WaitForSeconds( deathSceneLoadDelay );
+        Destroy( gameObject );
+        SceneManager.LoadScene( playerDeathLoadScene );
     }
 
 

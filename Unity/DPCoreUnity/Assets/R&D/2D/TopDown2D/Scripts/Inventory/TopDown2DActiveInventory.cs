@@ -1,15 +1,17 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class TopDown2DActiveInventory : MonoBehaviour
+public class TopDown2DActiveInventory : Singleton<TopDown2DActiveInventory>
 {
     int activeSlotIndexNum;
 
     TopDown2DInputActions inputActions;
 
 
-    void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         inputActions = new TopDown2DInputActions();
     }
 
@@ -17,8 +19,6 @@ public class TopDown2DActiveInventory : MonoBehaviour
     void Start()
     {
         inputActions.Inventory.Keyboard.performed += ctx => ToggleActiveSlot( ( int ) ctx.ReadValue<float>() );
-
-        ToggleActiveHighlight( 0 );
     }
 
 
@@ -31,6 +31,12 @@ public class TopDown2DActiveInventory : MonoBehaviour
     void OnDisable()
     {
         inputActions?.Disable();
+    }
+
+
+    public void EquipStartingWeapon()
+    {
+        ToggleActiveHighlight( 0 );
     }
 
 
