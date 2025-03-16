@@ -15,6 +15,7 @@ TagManager:
   - Rocks
   - Snake
   - Tree
+  - Destructible
   layers:
   - Default
   - TransparentFX
@@ -64,6 +65,12 @@ TagManager:
   - name: Platforms
     uniqueID: 1703202029
     locked: 0
+  - name: BuildingsBackground
+    uniqueID: 1139564893
+    locked: 0
+  - name: BuildingsForeground
+    uniqueID: 272721693
+    locked: 0
   - name: Climbing
     uniqueID: 3344187139
     locked: 0
@@ -81,6 +88,9 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 3479684073
+    locked: 0
+  - name: Main
+    uniqueID: 1955431155
     locked: 0
   m_RenderingLayers:
   - Default
