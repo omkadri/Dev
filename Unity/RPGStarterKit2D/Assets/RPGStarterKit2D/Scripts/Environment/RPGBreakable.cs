@@ -4,19 +4,24 @@ using UnityEngine;
 
 public class RPGBreakable : MonoBehaviour
 {
-    [SerializeField] private GameObject blue_rupee;
-    [SerializeField] private enum ObjectType {pot, bush};
-    [SerializeField] private ObjectType objectType;
+    [SerializeField] GameObject blue_rupee;
+    [SerializeField] enum ObjectType {pot, bush};
+    [SerializeField] ObjectType objectType;
 
-    public void BreakObject() {
+
+    public void BreakObject() 
+    {
         gameObject.GetComponent<Animator>().SetTrigger("Break");
         gameObject.GetComponent<BoxCollider2D>().enabled = false;
 
         StartCoroutine(DelayDestroyRoutine(gameObject));
     }
 
-    private IEnumerator DelayDestroyRoutine(GameObject other) {
-        switch (objectType) {
+
+    IEnumerator DelayDestroyRoutine(GameObject other) 
+    {
+        switch (objectType) 
+        {
             case ObjectType.pot: 
                 Instantiate(blue_rupee, transform.position, Quaternion.identity);
                 break;
@@ -24,7 +29,7 @@ public class RPGBreakable : MonoBehaviour
                 break; 
         }
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(2f);//TODO: Magic number
         Destroy(other);
     }
 }

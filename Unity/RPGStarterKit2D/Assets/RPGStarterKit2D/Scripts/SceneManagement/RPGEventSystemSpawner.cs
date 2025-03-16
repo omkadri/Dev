@@ -6,10 +6,11 @@ using UnityEngine.EventSystems;
 // This class exists to remove multiple Event Systems spawning in each scene as only one can exist in a given Scene
 public class RPGEventSystemSpawner : MonoBehaviour 
 {
-    [SerializeField] private GameObject eventSystemprefab;
-    [SerializeField] private GameObject firstSelectedInvObject;
-    
-    private void Start()
+    [SerializeField] GameObject eventSystemprefab;
+    [SerializeField] GameObject firstSelectedInvObject;
+
+
+    void Start()
     {
         EventSystem sceneEventSystem = FindFirstObjectByType<EventSystem>();
         if (sceneEventSystem == null)

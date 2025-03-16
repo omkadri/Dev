@@ -6,37 +6,36 @@ using UnityEngine.UI;
 // Updates the UI on our canvas 
 public class RPGHeartsUI : MonoBehaviour
 {
-    #region Private Variables
+    [SerializeField] Image[] hearts;
+    [SerializeField] Sprite fullHeart;
+    [SerializeField] Sprite emptyHeart;
+    RPGPlayerHealth player;
 
-    [SerializeField] private Image[] hearts;
-    [SerializeField] private Sprite fullHeart;
-    [SerializeField] private Sprite emptyHeart;
-    private RPGPlayerHealth player;
 
-    #endregion
-
-    #region Unity Methods
-
-    private void Awake() {
+    void Awake() 
+    {
     }
 
-    private void Start() {
+
+    void Start() 
+    {
         SetHeartsUI();
     }
 
-    private void Update() {
+
+    void Update() 
+    {
         UpdateHearthUI();
 
-        if (player == null) {
+        if (player == null) 
+        {
             player = FindFirstObjectByType<RPGPlayerHealth>();
         }
     }
+    
 
-    #endregion
-
-    #region Private Methods    
-
-    private void SetHeartsUI() {
+    void SetHeartsUI() 
+    {
         List<Image> allHearts = new List<Image>();
 
         foreach (Transform child in transform)
@@ -48,28 +47,34 @@ public class RPGHeartsUI : MonoBehaviour
     }
     
 
-    private void UpdateHearthUI() {
+    void UpdateHearthUI() 
+    {
         if (player == null) { return; }
 
-        if (player.currentHealth > player.maxHealth){
+        if (player.currentHealth > player.maxHealth)
+        {
             player.currentHealth = player.maxHealth;
         }
 
         for (int i = 0; i < hearts.Length; i++)
         {
-            if (i < player.currentHealth) {
+            if (i < player.currentHealth) 
+            {
                 hearts[i].sprite = fullHeart;
-            } else {
+            } 
+            else 
+            {
                 hearts[i].sprite = emptyHeart;
             }
 
-            if(i < player.maxHealth) {
+            if(i < player.maxHealth) 
+            {
                 hearts[i].enabled = true;
-            } else {
+            } 
+            else 
+            {
                 hearts[i].enabled = false;
             }
         }
     }
-
-    #endregion
 }

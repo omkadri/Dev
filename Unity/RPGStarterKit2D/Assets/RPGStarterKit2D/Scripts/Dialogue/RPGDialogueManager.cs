@@ -6,25 +6,16 @@ using TMPro;
 
 public class RPGDialogueManager : RPGSingleton<RPGDialogueManager>
 {
-    #region Public Variables 
-
     [SerializeField] public GameObject dialogueBox;
     public bool justStarted;
 
-    #endregion
+    [SerializeField] int currentLine;
+    [SerializeField] TMP_Text dialogueText;
+    [SerializeField] TMP_Text nameText;
+    [SerializeField] GameObject nameBox;
+    string[] dialogueLines;
+    const string startsWithSignifierString = "n-";
 
-    #region Private Variables
-
-    [SerializeField] private int currentLine;
-    [SerializeField] private TMP_Text dialogueText;
-    [SerializeField] private TMP_Text nameText;
-    [SerializeField] private GameObject nameBox;
-    private string[] dialogueLines;
-    private const string startsWithSignifierString = "n-";
-
-    #endregion
-
-    #region Public Methods
 
     public void ContinueDialogue()
     {
@@ -50,8 +41,10 @@ public class RPGDialogueManager : RPGSingleton<RPGDialogueManager>
         }
     }
     
+
     // newLines is passed through from the DialogueActivator class that calls this function
-    public void ShowDialogue(string[] newLines, bool isPerson) {
+    public void ShowDialogue(string[] newLines, bool isPerson) 
+    {
         justStarted = true;
         dialogueLines = newLines;
         currentLine = 0;
@@ -63,13 +56,14 @@ public class RPGDialogueManager : RPGSingleton<RPGDialogueManager>
         ContinueDialogue();
     }
 
+
     // Can signify who's talking in the inspector
-    public void CheckIfName() {
-        if (dialogueLines[currentLine].StartsWith(startsWithSignifierString)) {
+    public void CheckIfName() 
+    {
+        if (dialogueLines[currentLine].StartsWith(startsWithSignifierString)) 
+        {
             nameText.text = dialogueLines[currentLine].Replace(startsWithSignifierString, "");
             currentLine++;
         }
     }
-
-    #endregion
 }

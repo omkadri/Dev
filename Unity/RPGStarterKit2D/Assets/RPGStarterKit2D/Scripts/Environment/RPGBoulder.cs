@@ -5,7 +5,8 @@ using UnityEngine;
 public class RPGBoulder : MonoBehaviour
 {
     // Will only be destroyed by bomb.  See AttackDamage.cs
-    public void DestroyBoulder() {
+    public void DestroyBoulder() 
+    {
         Destroy(gameObject);
     }
 }

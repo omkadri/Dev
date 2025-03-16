@@ -8,80 +8,81 @@ using UnityEngine.UI;
 // Updates UI based on event system's current selected object. 
 public class RPGInventoryManager : RPGSingleton<RPGInventoryManager>
 {
-    #region Public Variables
-
     public enum CurrentEquippedItem { Boomerang, Bomb };
     public CurrentEquippedItem currentEquippedItem;
     public GameObject itemEquippedInv;
     public GameObject currentSelectedItem;
     public GameObject inventoryContainer;
 
-    #endregion
+    [SerializeField] GameObject selectionBorder;
+    [SerializeField] EventSystem eventSystem;
+    [SerializeField] Image activeSpriteUI;
+    RPGInputActions inputActions;
+    const string boomerangString = "Boomerang";
+    const string bombString = "Bomb";
 
-    #region Private Variables 
 
-    [SerializeField] private GameObject selectionBorder;
-    [SerializeField] private EventSystem eventSystem;
-    [SerializeField] private Image activeSpriteUI;
-    private RPGPlayerControls playerControls;
-    private const string boomerangString = "Boomerang";
-    private const string bombString = "Bomb";
-
-    #endregion
-
-    #region Unity Methods
-
-    protected override void Awake() {
+    protected override void Awake() 
+    {
         base.Awake();
-        playerControls = new RPGPlayerControls();
+        inputActions = new RPGInputActions();
     }
 
-    private void Start() {
-        playerControls.Inventory.OpenInventoryContainer.performed += _ => OpenInventoryContainer();
+
+    void Start() 
+    {
+        inputActions.Inventory.OpenInventoryContainer.performed += _ => OpenInventoryContainer();
     }
 
-    private void OnEnable() {
-        playerControls.Enable();
+
+    void OnEnable() 
+    {
+        inputActions.Enable();
     }
 
-    private void OnDisable() {
-        if (playerControls != null) {
-            playerControls.Disable();
+
+    void OnDisable() 
+    {
+        if (inputActions != null) 
+        {
+            inputActions.Disable();
         }
     }
 
-    private void Update() {
+
+    void Update() 
+    {
         UpdateDetectIfItemChange();
     }
 
-    #endregion
-
-    #region Public Methods
-
 
     // see EventSystemSpawner.cs
-    public void SetEventSystem(EventSystem newEventSystem) {
+    public void SetEventSystem(EventSystem newEventSystem) 
+    {
         eventSystem = newEventSystem;
     }
 
-    #endregion
 
-    #region Private Methods
-
-    private void OpenInventoryContainer() {
-        if (inventoryContainer.gameObject.activeInHierarchy == false) {
+    void OpenInventoryContainer() 
+    {
+        if (inventoryContainer.gameObject.activeInHierarchy == false) 
+        {
             inventoryContainer.gameObject.SetActive(true);
             RPGPlayerController.Instance.PauseGame();
         }
 
-        else if (inventoryContainer.gameObject.activeInHierarchy == true) {
+        else if (inventoryContainer.gameObject.activeInHierarchy == true) 
+        {
             inventoryContainer.gameObject.SetActive(false);
             RPGPlayerController.Instance.UnpauseGame();
         }
     }
 
-    private void UpdateDetectIfItemChange(){
-        if (currentSelectedItem != eventSystem.currentSelectedGameObject || currentSelectedItem == null) {
+
+    void UpdateDetectIfItemChange()
+    {
+        if (currentSelectedItem != eventSystem.currentSelectedGameObject || currentSelectedItem == null) 
+        {
             currentSelectedItem = eventSystem.currentSelectedGameObject;
             selectionBorder.transform.position = currentSelectedItem.transform.position;
             activeSpriteUI.sprite = currentSelectedItem.GetComponent<Image>().sprite;
@@ -89,25 +90,31 @@ public class RPGInventoryManager : RPGSingleton<RPGInventoryManager>
         }
     }
 
-    private void updateSelectionBorder() {
+
+    void updateSelectionBorder() 
+    {
         selectionBorder.transform.position = currentSelectedItem.transform.position;
     }
 
-    private void ChangeCurrentEquippedItem() { 
+
+    void ChangeCurrentEquippedItem() 
+    { 
         RPGItemDisplay thisItem = currentSelectedItem.GetComponent<RPGItemDisplay>();
         
-        if (thisItem) { 
-            if (thisItem.item.itemType == boomerangString) {
+        if (thisItem) 
+        { 
+            if (thisItem.item.itemType == boomerangString) 
+            {
                 currentEquippedItem = CurrentEquippedItem.Boomerang;
-            } else if (thisItem.item.itemType == bombString) {
+            } else if (thisItem.item.itemType == bombString) 
+            {
                 currentEquippedItem = CurrentEquippedItem.Bomb;
             } 
 
             itemEquippedInv = thisItem.item.useItemPrefab;
-        } else {
+        } else 
+        {
             itemEquippedInv = null;
         }
     }
-
-    #endregion
 }

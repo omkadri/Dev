@@ -8,26 +8,35 @@ public class RPGAreaExit : MonoBehaviour
     public RPGAreaEntrance theEntrance;
     public float waitToLoad = 1f; 
 
-    [SerializeField] private string areaToLoad;
-    [SerializeField] private string areaTransitionName;
-    private bool shouldLoadAfterFade; 
+    [SerializeField] string areaToLoad;
+    [SerializeField] string areaTransitionName;
+    bool shouldLoadAfterFade; 
 
-    private void Start() {
+
+    void Start() 
+    {
         theEntrance.transitionName = areaTransitionName;
     }
 
-    private void Update() { 
-        if(shouldLoadAfterFade) {
+
+    void Update() 
+    { 
+        if(shouldLoadAfterFade) 
+        {
             waitToLoad -= Time.deltaTime;
-            if(waitToLoad <= 0) {
+            if(waitToLoad <= 0) 
+            {
                 shouldLoadAfterFade = false;
                 SceneManager.LoadScene(areaToLoad);
             }
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other) {
-        if (other.tag == "Player") {
+
+    void OnTriggerEnter2D(Collider2D other) 
+    {
+        if (other.tag == "Player") 
+        {
             shouldLoadAfterFade = true;
             RPGUIFade.Instance.FadeToBlack();
 

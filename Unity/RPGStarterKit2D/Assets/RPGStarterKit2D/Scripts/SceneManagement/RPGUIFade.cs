@@ -7,39 +7,46 @@ public class RPGUIFade : RPGSingleton<RPGUIFade>
 {
     public Image fadeScreen;
 
-    [SerializeField] private float fadeSpeed;
-    private bool shouldFadeToBlack;
-    private bool shouldFadeFromBlack;
+    [SerializeField] float fadeSpeed;
+    bool shouldFadeToBlack;
+    bool shouldFadeFromBlack;
     // Declare each coroutine to prevent any potential overlap using StopCoroutine
-    private IEnumerator fadeRoutine;
+    IEnumerator fadeRoutine;
 
-    private void Start() { 
+
+    void Start() 
+    { 
         FadeToClear(); 
     }
-    
+
+
     // Used in Area Entrance/Exit Scripts
     public void FadeToBlack() 
     {
-        if (fadeRoutine != null) {
+        if (fadeRoutine != null) 
+        {
             StopCoroutine(fadeRoutine);
         }
 
         fadeRoutine = FadeRoutine(fadeScreen, 1);
         StartCoroutine(fadeRoutine);
     }
-    
+
+
     // Used in Area Entrance/Exit Scripts
     public void FadeToClear()
     {
-        if (fadeRoutine != null) {
+        if (fadeRoutine != null) 
+        {
             StopCoroutine(fadeRoutine);
         }
         
         fadeRoutine = FadeRoutine(fadeScreen, 0);
         StartCoroutine(fadeRoutine);
     }
-    
-    private IEnumerator FadeRoutine(Image image, float targetAlpha)
+
+
+    IEnumerator FadeRoutine(Image image, float targetAlpha)
     {
         while(!Mathf.Approximately(image.color.a, targetAlpha))
         {

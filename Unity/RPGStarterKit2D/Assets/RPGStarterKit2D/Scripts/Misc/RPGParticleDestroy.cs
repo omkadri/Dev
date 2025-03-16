@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class RPGParticleDestroy : MonoBehaviour
 {
-    [SerializeField] private float waitTime = 3f;
+    [SerializeField] float waitTime = 3f;
+
 
     void Start()
     {
         Destroy(gameObject, waitTime);
     }
-
 }

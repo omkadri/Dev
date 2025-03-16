@@ -5,22 +5,19 @@ using UnityEngine.Tilemaps;
 
 public class RPGCameraController : RPGSingleton<RPGCameraController>
 {
-    #region Private Variables
+    Transform player;
+    Tilemap theMap;
+    Vector3 bottomLeftLimit;
+    Vector3 topRightLimit;
+    float halfHeight;
+    float halfWidth;
+    const string groundString = "Ground";
 
-    private Transform player;
-    private Tilemap theMap;
-    private Vector3 bottomLeftLimit;
-    private Vector3 topRightLimit;
-    private float halfHeight;
-    private float halfWidth;
-    private const string groundString = "Ground";
 
-    #endregion
-
-    #region Unity Methods
-
-    private void Start() {
-        if (FindFirstObjectByType<RPGPlayerController>()) {
+    void Start() 
+    {
+        if (FindFirstObjectByType<RPGPlayerController>()) 
+        {
             player = RPGPlayerController.Instance.transform;
         }
         theMap = GameObject.Find(groundString).GetComponent<Tilemap>();
@@ -32,11 +29,14 @@ public class RPGCameraController : RPGSingleton<RPGCameraController>
         topRightLimit = theMap.localBounds.max + new Vector3(-halfWidth, -halfHeight, 0f);
     }
 
-    private void Update() {
+
+    void Update() 
+    {
         FindPlayer();
     }
 
-    private void LateUpdate()
+
+    void LateUpdate()
     {
         transform.position = new Vector3(player.position.x, player.position.y, transform.position.z);
 
@@ -46,22 +46,20 @@ public class RPGCameraController : RPGSingleton<RPGCameraController>
             transform.position.z);
     }
 
-    #endregion
 
-    #region Private Methods
-
-    private void FindPlayer() {
-        if (player == null) {
+    void FindPlayer() 
+    {
+        if (player == null) 
+        {
             player = RPGPlayerController.Instance.transform;
         }
 
-        if (theMap == null) {
+        if (theMap == null) 
+        {
             theMap = GameObject.Find(groundString).GetComponent<Tilemap>();
 
             bottomLeftLimit = theMap.localBounds.min + new Vector3(halfWidth, halfHeight, 0f);
             topRightLimit = theMap.localBounds.max + new Vector3(-halfWidth, -halfHeight, 0f);
         }
     }
-
-    #endregion
 }

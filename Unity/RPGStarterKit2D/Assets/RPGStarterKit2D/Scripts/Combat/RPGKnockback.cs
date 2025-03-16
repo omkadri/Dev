@@ -5,32 +5,40 @@ using UnityEngine;
 // Knockback class can be put on gameobjects that you want to thrust back with rigidbody force against other objects that would typically deal damage
 public class RPGKnockback : MonoBehaviour
 {
-    [SerializeField] private float knockbackTime;
-    private Rigidbody2D rb;
+    [SerializeField] float knockbackTime;
+    Rigidbody2D rb2d;
 
-    private void Awake() {
-        rb = GetComponent<Rigidbody2D>();
+
+    void Awake() 
+    {
+        rb2d = GetComponent<Rigidbody2D>();
     }
 
-    public void getKnockedBack(Transform damageSource, float knockbackThrust) {
+
+    public void getKnockedBack(Transform damageSource, float knockbackThrust) 
+    {
         Vector2 difference = transform.position - damageSource.position;
-        difference = difference.normalized * knockbackThrust * rb.mass;
-        rb.AddForce(difference, ForceMode2D.Impulse);
+        difference = difference.normalized * knockbackThrust * rb2d.mass;
+        rb2d.AddForce(difference, ForceMode2D.Impulse);
 
         // if KnockBack class is on our player game object
-        if (GetComponent<RPGPlayerController>()) {
+        if (GetComponent<RPGPlayerController>()) 
+        {
             RPGPlayerController.Instance.canMove = false;
         }
 
         StartCoroutine(KnockRoutine());
     }
 
-    private IEnumerator KnockRoutine() {
+
+    IEnumerator KnockRoutine() 
+    {
         yield return new WaitForSeconds(knockbackTime);
-        rb.linearVelocity = Vector2.zero;
+        rb2d.linearVelocity = Vector2.zero;
 
         // if KnockBack class is on our player game object
-        if (GetComponent<RPGPlayerController>()) {
+        if (GetComponent<RPGPlayerController>()) 
+        {
             RPGPlayerController.Instance.canMove = true;
             GetComponent<RPGPlayerHealth>().CheckIfDeath();
         }

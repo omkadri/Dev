@@ -4,24 +4,30 @@ using UnityEngine;
 
 public class RPGEssentialsLoader : MonoBehaviour
 {
-    [SerializeField] private GameObject player;
+    [SerializeField] GameObject player;
     
-    private GameObject cameraContainer;
+    GameObject cameraContainer;
 
-    private void Start()
+
+    void Start()
     {
-        if(RPGPlayerController.Instance == null) {
+        if(RPGPlayerController.Instance == null) 
+        {
             RPGPlayerController clone = Instantiate(player).GetComponent<RPGPlayerController>();
 
             // Can place in any scene to set the spawn point of our hero in that scene
-            if (FindFirstObjectByType<RPGFountainRespawn>()) {
+            if (FindFirstObjectByType<RPGFountainRespawn>()) 
+            {
                 clone.transform.position = FindFirstObjectByType<RPGFountainRespawn>().respawnPoint.transform.position;
-            } else {
+            } 
+            else 
+            {
                 clone.transform.position = FindFirstObjectByType<RPGAreaEntrance>().transform.position;
             }
         }
 
-        if(RPGCameraController.Instance == null) {
+        if(RPGCameraController.Instance == null) 
+        {
             Instantiate(cameraContainer).GetComponent<RPGCameraController>();
         }
     }
