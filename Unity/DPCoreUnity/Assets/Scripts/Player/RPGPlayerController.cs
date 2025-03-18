@@ -8,9 +8,9 @@ public class RPGPlayerController : RPGSingleton<RPGPlayerController>
     // For use of AreaExit and AreaEntrance scripts
     public string areaTransitionName;
     public GameObject itemEquipped;
-    public bool canAttack = true;
-    public bool canMove = true;
-    public bool itemInUse = false;
+    public bool canAttack = true;//TODO: Create public getter
+    public bool canMove = true;//TODO: Create public getter
+    public bool itemInUse = false;//TODO: Create public getter
 
     [SerializeField] Rigidbody2D rb2d;
     [SerializeField] float moveSpeed;

@@ -6,7 +6,7 @@ using UnityEngine;
 public class RPGDialogueActivator : MonoBehaviour
 {
     public string[] lines;
-    public bool isPerson;
+    public bool isPerson; //TODO: Create public getter
 
     [SerializeField] GameObject buttonUI;
     bool canActivate;

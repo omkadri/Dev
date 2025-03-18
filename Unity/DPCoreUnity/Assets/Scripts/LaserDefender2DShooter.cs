@@ -14,7 +14,7 @@ public class LaserDefender2DShooter : MonoBehaviour
     [SerializeField] float fireRateVariance = 0f;
     [SerializeField] float minFireRate = 0.1f;
 
-    [HideInInspector] public bool isFiring;
+    [HideInInspector] public bool isFiring;//TODO: Create public getter
 
     Coroutine firingCoroutine;
     LaserDefender2DAudioPlayer audioPlayer;

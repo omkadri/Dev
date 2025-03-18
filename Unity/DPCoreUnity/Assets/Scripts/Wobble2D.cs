@@ -8,7 +8,7 @@ public class Wobble2D : MonoBehaviour
     [SerializeField] float maxRotationAngle = 20f;
     float currentAngle = 0f;
     bool rotatingRight = true;
-    public bool canWobble = true;
+    public bool canWobble = true;//TODO: Create public getter
     void Update()
     {
         if (canWobble)

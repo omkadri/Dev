@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RPGEnemyMovement : MonoBehaviour
 {
-    public bool canMove = true;
+    public bool canMove = true;//TODO: Create public getter
     public float enemyKnockBackThrust = 15f;
     public int damageDoneToHero;
 

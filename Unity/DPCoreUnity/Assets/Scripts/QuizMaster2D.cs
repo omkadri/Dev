@@ -32,7 +32,7 @@ public class QuizMaster2D : MonoBehaviour
     [Header("ProgressBar")]
     [SerializeField] Slider progressBar;
 
-    public bool isComplete;
+    public bool isComplete;//TODO: Create public getter
 
 
     void Awake()

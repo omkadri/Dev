@@ -6,7 +6,7 @@ using UnityEngine;
 public class RPGAttackDamage : MonoBehaviour
 {
     // turned on in Bomb.cs script
-    public bool isBombExplosion = false;
+    public bool isBombExplosion = false;//TODO: Create public getter
 
     [SerializeField] int damageAmount;
     [SerializeField] float knockbackTime;

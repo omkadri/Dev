@@ -21,7 +21,7 @@ public class TopDown2DPlayerController : Singleton<TopDown2DPlayerController>
     TopDown2DKnockback knockback;
 
     [HideInInspector]
-    public bool isFacingLeft = false;
+    public bool isFacingLeft = false;//TODO: Create public getter
     float startingMoveSpeed;
     bool isDashing = false;
 

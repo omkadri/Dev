@@ -9,8 +9,8 @@ public class QuizMaster2DTimer : MonoBehaviour
     [SerializeField] float timeToCompleteQuestion = 30f;
     [SerializeField] float timeToShowCorrectAnswer = 10f;
 
-    public bool loadNextQuestion;
-    public bool isAnsweringQuestion;
+    public bool loadNextQuestion;//TODO: Create public getter
+    public bool isAnsweringQuestion;//TODO: Create public getter
     public float fillFraction;
     float timerValue;
     TextMeshProUGUI timerText;

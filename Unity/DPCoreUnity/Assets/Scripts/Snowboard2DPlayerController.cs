@@ -8,7 +8,7 @@ public class Snowboard2DPlayerController : MonoBehaviour
     [SerializeField] float torqueAmount = 0.5f;
     [SerializeField] float baseSpeed = 20f;
     [SerializeField] float boostSpeed = 40f;
-    public bool canMove = true;
+    public bool canMove = true;//TODO: Create public getter
     Rigidbody2D rb2d;
     SurfaceEffector2D surfaceEffector2D;
 

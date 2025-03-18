@@ -7,7 +7,7 @@ using TMPro;
 public class RPGDialogueManager : RPGSingleton<RPGDialogueManager>
 {
     [SerializeField] public GameObject dialogueBox;
-    public bool justStarted;
+    public bool justStarted;//TODO: Create public getter
 
     [SerializeField] int currentLine;
     [SerializeField] TMP_Text dialogueText;
