@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 
 public class GameFeelTemplate2DPlayerInput : MonoBehaviour
 {
+    public FrameInput FrameInput { get; private set; }
     GameFeelTemplate2DInputActions inputActions;
     InputAction move;
     InputAction jump;
@@ -27,4 +28,27 @@ public class GameFeelTemplate2DPlayerInput : MonoBehaviour
     {
         inputActions.Disable();
     }
+
+
+    void Update()
+    {
+        FrameInput = GatherInput();
+    }
+
+
+    FrameInput GatherInput()
+    {
+        return new FrameInput
+        {
+            Move = move.ReadValue<Vector2>(),
+            Jump = jump.WasPressedThisFrame(),
+        };
+    }
+}
+
+
+public struct FrameInput
+{
+    public Vector2 Move;
+    public bool Jump;
 }

@@ -12,7 +12,9 @@ public class GameFeelTemplate2DPlayerController : MonoBehaviour
     [SerializeField] float moveSpeed = 5f;
     [SerializeField] float jumpStrength = 7f;
 
-    bool isGrounded = false;
+    GameFeelTemplate2DPlayerInput playerInput;
+    FrameInput frameInput;
+
     Vector2 movement;
 
     Rigidbody2D rb2d;
@@ -26,6 +28,7 @@ public class GameFeelTemplate2DPlayerController : MonoBehaviour
         }
 
         rb2d = GetComponent<Rigidbody2D>();
+        playerInput = GetComponent<GameFeelTemplate2DPlayerInput>();
     }
 
 
@@ -65,21 +68,28 @@ public class GameFeelTemplate2DPlayerController : MonoBehaviour
 
     void GatherInput()
     {
-        float moveX = Input.GetAxis("Horizontal");
-        movement = new Vector2(moveX * moveSpeed, rb2d.linearVelocity.y);
+        // float moveX = Input.GetAxis("Horizontal");
+
+        frameInput = playerInput.FrameInput;
+        movement = new Vector2(frameInput.Move.x * moveSpeed, rb2d.linearVelocity.y);
     }
 
 
     void Move() 
     {
 
-        rb2d.linearVelocity = movement;
+        rb2d.linearVelocity = new Vector2( movement.x, rb2d.linearVelocity.y );
     }
 
 
     void Jump()
     {
-        if ( Input.GetKeyDown(KeyCode.Space) && CheckGrounded() ) 
+        if ( !frameInput.Jump )
+        {
+            return;
+        }
+
+        if ( CheckGrounded() ) 
         {
             rb2d.AddForce(Vector2.up * jumpStrength, ForceMode2D.Impulse);
         }
