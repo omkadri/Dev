@@ -6,6 +6,9 @@ public class GameFeelTemplate2DPlayerController : MonoBehaviour
 {
     public static GameFeelTemplate2DPlayerController Instance;
 
+    [SerializeField] Transform feetTransform;
+    [SerializeField] Vector2 groundCheck;
+    [SerializeField] LayerMask groundLayer;
     [SerializeField] float moveSpeed = 5f;
     [SerializeField] float jumpStrength = 7f;
 
@@ -40,27 +43,23 @@ public class GameFeelTemplate2DPlayerController : MonoBehaviour
     }
 
 
-    void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Ground"))
-        {
-            isGrounded = true;
-        }
-    }
-
-
-    void OnCollisionExit2D(Collision2D other)
-    {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Ground"))
-        {
-            isGrounded = false;
-        }
-    }
-
-
     public bool IsFacingRight()
     {
         return transform.eulerAngles.y == 0;
+    }
+
+
+    bool CheckGrounded()
+    {
+        Collider2D isGrounded = Physics2D.OverlapBox( feetTransform.position, groundCheck, 0f, groundLayer );//This draws a collider box on the ground layer at the player feet positions
+        return isGrounded;
+    }
+
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube( feetTransform.position, groundCheck );//DEBUG DRAW
     }
 
 
@@ -80,7 +79,8 @@ public class GameFeelTemplate2DPlayerController : MonoBehaviour
 
     void Jump()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded) {
+        if ( Input.GetKeyDown(KeyCode.Space) && CheckGrounded() ) 
+        {
             rb2d.AddForce(Vector2.up * jumpStrength, ForceMode2D.Impulse);
         }
     }
