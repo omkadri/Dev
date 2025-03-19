@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Android.Gradle.Manifest;
 using UnityEngine;
 
 public class GameFeelTemplate2DPlayerController : MonoBehaviour
@@ -10,10 +11,13 @@ public class GameFeelTemplate2DPlayerController : MonoBehaviour
     [SerializeField] Vector2 groundCheck;
     [SerializeField] LayerMask groundLayer;
     [SerializeField] float jumpStrength = 7f;
+    [SerializeField] float extraGravity = 700f;
+    [SerializeField] float gravityDelay = 0.2f;
+
+    float timeInAir;
 
     GameFeelTemplate2DPlayerInput playerInput;
     FrameInput frameInput;
-
     Rigidbody2D rb2d;
     GameFeelTemplate2DMovement movement;
 
@@ -37,6 +41,13 @@ public class GameFeelTemplate2DPlayerController : MonoBehaviour
         Movement();
         Jump();
         HandleSpriteFlip();
+        GravityDelay();
+    }
+
+
+    void FixedUpdate()
+    {
+        ExtraGravity();
     }
 
 
@@ -57,6 +68,28 @@ public class GameFeelTemplate2DPlayerController : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube( feetTransform.position, groundCheck );//DEBUG DRAW
+    }
+
+
+    public void GravityDelay()
+    {
+        if( !CheckGrounded() )
+        {
+            timeInAir += Time.deltaTime;
+        }
+        else
+        {
+            timeInAir = 0f;
+        }
+    }
+
+
+    void ExtraGravity()
+    {
+        if( timeInAir > gravityDelay )
+        {
+            rb2d.AddForce( new Vector2( 0f, -extraGravity * Time.deltaTime ) );
+        }
     }
 
 

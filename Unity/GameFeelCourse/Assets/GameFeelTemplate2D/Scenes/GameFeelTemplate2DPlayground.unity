@@ -7689,7 +7689,9 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
-  jumpStrength: 10
+  jumpStrength: 12
+  extraGravity: 900
+  gravityDelay: 0.2
 --- !u!70 &2011273897
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
