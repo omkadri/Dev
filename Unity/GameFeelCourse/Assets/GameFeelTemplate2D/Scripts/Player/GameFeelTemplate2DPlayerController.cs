@@ -1,10 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.Android.Gradle.Manifest;
 using UnityEngine;
+using System;
 
 public class GameFeelTemplate2DPlayerController : MonoBehaviour
 {
+    public static Action OnJump;
+
     public static GameFeelTemplate2DPlayerController Instance;
 
     [SerializeField] Transform feetTransform;
@@ -15,6 +15,7 @@ public class GameFeelTemplate2DPlayerController : MonoBehaviour
     [SerializeField] float gravityDelay = 0.2f;
 
     float timeInAir;
+    bool canDoubleJump;
 
     GameFeelTemplate2DPlayerInput playerInput;
     FrameInput frameInput;
@@ -35,11 +36,23 @@ public class GameFeelTemplate2DPlayerController : MonoBehaviour
     }
 
 
+    void OnEnable()
+    {
+        OnJump += ApplyJumpForce;
+    }
+
+
+    void OnDisable()
+    {
+        OnJump -= ApplyJumpForce;
+    }
+
+
     void Update()
     {
         GatherInput();
         Movement();
-        Jump();
+        HandleJump();
         HandleSpriteFlip();
         GravityDelay();
     }
@@ -105,17 +118,31 @@ public class GameFeelTemplate2DPlayerController : MonoBehaviour
     }
 
 
-    void Jump()
+    void HandleJump()//TODO: Explore making jump it's own component
     {
         if ( !frameInput.Jump )
         {
             return;
         }
 
-        if ( CheckGrounded() ) 
+        if ( canDoubleJump )
         {
-            rb2d.AddForce(Vector2.up * jumpStrength, ForceMode2D.Impulse);
+            canDoubleJump = false;
+            OnJump?.Invoke();
         }
+        else if ( CheckGrounded() )
+        {
+            canDoubleJump = true;
+            OnJump?.Invoke();
+        }
+    }
+
+
+    void ApplyJumpForce()
+    {
+        rb2d.linearVelocity = Vector2.zero;
+        timeInAir = 0f;
+        rb2d.AddForce(Vector2.up * jumpStrength, ForceMode2D.Impulse);
     }
 
 
