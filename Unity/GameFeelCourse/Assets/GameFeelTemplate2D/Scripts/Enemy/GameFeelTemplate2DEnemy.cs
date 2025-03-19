@@ -3,19 +3,18 @@ using UnityEngine;
 
 public class GameFeelTemplate2DEnemy : MonoBehaviour
 {
-    [SerializeField] float moveSpeed = 3f;
     [SerializeField] float jumpForce = 7f;
     [SerializeField] float jumpInterval = 4f;
     [SerializeField] float changeDirInterval = 3f;
 
-    int currentDir;
-
     Rigidbody2D rb2d;
+    GameFeelTemplate2DMovement movement;
 
 
     void Awake()
     {
         rb2d = GetComponent<Rigidbody2D>();
+        movement = GetComponent<GameFeelTemplate2DMovement>();
     }
 
 
@@ -26,24 +25,12 @@ public class GameFeelTemplate2DEnemy : MonoBehaviour
     }
 
 
-    void FixedUpdate()
-    {
-        Move();
-    }
-
-
-    void Move()
-    {
-        Vector2 newVelocity = new(currentDir * moveSpeed, rb2d.linearVelocity.y);
-        rb2d.linearVelocity = newVelocity;
-    }
-
-
     IEnumerator ChangeDirectionRoutine()
     {
         while (true)
         {
-            currentDir = UnityEngine.Random.Range(0, 2) * 2 - 1; // 1 or -1
+            float currentDir = UnityEngine.Random.Range(0, 2) * 2 - 1; // 1 or -1
+            movement.SetCurrentDirection( currentDir );
             yield return new WaitForSeconds(changeDirInterval);
         }
     }

@@ -836,6 +836,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2011273886}
   - component: {fileID: 2011273896}
+  - component: {fileID: 2011273899}
   - component: {fileID: 2011273892}
   - component: {fileID: 2011273891}
   - component: {fileID: 2011273897}
@@ -7688,7 +7689,6 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
-  moveSpeed: 12
   jumpStrength: 10
 --- !u!70 &2011273897
 CapsuleCollider2D:
@@ -7739,6 +7739,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6e532c391b2b9c45b801ee436148b10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2011273899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 817729410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3adc71c5d58a4dc4eb0c4c4baea6eed5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 10
 --- !u!1 &2043640393
 GameObject:
   m_ObjectHideFlags: 0

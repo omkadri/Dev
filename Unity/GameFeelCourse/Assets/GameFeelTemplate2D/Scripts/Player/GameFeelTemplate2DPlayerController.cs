@@ -9,15 +9,13 @@ public class GameFeelTemplate2DPlayerController : MonoBehaviour
     [SerializeField] Transform feetTransform;
     [SerializeField] Vector2 groundCheck;
     [SerializeField] LayerMask groundLayer;
-    [SerializeField] float moveSpeed = 5f;
     [SerializeField] float jumpStrength = 7f;
 
     GameFeelTemplate2DPlayerInput playerInput;
     FrameInput frameInput;
 
-    Vector2 movement;
-
     Rigidbody2D rb2d;
+    GameFeelTemplate2DMovement movement;
 
 
     public void Awake() 
@@ -29,20 +27,16 @@ public class GameFeelTemplate2DPlayerController : MonoBehaviour
 
         rb2d = GetComponent<Rigidbody2D>();
         playerInput = GetComponent<GameFeelTemplate2DPlayerInput>();
+        movement = GetComponent<GameFeelTemplate2DMovement>();
     }
 
 
     void Update()
     {
         GatherInput();
+        Movement();
         Jump();
         HandleSpriteFlip();
-    }
-
-
-    void FixedUpdate() 
-    {
-        Move();
     }
 
 
@@ -68,17 +62,13 @@ public class GameFeelTemplate2DPlayerController : MonoBehaviour
 
     void GatherInput()
     {
-        // float moveX = Input.GetAxis("Horizontal");
-
         frameInput = playerInput.FrameInput;
-        movement = new Vector2(frameInput.Move.x * moveSpeed, rb2d.linearVelocity.y);
     }
 
 
-    void Move() 
+    void Movement() 
     {
-
-        rb2d.linearVelocity = new Vector2( movement.x, rb2d.linearVelocity.y );
+        movement.SetCurrentDirection( frameInput.Move.x );
     }
 
 
