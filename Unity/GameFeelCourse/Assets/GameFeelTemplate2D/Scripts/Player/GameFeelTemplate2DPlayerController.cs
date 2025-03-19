@@ -13,9 +13,11 @@ public class GameFeelTemplate2DPlayerController : MonoBehaviour
     [SerializeField] float jumpStrength = 7f;
     [SerializeField] float extraGravity = 700f;
     [SerializeField] float gravityDelay = 0.2f;
+    [SerializeField] float coyoteTime = 0.1f; //window of time for player to jump after walking of ledge
 
     float timeInAir;
-    bool canDoubleJump;
+    float coyoteTimer;
+    bool canDoubleJump;//TODO: Investigate adding slight cooldown so that spamming double jump doesn't look weird
 
     GameFeelTemplate2DPlayerInput playerInput;
     FrameInput frameInput;
@@ -52,6 +54,7 @@ public class GameFeelTemplate2DPlayerController : MonoBehaviour
     {
         GatherInput();
         Movement();
+        CoyoteTimer();
         HandleJump();
         HandleSpriteFlip();
         GravityDelay();
@@ -125,15 +128,32 @@ public class GameFeelTemplate2DPlayerController : MonoBehaviour
             return;
         }
 
-        if ( canDoubleJump )
+        if ( CheckGrounded() )
+        {
+            OnJump?.Invoke();
+        }
+        else if ( coyoteTimer > 0f )
+        {
+            OnJump?.Invoke();
+        }
+        else if ( canDoubleJump )
         {
             canDoubleJump = false;
             OnJump?.Invoke();
         }
-        else if ( CheckGrounded() )
+    }
+
+
+    private void CoyoteTimer()
+    {
+        if ( CheckGrounded() )
         {
+            coyoteTimer = coyoteTime;
             canDoubleJump = true;
-            OnJump?.Invoke();
+        }
+        else
+        {
+            coyoteTimer -= Time.deltaTime;
         }
     }
 
@@ -142,6 +162,7 @@ public class GameFeelTemplate2DPlayerController : MonoBehaviour
     {
         rb2d.linearVelocity = Vector2.zero;
         timeInAir = 0f;
+        coyoteTimer = 0f;
         rb2d.AddForce(Vector2.up * jumpStrength, ForceMode2D.Impulse);
     }
 
