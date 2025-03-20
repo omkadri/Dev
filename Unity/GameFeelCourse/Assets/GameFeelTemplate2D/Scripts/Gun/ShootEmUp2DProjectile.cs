@@ -18,22 +18,15 @@ public class ShootEmUp2DProjectile : MonoBehaviour
     }
 
 
-    void Start() 
-    {
-        if (ShootEmUp2DPlayerController.Instance.IsFacingRight()) 
-        {
-            fireDir = Vector2.right;
-        } 
-        else 
-        {
-            fireDir = Vector2.left;
-        }
-    }
-
-
     void FixedUpdate()
     {
         rb2d.linearVelocity = fireDir * moveSpeed;
+    }
+
+
+    public void Init( Vector2 projectileSpawnPos, Vector2 mousePos)
+    {
+        fireDir = ( mousePos - projectileSpawnPos ).normalized;
     }
 
 

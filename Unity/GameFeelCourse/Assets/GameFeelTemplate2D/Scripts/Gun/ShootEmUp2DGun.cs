@@ -32,6 +32,7 @@ public class ShootEmUp2DGun : MonoBehaviour
     void ShootProjectile()
     {
         ShootEmUp2DProjectile newProjectile = Instantiate(projectilePrefab, projectileSpawnPoint.position, Quaternion.identity);
+        newProjectile.Init( projectileSpawnPoint.position, mousePos );
     }
 
 
