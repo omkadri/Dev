@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameFeelTemplate2DProjectile : MonoBehaviour
+public class ShootEmUp2DProjectile : MonoBehaviour
 {
     [SerializeField] float moveSpeed = 10f;
     [SerializeField] int damageAmount = 1;
@@ -20,7 +20,7 @@ public class GameFeelTemplate2DProjectile : MonoBehaviour
 
     void Start() 
     {
-        if (GameFeelTemplate2DPlayerController.Instance.IsFacingRight()) 
+        if (ShootEmUp2DPlayerController.Instance.IsFacingRight()) 
         {
             fireDir = Vector2.right;
         } 
@@ -39,7 +39,7 @@ public class GameFeelTemplate2DProjectile : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other) 
     {
-        GameFeelTemplate2DHealth health = other.gameObject.GetComponent<GameFeelTemplate2DHealth>();
+        ShootEmUp2DHealth health = other.gameObject.GetComponent<ShootEmUp2DHealth>();
         health?.TakeDamage(damageAmount);
         Destroy(this.gameObject);
     }

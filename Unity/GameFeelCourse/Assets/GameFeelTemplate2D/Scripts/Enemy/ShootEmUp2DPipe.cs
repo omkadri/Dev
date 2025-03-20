@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameFeelTemplate2DPipe : MonoBehaviour
+public class ShootEmUp2DPipe : MonoBehaviour
 {
-    [SerializeField] GameFeelTemplate2DEnemy enemyPrefab;
+    [SerializeField] ShootEmUp2DEnemy enemyPrefab;
     [SerializeField] float spawnTimer = 3f;
 
 
@@ -18,7 +18,7 @@ public class GameFeelTemplate2DPipe : MonoBehaviour
     {
         while (true)
         {
-            GameFeelTemplate2DEnemy enemy = Instantiate(enemyPrefab, transform.position, transform.rotation);
+            ShootEmUp2DEnemy enemy = Instantiate(enemyPrefab, transform.position, transform.rotation);
             yield return new WaitForSeconds(spawnTimer);
         }
     }

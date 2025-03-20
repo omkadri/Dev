@@ -1,11 +1,11 @@
 using UnityEngine;
 using System;
 
-public class GameFeelTemplate2DPlayerController : MonoBehaviour
+public class ShootEmUp2DPlayerController : MonoBehaviour
 {
     public static Action OnJump;
 
-    public static GameFeelTemplate2DPlayerController Instance;
+    public static ShootEmUp2DPlayerController Instance;
 
     [SerializeField] Transform feetTransform;
     [SerializeField] Vector2 groundCheck;
@@ -19,10 +19,10 @@ public class GameFeelTemplate2DPlayerController : MonoBehaviour
     float coyoteTimer;
     bool canDoubleJump;//TODO: Investigate adding slight cooldown so that spamming double jump doesn't look weird
 
-    GameFeelTemplate2DPlayerInput playerInput;
+    ShootEmUp2DPlayerInput playerInput;
     FrameInput frameInput;
     Rigidbody2D rb2d;
-    GameFeelTemplate2DMovement movement;
+    ShootEmUp2DMovement movement;
 
 
     public void Awake() 
@@ -33,8 +33,8 @@ public class GameFeelTemplate2DPlayerController : MonoBehaviour
         }
 
         rb2d = GetComponent<Rigidbody2D>();
-        playerInput = GetComponent<GameFeelTemplate2DPlayerInput>();
-        movement = GetComponent<GameFeelTemplate2DMovement>();
+        playerInput = GetComponent<ShootEmUp2DPlayerInput>();
+        movement = GetComponent<ShootEmUp2DMovement>();
     }
 
 

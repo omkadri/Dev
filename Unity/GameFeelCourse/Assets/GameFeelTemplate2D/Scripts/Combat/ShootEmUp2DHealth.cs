@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameFeelTemplate2DHealth : MonoBehaviour
+public class ShootEmUp2DHealth : MonoBehaviour
 {
     [SerializeField] int startingHealth = 3;
 

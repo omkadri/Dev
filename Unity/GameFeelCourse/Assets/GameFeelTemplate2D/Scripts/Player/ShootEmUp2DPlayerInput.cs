@@ -1,17 +1,17 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class GameFeelTemplate2DPlayerInput : MonoBehaviour
+public class ShootEmUp2DPlayerInput : MonoBehaviour
 {
     public FrameInput FrameInput { get; private set; }
-    GameFeelTemplate2DInputActions inputActions;
+    ShootEmUp2DInputActions inputActions;
     InputAction move;
     InputAction jump;
 
 
     void Awake()
     {
-        inputActions = new GameFeelTemplate2DInputActions();
+        inputActions = new ShootEmUp2DInputActions();
 
         move = inputActions.Player.Move;
         jump = inputActions.Player.Jump;

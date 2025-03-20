@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class GameFeelTemplate2DMovement : MonoBehaviour
+public class ShootEmUp2DMovement : MonoBehaviour
 {
     [SerializeField] float moveSpeed = 10f;
 

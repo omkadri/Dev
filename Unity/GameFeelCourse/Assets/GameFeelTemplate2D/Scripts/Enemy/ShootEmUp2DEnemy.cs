@@ -1,20 +1,20 @@
 using System.Collections;
 using UnityEngine;
 
-public class GameFeelTemplate2DEnemy : MonoBehaviour
+public class ShootEmUp2DEnemy : MonoBehaviour
 {
     [SerializeField] float jumpForce = 7f;
     [SerializeField] float jumpInterval = 4f;
     [SerializeField] float changeDirInterval = 3f;
 
     Rigidbody2D rb2d;
-    GameFeelTemplate2DMovement movement;
+    ShootEmUp2DMovement movement;
 
 
     void Awake()
     {
         rb2d = GetComponent<Rigidbody2D>();
-        movement = GetComponent<GameFeelTemplate2DMovement>();
+        movement = GetComponent<ShootEmUp2DMovement>();
     }
 
 
