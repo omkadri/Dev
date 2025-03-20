@@ -9,20 +9,22 @@ public class ShootEmUp2DGun : MonoBehaviour
 
     [SerializeField] Transform projectileSpawnPoint;
     [SerializeField] ShootEmUp2DProjectile projectilePrefab;
+    [SerializeField] float fireCoolDown = 0.1f;//TODO: replace fireCoolDown with fireRate
 
     Vector2 mousePos;
+    float lastFireTime = 0f;
 
 
     void Update()
     {
-        Shoot();
+        HandleShooting();
         RotateGunWithMouse();
     }
 
 
-    void Shoot()
+    void HandleShooting()
     {
-        if (Input.GetMouseButtonDown(0)) 
+        if ( Input.GetMouseButton(0) && Time.time >= lastFireTime )//Time.time returns the time since game has started
         {
             ShootProjectile();
         }
@@ -31,6 +33,7 @@ public class ShootEmUp2DGun : MonoBehaviour
 
     void ShootProjectile()
     {
+        lastFireTime = Time.time + fireCoolDown;
         ShootEmUp2DProjectile newProjectile = Instantiate(projectilePrefab, projectileSpawnPoint.position, Quaternion.identity);
         newProjectile.Init( projectileSpawnPoint.position, mousePos );
     }
