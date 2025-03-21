@@ -5,15 +5,30 @@ using UnityEngine;
 
 public class ShootEmUp2DGun : MonoBehaviour
 {
+    //EVENTS
     public static Action OnShoot;
-    public Transform ProjectileSpawnPoint => projectileSpawnPoint;
 
+    //PUBLIC VARIABLES
+    public Transform ProjectileSpawnPoint => projectileSpawnPoint;//TODO: understand what => is doing.
+
+    //SERIALIZED VARIABLES
     [SerializeField] Transform projectileSpawnPoint;
     [SerializeField] ShootEmUp2DProjectile projectilePrefab;
     [SerializeField] float fireCoolDown = 0.1f;//TODO: replace fireCoolDown with fireRate
 
+    //PRIVATE VARIABLES
+    static readonly int FIRE_HASH = Animator.StringToHash( "ShootEmUp2DGunFire" );
     Vector2 mousePos;
     float lastFireTime = 0f;
+
+    //COMPONENTS
+    Animator animator;
+
+
+    void Awake()
+    {
+        animator = GetComponent<Animator>();
+    }
 
 
     void Update()
@@ -27,6 +42,7 @@ public class ShootEmUp2DGun : MonoBehaviour
     {
         OnShoot += ResetLastFireTime;
         OnShoot += ShootProjectile;
+        OnShoot += FireAnimation;
         //animate
         //sfx
         //muzzle flash
@@ -37,6 +53,7 @@ public class ShootEmUp2DGun : MonoBehaviour
     {
         OnShoot -= ResetLastFireTime;
         OnShoot -= ShootProjectile;
+        OnShoot -= FireAnimation;
     }
 
 
@@ -54,6 +71,12 @@ public class ShootEmUp2DGun : MonoBehaviour
     {
         ShootEmUp2DProjectile newProjectile = Instantiate(projectilePrefab, projectileSpawnPoint.position, Quaternion.identity);
         newProjectile.Init( projectileSpawnPoint.position, mousePos );
+    }
+
+
+    void FireAnimation()
+    {
+        animator.Play( FIRE_HASH, 0, 0f );
     }
 
 
