@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class ShootEmUp2DGun : MonoBehaviour
 {
+    public static Action OnShoot;
     public Transform ProjectileSpawnPoint => projectileSpawnPoint;
 
     [SerializeField] Transform projectileSpawnPoint;
@@ -22,20 +23,43 @@ public class ShootEmUp2DGun : MonoBehaviour
     }
 
 
+    void OnEnable()
+    {
+        OnShoot += ResetLastFireTime;
+        OnShoot += ShootProjectile;
+        //animate
+        //sfx
+        //muzzle flash
+    }
+
+
+    void OnDisable()
+    {
+        OnShoot -= ResetLastFireTime;
+        OnShoot -= ShootProjectile;
+    }
+
+
     void HandleShooting()
     {
         if ( Input.GetMouseButton(0) && Time.time >= lastFireTime )//Time.time returns the time since game has started
         {
-            ShootProjectile();
+            
+            OnShoot?.Invoke();
         }
     }
 
 
     void ShootProjectile()
     {
-        lastFireTime = Time.time + fireCoolDown;
         ShootEmUp2DProjectile newProjectile = Instantiate(projectilePrefab, projectileSpawnPoint.position, Quaternion.identity);
         newProjectile.Init( projectileSpawnPoint.position, mousePos );
+    }
+
+
+    void ResetLastFireTime()
+    {
+        lastFireTime = Time.time + fireCoolDown;
     }
 
 
