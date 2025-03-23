@@ -2,14 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Pool;
 
-public class ShootEmUp2DGun : MonoBehaviour
+public class ShootEmUp2DRangedWeapon : MonoBehaviour
 {
     //EVENTS
     public static Action OnShoot;
-
-    //PUBLIC VARIABLES
-    public Transform ProjectileSpawnPoint => projectileSpawnPoint;//TODO: understand what => is doing.
 
     //SERIALIZED VARIABLES
     [SerializeField] Transform projectileSpawnPoint;
@@ -17,9 +15,12 @@ public class ShootEmUp2DGun : MonoBehaviour
     [SerializeField] float fireCoolDown = 0.1f;//TODO: replace fireCoolDown with fireRate
 
     //PRIVATE VARIABLES
+    ObjectPool<ShootEmUp2DProjectile> projectilePool;
     static readonly int FIRE_HASH = Animator.StringToHash( "ShootEmUp2DGunFire" );
     Vector2 mousePos;
     float lastFireTime = 0f;
+    int minProjectilePoolSize = 20;
+    int maxProjectilePoolSize = 40;//TODO: Investigate if these are the best values
 
     //COMPONENTS
     Animator animator;
@@ -28,6 +29,12 @@ public class ShootEmUp2DGun : MonoBehaviour
     void Awake()
     {
         animator = GetComponent<Animator>();
+    }
+
+
+    void Start()
+    {
+        CreateProjectilePool();
     }
 
 
@@ -57,6 +64,27 @@ public class ShootEmUp2DGun : MonoBehaviour
     }
 
 
+    public void ReleaseProjectileFromPool( ShootEmUp2DProjectile projectile )
+    {
+        projectilePool.Release( projectile );
+    }
+
+    
+    void CreateProjectilePool()//OBJECT POOLING
+    {
+        projectilePool = new ObjectPool<ShootEmUp2DProjectile>
+        (
+            () => { return Instantiate( projectilePrefab ); }, //1. Create function - makes new object in the pool
+            projectilePrefab => { projectilePrefab.gameObject.SetActive( true ); }, //2. Activate function - passes instantiated object for relative use
+            projectilePrefab => { projectilePrefab.gameObject.SetActive( false ); }, //3. Deactivate function - retrieves instantiated object that is no longer in use
+            projectilePrefab => { Destroy( projectilePrefab ); }, //4. Destroy function - Destroys object if pool is too big
+            false, //5. Checks if ???
+            minProjectilePoolSize,//6. Max objects in pool
+            maxProjectilePoolSize //7. Max objects in pool
+        );
+    }
+
+
     void HandleShooting()
     {
         if ( Input.GetMouseButton(0) && Time.time >= lastFireTime )//Time.time returns the time since game has started
@@ -69,8 +97,8 @@ public class ShootEmUp2DGun : MonoBehaviour
 
     void ShootProjectile()
     {
-        ShootEmUp2DProjectile newProjectile = Instantiate(projectilePrefab, projectileSpawnPoint.position, Quaternion.identity);
-        newProjectile.Init( projectileSpawnPoint.position, mousePos );
+        ShootEmUp2DProjectile newProjectile = projectilePool.Get();
+        newProjectile.Init( this, projectileSpawnPoint.position, mousePos );
     }
 
 

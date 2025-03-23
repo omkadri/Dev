@@ -8,8 +8,8 @@ public class ShootEmUp2DProjectile : MonoBehaviour
     [SerializeField] int damageAmount = 1;
 
     Vector2 fireDir;
-
     Rigidbody2D rb2d;
+    ShootEmUp2DRangedWeapon rangedWeapon;
 
 
     void Awake()
@@ -24,8 +24,10 @@ public class ShootEmUp2DProjectile : MonoBehaviour
     }
 
 
-    public void Init( Vector2 projectileSpawnPos, Vector2 mousePos)
+    public void Init(ShootEmUp2DRangedWeapon weapon, Vector2 projectileSpawnPos, Vector2 mousePos)
     {
+        rangedWeapon = weapon;
+        transform.position = projectileSpawnPos;
         fireDir = ( mousePos - projectileSpawnPos ).normalized;
     }
 
@@ -34,6 +36,6 @@ public class ShootEmUp2DProjectile : MonoBehaviour
     {
         ShootEmUp2DHealth health = other.gameObject.GetComponent<ShootEmUp2DHealth>();
         health?.TakeDamage(damageAmount);
-        Destroy(this.gameObject);
+        rangedWeapon.ReleaseProjectileFromPool( this );
     }
 }
