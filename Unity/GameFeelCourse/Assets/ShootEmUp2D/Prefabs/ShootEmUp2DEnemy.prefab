@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 2439280109293905887}
   - component: {fileID: 3313540786046931640}
   - component: {fileID: -5397677940020874507}
+  - component: {fileID: 1364574732603993176}
   m_Layer: 0
   m_Name: ShootEmUp2DEnemy
   m_TagString: Untagged
@@ -179,6 +180,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 407fd2c17fbf89542afdd053c2dd00a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  knockbackTime: 0.2
+--- !u!114 &1364574732603993176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1500829499347730933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c408a81340800647a0b488784951656, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultMat: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  damageFlashMat: {fileID: 2100000, guid: 1d3a7015e38f92a4e8bd9e29a0d13fff, type: 2}
+  flashTime: 0.1
 --- !u!1 &5153281642299242202
 GameObject:
   m_ObjectHideFlags: 0

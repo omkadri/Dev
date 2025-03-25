@@ -33,13 +33,16 @@ public class ShootEmUp2DProjectile : MonoBehaviour
     }
 
 
-    void OnTriggerEnter2D(Collider2D other) 
+    void OnTriggerEnter2D(Collider2D other)
     {
         ShootEmUp2DHealth health = other.gameObject.GetComponent<ShootEmUp2DHealth>();
         health?.TakeDamage(damageAmount);
 
         ShootEmUp2DKnockback knockback = other.gameObject.GetComponent<ShootEmUp2DKnockback>();
         knockback?.ActivateKnockback( ShootEmUp2DPlayerController.Instance.transform.position, knockbackThrust );
+
+        ShootEmUp2DDamageFlash damageFlash = other.gameObject.GetComponent<ShootEmUp2DDamageFlash>();
+        damageFlash?.StartFlash(); //FUTURE LECTURE - This will all be turned into an interface.
 
         rangedWeapon.ReleaseProjectileFromPool( this );
     }
