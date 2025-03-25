@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -6445784336495608663}
   - component: {fileID: 2439280109293905887}
   - component: {fileID: 3313540786046931640}
+  - component: {fileID: -5397677940020874507}
   m_Layer: 0
   m_Name: ShootEmUp2DEnemy
   m_TagString: Untagged
@@ -166,6 +167,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-5397677940020874507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1500829499347730933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 407fd2c17fbf89542afdd053c2dd00a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5153281642299242202
 GameObject:
   m_ObjectHideFlags: 0

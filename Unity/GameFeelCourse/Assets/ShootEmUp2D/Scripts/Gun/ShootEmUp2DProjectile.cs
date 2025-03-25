@@ -6,6 +6,7 @@ public class ShootEmUp2DProjectile : MonoBehaviour
 {
     [SerializeField] float moveSpeed = 10f;
     [SerializeField] int damageAmount = 1;
+    [SerializeField] float knockbackThrust = 20f;
 
     Vector2 fireDir;
     Rigidbody2D rb2d;
@@ -36,6 +37,10 @@ public class ShootEmUp2DProjectile : MonoBehaviour
     {
         ShootEmUp2DHealth health = other.gameObject.GetComponent<ShootEmUp2DHealth>();
         health?.TakeDamage(damageAmount);
+
+        ShootEmUp2DKnockback knockback = other.gameObject.GetComponent<ShootEmUp2DKnockback>();
+        knockback?.ActivateKnockback( ShootEmUp2DPlayerController.Instance.transform.position, knockbackThrust );
+
         rangedWeapon.ReleaseProjectileFromPool( this );
     }
 }
