@@ -9,12 +9,14 @@ public class ShootEmUp2DEnemy : MonoBehaviour
 
     Rigidbody2D rb2d;
     ShootEmUp2DMovement movement;
+    ShootEmUp2DColorChanger colorChanger;
 
 
     void Awake()
     {
         rb2d = GetComponent<Rigidbody2D>();
         movement = GetComponent<ShootEmUp2DMovement>();
+        colorChanger = GetComponent<ShootEmUp2DColorChanger>();
     }
 
 
@@ -22,6 +24,12 @@ public class ShootEmUp2DEnemy : MonoBehaviour
     {
         StartCoroutine(ChangeDirectionRoutine());
         StartCoroutine(RandomJumpRoutine());
+    }
+
+
+    public void Init( Color color )
+    {
+        colorChanger.SetDefaultColor( color );
     }
 
 

@@ -8,11 +8,13 @@ public class ShootEmUp2DDamageFlash : MonoBehaviour
     [SerializeField] float flashTime = 0.1f;
 
     SpriteRenderer[] spriteRenderers;//plural because enemies have 2 sprite renderers
+    ShootEmUp2DColorChanger colorChanger;
 
 
     void Awake()
     {
         spriteRenderers = GetComponentsInChildren<SpriteRenderer>();   
+        colorChanger = GetComponent<ShootEmUp2DColorChanger>();   
     }
 
 
@@ -27,7 +29,11 @@ public class ShootEmUp2DDamageFlash : MonoBehaviour
         foreach ( SpriteRenderer sr in spriteRenderers )
         {
             sr.material = damageFlashMat;
-            sr.color = Color.white;
+
+            if ( colorChanger )
+            {
+                colorChanger.SetColor( Color.white );
+            }
         }
 
         yield return new WaitForSeconds( flashTime );
@@ -40,6 +46,10 @@ public class ShootEmUp2DDamageFlash : MonoBehaviour
         foreach ( SpriteRenderer sr in spriteRenderers )
         {
             sr.material = defaultMat;
+            if ( colorChanger )
+            {
+                colorChanger.SetColor( colorChanger.DefaultColor );
+            }
         }
     }
 }

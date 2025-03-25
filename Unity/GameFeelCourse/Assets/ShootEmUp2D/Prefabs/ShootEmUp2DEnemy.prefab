@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 3313540786046931640}
   - component: {fileID: -5397677940020874507}
   - component: {fileID: 1364574732603993176}
+  - component: {fileID: 8005361236530088579}
   m_Layer: 0
   m_Name: ShootEmUp2DEnemy
   m_TagString: Untagged
@@ -196,6 +197,24 @@ MonoBehaviour:
   defaultMat: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   damageFlashMat: {fileID: 2100000, guid: 1d3a7015e38f92a4e8bd9e29a0d13fff, type: 2}
   flashTime: 0.1
+--- !u!114 &8005361236530088579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1500829499347730933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 488ff214e5422274f874fef4766628cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colors:
+  - {r: 0, g: 0.67243624, b: 1, a: 1}
+  - {r: 1, g: 0.4156919, b: 0, a: 1}
+  - {r: 0.16299169, g: 0.3735848, b: 0, a: 1}
+  - {r: 1, g: 0.7075472, b: 0.94489235, a: 1}
+  fillSpriteRenderer: {fileID: 7564454557696005338}
 --- !u!1 &5153281642299242202
 GameObject:
   m_ObjectHideFlags: 0
@@ -273,7 +292,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 1899769647, guid: 01b49b46e6384a6419be35fbdd9b5c1a, type: 3}
-  m_Color: {r: 1, g: 0.6392157, b: 0.6392157, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
