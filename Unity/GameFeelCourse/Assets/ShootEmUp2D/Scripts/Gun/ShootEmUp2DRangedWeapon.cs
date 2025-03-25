@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
+using Unity.Cinemachine;
 
 public class ShootEmUp2DRangedWeapon : MonoBehaviour
 {
@@ -23,11 +24,13 @@ public class ShootEmUp2DRangedWeapon : MonoBehaviour
     int maxProjectilePoolSize = 40;//TODO: Investigate if these are the best values
 
     //COMPONENTS
+    CinemachineImpulseSource impulseSource;
     Animator animator;
 
 
     void Awake()
     {
+        impulseSource = GetComponent<CinemachineImpulseSource>();
         animator = GetComponent<Animator>();
     }
 
@@ -50,6 +53,7 @@ public class ShootEmUp2DRangedWeapon : MonoBehaviour
         OnShoot += ResetLastFireTime;
         OnShoot += ShootProjectile;
         OnShoot += FireAnimation;
+        OnShoot += FireScreenShake;
         //animate
         //sfx
         //muzzle flash
@@ -61,6 +65,7 @@ public class ShootEmUp2DRangedWeapon : MonoBehaviour
         OnShoot -= ResetLastFireTime;
         OnShoot -= ShootProjectile;
         OnShoot -= FireAnimation;
+        OnShoot -= FireScreenShake;
     }
 
 
@@ -105,6 +110,12 @@ public class ShootEmUp2DRangedWeapon : MonoBehaviour
     void FireAnimation()
     {
         animator.Play( FIRE_HASH, 0, 0f );
+    }
+
+
+    void FireScreenShake()
+    {
+        impulseSource.GenerateImpulse();
     }
 
 
