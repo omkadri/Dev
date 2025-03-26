@@ -5,19 +5,19 @@ using UnityEngine;
 
 public class Snowboard2DPlayerController : MonoBehaviour
 {
-    [SerializeField] float torqueAmount = 0.5f;
-    [SerializeField] float baseSpeed = 20f;
-    [SerializeField] float boostSpeed = 40f;
+    [SerializeField] float _torqueAmount = 1f;
+    [SerializeField] float _baseSpeed = 20f;
+    [SerializeField] float _boostSpeed = 35f;
     public bool canMove = true;//TODO: Create public getter
-    Rigidbody2D rb2d;
-    SurfaceEffector2D surfaceEffector2D;
+    Rigidbody2D _rb2d;
+    SurfaceEffector2D _surfaceEffector2D;
 
 
     void Start()
     {
-        rb2d = GetComponent<Rigidbody2D>();
-        surfaceEffector2D = FindFirstObjectByType<SurfaceEffector2D>(); //works when only one of the object type is in the scene
-        surfaceEffector2D.speed = baseSpeed; 
+        _rb2d = GetComponent<Rigidbody2D>();
+        _surfaceEffector2D = FindFirstObjectByType<SurfaceEffector2D>(); //works when only one of the object type is in the scene
+        _surfaceEffector2D.speed = _baseSpeed; 
     }
 
 
@@ -42,11 +42,11 @@ public class Snowboard2DPlayerController : MonoBehaviour
     {
         if ( Input.GetKey( KeyCode.UpArrow ) )
         {
-            surfaceEffector2D.speed = boostSpeed;
+            _surfaceEffector2D.speed = _boostSpeed;
         }
         else
         {
-            surfaceEffector2D.speed = baseSpeed;
+            _surfaceEffector2D.speed = _baseSpeed;
         }
     }
 
@@ -54,15 +54,15 @@ public class Snowboard2DPlayerController : MonoBehaviour
     void RotatePlayer()
     {
         //player will always torque forward a bit to create the challenge of balance
-        rb2d.AddTorque( -torqueAmount );
+        _rb2d.AddTorque( -_torqueAmount );
 
         if ( Input.GetKey( KeyCode.LeftArrow ) )
         {
-            rb2d.AddTorque( torqueAmount * 4 );
+            _rb2d.AddTorque( _torqueAmount * 4 );
         }
         else if ( Input.GetKey( KeyCode.RightArrow ) )
         {
-            rb2d.AddTorque( -torqueAmount * 2 );
+            _rb2d.AddTorque( -_torqueAmount * 2 );
         }
     }
 }

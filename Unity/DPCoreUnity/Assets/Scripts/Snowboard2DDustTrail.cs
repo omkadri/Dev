@@ -4,21 +4,21 @@ using UnityEngine;
 
 public class Snowboard2DDustTrail : MonoBehaviour
 {
-    [SerializeField] ParticleSystem trailVXF;
-    [SerializeField] AudioSource trailSFXAudioSource;
+    [SerializeField] ParticleSystem _trailVXF;
+    [SerializeField] AudioSource _trailSFXAudioSource;
 
 
     void OnCollisionEnter2D( Collision2D other )
     {   
         if ( other.gameObject.tag == "Ground" )
         {
-            if ( trailVXF != null )
+            if ( _trailVXF != null )
             {
-                trailVXF.Play();
+                _trailVXF.Play();
             }
-            if ( trailSFXAudioSource != null )
+            if ( _trailSFXAudioSource != null )
             {
-                trailSFXAudioSource.Play();
+                _trailSFXAudioSource.Play();
             }            
         }
     }
@@ -28,10 +28,10 @@ public class Snowboard2DDustTrail : MonoBehaviour
     {
         if ( other.gameObject.tag == "Ground" )
         {
-            if ( trailVXF != null )
+            if ( _trailVXF != null )
             {
-                trailVXF.Stop();
-                trailSFXAudioSource.Stop();
+                _trailVXF.Stop();
+                _trailSFXAudioSource.Stop();
             }
         }
     }

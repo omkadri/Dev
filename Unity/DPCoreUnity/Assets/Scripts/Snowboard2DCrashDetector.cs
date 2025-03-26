@@ -5,32 +5,32 @@ using UnityEngine.SceneManagement;
 
 public class Snowboard2DCrashDetector : MonoBehaviour
 {
-  [SerializeField] ParticleSystem crashParticle;
-  [SerializeField] AudioSource crashSFXAudioSource;
+  [SerializeField] ParticleSystem _crashParticle;
+  [SerializeField] AudioSource _crashSFXAudioSource;
 
-  [SerializeField] float loadDelay = 2.5f;
-  bool hasCrashed = false;
+  [SerializeField] float _loadDelay = 3f;
+  bool _hasCrashed = false;
 
 
   void OnTriggerEnter2D( Collider2D other )
   {
     if ( other.tag == "Ground" )
     {
-      if ( !hasCrashed )
+      if ( !_hasCrashed )
       {
-        hasCrashed = true;
+        _hasCrashed = true;
         //TODO: Abstract this into a GameManager class
         FindFirstObjectByType<Snowboard2DPlayerController>().DisableControls();
-        crashParticle.Play();
+        _crashParticle.Play();
         //Create OnSnowboardCrashed callback
         Debug.Log( "You Crashed!" );
-        if ( crashSFXAudioSource != null )
+        if ( _crashSFXAudioSource != null )
         {
           //Play audio once
-          crashSFXAudioSource.Play();
+          _crashSFXAudioSource.Play();
         }
         //TODO: Abstract this into GameManager Class
-        Invoke( "ReloadScene", loadDelay );
+        Invoke( "ReloadScene", _loadDelay );
       }
 
     }

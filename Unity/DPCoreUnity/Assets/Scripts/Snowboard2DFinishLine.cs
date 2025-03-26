@@ -5,10 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class Snowboard2DFinishLine : MonoBehaviour
 {
-  [SerializeField] float loadDelay = 1.5f;
-  [SerializeField] ParticleSystem finishParticleA;
-  [SerializeField] ParticleSystem finishParticleB;
-  [SerializeField] AudioClip finishSFX;
+  [SerializeField] float _loadDelay = 1.5f;
+  [SerializeField] ParticleSystem _finishParticleA;
+  [SerializeField] ParticleSystem _finishParticleB;
+  [SerializeField] AudioClip _finishSFX;
   
 
   void OnTriggerEnter2D(Collider2D other)
@@ -17,13 +17,13 @@ public class Snowboard2DFinishLine : MonoBehaviour
     {
       //Create OnComplete callback
         Debug.Log( "You Finished!" );
-        finishParticleA.Play();
-        finishParticleB.Play();
-        if ( finishSFX != null )
+        _finishParticleA.Play();
+        _finishParticleB.Play();
+        if ( _finishSFX != null )
         {
-          GetComponent<AudioSource>().PlayOneShot(finishSFX);
+          GetComponent<AudioSource>().PlayOneShot(_finishSFX);
         }
-        Invoke( "ReloadScene", loadDelay );
+        Invoke( "ReloadScene", _loadDelay );
     }
   }
 
