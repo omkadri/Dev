@@ -1,10 +1,14 @@
  using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class ShootEmUp2DHealth : MonoBehaviour
 {
+    public Action OnDeath;
+    
     [SerializeField] GameObject splatterPrefab; //TODO: picl better name than splatterPrefab
+    [SerializeField] GameObject deathVFX;
     [SerializeField] int startingHealth = 3;
 
     int currentHealth;
@@ -13,6 +17,20 @@ public class ShootEmUp2DHealth : MonoBehaviour
     void Start() 
     {
         ResetHealth();
+    }
+
+
+    void OnEnable()
+    {
+        OnDeath += SpawnDeathSplatterPrefab;
+        OnDeath += SpawnDeathVFX;
+    }
+
+
+    void OnDisable()
+    {
+        OnDeath -= SpawnDeathSplatterPrefab;
+        OnDeath -= SpawnDeathVFX;
     }
 
 
@@ -28,7 +46,7 @@ public class ShootEmUp2DHealth : MonoBehaviour
 
         if (currentHealth <= 0) 
         {
-            SpawnDeathSplatterPrefab();
+            OnDeath?.Invoke();
             Destroy(gameObject);
         }
     }
@@ -41,5 +59,15 @@ public class ShootEmUp2DHealth : MonoBehaviour
         ShootEmUp2DColorChanger colorChanger = GetComponent<ShootEmUp2DColorChanger>();
         Color currentColor = colorChanger.DefaultColor;
         deathSplatterSpriteRenderer.color = currentColor;
+    }
+
+
+    void SpawnDeathVFX()
+    {
+        GameObject newDeathVFX = Instantiate( deathVFX, transform.position, transform.rotation );
+        ParticleSystem.MainModule ps = newDeathVFX.GetComponent<ParticleSystem>().main;
+        ShootEmUp2DColorChanger colorChanger = GetComponent<ShootEmUp2DColorChanger>();
+        Color currentColor = colorChanger.DefaultColor;
+        ps.startColor = currentColor;
     }
 }
