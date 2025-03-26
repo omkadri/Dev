@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class Driver2DPlayerController : MonoBehaviour
 {
-    [SerializeField] float steerSpeed = 900f;
-    [SerializeField] float moveSpeed = 12f;
-    [SerializeField] bool enableBoost = true;
+    [SerializeField] float _steerSpeed = 900f;
+    [SerializeField] float _moveSpeed = 12f;
+    [SerializeField] bool _enableBoost = true;
     float defaultSpeed;
 
-    [SerializeField] float boostSpeed = 20f;
+    [SerializeField] float _boostSpeed = 20f;
 
 
     void Start()
     {
-        defaultSpeed = moveSpeed;
+        defaultSpeed = _moveSpeed;
     }
 
 
@@ -22,8 +22,8 @@ public class Driver2DPlayerController : MonoBehaviour
     {
         float steerAmount = Input.GetAxis( "Horizontal" );
         float moveAmount = Input.GetAxis( "Vertical" );
-        transform.Rotate( 0, 0, ( -steerAmount * steerSpeed ) * Time.deltaTime );
-        transform.Translate( 0, ( moveAmount * moveSpeed ) * Time.deltaTime, 0 );
+        transform.Rotate( 0, 0, ( -steerAmount * _steerSpeed ) * Time.deltaTime );
+        transform.Translate( 0, ( moveAmount * _moveSpeed ) * Time.deltaTime, 0 );
     }
     
 
@@ -31,16 +31,16 @@ public class Driver2DPlayerController : MonoBehaviour
     {
         if ( other.gameObject.tag != "Boost" )
         {
-            moveSpeed = defaultSpeed;
+            _moveSpeed = defaultSpeed;
         }
     }
 
 
     void OnTriggerEnter2D( Collider2D other )
     {
-        if ( enableBoost && other.tag == "Boost" )
+        if ( _enableBoost && other.tag == "Boost" )
         {
-            moveSpeed = boostSpeed;
+            _moveSpeed = _boostSpeed;
         }
     }
 }

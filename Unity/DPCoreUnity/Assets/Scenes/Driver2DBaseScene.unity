@@ -3578,10 +3578,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edfa9d686a48ea74ea92b129d671b8d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyDelay: 0.5
-  driverImage: {fileID: 190672259}
-  passengerImage: {fileID: 188720633}
-  dropOffImage: {fileID: 467638630}
+  _destroyDelay: 0.5
+  _driverImage: {fileID: 190672259}
+  _passengerImage: {fileID: 188720633}
+  _dropOffImage: {fileID: 467638630}
 --- !u!114 &2067758569
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3594,10 +3594,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c1fd0022299fe1419f0afbdec7c9f63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  steerSpeed: 200
-  moveSpeed: 12
-  enableBoost: 1
-  boostSpeed: 20
+  _steerSpeed: 200
+  _moveSpeed: 12
+  _enableBoost: 1
+  _boostSpeed: 20
 --- !u!1 &2117892706
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class Driver2DTaxiDelivery : MonoBehaviour
 {
-    [SerializeField] float destroyDelay = 0.5f;
-    [SerializeField] GameObject driverImage;
-    [SerializeField] GameObject passengerImage;
-    [SerializeField] GameObject dropOffImage;
+    [SerializeField] float _destroyDelay = 0.5f;
+    [SerializeField] GameObject _driverImage;
+    [SerializeField] GameObject _passengerImage;
+    [SerializeField] GameObject _dropOffImage;
 
-    bool hasCustomer;
+    bool _hasCustomer;
 
 
     void OnCollisionEnter2D( Collision2D other )
@@ -21,28 +21,28 @@ public class Driver2DTaxiDelivery : MonoBehaviour
 
      void OnTriggerEnter2D( Collider2D other )
     {
-        if ( other.tag == "DropOff" && hasCustomer )
+        if ( other.tag == "DropOff" && _hasCustomer )
         {
             Debug.Log( "Customer Dropped Off" );
-            hasCustomer = false;
+            _hasCustomer = false;
             
-            SpriteRenderer passengerRenderer = passengerImage.GetComponent<SpriteRenderer>();
-            SpriteRenderer dropOffCustomerRenderer = dropOffImage.GetComponent<SpriteRenderer>();
+            SpriteRenderer passengerRenderer = _passengerImage.GetComponent<SpriteRenderer>();
+            SpriteRenderer dropOffCustomerRenderer = _dropOffImage.GetComponent<SpriteRenderer>();
             dropOffCustomerRenderer.sprite = passengerRenderer.sprite;
             dropOffCustomerRenderer.enabled = true;
             passengerRenderer.enabled = false;
         }
-        if ( other.tag == "Customer" && !hasCustomer )
+        if ( other.tag == "Customer" && !_hasCustomer )
         {
             Debug.Log( "Customer Picked Up" );
 
-            hasCustomer = true;
-            Destroy( other.gameObject, destroyDelay );
+            _hasCustomer = true;
+            Destroy( other.gameObject, _destroyDelay );
 
-            SpriteRenderer dropOffCustomerRenderer = dropOffImage.GetComponent<SpriteRenderer>();
+            SpriteRenderer dropOffCustomerRenderer = _dropOffImage.GetComponent<SpriteRenderer>();
             dropOffCustomerRenderer.enabled = false;
             SpriteRenderer customerRenderer = other.GetComponent<SpriteRenderer>();
-            SpriteRenderer passengerRenderer = passengerImage.GetComponent<SpriteRenderer>();
+            SpriteRenderer passengerRenderer = _passengerImage.GetComponent<SpriteRenderer>();
             passengerRenderer.sprite = customerRenderer.sprite;
             passengerRenderer.enabled = true;
         }
