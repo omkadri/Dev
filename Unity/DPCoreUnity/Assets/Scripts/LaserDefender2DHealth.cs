@@ -4,27 +4,27 @@ using UnityEngine;
 
 public class LaserDefender2DHealth : MonoBehaviour
 {
-    [SerializeField] int health = 50;
-    [SerializeField] int scorePerEnemyKill = 50;
-    [SerializeField] ParticleSystem hitVFX;
+    [SerializeField] int _health = 50;
+    [SerializeField] int _scorePerEnemyKill = 50;
+    [SerializeField] ParticleSystem _hitVFX;
 
-    [SerializeField] bool isPlayer = false;
-    [SerializeField] bool usingEnemyAI = false;
+    [SerializeField] bool _isPlayer = false;
+    [SerializeField] bool _usingEnemyAI = false;
 
-    [SerializeField] bool applyCameraShake = false;
-    LaserDefender2DCameraShake cameraShake;
+    [SerializeField] bool _applyCameraShake = false;
+    LaserDefender2DCameraShake _cameraShake;
 
-    LaserDefender2DAudioPlayer audioPlayer;
-    LaserDefender2DScoreKeeper scoreKeeper;
-    LaserDefender2DSceneManager sceneManager;
+    LaserDefender2DAudioPlayer _audioPlayer;
+    LaserDefender2DScoreKeeper _scoreKeeper;
+    LaserDefender2DSceneManager _sceneManager;
 
 
     void Awake()
     {
-        cameraShake = Camera.main.GetComponent<LaserDefender2DCameraShake>();
-        audioPlayer = FindFirstObjectByType<LaserDefender2DAudioPlayer>();
-        scoreKeeper = FindFirstObjectByType<LaserDefender2DScoreKeeper>();
-        sceneManager = FindFirstObjectByType<LaserDefender2DSceneManager>();
+        _cameraShake = Camera.main.GetComponent<LaserDefender2DCameraShake>();
+        _audioPlayer = FindFirstObjectByType<LaserDefender2DAudioPlayer>();
+        _scoreKeeper = FindFirstObjectByType<LaserDefender2DScoreKeeper>();
+        _sceneManager = FindFirstObjectByType<LaserDefender2DSceneManager>();
     }
 
 
@@ -44,15 +44,15 @@ public class LaserDefender2DHealth : MonoBehaviour
 
     public int GetHealth()
     {
-        return health;
+        return _health;
     }
 
 
     private void TakeDamage( int damage )
     {
         PlayDamageSFX();
-        health -= damage;
-        if ( health <= 0 )
+        _health -= damage;
+        if ( _health <= 0 )
         {
             Die();
         }
@@ -61,15 +61,15 @@ public class LaserDefender2DHealth : MonoBehaviour
 
     void Die()
     {
-        if ( !isPlayer )
+        if ( !_isPlayer )
         {
-            scoreKeeper.ModifyScore( scorePerEnemyKill );
+            _scoreKeeper.ModifyScore( _scorePerEnemyKill );
         }
-        if ( !usingEnemyAI )
+        if ( !_usingEnemyAI )
             {
-                audioPlayer.GetComponent<AudioSource>().Stop(); //stops the music for a moment of silence
-                audioPlayer.PlayPlayerDeathSFX();
-                sceneManager.LoadGameOverScene();
+                _audioPlayer.GetComponent<AudioSource>().Stop(); //stops the music for a moment of silence
+                _audioPlayer.PlayPlayerDeathSFX();
+                _sceneManager.LoadGameOverScene();
             }
         Destroy( gameObject );
     }
@@ -77,9 +77,9 @@ public class LaserDefender2DHealth : MonoBehaviour
 
     void PlayHitVFX()
     {
-        if ( hitVFX != null )
+        if ( _hitVFX != null )
         {
-            ParticleSystem instance = Instantiate( hitVFX, transform.position, Quaternion.identity );
+            ParticleSystem instance = Instantiate( _hitVFX, transform.position, Quaternion.identity );
             float timeBeforeDestruction = instance.main.duration + instance.main.startLifetime.constantMax;
             Destroy( instance.gameObject, timeBeforeDestruction );
         }
@@ -88,24 +88,24 @@ public class LaserDefender2DHealth : MonoBehaviour
 
     void ShakeCamera()
     {
-        if ( cameraShake != null && applyCameraShake )
+        if ( _cameraShake != null && _applyCameraShake )
         {
-            cameraShake.Play();
+            _cameraShake.Play();
         }
     }
 
 
     void PlayDamageSFX()
     {
-        if ( audioPlayer != null )
+        if ( _audioPlayer != null )
         {
-            if ( usingEnemyAI )
+            if ( _usingEnemyAI )
             {
-                audioPlayer.PlayEnemyDamageSFX();
+                _audioPlayer.PlayEnemyDamageSFX();
             }
             else
             {
-                audioPlayer.PlayPlayerDamageSFX();
+                _audioPlayer.PlayPlayerDamageSFX();
             }
         }
     }

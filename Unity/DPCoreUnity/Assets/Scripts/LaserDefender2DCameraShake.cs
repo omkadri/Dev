@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class LaserDefender2DCameraShake : MonoBehaviour
 {
-    [SerializeField] float shakeDuration = 1f;
-    [SerializeField] float shakeMagnitude = 0.5f;
+    [SerializeField] float _shakeDuration = 0.5f;
+    [SerializeField] float _shakeMagnitude = 0.25f;
 
     Vector3 initialPos;
 
@@ -25,9 +25,9 @@ public class LaserDefender2DCameraShake : MonoBehaviour
     IEnumerator ShakeRoutine()
     {
         float elapsedTime = 0;
-        while( elapsedTime < shakeDuration )
+        while( elapsedTime < _shakeDuration )
         {
-            transform.position = initialPos + ( Vector3 )Random.insideUnitCircle * shakeMagnitude; //insideUnitCircle is a position inside of a 1 by 1 circle
+            transform.position = initialPos + ( Vector3 )Random.insideUnitCircle * _shakeMagnitude; //insideUnitCircle is a position inside of a 1 by 1 circle
             elapsedTime += Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }

@@ -401,8 +401,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23bf797f40ddbaa45bb01f74a6019f04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shakeDuration: 0.5
-  shakeMagnitude: 0.25
+  _shakeDuration: 0.5
+  _shakeMagnitude: 0.25
 --- !u!1 &389558394
 GameObject:
   m_ObjectHideFlags: 0
@@ -633,6 +633,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3725624689865375478, guid: 85915778bc7059645a8b7d7431629260, type: 3}
+      propertyPath: _moveSpeed.y
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 3877842548987881446, guid: 85915778bc7059645a8b7d7431629260, type: 3}
       propertyPath: m_Name
       value: LaserDefender2DBackground
@@ -676,6 +680,10 @@ PrefabInstance:
     - target: {fileID: 7431726049646809578, guid: 85915778bc7059645a8b7d7431629260, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7844514843202450555, guid: 85915778bc7059645a8b7d7431629260, type: 3}
+      propertyPath: _moveSpeed.y
+      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -942,6 +950,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -7786455572349729254, guid: 5333bd6359aba944f8fa425ad53e52aa, type: 3}
+      propertyPath: _enemyDamageSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: d5d0d91f5bcc77b41b3c64acf03234a5, type: 3}
+    - target: {fileID: -7786455572349729254, guid: 5333bd6359aba944f8fa425ad53e52aa, type: 3}
+      propertyPath: _playerDeathSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 2246abdd302633d43b215198d3eb7386, type: 3}
+    - target: {fileID: -7786455572349729254, guid: 5333bd6359aba944f8fa425ad53e52aa, type: 3}
+      propertyPath: _playerDamageSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: d2b3917dd205b0845a0327af117d19ad, type: 3}
+    - target: {fileID: -7786455572349729254, guid: 5333bd6359aba944f8fa425ad53e52aa, type: 3}
+      propertyPath: _enemyShootingSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 1c027e3cd16b1b54dbb94a84291501da, type: 3}
+    - target: {fileID: -7786455572349729254, guid: 5333bd6359aba944f8fa425ad53e52aa, type: 3}
+      propertyPath: _playerShootingSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 9ba7c6445e1d0eb44ac2034e2eed9062, type: 3}
     - target: {fileID: 5551841527184805615, guid: 5333bd6359aba944f8fa425ad53e52aa, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1431,11 +1459,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13d6195f1684be540a9cd5fc24d8cfe8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waveConfigs:
+  _waveConfigs:
   - {fileID: 11400000, guid: 21771b1e3c624944eb609e77ae0042cf, type: 2}
   - {fileID: 11400000, guid: 6c018a1ed58a0f646b99b6432064e320, type: 2}
-  timeBetweenWaves: 2
-  isLooping: 1
+  _timeBetweenWaves: 2
+  _isLooping: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

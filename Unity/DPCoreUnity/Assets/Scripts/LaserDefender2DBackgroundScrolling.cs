@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class LaserDefender2DBackgroundScrolling : MonoBehaviour
 {
-    [SerializeField] Vector2 moveSpeed;
+    [SerializeField] Vector2 _moveSpeed;
 
     Vector2 offset;
     Material material;
@@ -16,7 +16,7 @@ public class LaserDefender2DBackgroundScrolling : MonoBehaviour
 
     void Update()
     {
-        offset = moveSpeed * Time.deltaTime;
+        offset = _moveSpeed * Time.deltaTime;
         material.mainTextureOffset += offset;
     }
 }

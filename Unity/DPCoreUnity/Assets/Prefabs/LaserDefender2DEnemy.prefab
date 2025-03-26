@@ -80,7 +80,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2145647877
-  m_SortingLayer: 8
+  m_SortingLayer: 10
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: ecc9470ec8f997c4589d95090356d3b4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -180,12 +180,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcf26ac01946f224f8a97bd677ac7744, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 10
-  scorePerEnemyKill: 50
-  hitVFX: {fileID: 7910466693421173304, guid: 717866f1c066fdc408891b0577ea4253, type: 3}
-  isPlayer: 0
-  usingEnemyAI: 1
-  applyCameraShake: 0
+  _health: 10
+  _scorePerEnemyKill: 50
+  _hitVFX: {fileID: 7910466693421173304, guid: 717866f1c066fdc408891b0577ea4253, type: 3}
+  _isPlayer: 0
+  _usingEnemyAI: 1
+  _applyCameraShake: 0
 --- !u!114 &-3173004103320190839
 MonoBehaviour:
   m_ObjectHideFlags: 0

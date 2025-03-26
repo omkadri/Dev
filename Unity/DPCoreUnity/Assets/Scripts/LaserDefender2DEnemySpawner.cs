@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class LaserDefender2DEnemySpawner : MonoBehaviour
 {
-    [SerializeField] List<LaserDefender2DWaveConfigSO> waveConfigs;
-    [SerializeField] float timeBetweenWaves = 0f;
-    [SerializeField] bool isLooping;
-    LaserDefender2DWaveConfigSO currentWave;
+    [SerializeField] List<LaserDefender2DWaveConfigSO> _waveConfigs;
+    [SerializeField] float _timeBetweenWaves = 2f;
+    [SerializeField] bool _isLooping;
+    LaserDefender2DWaveConfigSO _currentWave;
     
 
     void Start()
@@ -18,7 +18,7 @@ public class LaserDefender2DEnemySpawner : MonoBehaviour
 
     public LaserDefender2DWaveConfigSO GetCurrentWave()
     {
-        return currentWave;
+        return _currentWave;
     }
 
 
@@ -26,19 +26,19 @@ public class LaserDefender2DEnemySpawner : MonoBehaviour
     {
         do
         {
-            foreach( LaserDefender2DWaveConfigSO wave in waveConfigs )
+            foreach( LaserDefender2DWaveConfigSO wave in _waveConfigs )
             {
-                currentWave = wave;
-                for ( int i = 0; i < currentWave.GetEnemyCount(); i++ )
+                _currentWave = wave;
+                for ( int i = 0; i < _currentWave.GetEnemyCount(); i++ )
                 {
-                    Instantiate( currentWave.GetEnemyPrefab( i ), currentWave.GetStartingWaypoint().position, Quaternion.identity, transform );
+                    Instantiate( _currentWave.GetEnemyPrefab( i ), _currentWave.GetStartingWaypoint().position, Quaternion.identity, transform );
                     //the 4th parameter of Instantiate() is the parent that we want to nest the instances inside of.
 
-                    yield return new WaitForSeconds( currentWave.GetRandomSpawnTime() );
+                    yield return new WaitForSeconds( _currentWave.GetRandomSpawnTime() );
                 }
-                yield return new WaitForSeconds( timeBetweenWaves );
+                yield return new WaitForSeconds( _timeBetweenWaves );
             }
         }
-        while( isLooping );
+        while( _isLooping );
     }
 }

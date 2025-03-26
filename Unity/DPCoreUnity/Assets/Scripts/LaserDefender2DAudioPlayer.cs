@@ -3,61 +3,61 @@ using UnityEngine;
 public class LaserDefender2DAudioPlayer : MonoBehaviour
 {
     [Header( "Shooting SFX" )]
-    [SerializeField] AudioClip playerShootingSFX;
-    [SerializeField] [Range( 0f,1f )] float playerShootingVolume = 1f;
-    [SerializeField] AudioClip enemyShootingSFX;
-    [SerializeField] [Range( 0f,1f )] float enemyShootingVolume = 1f;
+    [SerializeField] AudioClip _playerShootingSFX;
+    [SerializeField] [Range( 0f,1f )] float _playerShootingVolume = 1f;
+    [SerializeField] AudioClip _enemyShootingSFX;
+    [SerializeField] [Range( 0f,1f )] float _enemyShootingVolume = 1f;
     
     [Header( "Damage SFX" )]
-    [SerializeField] AudioClip playerDamageSFX;
-    [SerializeField] [Range( 0f,1f )] float playerDamageVolume = 1f;
-    [SerializeField] AudioClip playerDeathSFX;
-    [SerializeField] [Range( 0f,1f )] float playerDeathVolume = 1f;
-    [SerializeField] AudioClip enemyDamageSFX;
-    [SerializeField] [Range( 0f,1f )] float enemyDamageVolume = 1f;
+    [SerializeField] AudioClip _playerDamageSFX;
+    [SerializeField] [Range( 0f,1f )] float _playerDamageVolume = 1f;
+    [SerializeField] AudioClip _playerDeathSFX;
+    [SerializeField] [Range( 0f,1f )] float _playerDeathVolume = 1f;
+    [SerializeField] AudioClip _enemyDamageSFX;
+    [SerializeField] [Range( 0f,1f )] float _enemyDamageVolume = 1f;
 
 
     public void PlayPlayerShootingSFX()
     {
-        if ( playerShootingSFX != null )
+        if ( _playerShootingSFX != null )
         {
-            AudioSource.PlayClipAtPoint( playerShootingSFX, Camera.main.transform.position, playerShootingVolume );
+            AudioSource.PlayClipAtPoint( _playerShootingSFX, Camera.main.transform.position, _playerShootingVolume );
         }
     }
 
 
     public void PlayEnemyShootingSFX()
     {
-        if ( enemyShootingSFX != null )
+        if ( _enemyShootingSFX != null )
         {
-            AudioSource.PlayClipAtPoint( enemyShootingSFX, Camera.main.transform.position, enemyShootingVolume );
+            AudioSource.PlayClipAtPoint( _enemyShootingSFX, Camera.main.transform.position, _enemyShootingVolume );
         }
     }
 
 
     public void PlayPlayerDamageSFX()
     {
-        if ( playerDamageSFX != null )
+        if ( _playerDamageSFX != null )
         {
-            AudioSource.PlayClipAtPoint( playerDamageSFX, Camera.main.transform.position, playerDamageVolume );
+            AudioSource.PlayClipAtPoint( _playerDamageSFX, Camera.main.transform.position, _playerDamageVolume );
         }
     }
 
 
     public void PlayPlayerDeathSFX()
     {
-        if ( playerDeathSFX != null )
+        if ( _playerDeathSFX != null )
         {
-            AudioSource.PlayClipAtPoint( playerDeathSFX, Camera.main.transform.position, playerDeathVolume );
+            AudioSource.PlayClipAtPoint( _playerDeathSFX, Camera.main.transform.position, _playerDeathVolume );
         }
     }
 
 
     public void PlayEnemyDamageSFX()
     {
-        if ( enemyDamageSFX != null )
+        if ( _enemyDamageSFX != null )
         {
-            AudioSource.PlayClipAtPoint( enemyDamageSFX, Camera.main.transform.position, enemyDamageVolume );
+            AudioSource.PlayClipAtPoint( _enemyDamageSFX, Camera.main.transform.position, _enemyDamageVolume );
         }
     }
 }
