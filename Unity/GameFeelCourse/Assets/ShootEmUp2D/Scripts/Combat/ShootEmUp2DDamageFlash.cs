@@ -3,18 +3,18 @@ using UnityEngine;
 
 public class ShootEmUp2DDamageFlash : MonoBehaviour
 {
-    [SerializeField] Material defaultMat;
-    [SerializeField] Material damageFlashMat;
-    [SerializeField] float flashTime = 0.1f;
+    [SerializeField] Material _defaultMat;
+    [SerializeField] Material _damageFlashMat;
+    [SerializeField] float _flashTime = 0.1f;
 
-    SpriteRenderer[] spriteRenderers;//plural because enemies have 2 sprite renderers
-    ShootEmUp2DColorChanger colorChanger;
+    SpriteRenderer[] _spriteRenderers;//plural because enemies have 2 sprite renderers
+    ShootEmUp2DColorChanger _colorChanger;
 
 
     void Awake()
     {
-        spriteRenderers = GetComponentsInChildren<SpriteRenderer>();   
-        colorChanger = GetComponent<ShootEmUp2DColorChanger>();   
+        _spriteRenderers = GetComponentsInChildren<SpriteRenderer>();   
+        _colorChanger = GetComponent<ShootEmUp2DColorChanger>();   
     }
 
 
@@ -26,29 +26,29 @@ public class ShootEmUp2DDamageFlash : MonoBehaviour
 
     IEnumerator FlashRoutine()
     {
-        foreach ( SpriteRenderer sr in spriteRenderers )
+        foreach ( SpriteRenderer sr in _spriteRenderers )
         {
-            sr.material = damageFlashMat;
+            sr.material = _damageFlashMat;
 
-            if ( colorChanger )
+            if ( _colorChanger )
             {
-                colorChanger.SetColor( Color.white );
+                _colorChanger.SetColor( Color.white );
             }
         }
 
-        yield return new WaitForSeconds( flashTime );
+        yield return new WaitForSeconds( _flashTime );
         SetDefaultMaterial();
     }
 
 
     void SetDefaultMaterial()
     {
-        foreach ( SpriteRenderer sr in spriteRenderers )
+        foreach ( SpriteRenderer sr in _spriteRenderers )
         {
-            sr.material = defaultMat;
-            if ( colorChanger )
+            sr.material = _defaultMat;
+            if ( _colorChanger )
             {
-                colorChanger.SetColor( colorChanger.DefaultColor );
+                _colorChanger.SetColor( _colorChanger.DefaultColor );
             }
         }
     }

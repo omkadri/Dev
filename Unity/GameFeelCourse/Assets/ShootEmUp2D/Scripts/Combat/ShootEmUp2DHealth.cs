@@ -7,11 +7,11 @@ public class ShootEmUp2DHealth : MonoBehaviour
 {
     public Action OnDeath;
     
-    [SerializeField] GameObject splatterPrefab; //TODO: picl better name than splatterPrefab
-    [SerializeField] GameObject deathVFX;
-    [SerializeField] int startingHealth = 3;
+    [SerializeField] GameObject _splatterPrefab; //TODO: picl better name than splatterPrefab
+    [SerializeField] GameObject _deathVFX;
+    [SerializeField] int _startingHealth = 3;
 
-    int currentHealth;
+    int _currentHealth;
 
 
     void Start() 
@@ -36,15 +36,15 @@ public class ShootEmUp2DHealth : MonoBehaviour
 
     public void ResetHealth() 
     {
-        currentHealth = startingHealth;
+        _currentHealth = _startingHealth;
     }
 
 
     public void TakeDamage(int amount) 
     {
-        currentHealth -= amount;
+        _currentHealth -= amount;
 
-        if (currentHealth <= 0) 
+        if (_currentHealth <= 0) 
         {
             OnDeath?.Invoke();
             Destroy(gameObject);
@@ -54,7 +54,7 @@ public class ShootEmUp2DHealth : MonoBehaviour
 
     void SpawnDeathSplatterPrefab()
     {
-        GameObject newSplatterPrefab = Instantiate( splatterPrefab, transform.position, transform.rotation );//TODO: Investigate randomizing rotation
+        GameObject newSplatterPrefab = Instantiate( _splatterPrefab, transform.position, transform.rotation );//TODO: Investigate randomizing rotation
         SpriteRenderer deathSplatterSpriteRenderer = newSplatterPrefab.GetComponent<SpriteRenderer>();
         ShootEmUp2DColorChanger colorChanger = GetComponent<ShootEmUp2DColorChanger>();
         Color currentColor = colorChanger.DefaultColor;
@@ -64,7 +64,7 @@ public class ShootEmUp2DHealth : MonoBehaviour
 
     void SpawnDeathVFX()
     {
-        GameObject newDeathVFX = Instantiate( deathVFX, transform.position, transform.rotation );
+        GameObject newDeathVFX = Instantiate( _deathVFX, transform.position, transform.rotation );
         ParticleSystem.MainModule ps = newDeathVFX.GetComponent<ParticleSystem>().main;
         ShootEmUp2DColorChanger colorChanger = GetComponent<ShootEmUp2DColorChanger>();
         Color currentColor = colorChanger.DefaultColor;

@@ -2,33 +2,33 @@ using UnityEngine;
 
 public class ShootEmUp2DMovement : MonoBehaviour
 {
-    [SerializeField] float moveSpeed = 10f;
+    [SerializeField] float _moveSpeed = 10f;
 
-    float moveX;//TODO: Rename to something better
-    bool canMove = true;
+    float _moveX;//TODO: Rename to something better
+    bool _canMove = true;
 
-    Rigidbody2D rb2d;
-    ShootEmUp2DKnockback knockback;
+    Rigidbody2D _rb2d;
+    ShootEmUp2DKnockback _knockback;
 
 
     void Awake()
     {
-        rb2d = GetComponent<Rigidbody2D>();
-        knockback = GetComponent<ShootEmUp2DKnockback>();
+        _rb2d = GetComponent<Rigidbody2D>();
+        _knockback = GetComponent<ShootEmUp2DKnockback>();
     }
 
 
     void OnEnable()
     {
-        knockback.OnKnockbackStart += CanMoveFalse;
-        knockback.OnKnockbackEnd += CanMoveTrue;
+        _knockback.OnKnockbackStart += CanMoveFalse;
+        _knockback.OnKnockbackEnd += CanMoveTrue;
     }
 
 
     void OnDisable()
     {
-        knockback.OnKnockbackStart -= CanMoveFalse;
-        knockback.OnKnockbackEnd -= CanMoveTrue;
+        _knockback.OnKnockbackStart -= CanMoveFalse;
+        _knockback.OnKnockbackEnd -= CanMoveTrue;
     }
 
 
@@ -40,30 +40,30 @@ public class ShootEmUp2DMovement : MonoBehaviour
 
     public void SetCurrentDirection( float currentDir)
     {
-        moveX = currentDir;
+        _moveX = currentDir;
     }
 
 
     void CanMoveTrue()
     {
-        canMove = true;
+        _canMove = true;
     }
 
 
     void CanMoveFalse()
     {
-        canMove = false;
+        _canMove = false;
     }
 
 
     void Move()
     {
-        if( !canMove )
+        if( !_canMove )
         { 
             return;
         }
 
-        Vector2 movement = new Vector2( moveX * moveSpeed, rb2d.linearVelocity.y );//TODO: Rename movement to something better
-        rb2d.linearVelocity = movement;
+        Vector2 movement = new Vector2( _moveX * _moveSpeed, _rb2d.linearVelocity.y );//TODO: Rename movement to something better
+        _rb2d.linearVelocity = movement;
     }
 }

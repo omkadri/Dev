@@ -4,29 +4,29 @@ using UnityEngine.InputSystem;
 public class ShootEmUp2DPlayerInput : MonoBehaviour
 {
     public FrameInput FrameInput { get; private set; }
-    ShootEmUp2DInputActions inputActions;
-    InputAction move;
-    InputAction jump;
+    ShootEmUp2DInputActions _inputActions;
+    InputAction _move;
+    InputAction _jump;
 
 
     void Awake()
     {
-        inputActions = new ShootEmUp2DInputActions();
+        _inputActions = new ShootEmUp2DInputActions();
 
-        move = inputActions.Player.Move;
-        jump = inputActions.Player.Jump;
+        _move = _inputActions.Player.Move;
+        _jump = _inputActions.Player.Jump;
     }
 
 
     void OnEnable()
     {
-        inputActions.Enable();
+        _inputActions.Enable();
     }
 
 
     void OnDisable()
     {
-        inputActions.Disable();
+        _inputActions.Disable();
     }
 
 
@@ -40,8 +40,8 @@ public class ShootEmUp2DPlayerInput : MonoBehaviour
     {
         return new FrameInput
         {
-            Move = move.ReadValue<Vector2>(),
-            Jump = jump.WasPressedThisFrame(),
+            Move = _move.ReadValue<Vector2>(),
+            Jump = _jump.WasPressedThisFrame(),
         };
     }
 }

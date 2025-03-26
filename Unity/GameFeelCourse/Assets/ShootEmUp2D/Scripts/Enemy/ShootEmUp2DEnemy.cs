@@ -3,20 +3,20 @@ using UnityEngine;
 
 public class ShootEmUp2DEnemy : MonoBehaviour
 {
-    [SerializeField] float jumpForce = 7f;
-    [SerializeField] float jumpInterval = 4f;
-    [SerializeField] float changeDirInterval = 3f;
+    [SerializeField] float _jumpForce = 7f;
+    [SerializeField] float _jumpInterval = 4f;
+    [SerializeField] float _changeDirInterval = 3f;
 
-    Rigidbody2D rb2d;
-    ShootEmUp2DMovement movement;
-    ShootEmUp2DColorChanger colorChanger;
+    Rigidbody2D _rb2d;
+    ShootEmUp2DMovement _movement;
+    ShootEmUp2DColorChanger _colorChanger;
 
 
     void Awake()
     {
-        rb2d = GetComponent<Rigidbody2D>();
-        movement = GetComponent<ShootEmUp2DMovement>();
-        colorChanger = GetComponent<ShootEmUp2DColorChanger>();
+        _rb2d = GetComponent<Rigidbody2D>();
+        _movement = GetComponent<ShootEmUp2DMovement>();
+        _colorChanger = GetComponent<ShootEmUp2DColorChanger>();
     }
 
 
@@ -29,7 +29,7 @@ public class ShootEmUp2DEnemy : MonoBehaviour
 
     public void Init( Color color )
     {
-        colorChanger.SetDefaultColor( color );
+        _colorChanger.SetDefaultColor( color );
     }
 
 
@@ -38,8 +38,8 @@ public class ShootEmUp2DEnemy : MonoBehaviour
         while (true)
         {
             float currentDir = UnityEngine.Random.Range(0, 2) * 2 - 1; // 1 or -1
-            movement.SetCurrentDirection( currentDir );
-            yield return new WaitForSeconds(changeDirInterval);
+            _movement.SetCurrentDirection( currentDir );
+            yield return new WaitForSeconds(_changeDirInterval);
         }
     }
 
@@ -48,10 +48,10 @@ public class ShootEmUp2DEnemy : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(jumpInterval);
+            yield return new WaitForSeconds(_jumpInterval);
             float randomDir = Random.Range(-1, 1);
             Vector2 jumpDir = new Vector2(randomDir, 1f).normalized;
-            rb2d.AddForce(jumpDir * jumpForce, ForceMode2D.Impulse);
+            _rb2d.AddForce(jumpDir * _jumpForce, ForceMode2D.Impulse);
         }
     }
 }

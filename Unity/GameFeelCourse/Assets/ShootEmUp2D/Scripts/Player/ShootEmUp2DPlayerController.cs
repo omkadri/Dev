@@ -7,22 +7,22 @@ public class ShootEmUp2DPlayerController : MonoBehaviour
 
     public static ShootEmUp2DPlayerController Instance;
 
-    [SerializeField] Transform feetTransform;
-    [SerializeField] Vector2 groundCheck;
-    [SerializeField] LayerMask groundLayer;
-    [SerializeField] float jumpStrength = 7f;
-    [SerializeField] float extraGravity = 700f;
-    [SerializeField] float gravityDelay = 0.2f;
-    [SerializeField] float coyoteTime = 0.1f; //window of time for player to jump after walking of ledge
+    [SerializeField] Transform _feetTransform;
+    [SerializeField] Vector2 _groundCheck;
+    [SerializeField] LayerMask _groundLayer;
+    [SerializeField] float _jumpStrength = 7f;
+    [SerializeField] float _extraGravity = 700f;
+    [SerializeField] float _gravityDelay = 0.2f;
+    [SerializeField] float _coyoteTime = 0.1f; //window of time for player to jump after walking of ledge
 
-    float timeInAir;
-    float coyoteTimer;
-    bool canDoubleJump;//TODO: Investigate adding slight cooldown so that spamming double jump doesn't look weird
+    float _timeInAir;
+    float _coyoteTimer;
+    bool _canDoubleJump;//TODO: Investigate adding slight cooldown so that spamming double jump doesn't look weird
 
-    ShootEmUp2DPlayerInput playerInput;
-    FrameInput frameInput;
-    Rigidbody2D rb2d;
-    ShootEmUp2DMovement movement;
+    ShootEmUp2DPlayerInput _playerInput;
+    FrameInput _frameInput;
+    Rigidbody2D _rb2d;
+    ShootEmUp2DMovement _movement;
 
 
     public void Awake() 
@@ -32,9 +32,9 @@ public class ShootEmUp2DPlayerController : MonoBehaviour
             Instance = this; 
         }
 
-        rb2d = GetComponent<Rigidbody2D>();
-        playerInput = GetComponent<ShootEmUp2DPlayerInput>();
-        movement = GetComponent<ShootEmUp2DMovement>();
+        _rb2d = GetComponent<Rigidbody2D>();
+        _playerInput = GetComponent<ShootEmUp2DPlayerInput>();
+        _movement = GetComponent<ShootEmUp2DMovement>();
     }
 
 
@@ -75,7 +75,7 @@ public class ShootEmUp2DPlayerController : MonoBehaviour
 
     bool CheckGrounded()
     {
-        Collider2D isGrounded = Physics2D.OverlapBox( feetTransform.position, groundCheck, 0f, groundLayer );//This draws a collider box on the ground layer at the player feet positions
+        Collider2D isGrounded = Physics2D.OverlapBox( _feetTransform.position, _groundCheck, 0f, _groundLayer );//This draws a collider box on the ground layer at the player feet positions
         return isGrounded;
     }
 
@@ -83,7 +83,7 @@ public class ShootEmUp2DPlayerController : MonoBehaviour
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireCube( feetTransform.position, groundCheck );//DEBUG DRAW
+        Gizmos.DrawWireCube( _feetTransform.position, _groundCheck );//DEBUG DRAW
     }
 
 
@@ -91,39 +91,39 @@ public class ShootEmUp2DPlayerController : MonoBehaviour
     {
         if( !CheckGrounded() )
         {
-            timeInAir += Time.deltaTime;
+            _timeInAir += Time.deltaTime;
         }
         else
         {
-            timeInAir = 0f;
+            _timeInAir = 0f;
         }
     }
 
 
     void ExtraGravity()
     {
-        if( timeInAir > gravityDelay )
+        if( _timeInAir > _gravityDelay )
         {
-            rb2d.AddForce( new Vector2( 0f, -extraGravity * Time.deltaTime ) );
+            _rb2d.AddForce( new Vector2( 0f, -_extraGravity * Time.deltaTime ) );
         }
     }
 
 
     void GatherInput()
     {
-        frameInput = playerInput.FrameInput;
+        _frameInput = _playerInput.FrameInput;
     }
 
 
     void Movement() 
     {
-        movement.SetCurrentDirection( frameInput.Move.x );
+        _movement.SetCurrentDirection( _frameInput.Move.x );
     }
 
 
     void HandleJump()//TODO: Explore making jump it's own component
     {
-        if ( !frameInput.Jump )
+        if ( !_frameInput.Jump )
         {
             return;
         }
@@ -132,13 +132,13 @@ public class ShootEmUp2DPlayerController : MonoBehaviour
         {
             OnJump?.Invoke();
         }
-        else if ( coyoteTimer > 0f )
+        else if ( _coyoteTimer > 0f )
         {
             OnJump?.Invoke();
         }
-        else if ( canDoubleJump )
+        else if ( _canDoubleJump )
         {
-            canDoubleJump = false;
+            _canDoubleJump = false;
             OnJump?.Invoke();
         }
     }
@@ -148,22 +148,22 @@ public class ShootEmUp2DPlayerController : MonoBehaviour
     {
         if ( CheckGrounded() )
         {
-            coyoteTimer = coyoteTime;
-            canDoubleJump = true;
+            _coyoteTimer = _coyoteTime;
+            _canDoubleJump = true;
         }
         else
         {
-            coyoteTimer -= Time.deltaTime;
+            _coyoteTimer -= Time.deltaTime;
         }
     }
 
 
     void ApplyJumpForce()
     {
-        rb2d.linearVelocity = Vector2.zero;
-        timeInAir = 0f;
-        coyoteTimer = 0f;
-        rb2d.AddForce(Vector2.up * jumpStrength, ForceMode2D.Impulse);
+        _rb2d.linearVelocity = Vector2.zero;
+        _timeInAir = 0f;
+        _coyoteTimer = 0f;
+        _rb2d.AddForce(Vector2.up * _jumpStrength, ForceMode2D.Impulse);
     }
 
 

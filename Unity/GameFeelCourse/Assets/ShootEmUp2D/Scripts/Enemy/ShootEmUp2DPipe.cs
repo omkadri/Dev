@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class ShootEmUp2DPipe : MonoBehaviour
 {
-    [SerializeField] ShootEmUp2DEnemy enemyPrefab;
-    [SerializeField] float spawnTimer = 3f;
+    [SerializeField] ShootEmUp2DEnemy _enemyPrefab;
+    [SerializeField] float _spawnTimer = 3f;
 
-    ShootEmUp2DColorChanger colorChanger;
+    ShootEmUp2DColorChanger _colorChanger;
 
 
     void Awake()
     {
-        colorChanger = GetComponent<ShootEmUp2DColorChanger>();
+        _colorChanger = GetComponent<ShootEmUp2DColorChanger>();
     }
 
 
@@ -26,10 +26,10 @@ public class ShootEmUp2DPipe : MonoBehaviour
     {
         while (true)
         {
-            colorChanger.SetRandomColor();
-            ShootEmUp2DEnemy enemy = Instantiate(enemyPrefab, transform.position, transform.rotation);
-            enemy.Init( colorChanger.DefaultColor );
-            yield return new WaitForSeconds(spawnTimer);
+            _colorChanger.SetRandomColor();
+            ShootEmUp2DEnemy enemy = Instantiate(_enemyPrefab, transform.position, transform.rotation);
+            enemy.Init( _colorChanger.DefaultColor );
+            yield return new WaitForSeconds(_spawnTimer);
         }
     }
 }

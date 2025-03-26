@@ -82,9 +82,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e652642db6260344cb636626629dc1de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  splatterPrefab: {fileID: 4947047920627826977, guid: 5518058eff8e65b41a4c256a8557cd0a, type: 3}
-  deathVFX: {fileID: 1945101518159590777, guid: 043cd75d6c951c74d96ef8b1ee6e9b4d, type: 3}
-  startingHealth: 3
+  _splatterPrefab: {fileID: 4947047920627826977, guid: 5518058eff8e65b41a4c256a8557cd0a, type: 3}
+  _deathVFX: {fileID: 1945101518159590777, guid: 043cd75d6c951c74d96ef8b1ee6e9b4d, type: 3}
+  _startingHealth: 3
 --- !u!50 &-6445784336495608663
 Rigidbody2D:
   serializedVersion: 5
@@ -183,7 +183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 407fd2c17fbf89542afdd053c2dd00a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  knockbackTime: 0.2
+  _knockbackTime: 0.2
 --- !u!114 &1364574732603993176
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,9 +196,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c408a81340800647a0b488784951656, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultMat: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
-  damageFlashMat: {fileID: 2100000, guid: 1d3a7015e38f92a4e8bd9e29a0d13fff, type: 2}
-  flashTime: 0.1
+  _defaultMat: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  _damageFlashMat: {fileID: 2100000, guid: 1d3a7015e38f92a4e8bd9e29a0d13fff, type: 2}
+  _flashTime: 0.1
 --- !u!114 &8005361236530088579
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -211,12 +211,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 488ff214e5422274f874fef4766628cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colors:
-  - {r: 0, g: 0.67243624, b: 1, a: 1}
-  - {r: 1, g: 0.4156919, b: 0, a: 1}
-  - {r: 0.16299169, g: 0.3735848, b: 0, a: 1}
-  - {r: 1, g: 0.7075472, b: 0.94489235, a: 1}
-  fillSpriteRenderer: {fileID: 7564454557696005338}
+  _colors:
+  - {r: 0, g: 0.7721466, b: 0.83396226, a: 1}
+  - {r: 1, g: 0.2127862, b: 0, a: 1}
+  - {r: 0.05164617, g: 0.3584906, b: 0, a: 1}
+  - {r: 1, g: 0.76037735, b: 0.98010147, a: 1}
+  _fillSpriteRenderer: {fileID: 7564454557696005338}
 --- !u!1 &5153281642299242202
 GameObject:
   m_ObjectHideFlags: 0

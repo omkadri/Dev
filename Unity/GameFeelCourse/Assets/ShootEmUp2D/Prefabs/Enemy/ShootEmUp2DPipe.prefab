@@ -222,8 +222,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 392f736f90af0bb4e90d372014cc9b92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 2656737952503587502, guid: e3f71263d06868243b821d516bc766e0, type: 3}
-  spawnTimer: 3
+  _enemyPrefab: {fileID: 2656737952503587502, guid: e3f71263d06868243b821d516bc766e0, type: 3}
+  _spawnTimer: 3
 --- !u!61 &2832387929957637719
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -282,9 +282,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 488ff214e5422274f874fef4766628cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colors:
-  - {r: 0, g: 0.67243624, b: 1, a: 1}
-  - {r: 1, g: 0.4156919, b: 0, a: 1}
-  - {r: 0.16299169, g: 0.3735848, b: 0, a: 1}
-  - {r: 1, g: 0.7075472, b: 0.94489235, a: 1}
-  fillSpriteRenderer: {fileID: 5968084354001695933}
+  _colors:
+  - {r: 0, g: 0.7721466, b: 0.83396226, a: 1}
+  - {r: 1, g: 0.2127862, b: 0, a: 1}
+  - {r: 0.05164617, g: 0.3584906, b: 0, a: 1}
+  - {r: 1, g: 0.76037735, b: 0.98010147, a: 1}
+  _fillSpriteRenderer: {fileID: 5968084354001695933}

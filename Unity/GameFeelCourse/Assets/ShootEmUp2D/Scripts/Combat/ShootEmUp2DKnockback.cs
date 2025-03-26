@@ -8,17 +8,17 @@ public class ShootEmUp2DKnockback : MonoBehaviour
     public Action OnKnockbackStart;
     public Action OnKnockbackEnd;
 
-    [SerializeField] float knockbackTime = 0.2f;
+    [SerializeField] float _knockbackTime = 0.2f;
 
-    Vector3 hitDir;
-    float knockbackThrust;
+    Vector3 _hitDir;
+    float _knockbackThrust;
 
-    Rigidbody2D rb2d;
+    Rigidbody2D _rb2d;
 
 
     void Awake()
     {
-        rb2d = GetComponent<Rigidbody2D>();
+        _rb2d = GetComponent<Rigidbody2D>();
     }
 
 
@@ -38,8 +38,8 @@ public class ShootEmUp2DKnockback : MonoBehaviour
 
     public void ActivateKnockback( Vector3 hitDir, float knockbackThrust )
     {
-        this.hitDir = hitDir;//TODO: decide on a naming convention that can differentiate local and global variables
-        this.knockbackThrust = knockbackThrust;
+        _hitDir = hitDir;
+        _knockbackThrust = knockbackThrust;
 
         OnKnockbackStart?.Invoke();
     }
@@ -47,21 +47,21 @@ public class ShootEmUp2DKnockback : MonoBehaviour
 
     void ApplyKnockbackForce()
     {
-        Vector3 difference = ( transform.position - hitDir ).normalized * knockbackThrust * rb2d.mass;
-        rb2d.AddForce( difference, ForceMode2D.Impulse );
+        Vector3 difference = ( transform.position - _hitDir ).normalized * _knockbackThrust * _rb2d.mass;
+        _rb2d.AddForce( difference, ForceMode2D.Impulse );
         StartCoroutine( KnockbackRoutine() );
     }
 
 
     IEnumerator KnockbackRoutine()
     {
-        yield return new WaitForSeconds( knockbackTime );
+        yield return new WaitForSeconds( _knockbackTime );
         OnKnockbackEnd?.Invoke();
     }
 
 
     void StopKnockbackRoutine()
     {
-        rb2d.linearVelocity = Vector2.zero;
+        _rb2d.linearVelocity = Vector2.zero;
     }
 }

@@ -3,8 +3,8 @@ using UnityEngine;
 public class ShootEmUp2DColorChanger : MonoBehaviour
 {
     public Color DefaultColor { get; set; }
-    [SerializeField] Color[] colors;
-    [SerializeField] SpriteRenderer fillSpriteRenderer;
+    [SerializeField] Color[] _colors;
+    [SerializeField] SpriteRenderer _fillSpriteRenderer;
 
 
     public void SetDefaultColor( Color color )
@@ -16,14 +16,14 @@ public class ShootEmUp2DColorChanger : MonoBehaviour
 
     public void SetColor( Color color )
     {
-        fillSpriteRenderer.color = color;
+        _fillSpriteRenderer.color = color;
     }
 
 
     public void SetRandomColor()
     {
-        int randomNum = Random.Range( 0, colors.Length );
-        DefaultColor = colors[randomNum];
-        fillSpriteRenderer.color = DefaultColor;
+        int randomNum = Random.Range( 0, _colors.Length );
+        DefaultColor = _colors[randomNum];
+        _fillSpriteRenderer.color = DefaultColor;
     }
 }

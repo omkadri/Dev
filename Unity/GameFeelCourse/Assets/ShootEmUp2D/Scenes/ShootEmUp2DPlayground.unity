@@ -641,7 +641,7 @@ GameObject:
   m_Component:
   - component: {fileID: 710606986}
   m_Layer: 3
-  m_Name: Bullet Spawn Point
+  m_Name: ProjectileSpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -849,7 +849,7 @@ GameObject:
   - component: {fileID: 2011273898}
   - component: {fileID: 2011273900}
   m_Layer: 3
-  m_Name: Player
+  m_Name: ShootEmUp2DPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6888,7 +6888,7 @@ GameObject:
   - component: {fileID: 1154857000}
   - component: {fileID: 1154857001}
   m_Layer: 3
-  m_Name: Gun Sprite
+  m_Name: WeaponSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7114,9 +7114,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd1e7f4ee959f034b8512d6ee601565c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectileSpawnPoint: {fileID: 710606986}
-  projectilePrefab: {fileID: -5611149099131491127, guid: 9dca18bc1fee05d488922a753a58ca8d, type: 3}
-  fireCoolDown: 0.1
+  _projectileSpawnPoint: {fileID: 710606986}
+  _projectilePrefab: {fileID: -5611149099131491127, guid: 9dca18bc1fee05d488922a753a58ca8d, type: 3}
+  _fireCoolDown: 0.1
 --- !u!95 &1414218016
 Animator:
   serializedVersion: 7
@@ -7752,9 +7752,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e652642db6260344cb636626629dc1de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  splatterPrefab: {fileID: 0}
-  deathVFX: {fileID: 0}
-  startingHealth: 3
+  _splatterPrefab: {fileID: 0}
+  _deathVFX: {fileID: 7865633757470281000, guid: 4f9ed063276835f41b68be48ce1188e2, type: 3}
+  _startingHealth: 3
 --- !u!114 &2011273896
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7767,15 +7767,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac92c8116167b104b829fceb3bfadda9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  feetTransform: {fileID: 1533158400}
-  groundCheck: {x: 1.17, y: 0.19}
-  groundLayer:
+  _feetTransform: {fileID: 1533158400}
+  _groundCheck: {x: 1.17, y: 0.19}
+  _groundLayer:
     serializedVersion: 2
     m_Bits: 64
-  jumpStrength: 12
-  extraGravity: 900
-  gravityDelay: 0.2
-  coyoteTime: 0.1
+  _jumpStrength: 12
+  _extraGravity: 900
+  _gravityDelay: 0.2
+  _coyoteTime: 0.1
 --- !u!70 &2011273897
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -7837,7 +7837,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3adc71c5d58a4dc4eb0c4c4baea6eed5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
+  _moveSpeed: 10
 --- !u!114 &2011273900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7850,7 +7850,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 407fd2c17fbf89542afdd053c2dd00a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  knockbackTime: 0.2
+  _knockbackTime: 0.2
 --- !u!1 &2043640393
 GameObject:
   m_ObjectHideFlags: 0
