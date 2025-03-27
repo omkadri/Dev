@@ -9,7 +9,7 @@ public class RPGSingleton<T> : MonoBehaviour where T : RPGSingleton<T> {
 
     protected virtual void Awake () 
     {
-        if (instance != null) 
+        if ( instance != null ) 
         {
             // Can use for unity error logs 
             // Debug.LogErrorFormat("[Singleton] Trying to instantiate a second instance of singleton class {0} from {1}", GetType().Name,  this.gameObject.name);
@@ -17,15 +17,15 @@ public class RPGSingleton<T> : MonoBehaviour where T : RPGSingleton<T> {
         } 
         else 
         {
-            instance = (T)this;
+            instance = ( T )this;
         }
-        DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad( gameObject );
     }
 
 
     protected virtual void OnDestroy () 
     {
-        if (instance == this) 
+        if ( instance == this ) 
         {
             instance = null;
         }
