@@ -6,25 +6,25 @@ using UnityEngine;
 public class QuizMaster2DQuestionSO : ScriptableObject
 {
     [TextArea(2, 6)]
-    [SerializeField] string question = "Enter New Question Text";
-    [SerializeField] string[] answers = new string[4];
-    [SerializeField] int correctAnswerIndex;
+    [SerializeField] string _question = "Enter New Question Text";
+    [SerializeField] string[] _answers = new string[4];
+    [SerializeField] int _correctAnswerIndex;
 
 
     public string GetQuestion()
     {
-        return question;
+        return _question;
     }
 
 
      public string GetAnswer( int index )
     {
-        return answers[index];
+        return _answers[index];
     }
 
 
     public int GetCorrectAnswerIndex()
     {
-        return correctAnswerIndex;
+        return _correctAnswerIndex;
     }
 }

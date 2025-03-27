@@ -6,12 +6,12 @@ using UnityEngine;
 
 public class QuizMaster2DTimer : MonoBehaviour
 {
-    [SerializeField] float timeToCompleteQuestion = 30f;
-    [SerializeField] float timeToShowCorrectAnswer = 10f;
+    [SerializeField] float _timeToCompleteQuestion = 30f;
+    [SerializeField] float _timeToShowCorrectAnswer = 5f;
 
-    public bool loadNextQuestion;//TODO: Create public getter
-    public bool isAnsweringQuestion;//TODO: Create public getter
-    public float fillFraction;
+    public bool LoadNextQuestion { get; set; }
+    public bool IsAnsweringQuestion { get; set; }
+    public float FillFraction { get; set; }
     float timerValue;
     TextMeshProUGUI timerText;
 
@@ -38,16 +38,16 @@ public class QuizMaster2DTimer : MonoBehaviour
     {
         timerValue -= Time.deltaTime;
         {
-            if ( isAnsweringQuestion )
+            if ( IsAnsweringQuestion )
             {
                 if ( timerValue > 0 )
                 {
-                    fillFraction = timerValue / timeToCompleteQuestion;
+                    FillFraction = timerValue / _timeToCompleteQuestion;
                 }
                 else
                 {
-                    isAnsweringQuestion = false; 
-                    timerValue = timeToShowCorrectAnswer;
+                    IsAnsweringQuestion = false; 
+                    timerValue = _timeToShowCorrectAnswer;
                     ToggleTimerTextVisibilty( false );
                 }
             }
@@ -55,13 +55,13 @@ public class QuizMaster2DTimer : MonoBehaviour
             {
                 if ( timerValue > 0 )
                 {
-                    fillFraction = timerValue / timeToShowCorrectAnswer;
+                    FillFraction = timerValue / _timeToShowCorrectAnswer;
                 }
                 else
                 {
-                    isAnsweringQuestion = true;
-                    timerValue = timeToCompleteQuestion;
-                    loadNextQuestion = true;
+                    IsAnsweringQuestion = true;
+                    timerValue = _timeToCompleteQuestion;
+                    LoadNextQuestion = true;
                     ToggleTimerTextVisibilty( true );
                 }
             }

@@ -1547,8 +1547,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7f6cae662f5c52429db37cf60d7edd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  questionText: {fileID: 549237558}
-  questions:
+  _questionText: {fileID: 549237558}
+  _questions:
   - {fileID: 11400000, guid: e93c5b7ddeb7638428b778b6653c4944, type: 2}
   - {fileID: 11400000, guid: eb185a4bca6ce6744933f6bff6f459b1, type: 2}
   - {fileID: 11400000, guid: cfcb4ff9dac93834f9ca1d8e84e1d96a, type: 2}
@@ -1557,18 +1557,17 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 50920f52c71e1b94f894380effe58249, type: 2}
   - {fileID: 11400000, guid: 70453dc40a4fe864f9e7929e2cfdea98, type: 2}
   - {fileID: 11400000, guid: 440729588d2c63948a9f82e2fd21a708, type: 2}
-  currentQuestion: {fileID: 0}
-  answerButtons:
+  _currentQuestion: {fileID: 0}
+  _answerButtons:
   - {fileID: 6426502485627148486}
   - {fileID: 1941139286641803251}
   - {fileID: 1941139288329496612}
   - {fileID: 1941139287344651068}
-  defaultAnswerSprite: {fileID: 21300000, guid: 42537583352cb1a40bb7e547ac335039, type: 3}
-  correctAnswerSprite: {fileID: 21300000, guid: ef9e412c79199e14397c6bc30e20856e, type: 3}
-  timerImage: {fileID: 1856597744}
-  scoreText: {fileID: 61827887}
-  progressBar: {fileID: 1896128464}
-  isComplete: 0
+  _defaultAnswerSprite: {fileID: 21300000, guid: 42537583352cb1a40bb7e547ac335039, type: 3}
+  _correctAnswerSprite: {fileID: 21300000, guid: ef9e412c79199e14397c6bc30e20856e, type: 3}
+  _timerImage: {fileID: 1856597744}
+  _scoreText: {fileID: 61827887}
+  _progressBar: {fileID: 1896128464}
 --- !u!1 &1178839734
 GameObject:
   m_ObjectHideFlags: 0
@@ -1850,7 +1849,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bac543dfd8794f4c84bf97ac2c6eebe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  finalScoreText: {fileID: 758668987}
+  _finalScoreText: {fileID: 758668987}
 --- !u!1 &1465349350
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,31 +6,31 @@ using UnityEngine.SceneManagement;
 
 public class QuizMaster2DGameManager : MonoBehaviour
 {
-    QuizMaster2D quiz;
-    QuizMaster2DEndScreen endScreen;
+    QuizMaster2D _quiz;
+    QuizMaster2DEndScreen _endScreen;
 
 
     void Awake()
     {
-        quiz = FindFirstObjectByType<QuizMaster2D>();
-        endScreen = FindFirstObjectByType<QuizMaster2DEndScreen>();
+        _quiz = FindFirstObjectByType<QuizMaster2D>();
+        _endScreen = FindFirstObjectByType<QuizMaster2DEndScreen>();
     }
 
 
     void Start()
     { 
-        quiz.gameObject.SetActive(true);
-        endScreen.gameObject.SetActive(false);
+        _quiz.gameObject.SetActive(true);
+        _endScreen.gameObject.SetActive(false);
     }
 
 
     void Update()
     {
-        if (quiz.isComplete)
+        if (_quiz.IsComplete)
         {
-            quiz.gameObject.SetActive(false);
-            endScreen.gameObject.SetActive(true);
-            endScreen.ShowFinalScore();
+            _quiz.gameObject.SetActive(false);
+            _endScreen.gameObject.SetActive(true);
+            _endScreen.ShowFinalScore();
         }
     }
 

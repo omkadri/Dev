@@ -2,23 +2,23 @@ using UnityEngine;
 
 public class AnimationStartTimeRandomizer : MonoBehaviour
 {
-    Animator animator;
+    Animator _animator;
 
 
     void Awake()
     {
-        animator = GetComponent<Animator>();
+        _animator = GetComponent<Animator>();
     }
 
 
     void Start()
     {
-        if (!animator )
+        if (!_animator )
         {
             return;
         }
         
-        AnimatorStateInfo state = animator.GetCurrentAnimatorStateInfo( 0 );
-        animator.Play( state.fullPathHash, -1, Random.Range( 0f, 1f ) );
+        AnimatorStateInfo state = _animator.GetCurrentAnimatorStateInfo( 0 );
+        _animator.Play( state.fullPathHash, -1, Random.Range( 0f, 1f ) );
     }
 }

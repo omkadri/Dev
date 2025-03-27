@@ -5,18 +5,18 @@ using TMPro;
 
 public class QuizMaster2DEndScreen : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI finalScoreText;
-    QuizMaster2DScoreKeeper scoreKeeper;
+    [SerializeField] TextMeshProUGUI _finalScoreText;
+    QuizMaster2DScoreKeeper _scoreKeeper;
 
     
     void Awake()
     {
-        scoreKeeper = FindFirstObjectByType<QuizMaster2DScoreKeeper>();
+        _scoreKeeper = FindFirstObjectByType<QuizMaster2DScoreKeeper>();
     }
 
 
     public void ShowFinalScore()
     {
-        finalScoreText.text = "Quiz Completed!\nYou got a score of " + scoreKeeper.CalculateScore() + "%";
+        _finalScoreText.text = "Quiz Completed!\nYou got a score of " + _scoreKeeper.CalculateScore() + "%";
     }
 }
