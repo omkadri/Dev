@@ -250,7 +250,7 @@ GameObject:
   - component: {fileID: 4205854044113158849}
   - component: {fileID: 3914371871108929440}
   m_Layer: 0
-  m_Name: SideScroller2DGameSession
+  m_Name: Sidescroller2DGameSession
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -284,11 +284,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 973b4f8496d2d9b4e8d59c52412e65f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerLives: 3
-  score: 0
-  livesText: {fileID: 4613289079572594388}
-  scoreText: {fileID: 8389104691338966944}
-  gameOverSceneName: TileVania2DLevel1
+  _playerLives: 3
+  _score: 0
+  _livesText: {fileID: 4613289079572594388}
+  _scoreText: {fileID: 8389104691338966944}
+  _gameOverSceneName: Sidescroller2DLevel1
 --- !u!1 &7959137381178818984
 GameObject:
   m_ObjectHideFlags: 0

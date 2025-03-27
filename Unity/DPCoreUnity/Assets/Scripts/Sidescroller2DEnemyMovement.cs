@@ -5,7 +5,7 @@ using UnityEngine;
 public class SideScroller2DEnemyMovement : MonoBehaviour
 {
     Rigidbody2D rb2d;
-    [SerializeField] float moveSpeed = 1f;
+    [SerializeField] float _moveSpeed = 1f;
 
 
     void Start()
@@ -16,13 +16,13 @@ public class SideScroller2DEnemyMovement : MonoBehaviour
 
     void Update()
     {
-        rb2d.linearVelocity = new Vector2( moveSpeed,0f );
+        rb2d.linearVelocity = new Vector2( _moveSpeed,0f );
     }
 
 
     void OnTriggerExit2D( Collider2D other )
     {
-        moveSpeed = -moveSpeed;
+        _moveSpeed = -_moveSpeed;
         FlipEnemyFacing();
     }
 

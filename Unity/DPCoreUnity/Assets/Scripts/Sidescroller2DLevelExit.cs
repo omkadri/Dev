@@ -6,11 +6,11 @@ using UnityEngine.SceneManagement;
 
 public class SideScroller2DLevelExit : MonoBehaviour
 {
-    [SerializeField] float levelLoadDelay = 1f;
-    [SerializeField] string nextSceneName;
+    [SerializeField] float _levelLoadDelay = 1f;
+    [SerializeField] string _nextSceneName;
 
 
-    void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter2D( Collider2D other )
     {
         if ( other.tag == "Player" )
         {
@@ -22,7 +22,7 @@ public class SideScroller2DLevelExit : MonoBehaviour
     IEnumerator LoadNextLevelRoutine()
     {
         FindFirstObjectByType<SideScroller2DScenePersist>().ResetScenePersist();
-        yield return new WaitForSecondsRealtime( levelLoadDelay );
-        SceneManager.LoadScene( nextSceneName );
+        yield return new WaitForSecondsRealtime( _levelLoadDelay );
+        SceneManager.LoadScene( _nextSceneName );
     }
 }

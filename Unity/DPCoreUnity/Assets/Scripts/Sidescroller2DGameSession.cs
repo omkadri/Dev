@@ -8,11 +8,11 @@ using UnityEngine.SocialPlatforms;
 
 public class SideScroller2DGameSession : MonoBehaviour
 {
-    [SerializeField] int playerLives = 3;
-    [SerializeField] int score = 0;
-    [SerializeField] TextMeshProUGUI livesText;
-    [SerializeField] TextMeshProUGUI scoreText;
-    [SerializeField] string gameOverSceneName;
+    [SerializeField] int _playerLives = 3;
+    [SerializeField] int _score = 0;
+    [SerializeField] TextMeshProUGUI _livesText;
+    [SerializeField] TextMeshProUGUI _scoreText;
+    [SerializeField] string _gameOverSceneName;
     
     
     void Awake()
@@ -31,14 +31,14 @@ public class SideScroller2DGameSession : MonoBehaviour
 
     void Start()
     {
-        livesText.text = playerLives.ToString();
-        scoreText.text = score.ToString();
+        _livesText.text = _playerLives.ToString();
+        _scoreText.text = _score.ToString();
     }
 
 
     public void ProcessPlayerDeath()
     {
-        if ( playerLives > 1 )
+        if ( _playerLives > 1 )
         {
             TakeLife();
         }
@@ -51,24 +51,24 @@ public class SideScroller2DGameSession : MonoBehaviour
 
     public void AddToScore( int pointsToAdd )
     {
-        score += pointsToAdd;
-        scoreText.text = score.ToString();
+        _score += pointsToAdd;
+        _scoreText.text = _score.ToString();
     }
 
 
     private void TakeLife()
     {
-        playerLives -= 1;
+        _playerLives -= 1;
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene( currentSceneIndex );
-        livesText.text = playerLives.ToString();
+        _livesText.text = _playerLives.ToString();
     }
 
 
     void ResetGameSession()
     {
         FindFirstObjectByType<SideScroller2DScenePersist>().ResetScenePersist();
-        SceneManager.LoadScene( gameOverSceneName );
+        SceneManager.LoadScene( _gameOverSceneName );
         Destroy( gameObject ); //allows future game sessions to exist without duplication
     }
 }

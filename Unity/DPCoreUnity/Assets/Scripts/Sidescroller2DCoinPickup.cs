@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class SideScroller2DCoinPickup : MonoBehaviour
 {
-    [SerializeField] AudioClip coinPickupSFX;
-    [SerializeField] int pointsForCoinPickup = 100;
+    [SerializeField] AudioClip _coinPickupSFX;
+    [SerializeField] int _pointsForCoinPickup = 100;
 
     bool wasCollected = false;
 
@@ -14,8 +14,8 @@ public class SideScroller2DCoinPickup : MonoBehaviour
         if ( other.tag == "Player" && !wasCollected )
         {
             wasCollected = true;
-            FindFirstObjectByType<SideScroller2DGameSession>().AddToScore( pointsForCoinPickup );
-            AudioSource.PlayClipAtPoint( coinPickupSFX, Camera.main.transform.position );
+            FindFirstObjectByType<SideScroller2DGameSession>().AddToScore( _pointsForCoinPickup );
+            AudioSource.PlayClipAtPoint( _coinPickupSFX, Camera.main.transform.position );
             gameObject.SetActive( false );
             Destroy( gameObject );
         }

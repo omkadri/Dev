@@ -8,35 +8,36 @@ using UnityEngine.InputSystem;
 
 public class SideScroller2DPlayer : MonoBehaviour
 {
-    [SerializeField] float runSpeed = 10f;
-    [SerializeField] float jumpSpeed = 5f;
-    [SerializeField] float climbSpeed = 5f;
-    [SerializeField] Vector2 deathKnockback = new Vector2( 20f, 20f );
-    [SerializeField] GameObject projectile;
-    [SerializeField] Transform projectileWeapon;
-    bool isAlive;
-    Vector2 moveInput;
-    Rigidbody2D rb2d;
-    Animator animator;
-    CapsuleCollider2D bodyCollider;
-    BoxCollider2D feetCollider;
-    float defaultPlayerGravity;
+    [SerializeField] float _runSpeed = 5f;
+    [SerializeField] float _jumpSpeed = 10f;
+    [SerializeField] float _climbSpeed = 5f;
+    [SerializeField] Vector2 _deathKnockback = new Vector2( -2f, 20f );
+    [SerializeField] GameObject _projectile;
+    [SerializeField] Transform _projectileWeapon;
+
+    bool _isAlive;
+    Vector2 _moveInput;
+    Rigidbody2D _rb2d;
+    Animator _animator;
+    CapsuleCollider2D _bodyCollider;
+    BoxCollider2D _feetCollider;
+    float _defaultPlayerGravity;
 
 
     void Start()
     {
-        isAlive = true;
-        rb2d = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
-        bodyCollider = GetComponent<CapsuleCollider2D>();
-        feetCollider = GetComponent<BoxCollider2D>();
-        defaultPlayerGravity = rb2d.gravityScale;
+        _isAlive = true;
+        _rb2d = GetComponent<Rigidbody2D>();
+        _animator = GetComponent<Animator>();
+        _bodyCollider = GetComponent<CapsuleCollider2D>();
+        _feetCollider = GetComponent<BoxCollider2D>();
+        _defaultPlayerGravity = _rb2d.gravityScale;
     }
 
 
     void Update()
     {
-        if ( !isAlive ) { return; }
+        if ( !_isAlive ) { return; }
         Run();
         FlipSprite();
         Climb();
@@ -46,80 +47,80 @@ public class SideScroller2DPlayer : MonoBehaviour
 
     void OnMove( InputValue value )
     {
-        if ( !isAlive ) { return; }
-        moveInput = value.Get<Vector2>();
-        Debug.Log( moveInput );
+        if ( !_isAlive ) { return; }
+        _moveInput = value.Get<Vector2>();
+        Debug.Log( _moveInput );
     }
 
 
     void OnJump( InputValue value )
     {
-        if ( !isAlive ) { return; }
-        if ( !feetCollider.IsTouchingLayers( LayerMask.GetMask( "Ground" ) ) )
+        if ( !_isAlive ) { return; }
+        if ( !_feetCollider.IsTouchingLayers( LayerMask.GetMask( "Ground" ) ) )
         {
             return;
         }
         if ( value.isPressed )
         {
-            rb2d.linearVelocity += new Vector2( 0f, jumpSpeed );
+            _rb2d.linearVelocity += new Vector2( 0f, _jumpSpeed );
         }
         if (value.isPressed)
         {
-            rb2d.linearVelocity += new Vector2( 0f, jumpSpeed );
+            _rb2d.linearVelocity += new Vector2( 0f, _jumpSpeed );
         }
     }
 
 
     void OnFire( InputValue value )
     {
-        if ( !isAlive ) { return; }
-        Instantiate( projectile, projectileWeapon.position, transform.rotation );
+        if ( !_isAlive ) { return; }
+        Instantiate( _projectile, _projectileWeapon.position, transform.rotation );
     }
 
 
     void Run()
     {
-        Vector2 playerVelocity = new Vector2( moveInput.x * runSpeed, rb2d.linearVelocity.y );
-        rb2d.linearVelocity = playerVelocity;
-        bool playerHasHorizontalSpeed = Mathf.Abs( rb2d.linearVelocity.x ) > Mathf.Epsilon;//this prevents sprite from fliping back to facing forward after it stops moving
-        animator.SetBool( "IsRunning", playerHasHorizontalSpeed );
+        Vector2 playerVelocity = new Vector2( _moveInput.x * _runSpeed, _rb2d.linearVelocity.y );
+        _rb2d.linearVelocity = playerVelocity;
+        bool playerHasHorizontalSpeed = Mathf.Abs( _rb2d.linearVelocity.x ) > Mathf.Epsilon;//this prevents sprite from fliping back to facing forward after it stops moving
+        _animator.SetBool( "IsRunning", playerHasHorizontalSpeed );
     }
 
 
     private void FlipSprite()
     {
-        bool playerHasHorizontalSpeed = Mathf.Abs( rb2d.linearVelocity.x ) > Mathf.Epsilon;//this prevents sprite from fliping back to facing forward after it stops moving
+        bool playerHasHorizontalSpeed = Mathf.Abs( _rb2d.linearVelocity.x ) > Mathf.Epsilon;//this prevents sprite from fliping back to facing forward after it stops moving
 
         if ( playerHasHorizontalSpeed )
         {
-            transform.localScale = new Vector2( Mathf.Sign(rb2d.linearVelocity.x ), 1f);
+            transform.localScale = new Vector2( Mathf.Sign(_rb2d.linearVelocity.x ), 1f);
         }
     }
 
 
     void Climb()
     {
-        if ( !bodyCollider.IsTouchingLayers( LayerMask.GetMask( "Climbing" ) ) )
+        if ( !_bodyCollider.IsTouchingLayers( LayerMask.GetMask( "Climbing" ) ) )
         {
-            rb2d.gravityScale = defaultPlayerGravity;
-            animator.SetBool( "IsClimbing", false );
+            _rb2d.gravityScale = _defaultPlayerGravity;
+            _animator.SetBool( "IsClimbing", false );
             return;
         }
-        Vector2 climbVelocity = new Vector2( rb2d.linearVelocity.x, moveInput.y * climbSpeed );
-        rb2d.linearVelocity = climbVelocity;
-        rb2d.gravityScale = 0f;
-        bool playerHasVerticalSpeed = Mathf.Abs( rb2d.linearVelocity.y ) > Mathf.Epsilon;
-        animator.SetBool( "IsClimbing", playerHasVerticalSpeed );
+        Vector2 climbVelocity = new Vector2( _rb2d.linearVelocity.x, _moveInput.y * _climbSpeed );
+        _rb2d.linearVelocity = climbVelocity;
+        _rb2d.gravityScale = 0f;
+        bool playerHasVerticalSpeed = Mathf.Abs( _rb2d.linearVelocity.y ) > Mathf.Epsilon;
+        _animator.SetBool( "IsClimbing", playerHasVerticalSpeed );
     }
 
 
     void Die()
     {
-        if ( bodyCollider.IsTouchingLayers( LayerMask.GetMask( "Enemies", "Hazards" ) ) )
+        if ( _bodyCollider.IsTouchingLayers( LayerMask.GetMask( "Enemies", "Hazards" ) ) )
         {
-            isAlive = false;
-            animator.SetTrigger( "Dying" );
-            rb2d.linearVelocity = deathKnockback;
+            _isAlive = false;
+            _animator.SetTrigger( "Dying" );
+            _rb2d.linearVelocity = _deathKnockback;
             FindFirstObjectByType<SideScroller2DGameSession>().ProcessPlayerDeath();
         }
     }

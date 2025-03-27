@@ -5,23 +5,24 @@ using UnityEngine;
 
 public class SideScroller2DProjectile : MonoBehaviour
 {
-    Rigidbody2D rb2d;
-    [SerializeField] float projectileSpeed = 20f;
-    SideScroller2DPlayer player;// xSpeed ensures bullet is shooting in the direction that the player is facing. TODO: Find better name
-    float xSpeed;
+    [SerializeField] float _projectileSpeed = 20f;
+
+    Rigidbody2D _rb2d;
+    SideScroller2DPlayer _player;// xSpeed ensures bullet is shooting in the direction that the player is facing. TODO: Find better name
+    float _xSpeed;//TODO: find better name
 
 
     void Start()
     {
-        rb2d = GetComponent<Rigidbody2D>();
-        player = FindFirstObjectByType<SideScroller2DPlayer>();
-        xSpeed = player.transform.localScale.x * projectileSpeed;
+        _rb2d = GetComponent<Rigidbody2D>();
+        _player = FindFirstObjectByType<SideScroller2DPlayer>();
+        _xSpeed = _player.transform.localScale.x * _projectileSpeed;
     }
 
 
     void Update()
     {
-        rb2d.linearVelocity = new Vector2( xSpeed, 0f );
+        _rb2d.linearVelocity = new Vector2( _xSpeed, 0f );
     }
 
 
