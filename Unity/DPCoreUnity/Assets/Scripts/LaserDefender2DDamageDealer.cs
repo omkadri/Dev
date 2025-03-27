@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class LaserDefender2DDamageDealer : MonoBehaviour
 {
-    [SerializeField] int damage = 10;
+    [SerializeField] int _damage = 10;
 
 
     public int GetDamage()
     {
-        return damage;
+        return _damage;
     }
 
 

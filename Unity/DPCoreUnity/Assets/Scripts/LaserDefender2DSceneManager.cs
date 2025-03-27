@@ -4,37 +4,37 @@ using UnityEngine.SceneManagement;
 
 public class LaserDefender2DSceneManager : MonoBehaviour
 {
-    [SerializeField] LaserDefender2DScoreKeeper scoreKeeper;
-    [SerializeField] string gameSceneName;
+    [SerializeField] LaserDefender2DScoreKeeper _scoreKeeper;
+    [SerializeField] string _gameSceneName;
 
-    [SerializeField] string mainMenuSceneName;
+    [SerializeField] string _mainMenuSceneName;
 
-    [SerializeField] string gameOverSceneName;
-    [SerializeField] float gameOverLoadDelay = 3f;
+    [SerializeField] string _gameOverSceneName;
+    [SerializeField] float _gameOverLoadDelay = 3f;
 
 
     void Awake()
     {
-        scoreKeeper = FindFirstObjectByType<LaserDefender2DScoreKeeper>();
+        _scoreKeeper = FindFirstObjectByType<LaserDefender2DScoreKeeper>();
     }
 
     
     public void LoadGameScene()
     {
-        scoreKeeper.ResetScore();
-        SceneManager.LoadScene( gameSceneName );
+        _scoreKeeper.ResetScore();
+        SceneManager.LoadScene( _gameSceneName );
     }
 
 
     public void LoadMainMenuScene()
     {
-        SceneManager.LoadScene( mainMenuSceneName );
+        SceneManager.LoadScene( _mainMenuSceneName );
     }
 
 
     public void LoadGameOverScene()
     {
-        StartCoroutine( WaitAndLoadRoutine( gameOverSceneName, gameOverLoadDelay) );
+        StartCoroutine( WaitAndLoadRoutine( _gameOverSceneName, _gameOverLoadDelay) );
     }
 
 

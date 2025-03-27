@@ -4,23 +4,23 @@ using UnityEngine;
 
 public class LaserDefender2DPathfinder : MonoBehaviour
 {
-    LaserDefender2DEnemySpawner enemySpawner;
-    LaserDefender2DWaveConfigSO waveConfig;
+    LaserDefender2DEnemySpawner _enemySpawner;
+    LaserDefender2DWaveConfigSO _waveConfig;
     List<Transform> waypoints;
-    int waypointIndex = 0;
+    int _waypointIndex = 0;
 
 
     void Awake()
     {
-        enemySpawner = FindFirstObjectByType<LaserDefender2DEnemySpawner>();
+        _enemySpawner = FindFirstObjectByType<LaserDefender2DEnemySpawner>();
     }
 
 
     void Start()
     {
-        waveConfig = enemySpawner.GetCurrentWave();
-        waypoints = waveConfig.GetWaypoints();
-        transform.position = waypoints[waypointIndex].position;
+        _waveConfig = _enemySpawner.GetCurrentWave();
+        waypoints = _waveConfig.GetWaypoints();
+        transform.position = waypoints[_waypointIndex].position;
     }
 
 
@@ -32,14 +32,14 @@ public class LaserDefender2DPathfinder : MonoBehaviour
 
     void FollowPath()
     {
-        if ( waypointIndex < waypoints.Count )
+        if ( _waypointIndex < waypoints.Count )
         {
-            Vector3 targetPos = waypoints[waypointIndex].position;
-            float delta = waveConfig.GetMoveSpeed() * Time.deltaTime;
+            Vector3 targetPos = waypoints[_waypointIndex].position;
+            float delta = _waveConfig.GetMoveSpeed() * Time.deltaTime;
             transform.position = Vector2.MoveTowards( transform.position, targetPos, delta );
             if ( transform.position == targetPos )
             {
-                waypointIndex++;
+                _waypointIndex++;
             }
         }
         else

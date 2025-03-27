@@ -3,18 +3,19 @@ using UnityEngine;
 
 public class LaserDefender2DGameOverUI : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI scoreText;
-    LaserDefender2DScoreKeeper scoreKeeper;
+    [SerializeField] TextMeshProUGUI _scoreText;
+
+    LaserDefender2DScoreKeeper _scoreKeeper;
 
 
     void Awake()
     {
-        scoreKeeper = FindFirstObjectByType<LaserDefender2DScoreKeeper>();
+        _scoreKeeper = FindFirstObjectByType<LaserDefender2DScoreKeeper>();
     }
     
 
     void Start()
     {
-        scoreText.text = "You Scored:\n" + scoreKeeper.GetCurrentScore();
+        _scoreText.text = "You Scored:\n" + _scoreKeeper.GetCurrentScore();
     }
 }

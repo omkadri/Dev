@@ -233,11 +233,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9388f199a6963a4693b6d73837a8a23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 7688892824730415711, guid: ee4975f013b13d8418e707adee10db95, type: 3}
-  projectileSpeed: 10
-  projectileLifetime: 5
-  baseFireRate: 0.2
-  useEnemyAI: 0
-  fireRateVariance: 0
-  minFireRate: 0.1
-  isFiring: 0
+  _projectilePrefab: {fileID: 7688892824730415711, guid: ee4975f013b13d8418e707adee10db95, type: 3}
+  _projectileSpeed: 10
+  _projectileLifetime: 5
+  _baseFireRate: 0.2
+  _useEnemyAI: 0
+  _fireRateVariance: 0
+  _minFireRate: 0.1
+  _isFiring: 0

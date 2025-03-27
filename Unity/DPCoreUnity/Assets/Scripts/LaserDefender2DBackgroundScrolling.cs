@@ -4,19 +4,19 @@ public class LaserDefender2DBackgroundScrolling : MonoBehaviour
 {
     [SerializeField] Vector2 _moveSpeed;
 
-    Vector2 offset;
-    Material material;
+    Vector2 _offset;
+    Material _material;
 
 
     void Awake()
     {
-        material = GetComponent<SpriteRenderer>().material;
+        _material = GetComponent<SpriteRenderer>().material;
     }
 
 
     void Update()
     {
-        offset = _moveSpeed * Time.deltaTime;
-        material.mainTextureOffset += offset;
+        _offset = _moveSpeed * Time.deltaTime;
+        _material.mainTextureOffset += _offset;
     }
 }

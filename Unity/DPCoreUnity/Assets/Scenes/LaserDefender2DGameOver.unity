@@ -175,6 +175,22 @@ PrefabInstance:
       propertyPath: scoreKeeper
       value: 
       objectReference: {fileID: 255081335}
+    - target: {fileID: 8327323495212437009, guid: 8608a35fb55deca46b6997353614e159, type: 3}
+      propertyPath: _scoreKeeper
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8327323495212437009, guid: 8608a35fb55deca46b6997353614e159, type: 3}
+      propertyPath: _gameSceneName
+      value: LaserDefender2DBaseScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 8327323495212437009, guid: 8608a35fb55deca46b6997353614e159, type: 3}
+      propertyPath: _gameOverSceneName
+      value: LaserDefender2DGameOver
+      objectReference: {fileID: 0}
+    - target: {fileID: 8327323495212437009, guid: 8608a35fb55deca46b6997353614e159, type: 3}
+      propertyPath: _mainMenuSceneName
+      value: LaserDefender2DMainMenu
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1122,7 +1138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e79c59052385184886e392ebbc2989b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreText: {fileID: 269579828}
+  _scoreText: {fileID: 269579828}
 --- !u!1 &1722828535
 GameObject:
   m_ObjectHideFlags: 0
@@ -1679,6 +1695,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -7786455572349729254, guid: 5333bd6359aba944f8fa425ad53e52aa, type: 3}
+      propertyPath: _enemyDamageSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: d5d0d91f5bcc77b41b3c64acf03234a5, type: 3}
+    - target: {fileID: -7786455572349729254, guid: 5333bd6359aba944f8fa425ad53e52aa, type: 3}
+      propertyPath: _playerDeathSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 2246abdd302633d43b215198d3eb7386, type: 3}
+    - target: {fileID: -7786455572349729254, guid: 5333bd6359aba944f8fa425ad53e52aa, type: 3}
+      propertyPath: _playerDamageSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: d2b3917dd205b0845a0327af117d19ad, type: 3}
+    - target: {fileID: -7786455572349729254, guid: 5333bd6359aba944f8fa425ad53e52aa, type: 3}
+      propertyPath: _enemyShootingSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 1c027e3cd16b1b54dbb94a84291501da, type: 3}
+    - target: {fileID: -7786455572349729254, guid: 5333bd6359aba944f8fa425ad53e52aa, type: 3}
+      propertyPath: _playerShootingSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 9ba7c6445e1d0eb44ac2034e2eed9062, type: 3}
     - target: {fileID: 5551841527184805615, guid: 5333bd6359aba944f8fa425ad53e52aa, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

@@ -15,12 +15,12 @@ public class LaserDefender2DPlayerController : MonoBehaviour
     Vector2 _minBounds;
     Vector2 _maxBounds;
 
-    LaserDefender2DShooter shooter;
+    LaserDefender2DShooter _shooter;
 
 
     void Awake()
     {
-        shooter = GetComponent<LaserDefender2DShooter>();
+        _shooter = GetComponent<LaserDefender2DShooter>();
     }
 
 
@@ -62,9 +62,9 @@ public class LaserDefender2DPlayerController : MonoBehaviour
 
     void OnFire( InputValue value )
     {
-        if ( shooter != null )
+        if ( _shooter != null )
         {
-            shooter.isFiring = value.isPressed;
+            _shooter._isFiring = value.isPressed;
         }
     }
 }

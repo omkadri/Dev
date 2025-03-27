@@ -5,30 +5,29 @@ using TMPro;
 public class LaserDefender2DUIDisplay : MonoBehaviour
 {
     [Header( "Health" )]
-    [SerializeField] Slider healthSlider;
-    [SerializeField] LaserDefender2DHealth playerHealth;
-
+    [SerializeField] Slider _healthSlider;
+    [SerializeField] LaserDefender2DHealth _playerHealth;
 
     [Header( "Score" )]
-    [SerializeField] TextMeshProUGUI scoreText;
-    LaserDefender2DScoreKeeper scoreKeeper;
+    [SerializeField] TextMeshProUGUI _scoreText;
+    LaserDefender2DScoreKeeper _scoreKeeper;
 
 
     void Awake()
     {
-        scoreKeeper = FindFirstObjectByType<LaserDefender2DScoreKeeper>();
+        _scoreKeeper = FindFirstObjectByType<LaserDefender2DScoreKeeper>();
     }
 
 
     void Start()
     {
-        healthSlider.maxValue = playerHealth.GetHealth();
+        _healthSlider.maxValue = _playerHealth.GetHealth();
     }
 
 
     void Update()
     {
-        healthSlider.value = playerHealth.GetHealth();
-        scoreText.text = scoreKeeper.GetCurrentScore().ToString( "000000000" );
+        _healthSlider.value = _playerHealth.GetHealth();
+        _scoreText.text = _scoreKeeper.GetCurrentScore().ToString( "000000000" );
     }
 }

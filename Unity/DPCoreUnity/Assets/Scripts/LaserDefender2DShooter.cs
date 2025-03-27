@@ -4,33 +4,33 @@ using UnityEngine;
 public class LaserDefender2DShooter : MonoBehaviour
 {
     [Header( "General" )]
-    [SerializeField] GameObject projectilePrefab;
-    [SerializeField] float projectileSpeed = 10f;
-    [SerializeField] float projectileLifetime = 5f;
-    [SerializeField] float baseFireRate = 0.2f;
+    [SerializeField] GameObject _projectilePrefab;
+    [SerializeField] float _projectileSpeed = 10f;
+    [SerializeField] float _projectileLifetime = 5f;
+    [SerializeField] float _baseFireRate = 0.2f;
 
     [Header( "Enemy AI" )]
-    [SerializeField] bool useEnemyAI;
-    [SerializeField] float fireRateVariance = 0f;
-    [SerializeField] float minFireRate = 0.1f;
+    [SerializeField] bool _useEnemyAI;
+    [SerializeField] float _fireRateVariance = 0f;
+    [SerializeField] float _minFireRate = 0.1f;
 
-    [HideInInspector] public bool isFiring;//TODO: Create public getter
+    [HideInInspector] public bool _isFiring;//TODO: Create public getter
 
-    Coroutine firingCoroutine;
-    LaserDefender2DAudioPlayer audioPlayer;
+    Coroutine _firingCoroutine;
+    LaserDefender2DAudioPlayer _audioPlayer;
 
 
     void Awake()
     {
-        audioPlayer = FindFirstObjectByType<LaserDefender2DAudioPlayer>();
+        _audioPlayer = FindFirstObjectByType<LaserDefender2DAudioPlayer>();
     }
 
 
     void Start()
     {
-        if ( useEnemyAI )
+        if ( _useEnemyAI )
         {
-            isFiring = true;
+            _isFiring = true;
         }   
     }
 
@@ -43,14 +43,14 @@ public class LaserDefender2DShooter : MonoBehaviour
 
     void Fire()
     {
-        if ( isFiring && firingCoroutine == null )//ensure that firingCoroutine is not being called twice
+        if ( _isFiring && _firingCoroutine == null )//ensure that firingCoroutine is not being called twice
         {
-            firingCoroutine = StartCoroutine( FireContinuouslyRoutine() );
+            _firingCoroutine = StartCoroutine( FireContinuouslyRoutine() );
         }
-        else if ( !isFiring && firingCoroutine != null )
+        else if ( !_isFiring && _firingCoroutine != null )
         {
-            StopCoroutine( firingCoroutine );
-            firingCoroutine = null;
+            StopCoroutine( _firingCoroutine );
+            _firingCoroutine = null;
         }
     }
 
@@ -59,24 +59,24 @@ public class LaserDefender2DShooter : MonoBehaviour
     {
         while( true )
         {
-            GameObject instance = Instantiate( projectilePrefab, transform.position, Quaternion.identity );
+            GameObject instance = Instantiate( _projectilePrefab, transform.position, Quaternion.identity );
             Rigidbody2D rb2d = instance.GetComponent<Rigidbody2D>();
             if ( rb2d != null )
             {
-                if ( useEnemyAI )
+                if ( _useEnemyAI )
                 {
-                    rb2d.linearVelocity = -transform.up * projectileSpeed; //the negative sign reverses the projectile to come towards the player
+                    rb2d.linearVelocity = -transform.up * _projectileSpeed; //the negative sign reverses the projectile to come towards the player
                 }
                 else
                 {
-                    rb2d.linearVelocity = transform.up * projectileSpeed;
+                    rb2d.linearVelocity = transform.up * _projectileSpeed;
                 }
             }
-            Destroy( instance, projectileLifetime );
+            Destroy( instance, _projectileLifetime );
 
-            float timeToNextProjectile = Random.Range( ( baseFireRate - fireRateVariance ), ( baseFireRate + fireRateVariance ) );
+            float timeToNextProjectile = Random.Range( ( _baseFireRate - _fireRateVariance ), ( _baseFireRate + _fireRateVariance ) );
 
-            timeToNextProjectile = Mathf.Clamp( timeToNextProjectile, minFireRate, float.MaxValue );
+            timeToNextProjectile = Mathf.Clamp( timeToNextProjectile, _minFireRate, float.MaxValue );
 
             PlayShootingSFX();
             
@@ -87,15 +87,15 @@ public class LaserDefender2DShooter : MonoBehaviour
 
     void PlayShootingSFX()
     {
-        if ( audioPlayer != null )
+        if ( _audioPlayer != null )
         {
-            if ( useEnemyAI )
+            if ( _useEnemyAI )
             {
-                audioPlayer.PlayEnemyShootingSFX();
+                _audioPlayer.PlayEnemyShootingSFX();
             }
             else
             {
-                audioPlayer.PlayPlayerShootingSFX();
+                _audioPlayer.PlayPlayerShootingSFX();
             }
         }
     }

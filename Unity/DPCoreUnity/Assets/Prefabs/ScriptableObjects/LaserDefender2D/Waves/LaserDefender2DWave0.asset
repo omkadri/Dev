@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 460c80950e0416a47b81746dfc7e5121, type: 3}
   m_Name: LaserDefender2DWave0
   m_EditorClassIdentifier: 
-  enemyPrefabs:
+  _enemyPrefabs:
   - {fileID: 6551838771646942758, guid: 90deca61c549f364489b4f039ec32338, type: 3}
   - {fileID: 6551838771646942758, guid: 90deca61c549f364489b4f039ec32338, type: 3}
   - {fileID: 6551838771646942758, guid: 90deca61c549f364489b4f039ec32338, type: 3}
   - {fileID: 6551838771646942758, guid: 90deca61c549f364489b4f039ec32338, type: 3}
   - {fileID: 6551838771646942758, guid: 90deca61c549f364489b4f039ec32338, type: 3}
-  pathPrefab: {fileID: 4111918932678806491, guid: ef85f72f861800445b867a514e8c723a, type: 3}
-  moveSpeed: 3
-  timeBetweenEnemySpawns: 1
-  spawnTimeVariance: 0.5
-  minSpawnTime: 0.2
+  _pathPrefab: {fileID: 4111918932678806491, guid: ef85f72f861800445b867a514e8c723a, type: 3}
+  _moveSpeed: 3
+  _timeBetweenEnemySpawns: 1
+  _spawnTimeVariance: 0.5
+  _minSpawnTime: 0.2

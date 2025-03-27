@@ -45,16 +45,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c95794164ff8c1d45b489e6f94043f2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerShootingSFX: {fileID: 8300000, guid: 9ba7c6445e1d0eb44ac2034e2eed9062, type: 3}
-  playerShootingVolume: 1
-  enemyShootingSFX: {fileID: 8300000, guid: 1c027e3cd16b1b54dbb94a84291501da, type: 3}
-  enemyShootingVolume: 1
-  playerDamageSFX: {fileID: 8300000, guid: d2b3917dd205b0845a0327af117d19ad, type: 3}
-  playerDamageVolume: 1
-  playerDeathSFX: {fileID: 8300000, guid: 2246abdd302633d43b215198d3eb7386, type: 3}
-  playerDeathVolume: 1
-  enemyDamageSFX: {fileID: 8300000, guid: d5d0d91f5bcc77b41b3c64acf03234a5, type: 3}
-  enemyDamageVolume: 1
+  _playerShootingSFX: {fileID: 8300000, guid: 9ba7c6445e1d0eb44ac2034e2eed9062, type: 3}
+  _playerShootingVolume: 1
+  _enemyShootingSFX: {fileID: 8300000, guid: 1c027e3cd16b1b54dbb94a84291501da, type: 3}
+  _enemyShootingVolume: 1
+  _playerDamageSFX: {fileID: 8300000, guid: d2b3917dd205b0845a0327af117d19ad, type: 3}
+  _playerDamageVolume: 1
+  _playerDeathSFX: {fileID: 8300000, guid: 2246abdd302633d43b215198d3eb7386, type: 3}
+  _playerDeathVolume: 1
+  _enemyDamageSFX: {fileID: 8300000, guid: d5d0d91f5bcc77b41b3c64acf03234a5, type: 3}
+  _enemyDamageVolume: 1
 --- !u!82 &6301252796993919935
 AudioSource:
   m_ObjectHideFlags: 0

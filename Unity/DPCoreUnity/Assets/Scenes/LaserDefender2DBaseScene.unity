@@ -805,9 +805,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49fa2488d77d5f9439ea85f2d38aaeac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthSlider: {fileID: 1724274385}
-  playerHealth: {fileID: 928074143}
-  scoreText: {fileID: 389558396}
+  _healthSlider: {fileID: 1724274385}
+  _playerHealth: {fileID: 928074143}
+  _scoreText: {fileID: 389558396}
 --- !u!1001 &1021424052
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1083,6 +1083,22 @@ PrefabInstance:
       propertyPath: scoreKeeper
       value: 
       objectReference: {fileID: 1800635739}
+    - target: {fileID: 8327323495212437009, guid: 8608a35fb55deca46b6997353614e159, type: 3}
+      propertyPath: _scoreKeeper
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8327323495212437009, guid: 8608a35fb55deca46b6997353614e159, type: 3}
+      propertyPath: _gameSceneName
+      value: LaserDefender2DBaseScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 8327323495212437009, guid: 8608a35fb55deca46b6997353614e159, type: 3}
+      propertyPath: _gameOverSceneName
+      value: LaserDefender2DGameOver
+      objectReference: {fileID: 0}
+    - target: {fileID: 8327323495212437009, guid: 8608a35fb55deca46b6997353614e159, type: 3}
+      propertyPath: _mainMenuSceneName
+      value: LaserDefender2DMainMenu
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

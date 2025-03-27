@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class LaserDefender2DScoreKeeper : MonoBehaviour
 {
-    private int currentScore;
-
-    static LaserDefender2DScoreKeeper instance;
+    static LaserDefender2DScoreKeeper _instance;
+    
+    private int _currentScore;
 
 
     void Awake()
@@ -17,14 +17,14 @@ public class LaserDefender2DScoreKeeper : MonoBehaviour
 
     void ManageSingleton()
     {
-        if ( instance != null )
+        if ( _instance != null )
         {
             gameObject.SetActive( false );
             Destroy( gameObject );
         }
         else
         {
-            instance = this;
+            _instance = this;
             DontDestroyOnLoad( gameObject ) ;
         }
     }
@@ -32,20 +32,20 @@ public class LaserDefender2DScoreKeeper : MonoBehaviour
 
     public int GetCurrentScore()
     {
-        return currentScore;
+        return _currentScore;
     }
 
 
     public void ModifyScore( int value )
     {
-        currentScore += value;
-        Mathf.Clamp( currentScore, 0, int.MaxValue );
-        Debug.Log( currentScore );
+        _currentScore += value;
+        Mathf.Clamp( _currentScore, 0, int.MaxValue );
+        Debug.Log( _currentScore );
     }
     
 
     public void ResetScore()
     {
-        currentScore = 0;
+        _currentScore = 0;
     }
 }
