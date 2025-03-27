@@ -52,7 +52,7 @@ public class TopDown2DActiveWeapon : Singleton<TopDown2DActiveWeapon>
     {
         CurrentActiveWeapon = newWeapon;
         AttackCooldown();//TODO: Ensure that this call does not mess with future Coroutines
-        timeBetweenAttacks = ( CurrentActiveWeapon as TopDown2DIWeapon).GetWeaponInfo().weaponCooldown;
+        timeBetweenAttacks = ( CurrentActiveWeapon as TopDown2DIWeapon).GetWeaponInfo().WeaponCooldown;
     }
 
 

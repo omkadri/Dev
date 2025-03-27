@@ -3,18 +3,18 @@ using UnityEngine;
 
 public class TopDown2DStaff : MonoBehaviour, TopDown2DIWeapon
 {
-    [SerializeField] TopDown2DWeaponInfoSO weaponInfo;
-    [SerializeField] GameObject magicLaser;
-    [SerializeField] Transform magicLaserSpawnPoint;
+    [SerializeField] TopDown2DWeaponInfoSO _weaponInfo;
+    [SerializeField] GameObject _magicLaser;
+    [SerializeField] Transform _magicLaserSpawnPoint;
 
-    Animator animator;
+    Animator _animator;
 
     readonly int ATTACK_HASH = Animator.StringToHash( "Attack" );
 
 
     void Awake()
     {
-        animator = GetComponent<Animator>();
+        _animator = GetComponent<Animator>();
     }
 
     
@@ -27,20 +27,20 @@ public class TopDown2DStaff : MonoBehaviour, TopDown2DIWeapon
     public void Attack()
     {
         Debug.Log( "Staff Attack" );
-        animator.SetTrigger( ATTACK_HASH );
+        _animator.SetTrigger( ATTACK_HASH );
     }
 
 
     public void SpawnStaffProjectileAnimEvent()
     {
-        GameObject newLaser = Instantiate( magicLaser, magicLaserSpawnPoint.position, quaternion.identity );
-        newLaser.GetComponent<TopDown2DStaffLaser>().UpdateLaserRange( weaponInfo.weaponRange );
+        GameObject newLaser = Instantiate( _magicLaser, _magicLaserSpawnPoint.position, quaternion.identity );
+        newLaser.GetComponent<TopDown2DStaffLaser>().UpdateLaserRange( _weaponInfo.WeaponRange );
     }
 
 
     public TopDown2DWeaponInfoSO GetWeaponInfo()
     {
-        return weaponInfo;
+        return _weaponInfo;
     }
 
 

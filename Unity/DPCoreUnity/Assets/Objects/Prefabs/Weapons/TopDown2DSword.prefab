@@ -76,7 +76,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -815283223
-  m_SortingLayer: 9
+  m_SortingLayer: 11
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 5184d02202b711a48b72fa4b7d6f4197, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -123,6 +123,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e59cb4aef3fadbb4a9ceaf0e48c9b128, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slashAnimPrefab: {fileID: 406171907271531056, guid: 6e131c01990d57f44b2909927d880a4a, type: 3}
-  swordAttackCooldown: 0.5
-  weaponInfo: {fileID: 11400000, guid: d9fbd3a646cc0f847a2568b024d9a948, type: 2}
+  _slashAnimPrefab: {fileID: 406171907271531056, guid: 6e131c01990d57f44b2909927d880a4a, type: 3}
+  _weaponInfo: {fileID: 11400000, guid: d9fbd3a646cc0f847a2568b024d9a948, type: 2}

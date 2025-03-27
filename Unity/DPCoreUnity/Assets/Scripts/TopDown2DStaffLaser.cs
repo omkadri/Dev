@@ -3,18 +3,18 @@ using UnityEngine;
 
 public class TopDown2DStaffLaser : MonoBehaviour
 {
-    [SerializeField] float laserGrowTime = 2f;
+    [SerializeField] float _laserGrowTime = 0.22f;
 
-    bool isGrowing = true;
-    float laserRange;
-    SpriteRenderer spriteRenderer;
-    CapsuleCollider2D capsuleCollider2D;
+    bool _isGrowing = true;
+    float _laserRange;
+    SpriteRenderer _spriteRenderer;
+    CapsuleCollider2D _capsuleCollider2D;
 
 
     void Awake()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        capsuleCollider2D = GetComponent<CapsuleCollider2D>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _capsuleCollider2D = GetComponent<CapsuleCollider2D>();
     }
 
 
@@ -28,14 +28,14 @@ public class TopDown2DStaffLaser : MonoBehaviour
     {
         if ( other.gameObject.GetComponent<TopDown2DIndestructible>() && !other.isTrigger )
         {
-            isGrowing = false;
+            _isGrowing = false;
         }
     }
 
 
     public void UpdateLaserRange( float laserRange )
     {
-        this.laserRange = laserRange;
+        this._laserRange = laserRange;
         StartCoroutine( IncreaseLaserLengthRoutine() );
     }
 
@@ -44,17 +44,17 @@ public class TopDown2DStaffLaser : MonoBehaviour
     {
         float timePassed = 0;
 
-        while ( spriteRenderer.size.x < laserRange && isGrowing )
+        while ( _spriteRenderer.size.x < _laserRange && _isGrowing )
         {
             timePassed += Time.deltaTime;
-            float linaerT = timePassed / laserGrowTime;
+            float linaerT = timePassed / _laserGrowTime;
 
             //sprite
-            spriteRenderer.size = new Vector2( Mathf.Lerp( 1, laserRange, linaerT ), 1f );
+            _spriteRenderer.size = new Vector2( Mathf.Lerp( 1, _laserRange, linaerT ), 1f );
 
             //collider
-            capsuleCollider2D.size = new Vector2( Mathf.Lerp( 1f, laserRange, linaerT ), capsuleCollider2D.size.y );
-            capsuleCollider2D.offset = new Vector2( Mathf.Lerp( 1f, laserRange, linaerT ) / 2, capsuleCollider2D.offset.y ); // dividing by 2 is the key to making the collider offset line up with the sprite size
+            _capsuleCollider2D.size = new Vector2( Mathf.Lerp( 1f, _laserRange, linaerT ), _capsuleCollider2D.size.y );
+            _capsuleCollider2D.offset = new Vector2( Mathf.Lerp( 1f, _laserRange, linaerT ) / 2, _capsuleCollider2D.offset.y ); // dividing by 2 is the key to making the collider offset line up with the sprite size
 
             yield return null;
         }

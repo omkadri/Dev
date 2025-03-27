@@ -382,16 +382,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49b3b855f5e6ebb46920eda92d15dcf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 1506420051299673228, guid: 26d5c012b975da940ae4cd072598d792, type: 3}
-  projectileMoveSpeed: 6
-  burstCount: 5
-  projectilesPerBurst: 5
-  angleSpread: 44
-  startingDistance: 0.1
-  timeBetweenBursts: 0.3
-  restTime: 0.5
-  oscillate: 0
-  stagger: 0
+  _projectilePrefab: {fileID: 1506420051299673228, guid: 26d5c012b975da940ae4cd072598d792, type: 3}
+  _projectileMoveSpeed: 6
+  _burstCount: 5
+  _projectilesPerBurst: 1
+  _angleSpread: 44
+  _startingDistance: 0.1
+  _timeBetweenBursts: 0.3
+  _restTime: 0.5
+  _oscillate: 0
+  _stagger: 0
 --- !u!114 &-4999523541005211216
 MonoBehaviour:
   m_ObjectHideFlags: 0

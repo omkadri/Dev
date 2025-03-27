@@ -74,7 +74,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -815283223
-  m_SortingLayer: 9
+  m_SortingLayer: 11
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 9394866289ccb784391ac81f2fff81e1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -135,9 +135,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fed7b42475b80404ba33e801586fdfc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponInfo: {fileID: 11400000, guid: 0b70b5c87ff20954b95fbbf2bc4f9fde, type: 2}
-  magicLaser: {fileID: 8994393041415235549, guid: 78921719baeefb64bb7767d3e8b7b3da, type: 3}
-  magicLaserSpawnPoint: {fileID: 574178310386571383}
+  _weaponInfo: {fileID: 11400000, guid: 0b70b5c87ff20954b95fbbf2bc4f9fde, type: 2}
+  _magicLaser: {fileID: 8994393041415235549, guid: 78921719baeefb64bb7767d3e8b7b3da, type: 3}
+  _magicLaserSpawnPoint: {fileID: 574178310386571383}
 --- !u!212 &5549401695346275178
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -180,7 +180,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -815283223
-  m_SortingLayer: 9
+  m_SortingLayer: 11
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 5e495074def85c54ba9de9bb13fc589f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

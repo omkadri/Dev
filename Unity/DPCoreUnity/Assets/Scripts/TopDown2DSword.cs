@@ -3,25 +3,25 @@ using UnityEngine;
 
 public class TopDown2DSword : MonoBehaviour, TopDown2DIWeapon
 {
-    [SerializeField] GameObject slashAnimPrefab;
-    [SerializeField] TopDown2DWeaponInfoSO weaponInfo;
+    [SerializeField] GameObject _slashAnimPrefab;
+    [SerializeField] TopDown2DWeaponInfoSO _weaponInfo;
 
-    Animator animator; 
-    Transform weaponCollider;
-    Transform slashAnimSpawnPoint;
-    GameObject slashAnim;
+    Animator _animator; 
+    Transform _weaponCollider;
+    Transform _slashAnimSpawnPoint;
+    GameObject _slashAnim;
 
 
     void Awake()
     {
-        animator = GetComponent<Animator>();
+        _animator = GetComponent<Animator>();
     }
 
 
     void Start()
     {
-        weaponCollider = TopDown2DPlayerController.Instance.GetWeaponCollider();
-        slashAnimSpawnPoint = TopDown2DPlayerController.Instance.GetSlashAnimSpawnPoint();
+        _weaponCollider = TopDown2DPlayerController.Instance.GetWeaponCollider();
+        _slashAnimSpawnPoint = TopDown2DPlayerController.Instance.GetSlashAnimSpawnPoint();
     }
 
 
@@ -33,43 +33,43 @@ public class TopDown2DSword : MonoBehaviour, TopDown2DIWeapon
 
     public void Attack()
     {
-        animator.SetTrigger( "Attack" );
-        weaponCollider.gameObject.SetActive( true );
-        slashAnim = Instantiate( slashAnimPrefab, slashAnimSpawnPoint.position, Quaternion.identity );
-        slashAnim.transform.parent = this.transform.parent;
+        _animator.SetTrigger( "Attack" );
+        _weaponCollider.gameObject.SetActive( true );
+        _slashAnim = Instantiate( _slashAnimPrefab, _slashAnimSpawnPoint.position, Quaternion.identity );
+        _slashAnim.transform.parent = this.transform.parent;
     }
 
 
     public TopDown2DWeaponInfoSO GetWeaponInfo()
     {
-        return weaponInfo;
+        return _weaponInfo;
     }
 
 
     public void DoneAttackingAnimEvent()
     {
-        weaponCollider.gameObject.SetActive( false );
+        _weaponCollider.gameObject.SetActive( false );
     }
 
 
     public void SwingUpFlipAnimEvent()
     {
-        slashAnim.gameObject.transform.rotation = Quaternion.Euler( -180, 0, 0 );
+        _slashAnim.gameObject.transform.rotation = Quaternion.Euler( -180, 0, 0 );
 
         if ( TopDown2DPlayerController.Instance.isFacingLeft )
         {
-            slashAnim.GetComponent<SpriteRenderer>().flipX = true;
+            _slashAnim.GetComponent<SpriteRenderer>().flipX = true;
         }
     }
     
 
     public void SwingDownFlipAnimEvent()
     {
-        slashAnim.gameObject.transform.rotation = Quaternion.Euler( 0, 0, 0 );
+        _slashAnim.gameObject.transform.rotation = Quaternion.Euler( 0, 0, 0 );
 
         if ( TopDown2DPlayerController.Instance.isFacingLeft )
         {
-            slashAnim.GetComponent<SpriteRenderer>().flipX = true;
+            _slashAnim.GetComponent<SpriteRenderer>().flipX = true;
         }
     }
 
@@ -84,12 +84,12 @@ public class TopDown2DSword : MonoBehaviour, TopDown2DIWeapon
         if ( mousePos.x < playerPos.x )
         {
             TopDown2DActiveWeapon.Instance.transform.rotation = Quaternion.Euler( 0, -180, angle );
-            weaponCollider.transform.rotation = Quaternion.Euler( 0, -180, 0 );
+            _weaponCollider.transform.rotation = Quaternion.Euler( 0, -180, 0 );
         }
         else
         {
             TopDown2DActiveWeapon.Instance.transform.rotation = Quaternion.Euler( 0, 0, angle );
-            weaponCollider.transform.rotation = Quaternion.Euler( 0, 0, 0 );
+            _weaponCollider.transform.rotation = Quaternion.Euler( 0, 0, 0 );
         }
     }
 }

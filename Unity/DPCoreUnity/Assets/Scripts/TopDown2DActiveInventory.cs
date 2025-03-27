@@ -76,7 +76,7 @@ public class TopDown2DActiveInventory : Singleton<TopDown2DActiveInventory>
         Transform childTransform = transform.GetChild( activeSlotIndexNum );
         TopDown2DInventorySlot inventorySlot = childTransform.GetComponentInChildren<TopDown2DInventorySlot>();
         TopDown2DWeaponInfoSO weaponInfo = inventorySlot?.GetWeaponInfo();
-        GameObject weaponToSpawn = weaponInfo?.weaponPrefab;
+        GameObject weaponToSpawn = weaponInfo?.WeaponPrefab;
 
         if ( weaponInfo == null )
         {

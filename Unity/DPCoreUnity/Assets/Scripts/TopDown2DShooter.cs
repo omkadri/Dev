@@ -4,39 +4,39 @@ using UnityEngine;
 
 public class TopDown2DShooter : MonoBehaviour, TopDown2DIEnemy
 {
-    [SerializeField] GameObject projectilePrefab;
-    [SerializeField] float projectileMoveSpeed;
-    [SerializeField] int burstCount;
-    [SerializeField] int projectilesPerBurst;
-    [SerializeField] [Range( 0, 359 )] float angleSpread;
-    [SerializeField] float startingDistance = 0.1f;
-    [SerializeField] float timeBetweenBursts;
-    [SerializeField] float restTime = 1f;
-    [SerializeField] bool oscillate;
+    [SerializeField] GameObject _projectilePrefab;
+    [SerializeField] float _projectileMoveSpeed;
+    [SerializeField] int _burstCount;
+    [SerializeField] int _projectilesPerBurst;
+    [SerializeField] [Range( 0, 359 )] float _angleSpread;
+    [SerializeField] float _startingDistance = 0.1f;
+    [SerializeField] float _timeBetweenBursts;
+    [SerializeField] float _restTime = 1f;
+    [SerializeField] bool _oscillate;
     [Tooltip( "Oscillate must be enabled for stagger to work properly." )]
-    [SerializeField] bool stagger;
+    [SerializeField] bool _stagger;
     
 
-    bool isShooting = false;
+    bool _isShooting = false;
 
 
     void OnValidate() //We use this to prevent serialized properties from having invalid values.
     {
-        if ( !oscillate ) { stagger = false; } //TODO: investigate not being able to turn on stagger independently
-        if ( projectilesPerBurst < 1 ) { projectilesPerBurst = 1; }
-        if ( burstCount < 1 ) { burstCount = 1; }
-        if ( timeBetweenBursts < 0.1f ) { timeBetweenBursts = 0.1f; }
-        if ( restTime < 0.1f ) { restTime = 0.1f; }
-        if ( startingDistance < 0.1f ) { startingDistance = 0.1f; }
-        if ( angleSpread == 0 ) { projectilesPerBurst = 1; }
-        if ( projectileMoveSpeed <= 0 ) { projectileMoveSpeed = 0.1f; }
+        if ( !_oscillate ) { _stagger = false; } //TODO: investigate not being able to turn on stagger independently
+        if ( _projectilesPerBurst < 1 ) { _projectilesPerBurst = 1; }
+        if ( _burstCount < 1 ) { _burstCount = 1; }
+        if ( _timeBetweenBursts < 0.1f ) { _timeBetweenBursts = 0.1f; }
+        if ( _restTime < 0.1f ) { _restTime = 0.1f; }
+        if ( _startingDistance < 0.1f ) { _startingDistance = 0.1f; }
+        if ( _angleSpread == 0 ) { _projectilesPerBurst = 1; }
+        if ( _projectileMoveSpeed <= 0 ) { _projectileMoveSpeed = 0.1f; }
 
     }
 
 
     public void Attack()
     {
-        if ( !isShooting )
+        if ( !_isShooting )
         {
             StartCoroutine( ShootRoutine() );
         }
@@ -45,30 +45,30 @@ public class TopDown2DShooter : MonoBehaviour, TopDown2DIEnemy
 
     IEnumerator ShootRoutine()
     {
-        isShooting = true;
+        _isShooting = true;
 
         float startAngle, currentAngle, angleStep, endAngle;
         float timeBetweenProjectiles = 0f;
 
         TargetConeOfInfluence( out startAngle, out currentAngle, out angleStep, out endAngle );
 
-        if ( stagger )
+        if ( _stagger )
         {
-            timeBetweenProjectiles = timeBetweenBursts / projectilesPerBurst;
+            timeBetweenProjectiles = _timeBetweenBursts / _projectilesPerBurst;
         }
 
-        for ( int i = 0; i < burstCount; i++ )
+        for ( int i = 0; i < _burstCount; i++ )
         {
-            if ( !oscillate )
+            if ( !_oscillate )
             {
                 TargetConeOfInfluence( out startAngle, out currentAngle, out angleStep, out endAngle );
             }
 
-            if ( oscillate && i % 2 != 1 )//TODO: Learn and understand the modulus operator
+            if ( _oscillate && i % 2 != 1 )//TODO: Learn and understand the modulus operator
             {
                 TargetConeOfInfluence( out startAngle, out currentAngle, out angleStep, out endAngle );
             }
-            else if ( oscillate )
+            else if ( _oscillate )
             {
                 currentAngle = endAngle;
                 endAngle = startAngle;
@@ -76,21 +76,21 @@ public class TopDown2DShooter : MonoBehaviour, TopDown2DIEnemy
                 angleStep *= -1;
             }
 
-            for ( int j = 0; j < projectilesPerBurst; j++ )
+            for ( int j = 0; j < _projectilesPerBurst; j++ )
             {
                 Vector2 pos = FindProjectileSpawnPos( currentAngle );
 
-                GameObject newProjectile = Instantiate( projectilePrefab, pos, Quaternion.identity );
+                GameObject newProjectile = Instantiate( _projectilePrefab, pos, Quaternion.identity );
                 newProjectile.transform.right = newProjectile.transform.position - transform.position;
 
                 if ( newProjectile.TryGetComponent( out TopDown2DProjectile projectile ) )//TODO: research and understand TryGetComponent() 
                 {
-                    projectile.UpdateMoveSpeed( projectileMoveSpeed );
+                    projectile.UpdateMoveSpeed( _projectileMoveSpeed );
                 }
 
                 currentAngle += angleStep;
 
-                if ( stagger )
+                if ( _stagger )
                 {
                     yield return new WaitForSeconds( timeBetweenProjectiles );
                 }
@@ -98,14 +98,14 @@ public class TopDown2DShooter : MonoBehaviour, TopDown2DIEnemy
 
             currentAngle = startAngle;
 
-            if ( !stagger )
+            if ( !_stagger )
             {
-                yield return new WaitForSeconds( timeBetweenBursts );
+                yield return new WaitForSeconds( _timeBetweenBursts );
             }
         }
 
-        yield return new WaitForSeconds( restTime );
-        isShooting = false;
+        yield return new WaitForSeconds( _restTime );
+        _isShooting = false;
     }
 
 
@@ -119,10 +119,10 @@ public class TopDown2DShooter : MonoBehaviour, TopDown2DIEnemy
         currentAngle = targetAngle;
         float halfAngleSpread = 0f;
         angleStep = 0f;
-        if ( angleSpread != 0 )
+        if ( _angleSpread != 0 )
         {
-            angleStep = angleSpread / ( projectilesPerBurst - 1 );
-            halfAngleSpread = angleSpread / 2f;
+            angleStep = _angleSpread / ( _projectilesPerBurst - 1 );
+            halfAngleSpread = _angleSpread / 2f;
             startAngle = targetAngle - halfAngleSpread;
             endAngle = targetAngle + halfAngleSpread;
             currentAngle = startAngle;
@@ -132,8 +132,8 @@ public class TopDown2DShooter : MonoBehaviour, TopDown2DIEnemy
 
     Vector2 FindProjectileSpawnPos( float currentAngle )
     {
-        float x = transform.position.x + startingDistance * Mathf.Cos( currentAngle * Mathf.Deg2Rad );
-        float y = transform.position.y + startingDistance * Mathf.Sin( currentAngle * Mathf.Deg2Rad );
+        float x = transform.position.x + _startingDistance * Mathf.Cos( currentAngle * Mathf.Deg2Rad );
+        float y = transform.position.y + _startingDistance * Mathf.Sin( currentAngle * Mathf.Deg2Rad );
         Vector2 pos = new Vector2( x, y );
 
         return pos;

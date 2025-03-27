@@ -8,7 +8,7 @@ public class TopDown2DDamageDealer : MonoBehaviour
     void Start()
     {
         MonoBehaviour currentActiveWeapon = TopDown2DActiveWeapon.Instance.CurrentActiveWeapon;
-        damageAmount = ( currentActiveWeapon as TopDown2DIWeapon ).GetWeaponInfo().weaponDamage;
+        damageAmount = ( currentActiveWeapon as TopDown2DIWeapon ).GetWeaponInfo().WeaponDamage;
     }
 
 

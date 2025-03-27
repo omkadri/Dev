@@ -23,7 +23,7 @@ public class TopDown2DBow : MonoBehaviour, TopDown2DIWeapon
         Debug.Log( "Bow Attack" );
         animator.SetTrigger( FIRE_HASH );
         GameObject newArrow = Instantiate( arrowPrefab, arrowSpawnPoint.transform.position, TopDown2DActiveWeapon.Instance.transform.rotation );
-        newArrow.GetComponent<TopDown2DProjectile>().UpdateRange( weaponInfo.weaponRange );//TODO: this is a potential conflict with the projectile's base range
+        newArrow.GetComponent<TopDown2DProjectile>().UpdateRange( weaponInfo.WeaponRange );//TODO: this is a potential conflict with the projectile's base range
     }
 
 

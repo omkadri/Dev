@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Wobble2D : MonoBehaviour
 {
-    [SerializeField] float rotateSpeed = 50f;
-    [SerializeField] float maxRotationAngle = 20f;
-    float currentAngle = 0f;
-    bool rotatingRight = true;
-    public bool canWobble = true;//TODO: Create public getter
+    [SerializeField] float rotateSpeed = 50f;//TODO: add underscore to member variable
+    [SerializeField] float maxRotationAngle = 20f;//TODO: add underscore to member variable
+    float _currentAngle = 0f;
+    bool _rotatingRight = true;
+    public bool canWobble = true;//TODO: Create public getter or serialized field
     void Update()
     {
         if (canWobble)
@@ -21,35 +21,35 @@ public class Wobble2D : MonoBehaviour
     {
         float rotationAmount = rotateSpeed * Time.deltaTime;
 
-        if (rotatingRight)
+        if ( _rotatingRight )
         {
-            currentAngle += rotationAmount;
+            _currentAngle += rotationAmount;
             CheckMaxAngle();
         }
         else
         {
-            currentAngle -= rotationAmount;
+            _currentAngle -= rotationAmount;
             CheckMinAngle();
         }
 
-        transform.rotation = Quaternion.Euler(0, 0, currentAngle);
+        transform.rotation = Quaternion.Euler( 0, 0, _currentAngle );
     }
 
     void CheckMaxAngle()
     {
-        if (currentAngle >= maxRotationAngle)
+        if ( _currentAngle >= maxRotationAngle )
         {
-            currentAngle = maxRotationAngle;
-            rotatingRight = false;
+            _currentAngle = maxRotationAngle;
+            _rotatingRight = false;
         }
     }
 
     void CheckMinAngle()
     {
-        if (currentAngle <= -maxRotationAngle)
+        if ( _currentAngle <= -maxRotationAngle )
         {
-            currentAngle = -maxRotationAngle;
-            rotatingRight = true;
+            _currentAngle = -maxRotationAngle;
+            _rotatingRight = true;
         }
     }
 }
