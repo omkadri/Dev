@@ -73,7 +73,7 @@ public class ShootEmUp2DPlayerController : MonoBehaviour
     }
 
 
-    bool CheckGrounded()
+    public bool CheckGrounded()
     {
         Collider2D isGrounded = Physics2D.OverlapBox( _feetTransform.position, _groundCheck, 0f, _groundLayer );//This draws a collider box on the ground layer at the player feet positions
         return isGrounded;
