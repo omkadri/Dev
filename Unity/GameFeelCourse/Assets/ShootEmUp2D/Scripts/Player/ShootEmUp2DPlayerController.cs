@@ -3,6 +3,8 @@ using System;
 
 public class ShootEmUp2DPlayerController : MonoBehaviour
 {
+    public Vector2 MoveInput => _frameInput.Move;
+    
     public static Action OnJump;
 
     public static ShootEmUp2DPlayerController Instance;

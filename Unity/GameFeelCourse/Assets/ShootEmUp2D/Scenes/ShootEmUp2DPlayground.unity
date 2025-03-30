@@ -924,7 +924,7 @@ GameObject:
   - component: {fileID: 893427218}
   - component: {fileID: 893427219}
   m_Layer: 3
-  m_Name: Character Sprite
+  m_Name: PlayerSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12797,6 +12797,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveDustVFX: {fileID: 1290727097}
+  _tiltAngle: 14
+  _tiltSpeed: 5
+  _playerSpriteTransform: {fileID: 893427218}
 --- !u!1 &2043640393
 GameObject:
   m_ObjectHideFlags: 0
