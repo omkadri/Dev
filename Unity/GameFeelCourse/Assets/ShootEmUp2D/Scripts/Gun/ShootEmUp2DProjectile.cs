@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ShootEmUp2DProjectile : MonoBehaviour
 {
+    [SerializeField] GameObject projectileHitVFX;
     [SerializeField] float _moveSpeed = 10f;
     [SerializeField] int _damageAmount = 1;
     [SerializeField] float _knockbackThrust = 20f;
@@ -35,6 +36,7 @@ public class ShootEmUp2DProjectile : MonoBehaviour
 
     void OnTriggerEnter2D( Collider2D other )
     {
+        Instantiate( projectileHitVFX, transform.position, Quaternion.identity );
         ShootEmUp2DHealth health = other.gameObject.GetComponent<ShootEmUp2DHealth>();
         health?.TakeDamage(_damageAmount);
 
