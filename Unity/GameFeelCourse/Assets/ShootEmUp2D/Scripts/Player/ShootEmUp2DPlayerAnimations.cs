@@ -1,3 +1,4 @@
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class ShootEmUp2DPlayerAnimations : MonoBehaviour
@@ -10,6 +11,18 @@ public class ShootEmUp2DPlayerAnimations : MonoBehaviour
     [SerializeField] float _playerHatTiltSpeed = 5f;
     [SerializeField] Transform _playerHatSpriteTransform;
     [SerializeField] ParticleSystem bouncePuffVFX;
+    [SerializeField] float _hardLandingVelocityThreshold = -20f;
+
+    Vector2 _velocityBeforePhysicsUpdate;//TODO: better name
+    Rigidbody2D _rb2d;
+    CinemachineImpulseSource _groundImpulseSource;
+
+
+    void Awake()
+    {
+        _rb2d = GetComponent<Rigidbody2D>();
+        _groundImpulseSource = GetComponents<CinemachineImpulseSource>()[1];//TODO: Find a better way to get the groundImpulseSource. Indexing can be messy.
+    }
 
 
     void Update()
@@ -32,23 +45,39 @@ public class ShootEmUp2DPlayerAnimations : MonoBehaviour
     }
 
 
-        void DetectPlayerMoveDust()
+    void FixedUpdate()
+    {
+        _velocityBeforePhysicsUpdate = _rb2d.linearVelocity;
+    }
+
+
+    void OnCollisionEnter2D( Collision2D other )
+    {
+        if( _velocityBeforePhysicsUpdate.y < _hardLandingVelocityThreshold )
         {
-            if( ShootEmUp2DPlayerController.Instance.CheckGrounded() )
+            PlayBouncePuffParticle();
+            _groundImpulseSource.GenerateImpulse();
+        }
+    }
+
+
+    void DetectPlayerMoveDust()
+    {
+        if( ShootEmUp2DPlayerController.Instance.CheckGrounded() )
+        {
+            if ( !_playerMoveDustVFX.isPlaying )
             {
-                if ( !_playerMoveDustVFX.isPlaying )
-                {
-                    _playerMoveDustVFX.Play();
-                }
-            }
-            else
-            {
-                if ( _playerMoveDustVFX.isPlaying )
-                {
-                    _playerMoveDustVFX.Stop();
-                }
+                _playerMoveDustVFX.Play();
             }
         }
+        else
+        {
+            if ( _playerMoveDustVFX.isPlaying )
+            {
+                _playerMoveDustVFX.Stop();
+            }
+        }
+    }
 
 
     void ApplyPlayerBodyTilt()
