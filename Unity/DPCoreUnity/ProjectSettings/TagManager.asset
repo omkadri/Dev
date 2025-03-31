@@ -23,6 +23,7 @@ TagManager:
   - Cinemachine Confiner
   - Water
   - UI
+  - Friendly
   - Ground
   - Climbing
   - Player
@@ -48,8 +49,10 @@ TagManager:
   - 
   - 
   - 
-  - 
   m_SortingLayers:
+  - name: Backdrop
+    uniqueID: 41774015
+    locked: 0
   - name: Background
     uniqueID: 1727251605
     locked: 0
@@ -91,6 +94,9 @@ TagManager:
     locked: 0
   - name: Main
     uniqueID: 1955431155
+    locked: 0
+  - name: VFX
+    uniqueID: 3549282195
     locked: 0
   m_RenderingLayers:
   - Default
