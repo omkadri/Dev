@@ -14,8 +14,11 @@ public class ShootEmUp2DRangedWeapon : MonoBehaviour
     [SerializeField] Transform _projectileSpawnPoint;
     [SerializeField] ShootEmUp2DProjectile _projectilePrefab;
     [SerializeField] float _fireCoolDown = 0.1f;//TODO: replace fireCoolDown with fireRate
+    [SerializeField] GameObject _muzzleFlash;
+    [SerializeField] float _muzzleFlashTime = 0.05f;
 
     //PRIVATE VARIABLES
+    private Coroutine _muzzleFlashRoutine; //we cache the coroutine for control. this ensures that only one coroutine is playing at a time
     ObjectPool<ShootEmUp2DProjectile> _projectilePool;
     static readonly int FIRE_HASH = Animator.StringToHash( "ShootEmUp2DGunFire" );
     Vector2 _mousePos;
@@ -54,6 +57,7 @@ public class ShootEmUp2DRangedWeapon : MonoBehaviour
         OnShoot += ShootProjectile;
         OnShoot += FireAnimation;
         OnShoot += FireScreenShake;
+        OnShoot += MuzzleFlash;
         //animate
         //sfx
         //muzzle flash
@@ -66,6 +70,7 @@ public class ShootEmUp2DRangedWeapon : MonoBehaviour
         OnShoot -= ShootProjectile;
         OnShoot -= FireAnimation;
         OnShoot -= FireScreenShake;
+        OnShoot -= MuzzleFlash;
     }
 
 
@@ -130,5 +135,24 @@ public class ShootEmUp2DRangedWeapon : MonoBehaviour
         Vector2 dir = ShootEmUp2DPlayerController.Instance.transform.InverseTransformPoint( _mousePos );//This ensures that the gun sprite is flipping properly
         float angle = Mathf.Atan2( dir.y, dir.x ) * Mathf.Rad2Deg;
         transform.localRotation = Quaternion.Euler( 0, 0, angle );
+    }
+
+
+    void MuzzleFlash()
+    {
+        if( _muzzleFlashRoutine != null)
+        {
+            StopCoroutine( _muzzleFlashRoutine ); //this ensures that there is no muzzle flash overlap
+        }
+
+        _muzzleFlash.SetActive( true );
+        _muzzleFlashRoutine = StartCoroutine( MuzzleFlashRoutine() );
+    }
+
+
+    IEnumerator MuzzleFlashRoutine()
+    {
+        yield return new WaitForSeconds( _muzzleFlashTime );
+        _muzzleFlash.SetActive( false );
     }
 }
