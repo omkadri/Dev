@@ -13,6 +13,7 @@ public class ShootEmUp2DAudioManager : MonoBehaviour
 
     AudioSource _currentMusicAudioSource;
 
+    #region Unity Functions
 
     void Start()
     {
@@ -37,6 +38,9 @@ public class ShootEmUp2DAudioManager : MonoBehaviour
         ShootEmUp2DDiscoBallManager.OnDiscoBallHit -= DiscoBallMusic;
     }
 
+    #endregion
+
+    #region Sound Functions
 
     void PlayRandomSound( SoundSO[] sounds )
     {
@@ -49,70 +53,95 @@ public class ShootEmUp2DAudioManager : MonoBehaviour
 
 
     void PlayProcessedSound( SoundSO soundSO )
-    {
-        AudioClip clip = soundSO.Clip;
-        float volume = soundSO.Volume * _masterVolume;
-        float pitch = soundSO.Pitch;
-        bool loop = soundSO.Loop;
-        AudioMixerGroup audioMixerGroup;
-        //TODO: add playback speed modifier (0.5x, 2x, etc)
-        //TODO: add playback speed randomization.
-
-        if( soundSO.RandomizePitch )
         {
-            float randomizePitchModifier = Random.Range( -soundSO.RandomPitchRangeModifier, soundSO.RandomPitchRangeModifier );
-            pitch = soundSO.Pitch + randomizePitchModifier;
+                AudioClip clip = soundSO.Clip;
+                float volume = soundSO.Volume * _masterVolume;
+                float pitch = soundSO.Pitch;
+                bool loop = soundSO.Loop;
+                AudioMixerGroup audioMixerGroup;
+                //TODO: add playback speed modifier (0.5x, 2x, etc)
+                //TODO: add playback speed randomization.
+
+                pitch = RandomizePitch( soundSO, pitch );
+                audioMixerGroup = DetermineAudioMixerGroup( soundSO );
+
+                PlaySound(clip, volume, pitch, loop, audioMixerGroup);
         }
 
-        switch( soundSO.AudioType )
+
+        AudioMixerGroup DetermineAudioMixerGroup( SoundSO soundSO )
         {
-            case SoundSO.AudioTypes.SFX:
-                audioMixerGroup = _SFXMixerGroup;
-                break;
-            case SoundSO.AudioTypes.Music:
-                audioMixerGroup = _musicMixerGroup;
-                break;
-            case SoundSO.AudioTypes.Dialogue:
-                audioMixerGroup = _dialogueMixerGroup;
-                break;
-            default:
-                audioMixerGroup = null;
-                break;
+                AudioMixerGroup audioMixerGroup;
+                switch (soundSO.AudioType)
+                {
+                        case SoundSO.AudioTypes.SFX:
+                                audioMixerGroup = _SFXMixerGroup;
+                                break;
+                        case SoundSO.AudioTypes.Music:
+                                audioMixerGroup = _musicMixerGroup;
+                                break;
+                        case SoundSO.AudioTypes.Dialogue:
+                                audioMixerGroup = _dialogueMixerGroup;
+                                break;
+                        default:
+                                audioMixerGroup = null;
+                                break;
+                }
+
+                return audioMixerGroup;
         }
 
-        PlaySound( clip, volume, pitch, loop, audioMixerGroup );
-    }
 
-
-    void PlaySound( AudioClip clip, float volume, float pitch, bool loop, AudioMixerGroup audioMixerGroup )
-    {
-        GameObject soundObject = new GameObject( "Temp Audio Source" );
-        AudioSource audioSource = soundObject.AddComponent<AudioSource>();
-        audioSource.clip = clip;
-        audioSource.volume = volume;
-        audioSource.pitch = pitch;
-        audioSource.loop = loop;
-        audioSource.outputAudioMixerGroup = audioMixerGroup;
-        audioSource.Play();
-        
-        if ( !loop )
+        float RandomizePitch(SoundSO soundSO, float pitch)
         {
-            Destroy( soundObject, clip.length );//TODO: implement object pooling
+                if (soundSO.RandomizePitch)
+                {
+                        float randomizePitchModifier = Random.Range(-soundSO.RandomPitchRangeModifier, soundSO.RandomPitchRangeModifier);
+                        pitch = soundSO.Pitch + randomizePitchModifier;
+                }
+
+                return pitch;
         }
 
-        if( audioMixerGroup == _musicMixerGroup )
+
+        void PlaySound( AudioClip clip, float volume, float pitch, bool loop, AudioMixerGroup audioMixerGroup )
         {
-            if( _currentMusicAudioSource != null )
-            {
-                _currentMusicAudioSource.Stop();//ensure only one music track can play at a time
-            }
+                GameObject soundObject = new GameObject("Temp Audio Source");
+                AudioSource audioSource = soundObject.AddComponent<AudioSource>();
+                audioSource.clip = clip;
+                audioSource.volume = volume;
+                audioSource.pitch = pitch;
+                audioSource.loop = loop;
+                audioSource.outputAudioMixerGroup = audioMixerGroup;
+                audioSource.Play();
 
-            _currentMusicAudioSource = audioSource;
+                DetermineMusic(clip, loop, audioMixerGroup, soundObject, audioSource);
         }
-    }
+    
 
+        void DetermineMusic(AudioClip clip, bool loop, AudioMixerGroup audioMixerGroup, GameObject soundObject, AudioSource audioSource)
+        {
+                if (!loop)
+                {
+                        Destroy(soundObject, clip.length);//TODO: implement object pooling
+                }
 
-    void RangedWeapon_OnShoot()//TODO: find better naming convention
+                if (audioMixerGroup == _musicMixerGroup)
+                {
+                        if (_currentMusicAudioSource != null)
+                        {
+                                _currentMusicAudioSource.Stop();//ensure only one music track can play at a time
+                        }
+
+                        _currentMusicAudioSource = audioSource;
+                }
+        }
+
+        #endregion
+
+        #region SFX
+
+        void RangedWeapon_OnShoot()//TODO: find better naming convention
     {
         PlayRandomSound( _soundsCollectionSO.PlayerRangedWeaponShootSFX );
     }
@@ -129,6 +158,9 @@ public class ShootEmUp2DAudioManager : MonoBehaviour
         PlayRandomSound( _soundsCollectionSO.SplatSFX );
     }
 
+    #endregion
+
+    #region Music
 
     void FightMusic()
     {
@@ -143,4 +175,6 @@ public class ShootEmUp2DAudioManager : MonoBehaviour
         Invoke( "FightMusic", soundLength );//this continues fight music after disco mucic ends
         //TODO: implement a way to ensure that soundLength is equal to the legth of the disco party time event 
     }
+
+    #endregion
 }
