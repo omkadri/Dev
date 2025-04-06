@@ -1,9 +1,11 @@
+using System.Collections;
 using UnityEngine;
 
 public class ShootEmUp2DColorSpotlight : MonoBehaviour
 {
     [SerializeField] GameObject _spotlightHead;
     [SerializeField] float _rotationSpeed = 20f;
+    [SerializeField] float _discoRotationSpeed = 120f;//TODO: find better name
     [SerializeField] float _maxRotation = 45f;
     [SerializeField] bool _randomizeStartingRotation = true;
 
@@ -21,6 +23,15 @@ public class ShootEmUp2DColorSpotlight : MonoBehaviour
     void Update()
     {
         RotateHead();
+    }
+
+
+    public IEnumerator SpotlightDiscoPartyRoutine( float discoPartyTime )
+    {
+        float defaultRotSpeed = _rotationSpeed;
+        _rotationSpeed = _discoRotationSpeed;
+        yield return new WaitForSeconds( discoPartyTime );
+        _rotationSpeed = defaultRotSpeed;
     }
 
 
