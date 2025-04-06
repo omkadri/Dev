@@ -7941,7 +7941,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ea26f2949424eb4989e895ca6f9661a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _discoBallPartyTime: 3
+  _discoBallPartyTime: 7
   _discoGlobalLightIntensity: 0.2
   _globalLight: {fileID: 619394801}
 --- !u!1 &1506562924
@@ -7955,7 +7955,7 @@ GameObject:
   - component: {fileID: 1506562925}
   - component: {fileID: 1506562926}
   m_Layer: 0
-  m_Name: ShootEmUp2DSoundSO
+  m_Name: ShootEmUp2DAudioManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7989,7 +7989,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _masterVolume: 1
-  _soundsCollection: {fileID: 11400000, guid: 47d33a441749fb44d9825bdd7e5b1bef, type: 2}
+  _soundsCollectionSO: {fileID: 11400000, guid: 47d33a441749fb44d9825bdd7e5b1bef, type: 2}
+  _SFXMixerGroup: {fileID: -5660482919697901719, guid: 8d94720b37cab444ebed4065055aaa64, type: 2}
+  _musicMixerGroup: {fileID: -1217724299245566061, guid: 8d94720b37cab444ebed4065055aaa64, type: 2}
+  _dialogueMixerGroup: {fileID: -5998540412664846094, guid: 8d94720b37cab444ebed4065055aaa64, type: 2}
 --- !u!1 &1533158399
 GameObject:
   m_ObjectHideFlags: 0

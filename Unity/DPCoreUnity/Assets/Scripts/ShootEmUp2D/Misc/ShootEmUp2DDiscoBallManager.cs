@@ -5,7 +5,7 @@ using System.Collections;
 
 public class ShootEmUp2DDiscoBallManager : MonoBehaviour
 {
-    static Action OnDiscoBallHit;
+    public static Action OnDiscoBallHit;
 
     [SerializeField] float _discoBallPartyTime = 2f;//TODO: find better name
     [SerializeField] float _discoGlobalLightIntensity = 0.2f;
