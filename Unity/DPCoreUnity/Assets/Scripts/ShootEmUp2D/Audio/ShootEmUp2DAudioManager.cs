@@ -3,13 +3,13 @@ using UnityEngine;
 public class ShootEmUp2DAudioManager : MonoBehaviour
 {
     [SerializeField] float _masterVolume = 1f;
-    [SerializeField] ShootEmUp2DSoundSO _playerRangedWeaponShootSFX;//TODO: find better name
-    [SerializeField] ShootEmUp2DSoundSO _playerJumpSFX;//TODO: find better name
+    [SerializeField] ShootEmUp2DSoundsCollectionSO _soundsCollection;
 
     void OnEnable()
     {
         ShootEmUp2DRangedWeapon.OnShoot += RangedWeapon_OnShoot;
         ShootEmUp2DPlayerController.OnJump += PlayerController_OnJump;
+        ShootEmUp2DHealth.OnDeath += Health_OnDeath;
     }
 
 
@@ -17,10 +17,21 @@ public class ShootEmUp2DAudioManager : MonoBehaviour
     {
         ShootEmUp2DRangedWeapon.OnShoot -= RangedWeapon_OnShoot;
         ShootEmUp2DPlayerController.OnJump -= PlayerController_OnJump;
+        ShootEmUp2DHealth.OnDeath -= Health_OnDeath;
     }
 
 
-    void PlayProcessedSound( ShootEmUp2DSoundSO soundSO )
+    void PlayRandomSound( SoundSO[] sounds )
+    {
+        if( sounds != null && sounds.Length > 0 )
+        {
+            SoundSO soundSO = sounds[Random.Range( 0, sounds.Length )];
+            PlayProcessedSound( soundSO );
+        }
+    }
+
+
+    void PlayProcessedSound( SoundSO soundSO )
     {
         AudioClip clip = soundSO.Clip;
         float volume = soundSO.Volume * _masterVolume;
@@ -58,12 +69,18 @@ public class ShootEmUp2DAudioManager : MonoBehaviour
 
     void RangedWeapon_OnShoot()//TODO: find better naming convention
     {
-        PlayProcessedSound( _playerRangedWeaponShootSFX );
+        PlayRandomSound( _soundsCollection.PlayerRangedWeaponShootSFX );
     }
 
 
     void PlayerController_OnJump()//TODO: find better naming convention
     {
-        PlayProcessedSound( _playerJumpSFX );
+        PlayRandomSound( _soundsCollection.PlayerJumpSFX );
+    }
+
+
+    void Health_OnDeath( ShootEmUp2DHealth health )//TODO: Investigate differentiating between player health and enemy health???
+    {
+        PlayRandomSound( _soundsCollection.SplatSFX );
     }
 }

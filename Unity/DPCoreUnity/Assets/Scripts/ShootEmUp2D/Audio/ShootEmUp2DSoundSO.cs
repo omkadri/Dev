@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Sound", menuName = "Game Object/Audio/Sound")]
-public class ShootEmUp2DSoundSO : ScriptableObject
+public class SoundSO : ScriptableObject
 {
     public enum AudioTypes 
     {
