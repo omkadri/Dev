@@ -7988,8 +7988,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5e320d970d6de74e860a14886414cc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rangedWeaponShoot: {fileID: 11400000, guid: 8321b24fff0832346b56e959a73e720c, type: 2}
-  _playerJump: {fileID: 11400000, guid: 8c96402de0fef17439dbc15d8fe35bcc, type: 2}
+  _masterVolume: 1
+  _playerRangedWeaponShootSFX: {fileID: 11400000, guid: 8321b24fff0832346b56e959a73e720c, type: 2}
+  _playerJumpSFX: {fileID: 11400000, guid: 8c96402de0fef17439dbc15d8fe35bcc, type: 2}
 --- !u!1 &1533158399
 GameObject:
   m_ObjectHideFlags: 0
