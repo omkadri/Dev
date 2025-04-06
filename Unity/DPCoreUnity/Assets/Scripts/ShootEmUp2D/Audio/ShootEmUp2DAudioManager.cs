@@ -65,7 +65,7 @@ public class ShootEmUp2DAudioManager : MonoBehaviour
                 pitch = RandomizePitch( soundSO, pitch );
                 audioMixerGroup = DetermineAudioMixerGroup( soundSO );
 
-                PlaySound(clip, volume, pitch, loop, audioMixerGroup);
+                PlaySound( clip, volume, pitch, loop, audioMixerGroup );
         }
 
 
@@ -96,7 +96,7 @@ public class ShootEmUp2DAudioManager : MonoBehaviour
         {
                 if (soundSO.RandomizePitch)
                 {
-                        float randomizePitchModifier = Random.Range(-soundSO.RandomPitchRangeModifier, soundSO.RandomPitchRangeModifier);
+                        float randomizePitchModifier = Random.Range( -soundSO.RandomPitchRangeModifier, soundSO.RandomPitchRangeModifier );
                         pitch = soundSO.Pitch + randomizePitchModifier;
                 }
 
@@ -106,7 +106,7 @@ public class ShootEmUp2DAudioManager : MonoBehaviour
 
         void PlaySound( AudioClip clip, float volume, float pitch, bool loop, AudioMixerGroup audioMixerGroup )
         {
-                GameObject soundObject = new GameObject("Temp Audio Source");
+                GameObject soundObject = new GameObject( "Temp Audio Source" );
                 AudioSource audioSource = soundObject.AddComponent<AudioSource>();
                 audioSource.clip = clip;
                 audioSource.volume = volume;
@@ -115,7 +115,7 @@ public class ShootEmUp2DAudioManager : MonoBehaviour
                 audioSource.outputAudioMixerGroup = audioMixerGroup;
                 audioSource.Play();
 
-                DetermineMusic(clip, loop, audioMixerGroup, soundObject, audioSource);
+                DetermineMusic( clip, loop, audioMixerGroup, soundObject, audioSource );
         }
     
 
@@ -123,12 +123,12 @@ public class ShootEmUp2DAudioManager : MonoBehaviour
         {
                 if (!loop)
                 {
-                        Destroy(soundObject, clip.length);//TODO: implement object pooling
+                        Destroy( soundObject, clip.length );//TODO: implement object pooling
                 }
 
-                if (audioMixerGroup == _musicMixerGroup)
+                if ( audioMixerGroup == _musicMixerGroup )
                 {
-                        if (_currentMusicAudioSource != null)
+                        if ( _currentMusicAudioSource != null )
                         {
                                 _currentMusicAudioSource.Stop();//ensure only one music track can play at a time
                         }
@@ -172,7 +172,7 @@ public class ShootEmUp2DAudioManager : MonoBehaviour
     {
         PlayRandomSound( _soundsCollectionSO.DiscoPartyMusic );
         float soundLength = _soundsCollectionSO.DiscoPartyMusic[0].Clip.length;
-        Invoke( "FightMusic", soundLength );//this continues fight music after disco mucic ends
+        Utils.RunAfterDelay( this, soundLength, FightMusic);//this continues fight music after disco mucic ends
         //TODO: implement a way to ensure that soundLength is equal to the legth of the disco party time event 
     }
 
