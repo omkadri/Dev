@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class RPGPlayerController : RPGSingleton<RPGPlayerController>
+public class RPGPlayerController : Singleton<RPGPlayerController>
 {
     // For use of AreaExit and AreaEntrance scripts
     public string areaTransitionName;

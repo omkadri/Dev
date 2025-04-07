@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 // Updates UI based on event system's current selected object. 
-public class RPGInventoryManager : RPGSingleton<RPGInventoryManager>
+public class RPGInventoryManager : Singleton<RPGInventoryManager>
 {
     public enum CurrentEquippedItem { Boomerang, Bomb };
     public CurrentEquippedItem currentEquippedItem;

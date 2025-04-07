@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class RPGDialogueManager : RPGSingleton<RPGDialogueManager>
+public class RPGDialogueManager : Singleton<RPGDialogueManager>
 {
     [SerializeField] public GameObject dialogueBox;
     public bool justStarted;//TODO: Create public getter

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class RPGUIFade : RPGSingleton<RPGUIFade>
+public class RPGUIFade : Singleton<RPGUIFade>
 {
     public Image fadeScreen;
 

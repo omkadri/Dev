@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class RPGCameraController : RPGSingleton<RPGCameraController>
+public class RPGCameraController : Singleton<RPGCameraController>
 {
     Transform player;
     Tilemap theMap;
