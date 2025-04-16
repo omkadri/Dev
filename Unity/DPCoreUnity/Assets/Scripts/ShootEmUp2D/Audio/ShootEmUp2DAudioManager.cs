@@ -25,6 +25,7 @@ public class ShootEmUp2DAudioManager : MonoBehaviour
     {
         ShootEmUp2DRangedWeapon.OnShoot += RangedWeapon_OnShoot;
         ShootEmUp2DPlayerController.OnJump += PlayerController_OnJump;
+        ShootEmUp2DPlayerController.OnJetpack += PlayerController_OnJetpack;
         ShootEmUp2DHealth.OnDeath += Health_OnDeath;
         ShootEmUp2DDiscoBallManager.OnDiscoBallHit += DiscoBallMusic;
     }
@@ -34,6 +35,7 @@ public class ShootEmUp2DAudioManager : MonoBehaviour
     {
         ShootEmUp2DRangedWeapon.OnShoot -= RangedWeapon_OnShoot;
         ShootEmUp2DPlayerController.OnJump -= PlayerController_OnJump;
+        ShootEmUp2DPlayerController.OnJetpack -= PlayerController_OnJetpack;
         ShootEmUp2DHealth.OnDeath -= Health_OnDeath;
         ShootEmUp2DDiscoBallManager.OnDiscoBallHit -= DiscoBallMusic;
     }
@@ -150,6 +152,11 @@ public class ShootEmUp2DAudioManager : MonoBehaviour
     void PlayerController_OnJump()//TODO: find better naming convention
     {
         PlayRandomSound( _soundsCollectionSO.PlayerJumpSFX );
+    }
+
+    void PlayerController_OnJetpack()
+    {
+        PlayRandomSound( _soundsCollectionSO.JetpackSFX );
     }
 
 

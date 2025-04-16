@@ -1,14 +1,17 @@
 using UnityEngine;
 using System;
+using System.Collections;
 
 public class ShootEmUp2DPlayerController : MonoBehaviour
 {
     public Vector2 MoveInput => _frameInput.Move;
     
     public static Action OnJump;
+    public static Action OnJetpack;
 
     public static ShootEmUp2DPlayerController Instance;
 
+    [SerializeField] TrailRenderer _jetpackTrailRenderer;
     [SerializeField] Transform _feetTransform;
     [SerializeField] Vector2 _groundCheck;
     [SerializeField] LayerMask _groundLayer;
@@ -16,10 +19,13 @@ public class ShootEmUp2DPlayerController : MonoBehaviour
     [SerializeField] float _extraGravity = 700f;
     [SerializeField] float _gravityDelay = 0.2f;
     [SerializeField] float _coyoteTime = 0.1f; //window of time for player to jump after walking of ledge
+    [SerializeField] float _jetpackTime = 0.6f;
+    [SerializeField] float _jetpackStrength = 11f;
 
     float _timeInAir;
     float _coyoteTimer;
     bool _canDoubleJump;//TODO: Investigate adding slight cooldown so that spamming double jump doesn't look weird
+    Coroutine _jetpackCoroutine;
 
     ShootEmUp2DPlayerInput _playerInput;
     FrameInput _frameInput;
@@ -43,12 +49,14 @@ public class ShootEmUp2DPlayerController : MonoBehaviour
     void OnEnable()
     {
         OnJump += ApplyJumpForce;
+        OnJetpack += StartJetpack;
     }
 
 
     void OnDisable()
     {
         OnJump -= ApplyJumpForce;
+        OnJetpack -= StartJetpack;
     }
 
 
@@ -60,6 +68,7 @@ public class ShootEmUp2DPlayerController : MonoBehaviour
         HandleJump();
         HandleSpriteFlip();
         GravityDelay();
+        Jetpack();
     }
 
 
@@ -181,5 +190,39 @@ public class ShootEmUp2DPlayerController : MonoBehaviour
         {
             transform.eulerAngles = new Vector3( 0f, 0f, 0f );
         }
-    } 
+    }
+
+
+    void Jetpack()
+    {
+        if ( !_frameInput.Jetpack || _jetpackCoroutine != null )
+        {
+            return;
+        }
+
+        OnJetpack?.Invoke();
+    }
+
+
+    void StartJetpack()
+    {
+        _jetpackTrailRenderer.emitting = true;
+        _jetpackCoroutine = StartCoroutine( JetpackRoutine() );
+    }
+
+
+    IEnumerator JetpackRoutine()
+    {
+        float jetpackElapsedTime = 0f;
+
+        while( jetpackElapsedTime < _jetpackTime )
+        {
+            jetpackElapsedTime += Time.deltaTime;
+            _rb2d.linearVelocity = Vector2.up * _jetpackStrength;
+            yield return null;
+        }
+
+        _jetpackTrailRenderer.emitting = false;
+        _jetpackCoroutine = null;
+    }
 }

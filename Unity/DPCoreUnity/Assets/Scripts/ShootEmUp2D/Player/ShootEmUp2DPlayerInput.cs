@@ -7,6 +7,7 @@ public class ShootEmUp2DPlayerInput : MonoBehaviour
     ShootEmUp2DInputActions _inputActions;
     InputAction _move;
     InputAction _jump;
+    InputAction _jetpack;
 
 
     void Awake()
@@ -15,6 +16,7 @@ public class ShootEmUp2DPlayerInput : MonoBehaviour
 
         _move = _inputActions.Player.Move;
         _jump = _inputActions.Player.Jump;
+        _jetpack = _inputActions.Player.Jetpack;
     }
 
 
@@ -42,6 +44,7 @@ public class ShootEmUp2DPlayerInput : MonoBehaviour
         {
             Move = _move.ReadValue<Vector2>(),
             Jump = _jump.WasPressedThisFrame(),
+            Jetpack = _jetpack.WasPressedThisFrame()
         };
     }
 }
@@ -51,4 +54,5 @@ public struct FrameInput
 {
     public Vector2 Move;
     public bool Jump;
+    public bool Jetpack;
 }
