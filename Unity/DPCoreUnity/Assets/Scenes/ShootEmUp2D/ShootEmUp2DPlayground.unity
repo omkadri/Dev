@@ -7800,6 +7800,37 @@ TrailRenderer:
   m_Autodestruct: 0
   m_Emitting: 0
   m_ApplyActiveColorSpace: 1
+--- !u!1 &1124735519
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1124735520}
+  m_Layer: 6
+  m_Name: GrenadeSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1124735520
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1124735519}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.77, y: 0.077, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1414218012}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1125888629 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9016928322373034696, guid: 3f8cc7197fcf6204389a3387de847c58, type: 3}
@@ -8206,7 +8237,7 @@ GameObject:
   - component: {fileID: 1414218017}
   - component: {fileID: 1414218018}
   m_Layer: 6
-  m_Name: Gun
+  m_Name: RangedWeapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8226,6 +8257,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 710606986}
+  - {fileID: 1124735520}
   - {fileID: 1154857000}
   - {fileID: 168572859}
   m_Father: {fileID: 2076065032}
@@ -8247,6 +8279,9 @@ MonoBehaviour:
   _fireCoolDown: 0.1
   _muzzleFlash: {fileID: 168572858}
   _muzzleFlashTime: 0.02
+  _grenadePrefab: {fileID: 7546156238785287785, guid: f16b9cf6a1d42644a8869aa57930e8ef, type: 3}
+  _grenadeSpawnPoint: {fileID: 1124735520}
+  _grenadeShootCooldown: 0.8
 --- !u!114 &1414218017
 MonoBehaviour:
   m_ObjectHideFlags: 0

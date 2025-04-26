@@ -9,13 +9,21 @@ public class ShootEmUp2DRangedWeapon : MonoBehaviour
 {
     //EVENTS
     public static Action OnShoot;
+    public static Action OnGrenadeShoot;
 
     //SERIALIZED VARIABLES
+    [Header( "Projectile" )]
     [SerializeField] Transform _projectileSpawnPoint;
     [SerializeField] ShootEmUp2DProjectile _projectilePrefab;
     [SerializeField] float _fireCoolDown = 0.1f;//TODO: replace fireCoolDown with fireRate
     [SerializeField] GameObject _muzzleFlash;
     [SerializeField] float _muzzleFlashTime = 0.05f;
+
+    [Header( "Grenade" )]
+    [SerializeField] GameObject _grenadePrefab;
+    [SerializeField] Transform _grenadeSpawnPoint;
+    [SerializeField] float _grenadeShootCooldown = 0.8f;
+
 
     //PRIVATE VARIABLES
     private Coroutine _muzzleFlashRoutine; //we cache the coroutine for control. this ensures that only one coroutine is playing at a time
@@ -23,16 +31,21 @@ public class ShootEmUp2DRangedWeapon : MonoBehaviour
     static readonly int FIRE_HASH = Animator.StringToHash( "ShootEmUp2DGunFire" );
     Vector2 _mousePos;
     float _lastFireTime = 0f;
+    float _lastGrenadeFireTime = 0f;
     int _minProjectilePoolSize = 20;
     int _maxProjectilePoolSize = 40;//TODO: Investigate if these are the best values
 
     //COMPONENTS
+    ShootEmUp2DPlayerInput _playerInput;
+    FrameInput _frameInput;
     CinemachineImpulseSource _impulseSource;
     Animator _animator;
 
 
     void Awake()
     {
+        _playerInput = GetComponentInParent<ShootEmUp2DPlayerInput>();
+        _frameInput = _playerInput.FrameInput;
         _impulseSource = GetComponent<CinemachineImpulseSource>();
         _animator = GetComponent<Animator>();
     }
@@ -46,6 +59,7 @@ public class ShootEmUp2DRangedWeapon : MonoBehaviour
 
     void Update()
     {
+        GatherInput();
         HandleShooting();
         RotateGunWithMouse();
     }
@@ -58,6 +72,10 @@ public class ShootEmUp2DRangedWeapon : MonoBehaviour
         OnShoot += FireAnimation;
         OnShoot += FireScreenShake;
         OnShoot += MuzzleFlash;
+        OnGrenadeShoot += ShootGrenade;
+        OnGrenadeShoot += FireAnimation;//TODO: Investigate independant grenade animation
+        OnGrenadeShoot += ResetLastGrenadeShootTime;
+
         //animate
         //sfx
         //muzzle flash
@@ -71,12 +89,21 @@ public class ShootEmUp2DRangedWeapon : MonoBehaviour
         OnShoot -= FireAnimation;
         OnShoot -= FireScreenShake;
         OnShoot -= MuzzleFlash;
+        OnGrenadeShoot -= ShootGrenade;
+        OnGrenadeShoot -= FireAnimation;
+        OnGrenadeShoot -= ResetLastGrenadeShootTime;
     }
 
 
     public void ReleaseProjectileFromPool( ShootEmUp2DProjectile projectile )
     {
         _projectilePool.Release( projectile );
+    }
+
+
+    void GatherInput()
+    {
+        _frameInput = _playerInput.FrameInput;
     }
 
     
@@ -101,6 +128,11 @@ public class ShootEmUp2DRangedWeapon : MonoBehaviour
         {
             OnShoot?.Invoke();
         }
+
+        if ( _frameInput.Grenade && Time.time >= _lastGrenadeFireTime )
+        {
+            OnGrenadeShoot?.Invoke();
+        }
     }
 
 
@@ -108,6 +140,13 @@ public class ShootEmUp2DRangedWeapon : MonoBehaviour
     {
         ShootEmUp2DProjectile newProjectile = _projectilePool.Get();
         newProjectile.Init( this, _projectileSpawnPoint.position, _mousePos );
+    }
+
+
+    void ShootGrenade()
+    {
+        Instantiate( _grenadePrefab, _grenadeSpawnPoint.position, Quaternion.identity );//TODO: object pooling
+        _lastGrenadeFireTime = Time.time;
     }
 
 
@@ -126,6 +165,12 @@ public class ShootEmUp2DRangedWeapon : MonoBehaviour
     void ResetLastFireTime()
     {
         _lastFireTime = Time.time + _fireCoolDown;
+    }
+
+
+    void ResetLastGrenadeShootTime()
+    {
+        _lastGrenadeFireTime = Time.time + _grenadeShootCooldown;
     }
 
 
