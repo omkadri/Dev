@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: -5397677940020874507}
   - component: {fileID: 1364574732603993176}
   - component: {fileID: 8005361236530088579}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: ShootEmUp2DEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54,9 +54,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19ff3f121c8ff504ba3f8aac88c4802d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 7
-  jumpInterval: 4
-  changeDirInterval: 3
+  _jumpForce: 7
+  _jumpInterval: 4
+  _changeDirInterval: 3
 --- !u!114 &-4284288698427601722
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69,7 +69,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3adc71c5d58a4dc4eb0c4c4baea6eed5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
+  _moveSpeed: 10
 --- !u!114 &2931160403932860084
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -227,7 +227,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5406967454622742902}
   - component: {fileID: 7564454557696005338}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -314,7 +314,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8095572175099409459}
   - component: {fileID: 4821474146721011921}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Outline
   m_TagString: Untagged
   m_Icon: {fileID: 0}
