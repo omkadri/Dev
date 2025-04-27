@@ -6,7 +6,7 @@ using System.Collections;
 public class ShootEmUp2DGrenade : MonoBehaviour
 {
     public Action OnGrenadeExplode; //we don't want a static action because there will be many instances of grenades. 
-    public Action OnBeep;
+    public Action OnGrenadeBeep;
 
     [SerializeField] GameObject _explodeVFX;
     [SerializeField] float _launchForce = 15f;
@@ -29,7 +29,9 @@ public class ShootEmUp2DGrenade : MonoBehaviour
         OnGrenadeExplode += GrenadeExplosion;
         OnGrenadeExplode += GrenadeScreenShake;
         OnGrenadeExplode += DamageEnemiesInRadius;
-        OnBeep += BlinkLight;
+        OnGrenadeExplode += ShootEmUp2DAudioManager.Instance.Grenade_OnGrenadeExplode;
+        OnGrenadeBeep += BlinkLight;
+        OnGrenadeBeep += ShootEmUp2DAudioManager.Instance.Grenade_OnGrenadeBeep;
     }
 
 
@@ -38,7 +40,9 @@ public class ShootEmUp2DGrenade : MonoBehaviour
         OnGrenadeExplode -= GrenadeExplosion;
         OnGrenadeExplode -= GrenadeScreenShake;
         OnGrenadeExplode -= DamageEnemiesInRadius;
-        OnBeep -= BlinkLight;
+        OnGrenadeExplode -= ShootEmUp2DAudioManager.Instance.Grenade_OnGrenadeExplode;
+        OnGrenadeBeep -= BlinkLight;
+        OnGrenadeBeep -= ShootEmUp2DAudioManager.Instance.Grenade_OnGrenadeBeep;
     }
 
 
@@ -104,7 +108,7 @@ public class ShootEmUp2DGrenade : MonoBehaviour
         while ( _currentBlinks < _totalBlinks )
         {
             yield return new WaitForSeconds( _explodeTime / _totalBlinks ); //using basic algebra to sync up the beeps with the time
-            OnBeep?.Invoke();
+            OnGrenadeBeep?.Invoke();
             yield return new WaitForSeconds( _lightBlinkTime );//TODO: Investigate issue where lowering this value shortens the explode time of the grenade????
             _grenadeLight.SetActive( false );
         }

@@ -3,6 +3,8 @@ using UnityEngine.Audio;
 
 public class ShootEmUp2DAudioManager : MonoBehaviour
 {
+    public static ShootEmUp2DAudioManager Instance;
+
     [Range( 0, 2 )]
     [SerializeField] float _masterVolume = 1f;
     [SerializeField] ShootEmUp2DSoundsCollectionSO _soundsCollectionSO;
@@ -13,7 +15,14 @@ public class ShootEmUp2DAudioManager : MonoBehaviour
 
     AudioSource _currentMusicAudioSource;
 
-    #region Unity Functions
+        #region Unity Functions
+
+
+    void Awake()
+    {
+        if ( Instance == null ) { Instance = this; }     
+    }
+
 
     void Start()
     {
@@ -24,6 +33,7 @@ public class ShootEmUp2DAudioManager : MonoBehaviour
     void OnEnable()
     {
         ShootEmUp2DRangedWeapon.OnShoot += RangedWeapon_OnShoot;
+        ShootEmUp2DRangedWeapon.OnGrenadeShoot += RangedWeapon_OnGrenadeShoot;
         ShootEmUp2DPlayerController.OnJump += PlayerController_OnJump;
         ShootEmUp2DPlayerController.OnJetpack += PlayerController_OnJetpack;
         ShootEmUp2DHealth.OnDeath += Health_OnDeath;
@@ -34,6 +44,7 @@ public class ShootEmUp2DAudioManager : MonoBehaviour
     void OnDisable()
     {
         ShootEmUp2DRangedWeapon.OnShoot -= RangedWeapon_OnShoot;
+        ShootEmUp2DRangedWeapon.OnGrenadeShoot -= RangedWeapon_OnGrenadeShoot;
         ShootEmUp2DPlayerController.OnJump -= PlayerController_OnJump;
         ShootEmUp2DPlayerController.OnJetpack -= PlayerController_OnJetpack;
         ShootEmUp2DHealth.OnDeath -= Health_OnDeath;
@@ -154,9 +165,28 @@ public class ShootEmUp2DAudioManager : MonoBehaviour
         PlayRandomSound( _soundsCollectionSO.PlayerJumpSFX );
     }
 
+
     void PlayerController_OnJetpack()
     {
         PlayRandomSound( _soundsCollectionSO.JetpackSFX );
+    }
+
+
+    public void Grenade_OnGrenadeBeep()
+    {
+        PlayRandomSound( _soundsCollectionSO.GrenadeBeepSFX );
+    }
+
+
+    public void Grenade_OnGrenadeExplode()
+    {
+        PlayRandomSound( _soundsCollectionSO.GrenadeExplodeSFX );
+    }
+
+
+    void RangedWeapon_OnGrenadeShoot()
+    {
+        PlayRandomSound( _soundsCollectionSO.GrenadeShootSFX );
     }
 
 
@@ -168,6 +198,7 @@ public class ShootEmUp2DAudioManager : MonoBehaviour
     #endregion
 
     #region Music
+
 
     void FightMusic()
     {
