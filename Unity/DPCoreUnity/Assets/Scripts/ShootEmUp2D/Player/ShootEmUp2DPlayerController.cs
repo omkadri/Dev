@@ -78,6 +78,13 @@ public class ShootEmUp2DPlayerController : MonoBehaviour
     }
 
 
+    void OnDestroy()
+    {
+        ShootEmUp2DScreenFade fade = FindFirstObjectByType<ShootEmUp2DScreenFade>();
+        fade?.FadeInAndOut();
+    }
+
+
     public bool IsFacingRight()
     {
         return transform.eulerAngles.y == 0;
