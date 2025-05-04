@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class ShootEmUp2DHealth : MonoBehaviour
+public class ShootEmUp2DHealth : MonoBehaviour, IDamageable
 {
     public GameObject SplatterPrefab => _splatterPrefab;//this is called an expression-bodied getter
     public GameObject DeathVFX => _deathVFX;
@@ -15,6 +15,17 @@ public class ShootEmUp2DHealth : MonoBehaviour
     [SerializeField] int _startingHealth = 3;
 
     int _currentHealth;
+    ShootEmUp2DKnockback _knockback;
+    ShootEmUp2DDamageFlash _flash;
+    ShootEmUp2DHealth _health;
+
+
+    void Awake()
+    {
+        _knockback = GetComponent<ShootEmUp2DKnockback>();
+        _flash = GetComponent<ShootEmUp2DDamageFlash>();
+        _health = GetComponent<ShootEmUp2DHealth>();
+    }
 
 
     void Start() 
@@ -29,7 +40,7 @@ public class ShootEmUp2DHealth : MonoBehaviour
     }
 
 
-    public void TakeDamage(int amount) 
+    public void TakeDamage( int amount ) 
     {
         _currentHealth -= amount;
 
@@ -38,5 +49,17 @@ public class ShootEmUp2DHealth : MonoBehaviour
             OnDeath?.Invoke( this );//this ensure that we are passing in this specific instance of the health class
             Destroy(gameObject);
         }
+    }
+
+    
+    public void TakeDamage( Vector2 damageSourceDir, int damageAmount, float knockbackThrust )
+    {
+        _health.TakeDamage( damageAmount );
+        _knockback.ActivateKnockback( ShootEmUp2DPlayerController.Instance.transform.position, knockbackThrust );
+    }
+
+    public void TakeHit()
+    {
+        _flash.StartFlash();
     }
 }

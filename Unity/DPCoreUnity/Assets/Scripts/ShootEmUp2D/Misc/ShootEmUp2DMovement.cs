@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class ShootEmUp2DMovement : MonoBehaviour
 {
+    public bool CanMove => _canMove;
+
     [SerializeField] float _moveSpeed = 10f;
 
     float _moveX;//TODO: Rename to something better

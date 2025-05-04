@@ -21,8 +21,13 @@ public class ShootEmUp2DDeathSplatterHandler : MonoBehaviour
         GameObject newSplatterPrefab = Instantiate( sender.SplatterPrefab, sender.transform.position, transform.rotation );//TODO: Investigate randomizing rotation
         SpriteRenderer deathSplatterSpriteRenderer = newSplatterPrefab.GetComponent<SpriteRenderer>();
         ShootEmUp2DColorChanger colorChanger = sender.GetComponent<ShootEmUp2DColorChanger>();
-        Color currentColor = colorChanger.DefaultColor;
-        deathSplatterSpriteRenderer.color = currentColor;
+
+        if( colorChanger )
+        {
+            Color currentColor = colorChanger.DefaultColor;
+            deathSplatterSpriteRenderer.color = currentColor;
+        }
+    
         newSplatterPrefab.transform.SetParent( this.transform );//this will parent all splatter prefabs to the same game object in hierarchy (for easier sorting)
     }
 
@@ -32,8 +37,13 @@ public class ShootEmUp2DDeathSplatterHandler : MonoBehaviour
         GameObject newDeathVFX = Instantiate( sender.DeathVFX, sender.transform.position, transform.rotation );
         ParticleSystem.MainModule ps = newDeathVFX.GetComponent<ParticleSystem>().main;
         ShootEmUp2DColorChanger colorChanger = sender.GetComponent<ShootEmUp2DColorChanger>();
-        Color currentColor = colorChanger.DefaultColor;
-        ps.startColor = currentColor;
+
+        if( colorChanger )
+        {
+            Color currentColor = colorChanger.DefaultColor;
+            ps.startColor = currentColor;
+        }
+
         newDeathVFX.transform.SetParent( this.transform );//technically not as important as SpawnDeathSplatterPrefab version because the particles get destroyed quickly
     }
 

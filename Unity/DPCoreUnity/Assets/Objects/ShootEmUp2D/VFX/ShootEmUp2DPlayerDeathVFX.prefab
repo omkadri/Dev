@@ -50,7 +50,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1941304656591723864, guid: 4d0427ad025f05349bfb83e4381916ad, type: 3}
       propertyPath: m_Name
-      value: ShootEmUp2DBaseDeathVFX
+      value: ShootEmUp2DPlayerDeathVFX
+      objectReference: {fileID: 0}
+    - target: {fileID: 5316489128455646732, guid: 4d0427ad025f05349bfb83e4381916ad, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5316489128455646732, guid: 4d0427ad025f05349bfb83e4381916ad, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0.35686275
+      objectReference: {fileID: 0}
+    - target: {fileID: 5316489128455646732, guid: 4d0427ad025f05349bfb83e4381916ad, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5316489128455646732, guid: 4d0427ad025f05349bfb83e4381916ad, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.89019614
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -190,6 +190,12 @@ public class ShootEmUp2DAudioManager : MonoBehaviour
     }
 
 
+    public void Enemy_OnPlayerHit()
+    {
+        PlayRandomSound( _soundsCollectionSO.PlayerHit );
+    }
+
+
     void Health_OnDeath( ShootEmUp2DHealth health )//TODO: Investigate differentiating between player health and enemy health???
     {
         PlayRandomSound( _soundsCollectionSO.SplatSFX );

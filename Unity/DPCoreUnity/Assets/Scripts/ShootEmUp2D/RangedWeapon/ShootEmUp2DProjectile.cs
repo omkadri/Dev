@@ -42,7 +42,7 @@ public class ShootEmUp2DProjectile : MonoBehaviour
         iHitable?.TakeHit();
 
         IDamageable iDamageable = other.gameObject.GetComponent<IDamageable>();
-        iDamageable?.TakeDamage( _damageAmount, _knockbackThrust );
+        iDamageable?.TakeDamage( _fireDir, _damageAmount, _knockbackThrust );
 
         _rangedWeapon.ReleaseProjectileFromPool( this );
     }

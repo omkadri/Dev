@@ -28,7 +28,10 @@ public class ShootEmUp2DDamageFlash : MonoBehaviour
     {
         foreach ( SpriteRenderer sr in _spriteRenderers )
         {
-            sr.material = _damageFlashMat;
+            sr.material = new Material(_damageFlashMat); 
+            /*HACK: setting sr.material to _damageFlashMat directly results in issue where the child sprites briefly inherit the 
+            texture of the parent. It could be related to Sprites-Lit-Default being a shared material. This solution is not optimal 
+            because it causes memory leaks, but for now, it is the best known solution...*/
 
             if ( _colorChanger )
             {
