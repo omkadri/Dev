@@ -365,6 +365,7 @@ GameObject:
   - component: {fileID: 887265902192063668}
   - component: {fileID: 1925867604729616418}
   - component: {fileID: 979461042131810162}
+  - component: {fileID: 3596519790142712647}
   m_Layer: 5
   m_Name: Stars Text
   m_TagString: Untagged
@@ -388,8 +389,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -579, y: -482}
-  m_SizeDelta: {x: 160, y: 104}
+  m_AnchoredPosition: {x: -608.65, y: -481}
+  m_SizeDelta: {x: 219.3, y: 131.28}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1925867604729616418
 CanvasRenderer:
@@ -420,12 +421,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 75
-    m_FontStyle: 0
+    m_Font: {fileID: 12800000, guid: 3fc17ed8d9181e0479787b74b1991034, type: 3}
+    m_FontSize: 120
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 0
-    m_MaxSize: 100
+    m_MaxSize: 120
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -433,3 +434,16 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 999
+--- !u!114 &3596519790142712647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8254598666676214309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca741434f552c6440a6b9f8adb958235, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stars: 100

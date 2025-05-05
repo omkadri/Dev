@@ -31,7 +31,7 @@ public class GlitchGarden2DStarDisplay : MonoBehaviour
 
     public void SpendStars( int amount )
     {
-        if (stars >= amount)//stops us from spending more stars then we have
+        if ( stars >= amount )//stops us from spending more stars then we have
         {
             stars -= amount;
             UpdateDisplay();
