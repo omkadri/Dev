@@ -21,6 +21,7 @@ public class ShootEmUp2DPlayerController : MonoBehaviour
     [SerializeField] float _coyoteTime = 0.1f; //window of time for player to jump after walking of ledge
     [SerializeField] float _jetpackTime = 0.6f;
     [SerializeField] float _jetpackStrength = 11f;
+    [SerializeField] float _maxFallSpeedVelocity = -25f;//TODO: Better name??
 
     float _timeInAir;
     float _coyoteTimer;
@@ -123,6 +124,10 @@ public class ShootEmUp2DPlayerController : MonoBehaviour
         if( _timeInAir > _gravityDelay )
         {
             _rb2d.AddForce( new Vector2( 0f, -_extraGravity * Time.deltaTime ) );
+            if( _rb2d.linearVelocity.y < _maxFallSpeedVelocity )
+            {
+                _rb2d.linearVelocity = new Vector2( _rb2d.linearVelocity.x, _maxFallSpeedVelocity );
+            }
         }
     }
 
