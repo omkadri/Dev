@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -36,7 +38,7 @@ public class ShootEmUp2DAudioManager : MonoBehaviour
         ShootEmUp2DRangedWeapon.OnGrenadeShoot += RangedWeapon_OnGrenadeShoot;
         ShootEmUp2DPlayerController.OnJump += PlayerController_OnJump;
         ShootEmUp2DPlayerController.OnJetpack += PlayerController_OnJetpack;
-        ShootEmUp2DHealth.OnDeath += Health_OnDeath;
+        ShootEmUp2DHealth.OnDeath += HandleDeath;
         ShootEmUp2DDiscoBallManager.OnDiscoBallHit += DiscoBallMusic;
     }
 
@@ -47,7 +49,7 @@ public class ShootEmUp2DAudioManager : MonoBehaviour
         ShootEmUp2DRangedWeapon.OnGrenadeShoot -= RangedWeapon_OnGrenadeShoot;
         ShootEmUp2DPlayerController.OnJump -= PlayerController_OnJump;
         ShootEmUp2DPlayerController.OnJetpack -= PlayerController_OnJetpack;
-        ShootEmUp2DHealth.OnDeath -= Health_OnDeath;
+        ShootEmUp2DHealth.OnDeath -= HandleDeath;
         ShootEmUp2DDiscoBallManager.OnDiscoBallHit -= DiscoBallMusic;
     }
 
@@ -190,6 +192,12 @@ public class ShootEmUp2DAudioManager : MonoBehaviour
     }
 
 
+    void AudioManager_MegaKill()
+    {
+        PlayRandomSound( _soundsCollectionSO.MegaKill );
+    }
+
+
     public void Enemy_OnPlayerHit()
     {
         PlayRandomSound( _soundsCollectionSO.PlayerHit );
@@ -200,6 +208,13 @@ public class ShootEmUp2DAudioManager : MonoBehaviour
     {
         PlayRandomSound( _soundsCollectionSO.SplatSFX );
     }
+
+
+    void Health_OnDeath()//TODO: Investigate unifying this with above function
+    {
+        PlayRandomSound( _soundsCollectionSO.SplatSFX );
+    }
+
 
     #endregion
 
@@ -218,6 +233,47 @@ public class ShootEmUp2DAudioManager : MonoBehaviour
         float soundLength = _soundsCollectionSO.DiscoPartyMusic[0].Clip.length;
         Utils.RunAfterDelay( this, soundLength, FightMusic);//this continues fight music after disco mucic ends
         //TODO: implement a way to ensure that soundLength is equal to the legth of the disco party time event 
+    }
+
+    #endregion
+
+    #region Custom SFX Logic
+
+
+    List<ShootEmUp2DHealth> _deathList = new List<ShootEmUp2DHealth>();
+    Coroutine _deathCoroutine;
+
+    void HandleDeath( ShootEmUp2DHealth health )
+    {
+        bool isEnemy = health.GetComponent<ShootEmUp2DEnemy>();
+
+        if( isEnemy )
+        {
+            _deathList.Add( health );
+        }
+
+        if( _deathCoroutine == null )
+        {
+            _deathCoroutine = StartCoroutine( DeathWindowRoutine() );
+        }
+    }
+
+
+    IEnumerator DeathWindowRoutine()
+    {
+        yield return null;//coroutine doesn’t do the mega kill check until the next frame, which gives other enemies a chance to die in the same frame
+
+        int megaKillAmount = 3; //TODO: make this a serialized field
+
+        if( _deathList.Count >= megaKillAmount )
+        {
+            AudioManager_MegaKill();
+        }
+
+        Health_OnDeath();
+
+        _deathList.Clear();
+        _deathCoroutine = null;
     }
 
     #endregion

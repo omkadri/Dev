@@ -12,6 +12,7 @@ public class ShootEmUp2DSoundsCollectionSO : ScriptableObject
     public SoundSO[] GrenadeBeepSFX;
     public SoundSO[] GrenadeExplodeSFX;
     public SoundSO[] PlayerHit;
+    public SoundSO[] MegaKill;
 
     [Header("Music")]
     public SoundSO[] FightMusic;
