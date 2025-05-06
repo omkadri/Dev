@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 253714870}
   - component: {fileID: 253714872}
   - component: {fileID: 253714871}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: ClimbingTileMap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -988,7 +988,7 @@ GameObject:
   - component: {fileID: 1606482696}
   - component: {fileID: 1606482695}
   - component: {fileID: 1606482694}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: PlatformsTilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5098,7 +5098,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1727251605
-  m_SortingLayer: -1
+  m_SortingLayer: -2
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0.016129017, y: 0.016129017, z: 0}
@@ -34189,12 +34189,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7040852016476679889, guid: 4856284d53066f14a99a0c25909081fa, type: 3}
-      propertyPath: nextSceneName
-      value: SideScroller2DLevel2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7040852016476679889, guid: 4856284d53066f14a99a0c25909081fa, type: 3}
       propertyPath: _nextSceneName
-      value: Sidescroller2DBaseScene
+      value: Sidescroller2DLevel1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -34499,6 +34495,14 @@ PrefabInstance:
     - target: {fileID: 6156743474326721225, guid: 6c0e497d0b122d04789d8c82e8852f71, type: 3}
       propertyPath: Instructions.Array.data[2].FullHash
       value: 1583757882
+      objectReference: {fileID: 0}
+    - target: {fileID: 6813331508913583619, guid: 6c0e497d0b122d04789d8c82e8852f71, type: 3}
+      propertyPath: UpdateMethod
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6813331508913583619, guid: 6c0e497d0b122d04789d8c82e8852f71, type: 3}
+      propertyPath: BlendUpdateMethod
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7663272888180087055, guid: 6c0e497d0b122d04789d8c82e8852f71, type: 3}
       propertyPath: m_LocalPosition.x

@@ -393,7 +393,7 @@ GameObject:
   - component: {fileID: 258243892}
   - component: {fileID: 258243891}
   - component: {fileID: 258243890}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: PlatformsTilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3862,10 +3862,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: SideScroller2DEnemy (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 5526362522923213919, guid: c8f750fa272797d4da33cc6bac781e15, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 4698df92534c8f24aaa51f6e941f34c8, type: 2}
     - target: {fileID: 7256946510191351737, guid: c8f750fa272797d4da33cc6bac781e15, type: 3}
       propertyPath: m_LocalPosition.x
       value: 9.38
@@ -4123,7 +4119,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1727251605
-  m_SortingLayer: -1
+  m_SortingLayer: -2
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0.016129017, y: 0.016129017, z: 0}
@@ -32723,7 +32719,7 @@ GameObject:
   - component: {fileID: 2004160697}
   - component: {fileID: 2004160696}
   - component: {fileID: 2004160695}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: BouncingTilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33120,7 +33116,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3603002107849409842, guid: 4856284d53066f14a99a0c25909081fa, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.22
+      value: -2.42
       objectReference: {fileID: 0}
     - target: {fileID: 3603002107849409842, guid: 4856284d53066f14a99a0c25909081fa, type: 3}
       propertyPath: m_LocalPosition.z
@@ -33154,14 +33150,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7040852016476679889, guid: 4856284d53066f14a99a0c25909081fa, type: 3}
-      propertyPath: nextSceneName
-      value: SideScroller2DLevel2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7040852016476679889, guid: 4856284d53066f14a99a0c25909081fa, type: 3}
-      propertyPath: _nextSceneName
-      value: Sidescroller2DLevel2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -33175,6 +33163,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 801851490762847041, guid: 687e066b22ac6ac48849936c0bfe427f, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3350890604560767260, guid: 687e066b22ac6ac48849936c0bfe427f, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3914371871108929440, guid: 687e066b22ac6ac48849936c0bfe427f, type: 3}
       propertyPath: gameOverSceneName
       value: SideScroller2DLevel1
@@ -33223,6 +33219,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SideScroller2DGameSession
       objectReference: {fileID: 0}
+    - target: {fileID: 7592331864787116971, guid: 687e066b22ac6ac48849936c0bfe427f, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7959137381178818984, guid: 687e066b22ac6ac48849936c0bfe427f, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -33242,7 +33246,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4504377241257695505, guid: 61ebb7ff25f09ae4caaad9d3ba88f1bf, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.02
+      value: -15.2
       objectReference: {fileID: 0}
     - target: {fileID: 4504377241257695505, guid: 61ebb7ff25f09ae4caaad9d3ba88f1bf, type: 3}
       propertyPath: m_LocalPosition.y
@@ -33350,6 +33354,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 147080969908479049, guid: 6c0e497d0b122d04789d8c82e8852f71, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -20.617128
+      objectReference: {fileID: 0}
     - target: {fileID: 3538635198276700261, guid: 6c0e497d0b122d04789d8c82e8852f71, type: 3}
       propertyPath: m_Follow
       value: 
@@ -33406,6 +33414,10 @@ PrefabInstance:
       propertyPath: BoundingShape2D
       value: 
       objectReference: {fileID: 1347104566}
+    - target: {fileID: 5317280868929761246, guid: 6c0e497d0b122d04789d8c82e8852f71, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -20.617128
+      objectReference: {fileID: 0}
     - target: {fileID: 5903897766945983655, guid: 6c0e497d0b122d04789d8c82e8852f71, type: 3}
       propertyPath: m_Name
       value: SideScroller2DCameras
@@ -33442,6 +33454,18 @@ PrefabInstance:
       propertyPath: Instructions.Array.data[2].FullHash
       value: 1583757882
       objectReference: {fileID: 0}
+    - target: {fileID: 6813331508913583619, guid: 6c0e497d0b122d04789d8c82e8852f71, type: 3}
+      propertyPath: UpdateMethod
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6813331508913583619, guid: 6c0e497d0b122d04789d8c82e8852f71, type: 3}
+      propertyPath: BlendUpdateMethod
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7663272888180087055, guid: 6c0e497d0b122d04789d8c82e8852f71, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -20.617128
+      objectReference: {fileID: 0}
     - target: {fileID: 7836371130473975280, guid: 6c0e497d0b122d04789d8c82e8852f71, type: 3}
       propertyPath: BoundingShape2D
       value: 
@@ -33450,6 +33474,14 @@ PrefabInstance:
       propertyPath: BoundingShape2D
       value: 
       objectReference: {fileID: 1347104566}
+    - target: {fileID: 8183426307354036646, guid: 6c0e497d0b122d04789d8c82e8852f71, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -11.957984
+      objectReference: {fileID: 0}
+    - target: {fileID: 8183426307354036646, guid: 6c0e497d0b122d04789d8c82e8852f71, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.06548
+      objectReference: {fileID: 0}
     - target: {fileID: 8520143839429800184, guid: 6c0e497d0b122d04789d8c82e8852f71, type: 3}
       propertyPath: orthographic size
       value: 4
