@@ -5,35 +5,35 @@ using UnityEngine.UI;
 
 public class GlitchGarden2DStarDisplay : MonoBehaviour
 {
-    [SerializeField] int stars = 100;
-    Text starText;
+    [SerializeField] int _stars = 100;
+    Text _starText;
 
 
     void Start()
     {
-        starText = GetComponent<Text>();
+        _starText = GetComponent<Text>();
         UpdateDisplay();
     }
 
 
     private void UpdateDisplay()
     {
-        starText.text = stars.ToString();
+        _starText.text = _stars.ToString();
     }
 
 
     public void AddStars( int amount )
     {
-        stars += amount;
+        _stars += amount;
         UpdateDisplay();
     }
 
 
     public void SpendStars( int amount )
     {
-        if ( stars >= amount )//stops us from spending more stars then we have
+        if ( _stars >= amount )//stops us from spending more stars then we have
         {
-            stars -= amount;
+            _stars -= amount;
             UpdateDisplay();
         }
     }

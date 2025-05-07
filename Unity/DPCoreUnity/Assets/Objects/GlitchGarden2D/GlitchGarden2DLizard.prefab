@@ -50,7 +50,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5633a7905d63c954491a5b99f4feec94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentSpeed: 0
+  _currentSpeed: 5
 --- !u!95 &1830771117102650166
 Animator:
   serializedVersion: 7
@@ -158,8 +158,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9709708f4729c004eb6cd00fa37d3d0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 50
-  deathVFX: {fileID: 1906222994913036, guid: 740c2b3187d56c341b8cb78e8aa925c5, type: 3}
+  _health: 50
+  _deathVFX: {fileID: 1906222994913036, guid: 740c2b3187d56c341b8cb78e8aa925c5, type: 3}
 --- !u!212 &1749008783471774884
 SpriteRenderer:
   m_ObjectHideFlags: 0

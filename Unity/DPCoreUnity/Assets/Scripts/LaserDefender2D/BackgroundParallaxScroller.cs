@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class LaserDefender2DBackgroundScrolling : MonoBehaviour
+public class BackgroundParallaxScroller : MonoBehaviour
 {
     [SerializeField] Vector2 _moveSpeed;
 
@@ -18,5 +18,6 @@ public class LaserDefender2DBackgroundScrolling : MonoBehaviour
     {
         _offset = _moveSpeed * Time.deltaTime;
         _material.mainTextureOffset += _offset;
+        Debug.Log(_offset);
     }
 }

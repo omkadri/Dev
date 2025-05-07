@@ -5,19 +5,18 @@ using UnityEngine;
 public class GlitchGarden2DDefenderSpawner : MonoBehaviour
 {
     //[SerializeField]  --removed Serialization so designers do not mess it up
-    GlitchGarden2DDefender defender;
+    GlitchGarden2DDefender _defender;
 
 
     private void OnMouseDown()
     {
         SpawnDefender( GetSquareClicked() );
-        //this passes the mouse vector data to the spawner
     }
 
 
     public void SetSelectedDefender( GlitchGarden2DDefender defenderToSelect )
     {
-        defender = defenderToSelect;
+        _defender = defenderToSelect;
     }
 
 
@@ -46,9 +45,9 @@ public class GlitchGarden2DDefenderSpawner : MonoBehaviour
 
     private void SpawnDefender( Vector2 inGameMousePos ) //this function cannot run without getting the inGameMousePos vector
     {
-        if ( defender )
+        if ( _defender )
         {
-            GlitchGarden2DDefender newDefender = Instantiate( defender, inGameMousePos, Quaternion.identity ) as GlitchGarden2DDefender;
+            GlitchGarden2DDefender newDefender = Instantiate( _defender, inGameMousePos, Quaternion.identity ) as GlitchGarden2DDefender;
             //"as gameObject" allows us to see the instance in the unity hierarchy, as well as interact with it
         }
     }

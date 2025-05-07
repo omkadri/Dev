@@ -5,14 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class GlitchGarden2DSceneManager : MonoBehaviour
 {
-    [SerializeField] int timeToWait = 4;
-    int currentSceneIndex;
+    [SerializeField] int _timeToWait = 4;
+    int _currentSceneIndex;
 
 
     void Start()
     {
-        currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        if ( currentSceneIndex == 0 )
+        _currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        if ( _currentSceneIndex == 0 )
         {
             StartCoroutine( WaitForTimeRoutine() );
         }
@@ -21,14 +21,14 @@ public class GlitchGarden2DSceneManager : MonoBehaviour
     
     IEnumerator WaitForTimeRoutine()
     {
-        yield return new WaitForSeconds( timeToWait );
+        yield return new WaitForSeconds( _timeToWait );
         LoadNextScene(); 
     }
 
 
     public void LoadNextScene()
     {
-        SceneManager.LoadScene( currentSceneIndex + 1 ); //because in build index, Loading screen is 0 and Start Screen is 1
+        SceneManager.LoadScene( _currentSceneIndex + 1 ); //because in build index, Loading screen is 0 and Start Screen is 1
     }
 
     }

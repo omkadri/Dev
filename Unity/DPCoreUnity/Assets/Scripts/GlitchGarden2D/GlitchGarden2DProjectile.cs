@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class GlitchGarden2DProjectile : MonoBehaviour
 {
-    [SerializeField] float movementSpeed = 1f;
-    [SerializeField] float damageAmount = 50f;
+    [SerializeField] float _movementSpeed = 2f;
+    [SerializeField] float _damageAmount = 50f;
 
 
     void Update()
     {
-        transform.Translate( Vector2.right * movementSpeed * Time.deltaTime );
+        transform.Translate( Vector2.right * _movementSpeed * Time.deltaTime );
     }
 
 
@@ -24,7 +24,7 @@ public class GlitchGarden2DProjectile : MonoBehaviour
 
         if ( attacker && health ) // if the object we are colliding with has an attacker and health
         {
-            health.DealDamage( damageAmount );
+            health.DealDamage( _damageAmount );
             Destroy( gameObject );
         }        
     }

@@ -5,18 +5,18 @@ using UnityEngine;
 
 public class GlitchGarden2DAttackerSpawner : MonoBehaviour
 {
-    [SerializeField] float minSpawnDelay = 1f;
-    [SerializeField] float maxSpawnDelay = 1f;
-    [SerializeField] GlitchGarden2DAttacker attackerPrefab;
+    [SerializeField] float _minSpawnDelay = 1f;
+    [SerializeField] float _maxSpawnDelay = 1f;
+    [SerializeField] GlitchGarden2DAttacker _attackerPrefab;
 
-    bool spawn = true;
+    bool _spawn = true;
 
 
     IEnumerator Start()
     {
-        while( spawn ) // while spawn = true
+        while( _spawn ) // while spawn = true
         {
-            yield return new WaitForSeconds( UnityEngine.Random.Range( minSpawnDelay, maxSpawnDelay ) );
+            yield return new WaitForSeconds( UnityEngine.Random.Range( _minSpawnDelay, _maxSpawnDelay ) );
             SpawnAttacker();
         }
     }
@@ -24,7 +24,7 @@ public class GlitchGarden2DAttackerSpawner : MonoBehaviour
 
     private void SpawnAttacker()
     {
-        Instantiate( attackerPrefab, transform.position, transform.rotation );
+        Instantiate( _attackerPrefab, transform.position, transform.rotation );
     }
 
 

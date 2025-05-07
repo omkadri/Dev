@@ -124,8 +124,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 990120794080b8c4497c35140fb88dd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectile: {fileID: 2639049837249720067, guid: d400cd28ea4ac7a40a6628b01b19cc06, type: 3}
-  gun: {fileID: 1607668489331489887}
+  _projectile: {fileID: 2639049837249720067, guid: d400cd28ea4ac7a40a6628b01b19cc06, type: 3}
+  _gun: {fileID: 1607668489331489887}
 --- !u!1 &1607668489131843190
 GameObject:
   m_ObjectHideFlags: 0
@@ -171,7 +171,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d364f6dd34928240a87c84745f6aa56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  starCost: 100
 --- !u!1 &1607668489331489887
 GameObject:
   m_ObjectHideFlags: 0
