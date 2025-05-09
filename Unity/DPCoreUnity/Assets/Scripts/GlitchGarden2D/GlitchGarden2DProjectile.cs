@@ -19,8 +19,8 @@ public class GlitchGarden2DProjectile : MonoBehaviour
         Debug.Log( "I hit: "+ otherCollider.name );
 
         // Reduce health
-        var health = otherCollider.GetComponent<GlitchGarden2DHealth>(); //this line gets the health script attached to the object comm
-        var attacker = otherCollider.GetComponent<GlitchGarden2DAttacker>();
+        GlitchGarden2DHealth health = otherCollider.GetComponent<GlitchGarden2DHealth>(); //this line gets the health script attached to the object comm
+        GlitchGarden2DAttacker attacker = otherCollider.GetComponent<GlitchGarden2DAttacker>();
 
         if ( attacker && health ) // if the object we are colliding with has an attacker and health
         {

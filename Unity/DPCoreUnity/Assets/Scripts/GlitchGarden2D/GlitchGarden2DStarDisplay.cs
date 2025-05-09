@@ -22,6 +22,12 @@ public class GlitchGarden2DStarDisplay : MonoBehaviour
     }
 
 
+    public bool HasEnoughStars( int amount )//TODO: Fixt Tight coupling
+    {
+        return _stars >= amount;
+    }
+
+
     public void AddStars( int amount )
     {
         _stars += amount;

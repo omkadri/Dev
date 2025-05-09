@@ -10,13 +10,29 @@ public class GlitchGarden2DDefenderSpawner : MonoBehaviour
 
     private void OnMouseDown()
     {
-        SpawnDefender( GetSquareClicked() );
+        AttemptDefenderPlacement( GetSquareClicked() );
     }
 
 
     public void SetSelectedDefender( GlitchGarden2DDefender defenderToSelect )
     {
         _defender = defenderToSelect;
+    }
+
+
+    void AttemptDefenderPlacement( Vector2 gridPos )
+    {
+        GlitchGarden2DStarDisplay starDisplay = FindFirstObjectByType<GlitchGarden2DStarDisplay>();
+        int defenderCost = _defender.GetStarCost();
+        if ( starDisplay.HasEnoughStars( defenderCost ) )
+        {
+            SpawnDefender( gridPos );
+            starDisplay.SpendStars( defenderCost );
+        }
+        else
+        {
+            Debug.Log("Not Enough Stars");
+        }
     }
 
 

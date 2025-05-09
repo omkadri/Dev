@@ -9,7 +9,7 @@ public class GlitchGarden2DDefenderButton : MonoBehaviour
 
     private void OnMouseDown()
     {
-        var buttons = FindObjectsByType<GlitchGarden2DDefenderButton>( FindObjectsSortMode.None ); // finds all objects with DefenderButton script attached to them
+        GlitchGarden2DDefenderButton[] buttons = FindObjectsByType<GlitchGarden2DDefenderButton>( FindObjectsSortMode.None ); // finds all objects with DefenderButton script attached to them
         foreach( GlitchGarden2DDefenderButton button in buttons )
         {
             button.GetComponent<SpriteRenderer>().color = new Color32( 41, 41, 41, 255 ); //greys out all DefenderButtons
