@@ -24,7 +24,8 @@ public class GlitchGarden2DAttackerSpawner : MonoBehaviour
 
     private void SpawnAttacker()
     {
-        Instantiate( _attackerPrefab, transform.position, transform.rotation );
+        GlitchGarden2DAttacker newAttacker = Instantiate( _attackerPrefab, transform.position, transform.rotation );
+        newAttacker.transform.parent = transform;//ensures that the attacker is spawned as a child of the object this script is attached to
     }
 
 
