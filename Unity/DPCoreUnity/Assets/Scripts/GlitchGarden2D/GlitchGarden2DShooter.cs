@@ -7,7 +7,17 @@ public class GlitchGarden2DShooter : MonoBehaviour
 {
     [SerializeField] GameObject _projectile;
     [SerializeField] GameObject _gun;
+
     GlitchGarden2DAttackerSpawner _currentLaneAttackerSpawner;
+    Animator _animator;
+
+    static readonly int _isAttackingHash = Animator.StringToHash( "IsAttacking" );
+
+
+    void Awake()
+    {
+        _animator = GetComponent<Animator>();       
+    }
 
 
     void Start()
@@ -20,11 +30,11 @@ public class GlitchGarden2DShooter : MonoBehaviour
     {
         if( IsAttackerInLane() )
         {
-            Debug.Log("Shoot");
+            _animator.SetBool( _isAttackingHash, true );
         }
         else
         {
-            Debug.Log("Wait");
+            _animator.SetBool( _isAttackingHash, false );
         }
     }
 

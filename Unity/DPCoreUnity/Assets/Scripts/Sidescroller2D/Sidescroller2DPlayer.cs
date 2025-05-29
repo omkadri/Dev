@@ -23,6 +23,9 @@ public class SideScroller2DPlayer : MonoBehaviour
     BoxCollider2D _feetCollider;
     float _defaultPlayerGravity;
 
+    static readonly int _isRunningHash = Animator.StringToHash( "IsRunning" );
+    static readonly int _isClimbingHash = Animator.StringToHash( "IsClimbing" );
+
 
     void Start()
     {
@@ -83,7 +86,7 @@ public class SideScroller2DPlayer : MonoBehaviour
         Vector2 playerVelocity = new Vector2( _moveInput.x * _runSpeed, _rb2d.linearVelocity.y );
         _rb2d.linearVelocity = playerVelocity;
         bool playerHasHorizontalSpeed = Mathf.Abs( _rb2d.linearVelocity.x ) > Mathf.Epsilon;//this prevents sprite from fliping back to facing forward after it stops moving
-        _animator.SetBool( "IsRunning", playerHasHorizontalSpeed );
+        _animator.SetBool( _isRunningHash, playerHasHorizontalSpeed );
     }
 
 
@@ -103,14 +106,14 @@ public class SideScroller2DPlayer : MonoBehaviour
         if ( !_bodyCollider.IsTouchingLayers( LayerMask.GetMask( "Climbing" ) ) )
         {
             _rb2d.gravityScale = _defaultPlayerGravity;
-            _animator.SetBool( "IsClimbing", false );
+            _animator.SetBool( _isClimbingHash, false );
             return;
         }
         Vector2 climbVelocity = new Vector2( _rb2d.linearVelocity.x, _moveInput.y * _climbSpeed );
         _rb2d.linearVelocity = climbVelocity;
         _rb2d.gravityScale = 0f;
         bool playerHasVerticalSpeed = Mathf.Abs( _rb2d.linearVelocity.y ) > Mathf.Epsilon;
-        _animator.SetBool( "IsClimbing", playerHasVerticalSpeed );
+        _animator.SetBool( _isClimbingHash, playerHasVerticalSpeed );
     }
 
 
