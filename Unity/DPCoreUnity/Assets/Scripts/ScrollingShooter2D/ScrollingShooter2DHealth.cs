@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class LaserDefender2DHealth : MonoBehaviour
+public class ScrollingShooter2DHealth : MonoBehaviour
 {
     [SerializeField] int _health = 50;
     [SerializeField] int _scorePerEnemyKill = 50;
@@ -12,25 +12,25 @@ public class LaserDefender2DHealth : MonoBehaviour
     [SerializeField] bool _usingEnemyAI = false;
 
     [SerializeField] bool _applyCameraShake = false;
-    LaserDefender2DCameraShake _cameraShake;
+    ScrollingShooter2DCameraShake _cameraShake;
 
-    LaserDefender2DAudioPlayer _audioPlayer;
-    LaserDefender2DScoreKeeper _scoreKeeper;
-    LaserDefender2DSceneManager _sceneManager;
+    ScrollingShooter2DAudioPlayer _audioPlayer;
+    ScrollingShooter2DScoreKeeper _scoreKeeper;
+    ScrollingShooter2DSceneManager _sceneManager;
 
 
     void Awake()
     {
-        _cameraShake = Camera.main.GetComponent<LaserDefender2DCameraShake>();
-        _audioPlayer = FindFirstObjectByType<LaserDefender2DAudioPlayer>();
-        _scoreKeeper = FindFirstObjectByType<LaserDefender2DScoreKeeper>();
-        _sceneManager = FindFirstObjectByType<LaserDefender2DSceneManager>();
+        _cameraShake = Camera.main.GetComponent<ScrollingShooter2DCameraShake>();
+        _audioPlayer = FindFirstObjectByType<ScrollingShooter2DAudioPlayer>();
+        _scoreKeeper = FindFirstObjectByType<ScrollingShooter2DScoreKeeper>();
+        _sceneManager = FindFirstObjectByType<ScrollingShooter2DSceneManager>();
     }
 
 
     void OnTriggerEnter2D( Collider2D other)
     {
-        LaserDefender2DDamageDealer damageDealer = other.GetComponent<LaserDefender2DDamageDealer>();
+        ScrollingShooter2DDamageDealer damageDealer = other.GetComponent<ScrollingShooter2DDamageDealer>();
 
         if ( damageDealer != null )
         {

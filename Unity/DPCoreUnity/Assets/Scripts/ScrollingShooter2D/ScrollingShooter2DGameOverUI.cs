@@ -1,16 +1,16 @@
 using TMPro;
 using UnityEngine;
 
-public class LaserDefender2DGameOverUI : MonoBehaviour
+public class ScrollingShooter2DGameOverUI : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI _scoreText;
 
-    LaserDefender2DScoreKeeper _scoreKeeper;
+    ScrollingShooter2DScoreKeeper _scoreKeeper;
 
 
     void Awake()
     {
-        _scoreKeeper = FindFirstObjectByType<LaserDefender2DScoreKeeper>();
+        _scoreKeeper = FindFirstObjectByType<ScrollingShooter2DScoreKeeper>();
     }
     
 

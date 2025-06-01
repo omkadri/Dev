@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class LaserDefender2DShooter : MonoBehaviour
+public class ScrollingShooter2DShooter : MonoBehaviour
 {
     [Header( "General" )]
     [SerializeField] GameObject _projectilePrefab;
@@ -17,12 +17,12 @@ public class LaserDefender2DShooter : MonoBehaviour
     [HideInInspector] public bool _isFiring;//TODO: Create public getter
 
     Coroutine _firingCoroutine;
-    LaserDefender2DAudioPlayer _audioPlayer;
+    ScrollingShooter2DAudioPlayer _audioPlayer;
 
 
     void Awake()
     {
-        _audioPlayer = FindFirstObjectByType<LaserDefender2DAudioPlayer>();
+        _audioPlayer = FindFirstObjectByType<ScrollingShooter2DAudioPlayer>();
     }
 
 

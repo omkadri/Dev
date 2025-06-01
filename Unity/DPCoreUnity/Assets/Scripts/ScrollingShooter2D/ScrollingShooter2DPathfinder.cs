@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LaserDefender2DPathfinder : MonoBehaviour
+public class ScrollingShooter2DPathfinder : MonoBehaviour
 {
-    LaserDefender2DEnemySpawner _enemySpawner;
-    LaserDefender2DWaveConfigSO _waveConfig;
+    ScrollingShooter2DEnemySpawner _enemySpawner;
+    ScrollingShooter2DWaveConfigSO _waveConfig;
     List<Transform> waypoints;
     int _waypointIndex = 0;
 
 
     void Awake()
     {
-        _enemySpawner = FindFirstObjectByType<LaserDefender2DEnemySpawner>();
+        _enemySpawner = FindFirstObjectByType<ScrollingShooter2DEnemySpawner>();
     }
 
 

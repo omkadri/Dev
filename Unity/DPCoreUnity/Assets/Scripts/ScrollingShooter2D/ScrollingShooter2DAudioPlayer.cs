@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class LaserDefender2DAudioPlayer : MonoBehaviour
+public class ScrollingShooter2DAudioPlayer : MonoBehaviour
 {
     [Header( "Shooting SFX" )]
     [SerializeField] AudioClip _playerShootingSFX;

@@ -2,9 +2,9 @@ using System;
 using Unity.Mathematics;
 using UnityEngine;
 
-public class LaserDefender2DScoreKeeper : MonoBehaviour
+public class ScrollingShooter2DScoreKeeper : MonoBehaviour
 {
-    static LaserDefender2DScoreKeeper _instance;
+    static ScrollingShooter2DScoreKeeper _instance;
     
     private int _currentScore;
 

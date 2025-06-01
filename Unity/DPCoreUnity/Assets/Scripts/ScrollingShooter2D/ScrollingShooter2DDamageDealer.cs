@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LaserDefender2DDamageDealer : MonoBehaviour
+public class ScrollingShooter2DDamageDealer : MonoBehaviour
 {
     [SerializeField] int _damage = 10;
 

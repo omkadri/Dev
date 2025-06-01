@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class LaserDefender2DPlayerController : MonoBehaviour
+public class ScrollingShooter2DPlayerController : MonoBehaviour
 {
     [SerializeField] float _moveSpeed = 10f;
     [SerializeField] float _paddingLeft = 0.5f;
@@ -15,12 +15,12 @@ public class LaserDefender2DPlayerController : MonoBehaviour
     Vector2 _minBounds;
     Vector2 _maxBounds;
 
-    LaserDefender2DShooter _shooter;
+    ScrollingShooter2DShooter _shooter;
 
 
     void Awake()
     {
-        _shooter = GetComponent<LaserDefender2DShooter>();
+        _shooter = GetComponent<ScrollingShooter2DShooter>();
     }
 
 

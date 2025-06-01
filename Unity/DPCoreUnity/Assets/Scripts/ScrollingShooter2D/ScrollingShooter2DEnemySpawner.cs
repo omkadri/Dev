@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LaserDefender2DEnemySpawner : MonoBehaviour
+public class ScrollingShooter2DEnemySpawner : MonoBehaviour
 {
-    [SerializeField] List<LaserDefender2DWaveConfigSO> _waveConfigs;
+    [SerializeField] List<ScrollingShooter2DWaveConfigSO> _waveConfigs;
     [SerializeField] float _timeBetweenWaves = 2f;
     [SerializeField] bool _isLooping;
-    LaserDefender2DWaveConfigSO _currentWave;
+    ScrollingShooter2DWaveConfigSO _currentWave;
     
 
     void Start()
@@ -16,7 +16,7 @@ public class LaserDefender2DEnemySpawner : MonoBehaviour
     }
 
 
-    public LaserDefender2DWaveConfigSO GetCurrentWave()
+    public ScrollingShooter2DWaveConfigSO GetCurrentWave()
     {
         return _currentWave;
     }
@@ -26,7 +26,7 @@ public class LaserDefender2DEnemySpawner : MonoBehaviour
     {
         do
         {
-            foreach( LaserDefender2DWaveConfigSO wave in _waveConfigs )
+            foreach( ScrollingShooter2DWaveConfigSO wave in _waveConfigs )
             {
                 _currentWave = wave;
                 for ( int i = 0; i < _currentWave.GetEnemyCount(); i++ )

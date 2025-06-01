@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Game Object/2D/LaserDefender2D/Wave Config", fileName = "New Wave Config")]
-public class LaserDefender2DWaveConfigSO : ScriptableObject
+[CreateAssetMenu(menuName = "Game Object/2D/ScrollingShooter2D/Wave Config", fileName = "New Wave Config")]
+public class ScrollingShooter2DWaveConfigSO : ScriptableObject
 {
     [SerializeField] List<GameObject> _enemyPrefabs;
     [SerializeField] Transform _pathPrefab;

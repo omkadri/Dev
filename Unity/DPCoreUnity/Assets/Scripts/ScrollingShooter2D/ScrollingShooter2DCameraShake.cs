@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LaserDefender2DCameraShake : MonoBehaviour
+public class ScrollingShooter2DCameraShake : MonoBehaviour
 {
     [SerializeField] float _shakeDuration = 0.5f;
     [SerializeField] float _shakeMagnitude = 0.25f;

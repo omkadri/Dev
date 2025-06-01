@@ -2,20 +2,20 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class LaserDefender2DUIDisplay : MonoBehaviour
+public class ScrollingShooter2DUIDisplay : MonoBehaviour
 {
     [Header( "Health" )]
     [SerializeField] Slider _healthSlider;
-    [SerializeField] LaserDefender2DHealth _playerHealth;
+    [SerializeField] ScrollingShooter2DHealth _playerHealth;
 
     [Header( "Score" )]
     [SerializeField] TextMeshProUGUI _scoreText;
-    LaserDefender2DScoreKeeper _scoreKeeper;
+    ScrollingShooter2DScoreKeeper _scoreKeeper;
 
 
     void Awake()
     {
-        _scoreKeeper = FindFirstObjectByType<LaserDefender2DScoreKeeper>();
+        _scoreKeeper = FindFirstObjectByType<ScrollingShooter2DScoreKeeper>();
     }
 
 

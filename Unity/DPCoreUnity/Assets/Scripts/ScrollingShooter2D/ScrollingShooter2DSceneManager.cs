@@ -2,9 +2,9 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LaserDefender2DSceneManager : MonoBehaviour
+public class ScrollingShooter2DSceneManager : MonoBehaviour
 {
-    [SerializeField] LaserDefender2DScoreKeeper _scoreKeeper;
+    [SerializeField] ScrollingShooter2DScoreKeeper _scoreKeeper;
     [SerializeField] string _gameSceneName;
 
     [SerializeField] string _mainMenuSceneName;
@@ -15,7 +15,7 @@ public class LaserDefender2DSceneManager : MonoBehaviour
 
     void Awake()
     {
-        _scoreKeeper = FindFirstObjectByType<LaserDefender2DScoreKeeper>();
+        _scoreKeeper = FindFirstObjectByType<ScrollingShooter2DScoreKeeper>();
     }
 
     
