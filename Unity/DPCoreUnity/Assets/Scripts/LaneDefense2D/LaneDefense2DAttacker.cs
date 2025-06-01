@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GlitchGarden2DAttacker : MonoBehaviour
+public class LaneDefense2DAttacker : MonoBehaviour
 {
     [Range ( 0f, 5f )][SerializeField] float _currentSpeed = 0f;
 

@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GlitchGarden2DDefenderSpawner : MonoBehaviour
+public class LaneDefense2DDefenderSpawner : MonoBehaviour
 {
     //[SerializeField]  --removed Serialization so designers do not mess it up
-    GlitchGarden2DDefender _defender;
+    LaneDefense2DDefender _defender;
 
 
     private void OnMouseDown()
@@ -14,7 +14,7 @@ public class GlitchGarden2DDefenderSpawner : MonoBehaviour
     }
 
 
-    public void SetSelectedDefender( GlitchGarden2DDefender defenderToSelect )
+    public void SetSelectedDefender( LaneDefense2DDefender defenderToSelect )
     {
         _defender = defenderToSelect;
     }
@@ -22,7 +22,7 @@ public class GlitchGarden2DDefenderSpawner : MonoBehaviour
 
     void AttemptDefenderPlacement( Vector2 gridPos )
     {
-        GlitchGarden2DStarDisplay starDisplay = FindFirstObjectByType<GlitchGarden2DStarDisplay>();
+        LaneDefense2DStarDisplay starDisplay = FindFirstObjectByType<LaneDefense2DStarDisplay>();
         int defenderCost = _defender.GetStarCost();
         if ( starDisplay.HasEnoughStars( defenderCost ) )
         {
@@ -63,7 +63,7 @@ public class GlitchGarden2DDefenderSpawner : MonoBehaviour
     {
         if ( _defender )
         {
-            GlitchGarden2DDefender newDefender = Instantiate( _defender, inGameMousePos, Quaternion.identity ) as GlitchGarden2DDefender;
+            LaneDefense2DDefender newDefender = Instantiate( _defender, inGameMousePos, Quaternion.identity ) as LaneDefense2DDefender;
             //"as gameObject" allows us to see the instance in the unity hierarchy, as well as interact with it
         }
     }

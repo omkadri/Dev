@@ -3,12 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GlitchGarden2DShooter : MonoBehaviour
+public class LaneDefense2DShooter : MonoBehaviour
 {
     [SerializeField] GameObject _projectile;
     [SerializeField] GameObject _gun;
 
-    GlitchGarden2DAttackerSpawner _currentLaneAttackerSpawner;
+    LaneDefense2DAttackerSpawner _currentLaneAttackerSpawner;
     Animator _animator;
 
     static readonly int _isAttackingHash = Animator.StringToHash( "IsAttacking" );
@@ -41,9 +41,9 @@ public class GlitchGarden2DShooter : MonoBehaviour
 
     void SetCurrentLaneAttackerSpawner()
     {
-        GlitchGarden2DAttackerSpawner[] spawners = FindObjectsByType<GlitchGarden2DAttackerSpawner>( FindObjectsSortMode.None );
+        LaneDefense2DAttackerSpawner[] spawners = FindObjectsByType<LaneDefense2DAttackerSpawner>( FindObjectsSortMode.None );
 
-        foreach ( GlitchGarden2DAttackerSpawner spawner in spawners )
+        foreach ( LaneDefense2DAttackerSpawner spawner in spawners )
         {
             bool isCloseEnough = Mathf.Abs(spawner.transform.position.y - transform.position.y) < 0.1f; //using 0.1 because Mathf.Epsilon returns an error
             if ( isCloseEnough )

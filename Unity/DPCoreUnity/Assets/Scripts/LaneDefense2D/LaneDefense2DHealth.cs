@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GlitchGarden2DHealth : MonoBehaviour
+public class LaneDefense2DHealth : MonoBehaviour
 {
     [SerializeField] float _health = 100f;
     [SerializeField] GameObject _deathVFX;

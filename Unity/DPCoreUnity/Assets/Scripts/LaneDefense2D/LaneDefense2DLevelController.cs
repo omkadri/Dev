@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GlitchGarden2DSceneManager : MonoBehaviour
+public class LaneDefense2DSceneManager : MonoBehaviour
 {
     [SerializeField] int _timeToWait = 4;
     int _currentSceneIndex;

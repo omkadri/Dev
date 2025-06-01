@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GlitchGarden2DStarDisplay : MonoBehaviour
+public class LaneDefense2DStarDisplay : MonoBehaviour
 {
     [SerializeField] int _stars = 100;
     Text _starText;

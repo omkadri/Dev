@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GlitchGarden2DProjectile : MonoBehaviour
+public class LaneDefense2DProjectile : MonoBehaviour
 {
     [SerializeField] float _movementSpeed = 2f;
     [SerializeField] float _damageAmount = 50f;
@@ -19,8 +19,8 @@ public class GlitchGarden2DProjectile : MonoBehaviour
         Debug.Log( "I hit: "+ otherCollider.name );
 
         // Reduce health
-        GlitchGarden2DHealth health = otherCollider.GetComponent<GlitchGarden2DHealth>(); //this line gets the health script attached to the object comm
-        GlitchGarden2DAttacker attacker = otherCollider.GetComponent<GlitchGarden2DAttacker>();
+        LaneDefense2DHealth health = otherCollider.GetComponent<LaneDefense2DHealth>(); //this line gets the health script attached to the object comm
+        LaneDefense2DAttacker attacker = otherCollider.GetComponent<LaneDefense2DAttacker>();
 
         if ( attacker && health ) // if the object we are colliding with has an attacker and health
         {
