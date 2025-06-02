@@ -945,14 +945,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2460862870431632895, guid: 1f11b6eea957c0448bd9cd8c34a540d4, type: 3}
-      propertyPath: _defenderPrefab
-      value: 
-      objectReference: {fileID: 8914092539551673071, guid: 6fcfae8c912d77548ab719dc62c8acd2, type: 3}
-    - target: {fileID: 4050076777201397631, guid: 1f11b6eea957c0448bd9cd8c34a540d4, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -3.22
-      objectReference: {fileID: 0}
     - target: {fileID: 6597521164337562013, guid: 1f11b6eea957c0448bd9cd8c34a540d4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.224146
@@ -996,6 +988,22 @@ PrefabInstance:
     - target: {fileID: 6597521164337562014, guid: 1f11b6eea957c0448bd9cd8c34a540d4, type: 3}
       propertyPath: m_Name
       value: Buttons
+      objectReference: {fileID: 0}
+    - target: {fileID: 8555155610892964032, guid: 1f11b6eea957c0448bd9cd8c34a540d4, type: 3}
+      propertyPath: m_Size.x
+      value: 0.737684
+      objectReference: {fileID: 0}
+    - target: {fileID: 8555155610892964032, guid: 1f11b6eea957c0448bd9cd8c34a540d4, type: 3}
+      propertyPath: m_Size.y
+      value: 1.0572052
+      objectReference: {fileID: 0}
+    - target: {fileID: 8555155610892964032, guid: 1f11b6eea957c0448bd9cd8c34a540d4, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.003306985
+      objectReference: {fileID: 0}
+    - target: {fileID: 8555155610892964032, guid: 1f11b6eea957c0448bd9cd8c34a540d4, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.015476704
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
