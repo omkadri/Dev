@@ -9,6 +9,7 @@ using UnityEngine.InputSystem;
 public class SideScroller2DPlayer : MonoBehaviour
 {
     [SerializeField] float _runSpeed = 5f;
+    [SerializeField] bool _invertHorizontalMovement = false;
     [SerializeField] float _jumpSpeed = 10f;
     [SerializeField] float _climbSpeed = 5f;
     [SerializeField] Vector2 _deathKnockback = new Vector2( -2f, 20f );
@@ -49,11 +50,14 @@ public class SideScroller2DPlayer : MonoBehaviour
 
 
     void OnMove( InputValue value )
-    {
-        if ( !_isAlive ) { return; }
-        _moveInput = value.Get<Vector2>();
-        Debug.Log( _moveInput );
-    }
+{
+    if ( !_isAlive ) return;
+
+    Vector2 input = value.Get<Vector2>();
+    input.x *= _invertHorizontalMovement ? -1 : 1;
+
+    _moveInput = input;
+}
 
 
     void OnJump( InputValue value )
