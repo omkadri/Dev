@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5599687455630295403}
   - component: {fileID: 4482547322926352047}
   - component: {fileID: 1749008783471774884}
+  - component: {fileID: 2563140661050224001}
   m_Layer: 0
   m_Name: LaneDefense2DLizard
   m_TagString: Untagged
@@ -103,11 +104,11 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.5600784, y: -0.29896092}
+  m_Offset: {x: -0.67747927, y: -0.13019735}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -117,7 +118,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.5118823, y: 0.73227406}
+  m_Size: {x: 0.55590916, y: 0.79097474}
   m_EdgeRadius: 0
 --- !u!50 &5599687455630295403
 Rigidbody2D:
@@ -215,6 +216,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2563140661050224001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2954233872849650779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a820d2e5e90ff784dbf1062c3f0852f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6022257511417341345
 GameObject:
   m_ObjectHideFlags: 0
