@@ -8,6 +8,7 @@ public class TopDown2DPlayerStamina : Singleton<TopDown2DPlayerStamina>
 
     [SerializeField] Sprite fullStaminaImage, emptyStaminaImage;
     [SerializeField] int timeBetweenStaminaRefresh = 3;
+    [SerializeField] int _staminaRefreshAmount = 1;
 
     Transform staminaContainer;
     int startingStamina = 3; //TODO: Make this a serialized field
@@ -38,11 +39,11 @@ public class TopDown2DPlayerStamina : Singleton<TopDown2DPlayerStamina>
     }
 
 
-    public void RefreshStamina()
+    public void RefreshStamina( int amount )
     {
         if ( CurrentStamina < maxStamina && !TopDown2DPlayerHealth.Instance.IsDead )
         {
-            CurrentStamina++;
+            CurrentStamina += amount;
         }
         UpdateStaminaImages();
     }
@@ -60,7 +61,7 @@ public class TopDown2DPlayerStamina : Singleton<TopDown2DPlayerStamina>
         while (true)
         {
             yield return new WaitForSeconds( timeBetweenStaminaRefresh );
-            RefreshStamina();
+            RefreshStamina( _staminaRefreshAmount );
         }
     }
 

@@ -11,6 +11,7 @@ public class TopDown2DPickup : MonoBehaviour
     }
 
     [SerializeField] PickupType pickupType;
+    [SerializeField] int _pickupValue = 1;
     [SerializeField] float pickupDistance = 5f;
     [SerializeField] float accelerationRate = .2f;
     [SerializeField] float moveSpeed = 3f;
@@ -93,13 +94,13 @@ public class TopDown2DPickup : MonoBehaviour
         switch( pickupType )
         {
             case PickupType.CoinPickup:
-                TopDown2DEconomyManager.Instance.UpdateCurrency();
+                TopDown2DEconomyManager.Instance.UpdateCurrency( _pickupValue );
                 break;
             case PickupType.HealthPickup:
-                TopDown2DPlayerHealth.Instance.HealPlayer();
+                TopDown2DPlayerHealth.Instance.HealPlayer( _pickupValue );
                 break;
             case PickupType.StaminaPickup:
-                TopDown2DPlayerStamina.Instance.RefreshStamina();
+                TopDown2DPlayerStamina.Instance.RefreshStamina( _pickupValue );
                 break;
             default:
                 break;

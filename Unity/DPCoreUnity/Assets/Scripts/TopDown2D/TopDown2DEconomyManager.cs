@@ -9,9 +9,9 @@ public class TopDown2DEconomyManager : Singleton<TopDown2DEconomyManager>
     const string COIN_AMOUNT_TEXT_REF = "CurrencyAmountText";
 
 
-    public void UpdateCurrency()
+    public void UpdateCurrency( int amount )
     {
-        currentCurrency += 1; //TODO: fix magic number
+        currentCurrency += amount;
 
         if ( currencyText == null )
         {

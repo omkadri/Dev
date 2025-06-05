@@ -54,11 +54,11 @@ public class TopDown2DPlayerHealth : Singleton<TopDown2DPlayerHealth>
     }
 
 
-    public void HealPlayer()
+    public void HealPlayer( int amount )
     {
         if ( currentHealth < maxHealth )
         {
-            currentHealth += 1;
+            currentHealth += amount;
             UpdateHealthSlider();
         }
     }
