@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7851230587796693364}
   - component: {fileID: 8914092539551673071}
   - component: {fileID: 6321855379117174907}
+  - component: {fileID: 7085576746026798395}
   m_Layer: 0
   m_Name: LaneDefense2DGnome
   m_TagString: Untagged
@@ -132,6 +133,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _projectile: {fileID: 1024444406036331622, guid: 73553bfe3a6d942438cb530c80934bc1, type: 3}
   _gun: {fileID: 6884660696268765592}
+--- !u!114 &7085576746026798395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 379164301141816209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9709708f4729c004eb6cd00fa37d3d0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _health: 100
+  _deathVFX: {fileID: 1906222994913036, guid: 740c2b3187d56c341b8cb78e8aa925c5, type: 3}
 --- !u!1 &6013349962319300093
 GameObject:
   m_ObjectHideFlags: 0
@@ -208,12 +223,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 8
-  m_Sprite: {fileID: 21300012, guid: bb6cf1fcf9ebe48b8a36cc3da0ba6f2b, type: 3}
+  m_Sprite: {fileID: -1917962111, guid: e8c88d4b5f53de448935c6cda15caa30, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.60750014, y: 1.1250004}
+  m_Size: {x: 0.648, y: 1.2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

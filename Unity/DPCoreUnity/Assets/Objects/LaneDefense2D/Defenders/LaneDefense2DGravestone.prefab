@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1731313843405741883}
   - component: {fileID: 1215921445135422129}
   - component: {fileID: 3023448831978880150}
+  - component: {fileID: 7314100119753425702}
   m_Layer: 0
   m_Name: LaneDefense2DGravestone
   m_TagString: Untagged
@@ -116,6 +117,20 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &7314100119753425702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2453231401171323549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9709708f4729c004eb6cd00fa37d3d0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _health: 100
+  _deathVFX: {fileID: 1906222994913036, guid: 740c2b3187d56c341b8cb78e8aa925c5, type: 3}
 --- !u!1 &6136959668140927256
 GameObject:
   m_ObjectHideFlags: 0
@@ -142,7 +157,7 @@ Transform:
   m_GameObject: {fileID: 6136959668140927256}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.016, z: 0}
+  m_LocalPosition: {x: 0, y: 0.012, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

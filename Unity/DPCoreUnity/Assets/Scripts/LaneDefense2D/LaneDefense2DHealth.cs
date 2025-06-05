@@ -21,13 +21,11 @@ public class LaneDefense2DHealth : MonoBehaviour
 
     private void TriggerDeathVFX()
     {
-        //protects us against null returns
         if ( !_deathVFX )
         { 
             return;
         }
 
-        //instantiates vfx particle, and then destroy it
         GameObject deathVFXObject = Instantiate( _deathVFX, transform.position, transform.rotation );
         Destroy( deathVFXObject, 1f );
     }

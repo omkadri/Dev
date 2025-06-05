@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,8 +21,17 @@ public class LaneDefense2DAttacker : MonoBehaviour
     void Update()
     {
         transform.Translate(Vector2.left * _currentSpeed * Time.deltaTime);
+        UpdateAnimState();
     }
 
+    void UpdateAnimState()
+    {
+        if ( !_currentTarget )
+        {
+            _animator.SetBool( _isAttackingHash, false );
+        }
+    }
+    
 
     public void SetMovementSpeed(float speed)
     {
@@ -31,7 +41,18 @@ public class LaneDefense2DAttacker : MonoBehaviour
 
     public void Attack( GameObject target )
     {
-        _animator.SetBool(_isAttackingHash, true);
+        _animator.SetBool( _isAttackingHash, true );
         _currentTarget = target;
+    }
+
+
+    public void DamageCurrentTarget( float amount )
+    {
+        if ( !_currentTarget )
+        {
+            return;
+        }
+        LaneDefense2DHealth health = _currentTarget.GetComponent<LaneDefense2DHealth>();
+        health?.DealDamage( amount );
     }
 }

@@ -101,6 +101,7 @@ GameObject:
   - component: {fileID: 2226897760571367068}
   - component: {fileID: 3982256727589735959}
   - component: {fileID: 4137702228909607653}
+  - component: {fileID: 5076820984034810339}
   m_Layer: 0
   m_Name: LaneDefense2DCactus
   m_TagString: Untagged
@@ -219,6 +220,20 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &5076820984034810339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1607668489131843190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9709708f4729c004eb6cd00fa37d3d0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _health: 100
+  _deathVFX: {fileID: 1906222994913036, guid: 740c2b3187d56c341b8cb78e8aa925c5, type: 3}
 --- !u!1 &1607668489331489887
 GameObject:
   m_ObjectHideFlags: 0
