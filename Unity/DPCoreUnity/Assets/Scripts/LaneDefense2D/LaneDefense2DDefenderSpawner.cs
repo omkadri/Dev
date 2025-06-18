@@ -22,6 +22,11 @@ public class LaneDefense2DDefenderSpawner : MonoBehaviour
 
     void AttemptDefenderPlacement( Vector2 gridPos )
     {
+        if (!_defender)
+        {
+            return;
+        }
+        
         LaneDefense2DStarDisplay starDisplay = FindFirstObjectByType<LaneDefense2DStarDisplay>();
         int defenderCost = _defender.GetStarCost();
         if ( starDisplay.HasEnoughStars( defenderCost ) )
