@@ -14,11 +14,11 @@ public class LaneDefense2DProjectile : MonoBehaviour
     }
 
 
-    private void OnTriggerEnter2D( Collider2D otherCollider ) // we are specifying that this is any "other" objcet that collides with the zucchini
+    private void OnTriggerEnter2D( Collider2D other )
     {
 
-        LaneDefense2DHealth health = otherCollider.GetComponent<LaneDefense2DHealth>(); //this line gets the health script attached to the object comm
-        LaneDefense2DAttacker attacker = otherCollider.GetComponent<LaneDefense2DAttacker>();
+        LaneDefense2DHealth health = other.GetComponent<LaneDefense2DHealth>();
+        LaneDefense2DAttacker attacker = other.GetComponent<LaneDefense2DAttacker>();
 
         if ( attacker && health )
         {

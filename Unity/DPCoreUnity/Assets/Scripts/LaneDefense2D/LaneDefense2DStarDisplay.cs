@@ -37,7 +37,7 @@ public class LaneDefense2DStarDisplay : MonoBehaviour
 
     public void SpendStars( int amount )
     {
-        if ( _stars >= amount )//stops us from spending more stars then we have
+        if ( _stars >= amount )
         {
             _stars -= amount;
             UpdateDisplay();

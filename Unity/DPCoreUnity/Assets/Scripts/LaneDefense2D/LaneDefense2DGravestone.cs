@@ -6,7 +6,6 @@ public class LaneDefense2DGravestone : MonoBehaviour
     {
         if ( other.GetComponent<LaneDefense2DAttacker>() )
         {
-            //animate
         }
     }
 }
