@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Snowboard2DFinishLine : MonoBehaviour
 {
@@ -30,6 +29,6 @@ public class Snowboard2DFinishLine : MonoBehaviour
 
   void ReloadScene()
   {
-    SceneManager.LoadScene( "Snowboard2DBaseScene" );
+    SceneUtils.LoadSceneByName( "Snowboard2DBaseScene" );
   }
 }

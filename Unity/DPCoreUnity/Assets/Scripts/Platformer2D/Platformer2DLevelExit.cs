@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Platformer2DLevelExit : MonoBehaviour
 {
@@ -23,6 +22,6 @@ public class Platformer2DLevelExit : MonoBehaviour
     {
         FindFirstObjectByType<Platformer2DScenePersist>().ResetScenePersist();
         yield return new WaitForSecondsRealtime( _levelLoadDelay );
-        SceneManager.LoadScene( _nextSceneName );
+        SceneUtils.LoadSceneByName( _nextSceneName );
     }
 }

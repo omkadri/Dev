@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 
 public class Trivia2DGameManager : MonoBehaviour
@@ -37,6 +36,6 @@ public class Trivia2DGameManager : MonoBehaviour
 
     public void OnReplayLevel()
     {
-        SceneManager.LoadScene( SceneManager.GetActiveScene().buildIndex );
+        SceneUtils.ReloadCurrentScene();
     }
 }

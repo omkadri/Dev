@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class LaneDefense2DDefenderSpawner : MonoBehaviour
 {
-    //[SerializeField]  --removed Serialization so designers do not mess it up
     LaneDefense2DDefender _defender;
-
 
     private void OnMouseDown()
     {
@@ -44,7 +42,6 @@ public class LaneDefense2DDefenderSpawner : MonoBehaviour
     private Vector2 GetSquareClicked()
     {
         Vector2 rawMousePos = new Vector2( Input.mousePosition.x, Input.mousePosition.y );
-        // creates a vector containing the current mouse coordinates
 
         Vector2 inGameMousePos = Camera.main.ScreenToWorldPoint( rawMousePos );
         //this gets mouse coordinates relative the withing the game window (as opposed to raw mouse coordinate data)

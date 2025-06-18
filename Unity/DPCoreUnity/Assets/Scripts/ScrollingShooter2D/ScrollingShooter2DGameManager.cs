@@ -1,8 +1,7 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class ScrollingShooter2DSceneManager : MonoBehaviour
+public class ScrollingShooter2DGameManager : MonoBehaviour
 {
     [SerializeField] ScrollingShooter2DScoreKeeper _scoreKeeper;
     [SerializeField] string _gameSceneName;
@@ -22,13 +21,13 @@ public class ScrollingShooter2DSceneManager : MonoBehaviour
     public void LoadGameScene()
     {
         _scoreKeeper.ResetScore();
-        SceneManager.LoadScene( _gameSceneName );
+        SceneUtils.LoadSceneByName( _gameSceneName );
     }
 
 
     public void LoadMainMenuScene()
     {
-        SceneManager.LoadScene( _mainMenuSceneName );
+        SceneUtils.LoadSceneByName( _mainMenuSceneName );
     }
 
 
@@ -48,6 +47,6 @@ public class ScrollingShooter2DSceneManager : MonoBehaviour
     IEnumerator WaitAndLoadRoutine( string sceneName, float delay )
     {
         yield return new WaitForSeconds( delay );
-        SceneManager.LoadScene( sceneName );
+        SceneUtils.LoadSceneByName( sceneName );
     }
 }

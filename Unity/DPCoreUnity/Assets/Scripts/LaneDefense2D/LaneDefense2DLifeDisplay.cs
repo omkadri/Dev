@@ -42,7 +42,7 @@ public class LaneDefense2DLifeDisplay : MonoBehaviour
 
         if (_lifePoints <= 0)
         {
-            FindFirstObjectByType<LaneDefense2DSceneManager>().LoadSceneByName( _gameOverSceneName );
+            SceneUtils.LoadSceneByName( _gameOverSceneName );
         }
     }
 }

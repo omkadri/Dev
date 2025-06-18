@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Snowboard2DCrashDetector : MonoBehaviour
 {
@@ -39,6 +38,6 @@ public class Snowboard2DCrashDetector : MonoBehaviour
 
   void ReloadScene()
   {
-    SceneManager.LoadScene( "Snowboard2DBaseScene" );
+    SceneUtils.LoadSceneByName( "Snowboard2DBaseScene" );//TODO: Fix hard reference
   }
 }

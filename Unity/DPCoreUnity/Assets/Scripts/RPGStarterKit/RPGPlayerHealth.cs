@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class RPGPlayerHealth : MonoBehaviour
 {
@@ -89,6 +88,6 @@ public class RPGPlayerHealth : MonoBehaviour
     {
         yield return new WaitForSeconds(respawnTimeFloat);
         Destroy(RPGPlayerController.Instance.gameObject);
-        SceneManager.LoadScene("RPGStarterKit2DTown");//TODO: Fix hard coded reference
+        SceneUtils.LoadSceneByName( "RPGStarterKit2DTown" );//TODO: Fix hard coded reference
     }
 }

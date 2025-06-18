@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class RPGAreaExit : MonoBehaviour
 {
@@ -27,7 +26,7 @@ public class RPGAreaExit : MonoBehaviour
             if(waitToLoad <= 0) 
             {
                 shouldLoadAfterFade = false;
-                SceneManager.LoadScene(areaToLoad);
+                SceneUtils.LoadSceneByName( areaToLoad );
             }
         }
     }

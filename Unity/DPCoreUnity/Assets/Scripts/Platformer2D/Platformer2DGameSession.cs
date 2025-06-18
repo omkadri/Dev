@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Platformer2DGameSession : MonoBehaviour
 {
@@ -58,8 +57,8 @@ public class Platformer2DGameSession : MonoBehaviour
     private void TakeLife()
     {
         _playerLives -= 1;
-        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadScene( currentSceneIndex );
+        int currentSceneIndex = SceneUtils.GetCurrentSceneIndex();
+        SceneUtils.LoadSceneByIndex( currentSceneIndex );
         _livesText.text = _playerLives.ToString();
     }
 
@@ -67,7 +66,7 @@ public class Platformer2DGameSession : MonoBehaviour
     void ResetGameSession()
     {
         FindFirstObjectByType<Platformer2DScenePersist>().ResetScenePersist();
-        SceneManager.LoadScene( _gameOverSceneName );
+        SceneUtils.LoadSceneByName( _gameOverSceneName );
         Destroy( gameObject ); //allows future game sessions to exist without duplication
     }
 }

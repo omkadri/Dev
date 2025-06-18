@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class TopDown2DAreaExit : MonoBehaviour
 {
@@ -30,6 +29,6 @@ public class TopDown2DAreaExit : MonoBehaviour
             yield return null;
         }
 
-        SceneManager.LoadScene( sceneToLoad );
+        SceneUtils.LoadSceneByName( sceneToLoad );
     }
 }

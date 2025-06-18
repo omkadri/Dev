@@ -16,7 +16,7 @@ public class ScrollingShooter2DHealth : MonoBehaviour
 
     ScrollingShooter2DAudioPlayer _audioPlayer;
     ScrollingShooter2DScoreKeeper _scoreKeeper;
-    ScrollingShooter2DSceneManager _sceneManager;
+    ScrollingShooter2DGameManager _gameManager;
 
 
     void Awake()
@@ -24,7 +24,7 @@ public class ScrollingShooter2DHealth : MonoBehaviour
         _cameraShake = Camera.main.GetComponent<ScrollingShooter2DCameraShake>();
         _audioPlayer = FindFirstObjectByType<ScrollingShooter2DAudioPlayer>();
         _scoreKeeper = FindFirstObjectByType<ScrollingShooter2DScoreKeeper>();
-        _sceneManager = FindFirstObjectByType<ScrollingShooter2DSceneManager>();
+        _gameManager = FindFirstObjectByType<ScrollingShooter2DGameManager>();
     }
 
 
@@ -69,7 +69,7 @@ public class ScrollingShooter2DHealth : MonoBehaviour
             {
                 _audioPlayer.GetComponent<AudioSource>().Stop(); //stops the music for a moment of silence
                 _audioPlayer.PlayPlayerDeathSFX();
-                _sceneManager.LoadGameOverScene();
+                _gameManager.LoadGameOverScene();
             }
         Destroy( gameObject );
     }

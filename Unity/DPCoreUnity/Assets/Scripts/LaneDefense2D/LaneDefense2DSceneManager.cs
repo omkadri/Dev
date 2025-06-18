@@ -1,7 +1,5 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class LaneDefense2DSceneManager : MonoBehaviour
 {
@@ -11,7 +9,7 @@ public class LaneDefense2DSceneManager : MonoBehaviour
 
     void Start()
     {
-        _currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        _currentSceneIndex = SceneUtils.GetCurrentSceneIndex();
         if ( _currentSceneIndex == 0 )
         {
             StartCoroutine(WaitForTimeRoutine());
@@ -28,12 +26,6 @@ public class LaneDefense2DSceneManager : MonoBehaviour
 
     public void LoadNextScene()
     {
-        SceneManager.LoadScene( _currentSceneIndex + 1 ); //because in build index, Loading screen is 0 and Start Screen is 1
-    }
-
-
-    public void LoadSceneByName( string sceneName )
-    {
-        SceneManager.LoadScene( sceneName );
+        SceneUtils.LoadSceneByIndex( _currentSceneIndex + 1 ); //because in build index, Loading screen is 0 and Start Screen is 1
     }
 }
