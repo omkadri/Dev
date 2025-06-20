@@ -829,9 +829,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6708397345615558608, guid: 1c8ac52ff762dbb42a93e01b2407396c, type: 3}
-      propertyPath: _gameOverSceneName
-      value: LaneDefense2DGameOver
+    - target: {fileID: 3553460846374911782, guid: 1c8ac52ff762dbb42a93e01b2407396c, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3553460846374911782, guid: 1c8ac52ff762dbb42a93e01b2407396c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3553460846374911782, guid: 1c8ac52ff762dbb42a93e01b2407396c, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3553460846374911782, guid: 1c8ac52ff762dbb42a93e01b2407396c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.30000305
+      objectReference: {fileID: 0}
+    - target: {fileID: 8481253782511587168, guid: 1c8ac52ff762dbb42a93e01b2407396c, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8481253782511587168, guid: 1c8ac52ff762dbb42a93e01b2407396c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
