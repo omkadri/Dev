@@ -23,7 +23,7 @@ public class Snowboard2DPlayerController : MonoBehaviour
 
     void Update()
     {
-        if ( canMove )
+        if (canMove)
         {
             RotatePlayer();
             RespondToBoost();
@@ -40,7 +40,7 @@ public class Snowboard2DPlayerController : MonoBehaviour
 
     void RespondToBoost()
     {
-        if ( Input.GetKey( KeyCode.UpArrow ) )
+        if (Input.GetKey(KeyCode.UpArrow))
         {
             _surfaceEffector2D.speed = _boostSpeed;
         }
@@ -54,15 +54,15 @@ public class Snowboard2DPlayerController : MonoBehaviour
     void RotatePlayer()
     {
         //player will always torque forward a bit to create the challenge of balance
-        _rb2d.AddTorque( -_torqueAmount );
+        _rb2d.AddTorque(-_torqueAmount);
 
-        if ( Input.GetKey( KeyCode.LeftArrow ) )
+        if (Input.GetKey(KeyCode.LeftArrow))
         {
-            _rb2d.AddTorque( _torqueAmount * 4 );
+            _rb2d.AddTorque(_torqueAmount * 4);
         }
-        else if ( Input.GetKey( KeyCode.RightArrow ) )
+        else if (Input.GetKey(KeyCode.RightArrow))
         {
-            _rb2d.AddTorque( -_torqueAmount * 2 );
+            _rb2d.AddTorque(-_torqueAmount * 2);
         }
     }
 }

@@ -34,6 +34,6 @@ public class Trivia2DScoreKeeper : MonoBehaviour
 
     public int CalculateScore()
     {
-        return Mathf.RoundToInt( _correctAnswers / (float)_questionsSeen * 100 ); //we need to use (float) one of the values a floating point number. or else the division will not work.
+        return Mathf.RoundToInt(_correctAnswers / (float)_questionsSeen * 100); //we need to use (float) one of the values a floating point number. or else the division will not work.
     }
 }

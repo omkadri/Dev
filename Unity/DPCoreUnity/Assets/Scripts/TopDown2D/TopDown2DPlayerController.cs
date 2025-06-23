@@ -88,28 +88,28 @@ public class TopDown2DPlayerController : Singleton<TopDown2DPlayerController>
     {
         moveDir = inputActions.Movement.Move.ReadValue<Vector2>();
 
-        animator.SetFloat( "moveX", moveDir.x );
-        animator.SetFloat( "moveY", moveDir.y );
+        animator.SetFloat("moveX", moveDir.x);
+        animator.SetFloat("moveY", moveDir.y);
     }
 
 
     void Move()
     {
-        if ( knockback.gettingKnockedBack || TopDown2DPlayerHealth.Instance.IsDead )
+        if (knockback.gettingKnockedBack || TopDown2DPlayerHealth.Instance.IsDead)
         {
             return;
         }
         
-        rb2d.MovePosition( rb2d.position + moveDir * ( moveSpeed * Time.fixedDeltaTime ) );//we use fixedDeltaTime because we are in FixedUpdate()
+        rb2d.MovePosition(rb2d.position + moveDir * (moveSpeed * Time.fixedDeltaTime));//we use fixedDeltaTime because we are in FixedUpdate()
     }
 
 
     void AdjustPlayerFacingDir()
     {
         Vector3 mousePos = Input.mousePosition;
-        Vector3 playerScreenPoint = Camera.main.WorldToScreenPoint( transform.position );
+        Vector3 playerScreenPoint = Camera.main.WorldToScreenPoint(transform.position);
 
-        if ( mousePos.x < playerScreenPoint.x )
+        if (mousePos.x < playerScreenPoint.x)
         {
             spriteRenderer.flipX = true;
             isFacingLeft = true;
@@ -125,22 +125,22 @@ public class TopDown2DPlayerController : Singleton<TopDown2DPlayerController>
     //TODO: Investigate making dash its own class
     void Dash()
     {
-        if ( !isDashing && TopDown2DPlayerStamina.Instance.CurrentStamina > 0 )
+        if (!isDashing && TopDown2DPlayerStamina.Instance.CurrentStamina > 0)
         {
             TopDown2DPlayerStamina.Instance.UseStamina();
             isDashing = true;
             moveSpeed *= dashSpeed;
             dashTrailRenderer.emitting = true;
-            StartCoroutine( EndDashRoutine() );
+            StartCoroutine(EndDashRoutine());
         }
     }
 
     IEnumerator EndDashRoutine()
     {
-        yield return new WaitForSeconds( dashTime );
+        yield return new WaitForSeconds(dashTime);
         moveSpeed = startingMoveSpeed;
         dashTrailRenderer.emitting = false;
-        yield return new WaitForSeconds( dashCooldown );
+        yield return new WaitForSeconds(dashCooldown);
         isDashing = false;
     }
 }

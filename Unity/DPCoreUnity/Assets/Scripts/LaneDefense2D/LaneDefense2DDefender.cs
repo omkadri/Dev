@@ -11,8 +11,8 @@ public class LaneDefense2DDefender : MonoBehaviour
                 return _starCost;
         }
 
-        public void AddStars( int amount )
+        public void AddStars(int amount)
         {
-              FindFirstObjectByType<LaneDefense2DStarDisplay>().AddStars( amount );//TODO: Fix tight coupling
+              FindFirstObjectByType<LaneDefense2DStarDisplay>().AddStars(amount);//TODO: Fix tight coupling
         }
 }

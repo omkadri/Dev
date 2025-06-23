@@ -12,23 +12,23 @@ public class Snowboard2DFinishLine : MonoBehaviour
 
   void OnTriggerEnter2D(Collider2D other)
   {
-    if ( other.tag == "Player" )
+    if (other.tag == "Player")
     {
       //Create OnComplete callback
-        Debug.Log( "You Finished!" );
+        Debug.Log("You Finished!");
         _finishParticleA.Play();
         _finishParticleB.Play();
-        if ( _finishSFX != null )
+        if (_finishSFX != null)
         {
           GetComponent<AudioSource>().PlayOneShot(_finishSFX);
         }
-        Invoke( "ReloadScene", _loadDelay );
+        Invoke("ReloadScene", _loadDelay);
     }
   }
 
 
   void ReloadScene()
   {
-    SceneUtils.LoadSceneByName( "Snowboard2DBaseScene" );
+    SceneUtils.LoadSceneByName("Snowboard2DBaseScene");
   }
 }

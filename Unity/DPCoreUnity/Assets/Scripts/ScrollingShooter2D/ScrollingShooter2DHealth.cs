@@ -28,13 +28,13 @@ public class ScrollingShooter2DHealth : MonoBehaviour
     }
 
 
-    void OnTriggerEnter2D( Collider2D other)
+    void OnTriggerEnter2D(Collider2D other)
     {
         ScrollingShooter2DDamageDealer damageDealer = other.GetComponent<ScrollingShooter2DDamageDealer>();
 
-        if ( damageDealer != null )
+        if (damageDealer != null)
         {
-            TakeDamage( damageDealer.GetDamage() );
+            TakeDamage(damageDealer.GetDamage());
             PlayHitVFX();
             ShakeCamera();
             damageDealer.Hit();
@@ -48,11 +48,11 @@ public class ScrollingShooter2DHealth : MonoBehaviour
     }
 
 
-    private void TakeDamage( int damage )
+    private void TakeDamage(int damage)
     {
         PlayDamageSFX();
         _health -= damage;
-        if ( _health <= 0 )
+        if (_health <= 0)
         {
             Die();
         }
@@ -61,34 +61,34 @@ public class ScrollingShooter2DHealth : MonoBehaviour
 
     void Die()
     {
-        if ( !_isPlayer )
+        if (!_isPlayer)
         {
-            _scoreKeeper.ModifyScore( _scorePerEnemyKill );
+            _scoreKeeper.ModifyScore(_scorePerEnemyKill);
         }
-        if ( !_usingEnemyAI )
+        if (!_usingEnemyAI)
             {
                 _audioPlayer.GetComponent<AudioSource>().Stop(); //stops the music for a moment of silence
                 _audioPlayer.PlayPlayerDeathSFX();
                 _gameManager.LoadGameOverScene();
             }
-        Destroy( gameObject );
+        Destroy(gameObject);
     }
 
 
     void PlayHitVFX()
     {
-        if ( _hitVFX != null )
+        if (_hitVFX != null)
         {
-            ParticleSystem instance = Instantiate( _hitVFX, transform.position, Quaternion.identity );
+            ParticleSystem instance = Instantiate(_hitVFX, transform.position, Quaternion.identity);
             float timeBeforeDestruction = instance.main.duration + instance.main.startLifetime.constantMax;
-            Destroy( instance.gameObject, timeBeforeDestruction );
+            Destroy(instance.gameObject, timeBeforeDestruction);
         }
     }
 
 
     void ShakeCamera()
     {
-        if ( _cameraShake != null && _applyCameraShake )
+        if (_cameraShake != null && _applyCameraShake)
         {
             _cameraShake.Play();
         }
@@ -97,9 +97,9 @@ public class ScrollingShooter2DHealth : MonoBehaviour
 
     void PlayDamageSFX()
     {
-        if ( _audioPlayer != null )
+        if (_audioPlayer != null)
         {
-            if ( _usingEnemyAI )
+            if (_usingEnemyAI)
             {
                 _audioPlayer.PlayEnemyDamageSFX();
             }

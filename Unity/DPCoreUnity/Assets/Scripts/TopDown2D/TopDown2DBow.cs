@@ -9,7 +9,7 @@ public class TopDown2DBow : MonoBehaviour, TopDown2DIWeapon
 
     Animator animator;
 
-    readonly int FIRE_HASH = Animator.StringToHash( "Fire" );
+    readonly int FIRE_HASH = Animator.StringToHash("Fire");
 
 
     void Awake()
@@ -20,10 +20,10 @@ public class TopDown2DBow : MonoBehaviour, TopDown2DIWeapon
 
     public void Attack()
     {
-        Debug.Log( "Bow Attack" );
-        animator.SetTrigger( FIRE_HASH );
-        GameObject newArrow = Instantiate( arrowPrefab, arrowSpawnPoint.transform.position, TopDown2DActiveWeapon.Instance.transform.rotation );
-        newArrow.GetComponent<TopDown2DProjectile>().UpdateRange( weaponInfo.WeaponRange );//TODO: this is a potential conflict with the projectile's base range
+        Debug.Log("Bow Attack");
+        animator.SetTrigger(FIRE_HASH);
+        GameObject newArrow = Instantiate(arrowPrefab, arrowSpawnPoint.transform.position, TopDown2DActiveWeapon.Instance.transform.rotation);
+        newArrow.GetComponent<TopDown2DProjectile>().UpdateRange(weaponInfo.WeaponRange);//TODO: this is a potential conflict with the projectile's base range
     }
 
 

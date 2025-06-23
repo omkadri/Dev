@@ -51,9 +51,9 @@ public class ShootEmUp2DPlayerAnimations : MonoBehaviour
     }
 
 
-    void OnCollisionEnter2D( Collision2D other )
+    void OnCollisionEnter2D(Collision2D other)
     {
-        if( _velocityBeforePhysicsUpdate.y < _hardLandingVelocityThreshold )
+        if(_velocityBeforePhysicsUpdate.y < _hardLandingVelocityThreshold)
         {
             PlayBouncePuffParticle();
             _groundImpulseSource.GenerateImpulse();
@@ -63,16 +63,16 @@ public class ShootEmUp2DPlayerAnimations : MonoBehaviour
 
     void DetectPlayerMoveDust()
     {
-        if( ShootEmUp2DPlayerController.Instance.CheckGrounded() )
+        if(ShootEmUp2DPlayerController.Instance.CheckGrounded())
         {
-            if ( !_playerMoveDustVFX.isPlaying )
+            if (!_playerMoveDustVFX.isPlaying)
             {
                 _playerMoveDustVFX.Play();
             }
         }
         else
         {
-            if ( _playerMoveDustVFX.isPlaying )
+            if (_playerMoveDustVFX.isPlaying)
             {
                 _playerMoveDustVFX.Stop();
             }
@@ -83,11 +83,11 @@ public class ShootEmUp2DPlayerAnimations : MonoBehaviour
     void ApplyPlayerBodyTilt()
     {
         float targetAngle;
-        if( ShootEmUp2DPlayerController.Instance.MoveInput.x < 0f )
+        if(ShootEmUp2DPlayerController.Instance.MoveInput.x < 0f)
         {
             targetAngle = _playerBodyTiltAngle;//TODO: Implement logic that makes player tilting consistent when wacing left of right
         }
-        else if( ShootEmUp2DPlayerController.Instance.MoveInput.x > 0f )
+        else if(ShootEmUp2DPlayerController.Instance.MoveInput.x > 0f)
         {
             targetAngle = -_playerBodyTiltAngle;
         }
@@ -97,9 +97,9 @@ public class ShootEmUp2DPlayerAnimations : MonoBehaviour
         }
 
         Quaternion currentPlayerRotation = _playerBodySpriteTransform.rotation;//TODO: Understand Quaternions and Eulers
-        Quaternion targetPlayerRotation = Quaternion.Euler( currentPlayerRotation.eulerAngles.x, currentPlayerRotation.eulerAngles.y, targetAngle );
+        Quaternion targetPlayerRotation = Quaternion.Euler(currentPlayerRotation.eulerAngles.x, currentPlayerRotation.eulerAngles.y, targetAngle);
 
-        _playerBodySpriteTransform.rotation = Quaternion.Lerp( currentPlayerRotation, targetPlayerRotation, _playerBodyTiltSpeed * Time.deltaTime );
+        _playerBodySpriteTransform.rotation = Quaternion.Lerp(currentPlayerRotation, targetPlayerRotation, _playerBodyTiltSpeed * Time.deltaTime);
     }
 
 
@@ -107,11 +107,11 @@ public class ShootEmUp2DPlayerAnimations : MonoBehaviour
     {
         {
             float targetAngle;
-            if( ShootEmUp2DPlayerController.Instance.MoveInput.x > 0f )
+            if(ShootEmUp2DPlayerController.Instance.MoveInput.x > 0f)
             {
                 targetAngle = _playerHatTiltAngle;//TODO: Implement logic that makes player tilting consistent when wacing left of right
             }
-            else if( ShootEmUp2DPlayerController.Instance.MoveInput.x < 0f )
+            else if(ShootEmUp2DPlayerController.Instance.MoveInput.x < 0f)
             {
                 targetAngle = -_playerHatTiltAngle;
             }
@@ -121,9 +121,9 @@ public class ShootEmUp2DPlayerAnimations : MonoBehaviour
             }
 
             Quaternion currentHatRotation = _playerHatSpriteTransform.rotation;//TODO: Understand Quaternions and Eulers
-            Quaternion targetHatRotation = Quaternion.Euler( currentHatRotation.eulerAngles.x, currentHatRotation.eulerAngles.y, targetAngle );
+            Quaternion targetHatRotation = Quaternion.Euler(currentHatRotation.eulerAngles.x, currentHatRotation.eulerAngles.y, targetAngle);
 
-            _playerHatSpriteTransform.rotation = Quaternion.Lerp( currentHatRotation, targetHatRotation, _playerHatTiltSpeed * Time.deltaTime );
+            _playerHatSpriteTransform.rotation = Quaternion.Lerp(currentHatRotation, targetHatRotation, _playerHatTiltSpeed * Time.deltaTime);
         }
     }
 

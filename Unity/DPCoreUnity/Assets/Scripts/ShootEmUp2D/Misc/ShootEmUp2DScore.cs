@@ -25,9 +25,9 @@ public class ShootEmUp2DScore : MonoBehaviour
     }
 
 
-    void EnemyDestroyed( ShootEmUp2DHealth sender )
+    void EnemyDestroyed(ShootEmUp2DHealth sender)
     {
         _currentScore++;
-        _scoreText.text = _currentScore.ToString( "D3" );
+        _scoreText.text = _currentScore.ToString("D3");
     }
 }

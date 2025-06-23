@@ -10,20 +10,20 @@ public class LaneDefense2DProjectile : MonoBehaviour
 
     void Update()
     {
-        transform.Translate( Vector2.right * _movementSpeed * Time.deltaTime );
+        transform.Translate(Vector2.right * _movementSpeed * Time.deltaTime);
     }
 
 
-    private void OnTriggerEnter2D( Collider2D other )
+    private void OnTriggerEnter2D(Collider2D other)
     {
 
         LaneDefense2DHealth health = other.GetComponent<LaneDefense2DHealth>();
         LaneDefense2DAttacker attacker = other.GetComponent<LaneDefense2DAttacker>();
 
-        if ( attacker && health )
+        if (attacker && health)
         {
-            health.DealDamage( _damageAmount );
-            Destroy( gameObject );
+            health.DealDamage(_damageAmount);
+            Destroy(gameObject);
         }        
     }
 }

@@ -12,7 +12,7 @@ public class TopDown2DSwordSelfDestroy : MonoBehaviour
 
     void Update()
     {
-        if ( ps && !ps.IsAlive() )
+        if (ps && !ps.IsAlive())
         {
             DestroySelfAnimEvent();
         }
@@ -21,6 +21,6 @@ public class TopDown2DSwordSelfDestroy : MonoBehaviour
 
     public void DestroySelfAnimEvent()
     {
-        Destroy( gameObject );
+        Destroy(gameObject);
     }
 }

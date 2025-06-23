@@ -29,33 +29,33 @@ public class ShootEmUp2DEnemy : MonoBehaviour
     }
 
 
-    void OnCollisionEnter2D( Collision2D other )
+    void OnCollisionEnter2D(Collision2D other)
     {
         ShootEmUp2DPlayerController player = other.gameObject.GetComponent<ShootEmUp2DPlayerController>();
 
-        if( !player )
+        if(!player)
         {
             return;
         }
 
         ShootEmUp2DMovement playerMovement = player.GetComponent<ShootEmUp2DMovement>();
 
-        if ( playerMovement.CanMove )
+        if (playerMovement.CanMove)
         {
             IHitable iHitable = other.gameObject.GetComponent<IHitable>();
             iHitable?.TakeHit();
 
             IDamageable iDamageable = other.gameObject.GetComponent<IDamageable>();
-            iDamageable?.TakeDamage( transform.position, _damageAmount, _knockbackThrust );
+            iDamageable?.TakeDamage(transform.position, _damageAmount, _knockbackThrust);
 
             ShootEmUp2DAudioManager.Instance.Enemy_OnPlayerHit(); //TODO: Need to create an event that this can subscribe to
         }
     }
 
 
-    public void Init( Color color )
+    public void Init(Color color)
     {
-        _colorChanger.SetDefaultColor( color );
+        _colorChanger.SetDefaultColor(color);
     }
 
 
@@ -64,7 +64,7 @@ public class ShootEmUp2DEnemy : MonoBehaviour
         while (true)
         {
             float currentDir = UnityEngine.Random.Range(0, 2) * 2 - 1; // 1 or -1
-            _movement.SetCurrentDirection( currentDir );
+            _movement.SetCurrentDirection(currentDir);
             yield return new WaitForSeconds(_changeDirInterval);
         }
     }

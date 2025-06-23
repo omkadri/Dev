@@ -27,29 +27,29 @@ public class TopDown2DEnemyHealth : MonoBehaviour
     }
 
 
-    public void TakeDamage( int damage )
+    public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-        knockback.GetKnockback( TopDown2DPlayerController.Instance.transform, knockbackThrust );
-        StartCoroutine( damageFlash.DamageFlashRoutine() );
-        StartCoroutine( CheckDetectDeathRoutine() );
+        knockback.GetKnockback(TopDown2DPlayerController.Instance.transform, knockbackThrust);
+        StartCoroutine(damageFlash.DamageFlashRoutine());
+        StartCoroutine(CheckDetectDeathRoutine());
     }
 
 
     IEnumerator CheckDetectDeathRoutine()
     {
-        yield return new WaitForSeconds( damageFlash.GetRestoreMatTime() );
+        yield return new WaitForSeconds(damageFlash.GetRestoreMatTime());
         DetectDeath();
     }
 
 
     public void DetectDeath()
     {
-        if ( currentHealth <= 0 )
+        if (currentHealth <= 0)
         {
-            Instantiate( deathVFXPrefab, transform.position, Quaternion.identity );
+            Instantiate(deathVFXPrefab, transform.position, Quaternion.identity);
             GetComponent<TopDown2DPickupSpawner>().DropItems();
-            Destroy( gameObject );
+            Destroy(gameObject);
         }
     }
 }

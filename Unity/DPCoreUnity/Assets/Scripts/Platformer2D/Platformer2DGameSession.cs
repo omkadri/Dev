@@ -15,14 +15,14 @@ public class Platformer2DGameSession : MonoBehaviour
     
     void Awake()
     {
-        int numGameSessions = FindObjectsByType<Platformer2DGameSession>( FindObjectsSortMode.None ).Length;
-        if ( numGameSessions > 1 ) // ensures that only one game session can exits at a time
+        int numGameSessions = FindObjectsByType<Platformer2DGameSession>(FindObjectsSortMode.None).Length;
+        if (numGameSessions > 1) // ensures that only one game session can exits at a time
         {
-            Destroy( gameObject );
+            Destroy(gameObject);
         }
         else
         {
-            DontDestroyOnLoad( gameObject ); //ensures that game session is being carried over into the next scene
+            DontDestroyOnLoad(gameObject); //ensures that game session is being carried over into the next scene
         }
     }
 
@@ -36,7 +36,7 @@ public class Platformer2DGameSession : MonoBehaviour
 
     public void ProcessPlayerDeath()
     {
-        if ( _playerLives > 1 )
+        if (_playerLives > 1)
         {
             TakeLife();
         }
@@ -47,7 +47,7 @@ public class Platformer2DGameSession : MonoBehaviour
     }
 
 
-    public void AddToScore( int pointsToAdd )
+    public void AddToScore(int pointsToAdd)
     {
         _score += pointsToAdd;
         _scoreText.text = _score.ToString();
@@ -58,7 +58,7 @@ public class Platformer2DGameSession : MonoBehaviour
     {
         _playerLives -= 1;
         int currentSceneIndex = SceneUtils.GetCurrentSceneIndex();
-        SceneUtils.LoadSceneByIndex( currentSceneIndex );
+        SceneUtils.LoadSceneByIndex(currentSceneIndex);
         _livesText.text = _playerLives.ToString();
     }
 
@@ -66,7 +66,7 @@ public class Platformer2DGameSession : MonoBehaviour
     void ResetGameSession()
     {
         FindFirstObjectByType<Platformer2DScenePersist>().ResetScenePersist();
-        SceneUtils.LoadSceneByName( _gameOverSceneName );
-        Destroy( gameObject ); //allows future game sessions to exist without duplication
+        SceneUtils.LoadSceneByName(_gameOverSceneName);
+        Destroy(gameObject); //allows future game sessions to exist without duplication
     }
 }

@@ -16,18 +16,18 @@ public class TopDown2DKnockback : MonoBehaviour
     }
 
 
-    public void GetKnockback( Transform damageSource, float knockbackThrust )
+    public void GetKnockback(Transform damageSource, float knockbackThrust)
     {
         gettingKnockedBack = true;
-        Vector2 difference = ( transform.position - damageSource.position ).normalized * knockbackThrust * rb2d.mass;
-        rb2d.AddForce( difference, ForceMode2D.Impulse );
-        StartCoroutine( KnockbackRoutine() );
+        Vector2 difference = (transform.position - damageSource.position).normalized * knockbackThrust * rb2d.mass;
+        rb2d.AddForce(difference, ForceMode2D.Impulse);
+        StartCoroutine(KnockbackRoutine());
     }
 
 
     IEnumerator KnockbackRoutine()
     {
-        yield return new WaitForSeconds( knockbackTime );
+        yield return new WaitForSeconds(knockbackTime);
         rb2d.linearVelocity = Vector2.zero;
         gettingKnockedBack = false;
     }

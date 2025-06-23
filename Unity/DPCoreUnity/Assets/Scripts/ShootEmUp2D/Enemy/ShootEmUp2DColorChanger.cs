@@ -7,14 +7,14 @@ public class ShootEmUp2DColorChanger : MonoBehaviour
     [SerializeField] SpriteRenderer _fillSpriteRenderer;
 
 
-    public void SetDefaultColor( Color color )
+    public void SetDefaultColor(Color color)
     {
         DefaultColor = color;
-        SetColor( color );
+        SetColor(color);
     }
 
 
-    public void SetColor( Color color )
+    public void SetColor(Color color)
     {
         _fillSpriteRenderer.color = color;
     }
@@ -22,7 +22,7 @@ public class ShootEmUp2DColorChanger : MonoBehaviour
 
     public void SetRandomColor()
     {
-        int randomNum = Random.Range( 0, _colors.Length );
+        int randomNum = Random.Range(0, _colors.Length);
         DefaultColor = _colors[randomNum];
         _fillSpriteRenderer.color = DefaultColor;
     }

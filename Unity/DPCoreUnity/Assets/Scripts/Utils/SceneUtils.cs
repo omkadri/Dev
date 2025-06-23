@@ -3,15 +3,15 @@ using UnityEngine.SceneManagement;
 
 public static class SceneUtils
 {
-    public static void LoadSceneByName( string sceneName )
+    public static void LoadSceneByName(string sceneName)
     {
-        if ( IsSceneValid( sceneName ) )
+        if (IsSceneValid(sceneName))
         {
-            SceneManager.LoadScene( sceneName );
+            SceneManager.LoadScene(sceneName);
         }
         else
         {
-            Debug.LogError( $"Scene '{sceneName}' is not in build settings." );
+            Debug.LogError($"Scene '{sceneName}' is not in build settings.");
         }
     }
     

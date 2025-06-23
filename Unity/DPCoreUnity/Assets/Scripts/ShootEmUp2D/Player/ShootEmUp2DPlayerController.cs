@@ -94,7 +94,7 @@ public class ShootEmUp2DPlayerController : MonoBehaviour
 
     public bool CheckGrounded()
     {
-        Collider2D isGrounded = Physics2D.OverlapBox( _feetTransform.position, _groundCheck, 0f, _groundLayer );//This draws a collider box on the ground layer at the player feet positions
+        Collider2D isGrounded = Physics2D.OverlapBox(_feetTransform.position, _groundCheck, 0f, _groundLayer);//This draws a collider box on the ground layer at the player feet positions
         return isGrounded;
     }
 
@@ -102,13 +102,13 @@ public class ShootEmUp2DPlayerController : MonoBehaviour
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireCube( _feetTransform.position, _groundCheck );//DEBUG DRAW
+        Gizmos.DrawWireCube(_feetTransform.position, _groundCheck);//DEBUG DRAW
     }
 
 
     public void GravityDelay()
     {
-        if( !CheckGrounded() )
+        if(!CheckGrounded())
         {
             _timeInAir += Time.deltaTime;
         }
@@ -121,12 +121,12 @@ public class ShootEmUp2DPlayerController : MonoBehaviour
 
     void ExtraGravity()
     {
-        if( _timeInAir > _gravityDelay )
+        if(_timeInAir > _gravityDelay)
         {
-            _rb2d.AddForce( new Vector2( 0f, -_extraGravity * Time.deltaTime ) );
-            if( _rb2d.linearVelocity.y < _maxFallSpeedVelocity )
+            _rb2d.AddForce(new Vector2(0f, -_extraGravity * Time.deltaTime));
+            if(_rb2d.linearVelocity.y < _maxFallSpeedVelocity)
             {
-                _rb2d.linearVelocity = new Vector2( _rb2d.linearVelocity.x, _maxFallSpeedVelocity );
+                _rb2d.linearVelocity = new Vector2(_rb2d.linearVelocity.x, _maxFallSpeedVelocity);
             }
         }
     }
@@ -140,26 +140,26 @@ public class ShootEmUp2DPlayerController : MonoBehaviour
 
     void Movement() 
     {
-        _movement.SetCurrentDirection( _frameInput.Move.x );
+        _movement.SetCurrentDirection(_frameInput.Move.x);
     }
 
 
     void HandleJump()//TODO: Explore making jump it's own component
     {
-        if ( !_frameInput.Jump )
+        if (!_frameInput.Jump)
         {
             return;
         }
 
-        if ( CheckGrounded() )
+        if (CheckGrounded())
         {
             OnJump?.Invoke();
         }
-        else if ( _coyoteTimer > 0f )
+        else if (_coyoteTimer > 0f)
         {
             OnJump?.Invoke();
         }
-        else if ( _canDoubleJump )
+        else if (_canDoubleJump)
         {
             _canDoubleJump = false;
             OnJump?.Invoke();
@@ -169,7 +169,7 @@ public class ShootEmUp2DPlayerController : MonoBehaviour
 
     private void CoyoteTimer()
     {
-        if ( CheckGrounded() )
+        if (CheckGrounded())
         {
             _coyoteTimer = _coyoteTime;
             _canDoubleJump = true;
@@ -192,22 +192,22 @@ public class ShootEmUp2DPlayerController : MonoBehaviour
 
     void HandleSpriteFlip()
     {
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint( Input.mousePosition );
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         if (mousePos.x < transform.position.x)
         {
-            transform.eulerAngles = new Vector3( 0f, -180f, 0f );
+            transform.eulerAngles = new Vector3(0f, -180f, 0f);
         }
         else
         {
-            transform.eulerAngles = new Vector3( 0f, 0f, 0f );
+            transform.eulerAngles = new Vector3(0f, 0f, 0f);
         }
     }
 
 
     void Jetpack()
     {
-        if ( !_frameInput.Jetpack || _jetpackCoroutine != null )
+        if (!_frameInput.Jetpack || _jetpackCoroutine != null)
         {
             return;
         }
@@ -219,7 +219,7 @@ public class ShootEmUp2DPlayerController : MonoBehaviour
     void StartJetpack()
     {
         _jetpackTrailRenderer.emitting = true;
-        _jetpackCoroutine = StartCoroutine( JetpackRoutine() );
+        _jetpackCoroutine = StartCoroutine(JetpackRoutine());
     }
 
 
@@ -227,7 +227,7 @@ public class ShootEmUp2DPlayerController : MonoBehaviour
     {
         float jetpackElapsedTime = 0f;
 
-        while( jetpackElapsedTime < _jetpackTime )
+        while(jetpackElapsedTime < _jetpackTime)
         {
             jetpackElapsedTime += Time.deltaTime;
             _rb2d.linearVelocity = Vector2.up * _jetpackStrength;

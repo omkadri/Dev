@@ -16,7 +16,7 @@ public class TopDown2DCursor : MonoBehaviour
     void Start()
     {
         Cursor.visible = false;
-        if ( Application.isPlaying )
+        if (Application.isPlaying)
         {
             Cursor.lockState = CursorLockMode.None;
         }
@@ -33,7 +33,7 @@ public class TopDown2DCursor : MonoBehaviour
         cursorImage.rectTransform.position = cursorPos;
         transform.position = cursorPos;
 
-        //if ( !Application.isPlaying ) { return; }
+        //if (!Application.isPlaying) { return; }
 
         //Cursor.visible = false;
     }

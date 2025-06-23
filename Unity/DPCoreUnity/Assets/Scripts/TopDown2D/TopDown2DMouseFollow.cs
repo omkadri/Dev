@@ -12,7 +12,7 @@ public class TopDown2DMouseFollow : MonoBehaviour
 
     void FaceMouse()
     {
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint( Input.mousePosition );
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 dir = transform.position - mousePos;
         transform.right = -dir;
     }

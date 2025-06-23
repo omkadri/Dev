@@ -10,25 +10,25 @@ public class TopDown2DAreaExit : MonoBehaviour
     float waitToLoadTime = 1;
 
     
-    void OnTriggerEnter2D( Collider2D other )
+    void OnTriggerEnter2D(Collider2D other)
     {
-        if ( other.gameObject.GetComponent<TopDown2DPlayerController>() )
+        if (other.gameObject.GetComponent<TopDown2DPlayerController>())
         {
-            TopDown2DSceneManagement.Instance.SetTransitionName( sceneTransitionName );
+            TopDown2DSceneManagement.Instance.SetTransitionName(sceneTransitionName);
             TopDown2DScreenFade.Instance.FadeToBlack();
-            StartCoroutine( LoadSceneRoutine() );
+            StartCoroutine(LoadSceneRoutine());
         }
     }
 
 
     IEnumerator LoadSceneRoutine()
     {
-        while ( waitToLoadTime >= 0 )
+        while (waitToLoadTime >= 0)
         {
             waitToLoadTime -= Time.deltaTime;
             yield return null;
         }
 
-        SceneUtils.LoadSceneByName( sceneToLoad );
+        SceneUtils.LoadSceneByName(sceneToLoad);
     }
 }

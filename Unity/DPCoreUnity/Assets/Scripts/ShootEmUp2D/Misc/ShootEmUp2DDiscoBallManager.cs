@@ -24,7 +24,7 @@ public class ShootEmUp2DDiscoBallManager : MonoBehaviour
 
         void Start()
     {
-        _spotlights = FindObjectsByType<ShootEmUp2DColorSpotlight>( FindObjectsSortMode.None );//TODO: Investigate making this Serialized
+        _spotlights = FindObjectsByType<ShootEmUp2DColorSpotlight>(FindObjectsSortMode.None);//TODO: Investigate making this Serialized
     }
 
 
@@ -42,7 +42,7 @@ public class ShootEmUp2DDiscoBallManager : MonoBehaviour
 
     public void DiscoBallParty()
     {
-        if( _discoCoroutine != null )
+        if(_discoCoroutine != null)
         {
             return;
         }
@@ -54,17 +54,17 @@ public class ShootEmUp2DDiscoBallManager : MonoBehaviour
     {
         foreach (ShootEmUp2DColorSpotlight spotlight in _spotlights)
         {
-            StartCoroutine( spotlight.SpotlightDiscoPartyRoutine( _discoBallPartyTime ) );
+            StartCoroutine(spotlight.SpotlightDiscoPartyRoutine(_discoBallPartyTime));
         }
 
-        _discoCoroutine = StartCoroutine( GlobalLightResetRoutine() );
+        _discoCoroutine = StartCoroutine(GlobalLightResetRoutine());
     }
 
 
     IEnumerator GlobalLightResetRoutine()
     {
         _globalLight.intensity = _discoGlobalLightIntensity;
-        yield return new WaitForSeconds( _discoBallPartyTime );
+        yield return new WaitForSeconds(_discoBallPartyTime);
         _globalLight.intensity = _defaultGlobalLightIntensity;
         _discoCoroutine = null;
     }

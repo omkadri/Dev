@@ -88,6 +88,6 @@ public class RPGPlayerHealth : MonoBehaviour
     {
         yield return new WaitForSeconds(respawnTimeFloat);
         Destroy(RPGPlayerController.Instance.gameObject);
-        SceneUtils.LoadSceneByName( "RPGStarterKit2DTown" );//TODO: Fix hard coded reference
+        SceneUtils.LoadSceneByName("RPGStarterKit2DTown");//TODO: Fix hard coded reference
     }
 }

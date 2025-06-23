@@ -54,9 +54,9 @@ public class Trivia2D : MonoBehaviour
     void Update()
     {
         _timerImage.fillAmount = _quizTimer.FillFraction;
-        if ( _quizTimer.LoadNextQuestion )
+        if (_quizTimer.LoadNextQuestion)
         {
-            if ( _progressBar.value == _progressBar.maxValue )
+            if (_progressBar.value == _progressBar.maxValue)
             {
                 IsComplete = true;
                 return;
@@ -66,10 +66,10 @@ public class Trivia2D : MonoBehaviour
             GetNextQuestion();
             _quizTimer.LoadNextQuestion = false;
         }
-        else if ( !_hasAnsweredEarly && !_quizTimer.IsAnsweringQuestion )
+        else if (!_hasAnsweredEarly && !_quizTimer.IsAnsweringQuestion)
         {
-            DisplayAnswer( -1 );// using -1 because we the player did not select an answer. so -1 automatically triggers the else block in Displayanswer()
-            SetButtonState( false );
+            DisplayAnswer(-1);// using -1 because we the player did not select an answer. so -1 automatically triggers the else block in Displayanswer()
+            SetButtonState(false);
         }
     }
 
@@ -78,10 +78,10 @@ public class Trivia2D : MonoBehaviour
     {
         _questionText.text = _currentQuestion.GetQuestion();
 
-        for ( int i = 0; i < _answerButtons.Length; i++ )
+        for (int i = 0; i < _answerButtons.Length; i++)
         {
             TextMeshProUGUI buttonText = _answerButtons[i].GetComponentInChildren<TextMeshProUGUI>();
-            buttonText.text = _currentQuestion.GetAnswer( i );
+            buttonText.text = _currentQuestion.GetAnswer(i);
         }
     }
 
@@ -90,7 +90,7 @@ public class Trivia2D : MonoBehaviour
     {
         if (_questions.Count > 0)
         {
-            SetButtonState( true );
+            SetButtonState(true);
             SetDefaultButtonSprite();
             GetRandomQuestion();
             DisplayQuestion();
@@ -103,21 +103,21 @@ public class Trivia2D : MonoBehaviour
 
     void GetRandomQuestion()
     {
-        int index = Random.Range( 0, _questions.Count );
+        int index = Random.Range(0, _questions.Count);
         _currentQuestion = _questions[index];
 
-        if ( _questions.Contains( _currentQuestion ) )
+        if (_questions.Contains(_currentQuestion))
         {
-            _questions.Remove( _currentQuestion );
+            _questions.Remove(_currentQuestion);
         }
     }
 
 
-    public void OnAnswerSelected( int index )
+    public void OnAnswerSelected(int index)
     {
         _hasAnsweredEarly = true;
-        DisplayAnswer( index );
-        SetButtonState( false );
+        DisplayAnswer(index);
+        SetButtonState(false);
         _quizTimer.CancelTimer();
         _scoreText.text = "Score: " + _scoreKeeper.CalculateScore() + "%";
     }
@@ -128,7 +128,7 @@ public class Trivia2D : MonoBehaviour
         Image buttonImage;
 
         //TODO: Implement correct image vs. incorrect image
-        if ( index == _currentQuestion.GetCorrectAnswerIndex() )
+        if (index == _currentQuestion.GetCorrectAnswerIndex())
         {
             _questionText.text = "Correct!!!";
             buttonImage = _answerButtons[index].GetComponent<Image>();
@@ -139,7 +139,7 @@ public class Trivia2D : MonoBehaviour
         else
         {
             _correctAnswerIndex = _currentQuestion.GetCorrectAnswerIndex();
-            string correctAnswer = _currentQuestion.GetAnswer( _correctAnswerIndex );
+            string correctAnswer = _currentQuestion.GetAnswer(_correctAnswerIndex);
             _questionText.text = "Wrong!!! The Correct Answer is:\n" + correctAnswer;
             _questionText.color = Color.red;
 
@@ -151,7 +151,7 @@ public class Trivia2D : MonoBehaviour
 
     void SetButtonState(bool state)
     {
-        for( int i = 0; i < _answerButtons.Length; i++ )
+        for(int i = 0; i < _answerButtons.Length; i++)
         {
             Button button = _answerButtons[i].GetComponent<Button>();
             button.interactable = state;
@@ -161,7 +161,7 @@ public class Trivia2D : MonoBehaviour
 
     void SetDefaultButtonSprite()
     {
-        for( int i = 0; i < _answerButtons.Length; i++ )
+        for(int i = 0; i < _answerButtons.Length; i++)
         {
             Image buttonImage = _answerButtons[i].GetComponent<Image>();
             buttonImage.sprite = _defaultAnswerSprite;

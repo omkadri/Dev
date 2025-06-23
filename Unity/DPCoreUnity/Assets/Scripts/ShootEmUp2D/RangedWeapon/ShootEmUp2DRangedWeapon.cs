@@ -12,14 +12,14 @@ public class ShootEmUp2DRangedWeapon : MonoBehaviour
     public static Action OnGrenadeShoot;
 
     //SERIALIZED VARIABLES
-    [Header( "Projectile" )]
+    [Header("Projectile")]
     [SerializeField] Transform _projectileSpawnPoint;
     [SerializeField] ShootEmUp2DProjectile _projectilePrefab;
     [SerializeField] float _fireCoolDown = 0.1f;//TODO: replace fireCoolDown with fireRate
     [SerializeField] GameObject _muzzleFlash;
     [SerializeField] float _muzzleFlashTime = 0.05f;
 
-    [Header( "Grenade" )]
+    [Header("Grenade")]
     [SerializeField] GameObject _grenadePrefab;
     [SerializeField] Transform _grenadeSpawnPoint;
     [SerializeField] float _grenadeShootCooldown = 0.8f;
@@ -28,7 +28,7 @@ public class ShootEmUp2DRangedWeapon : MonoBehaviour
     //PRIVATE VARIABLES
     private Coroutine _muzzleFlashRoutine; //we cache the coroutine for control. this ensures that only one coroutine is playing at a time
     ObjectPool<ShootEmUp2DProjectile> _projectilePool;
-    static readonly int FIRE_HASH = Animator.StringToHash( "ShootEmUp2DGunFire" );
+    static readonly int FIRE_HASH = Animator.StringToHash("ShootEmUp2DGunFire");
     Vector2 _mousePos;
     float _lastFireTime = 0f;
     float _lastGrenadeFireTime = 0f;
@@ -95,9 +95,9 @@ public class ShootEmUp2DRangedWeapon : MonoBehaviour
     }
 
 
-    public void ReleaseProjectileFromPool( ShootEmUp2DProjectile projectile )
+    public void ReleaseProjectileFromPool(ShootEmUp2DProjectile projectile)
     {
-        _projectilePool.Release( projectile );
+        _projectilePool.Release(projectile);
     }
 
 
@@ -111,25 +111,25 @@ public class ShootEmUp2DRangedWeapon : MonoBehaviour
     {
         _projectilePool = new ObjectPool<ShootEmUp2DProjectile>
         (
-            () => { return Instantiate( _projectilePrefab ); }, //1. Create function - makes new object in the pool
-            projectile => { projectile.gameObject.SetActive( true ); }, //2. Activate function - passes instantiated object for relative use
-            projectile => { projectile.gameObject.SetActive( false ); }, //3. Deactivate function - retrieves instantiated object that is no longer in use
-            projectile => { Destroy( projectile ); }, //4. Destroy function - Destroys object if pool is too big
+            () => { return Instantiate(_projectilePrefab); }, //1. Create function - makes new object in the pool
+            projectile => { projectile.gameObject.SetActive(true); }, //2. Activate function - passes instantiated object for relative use
+            projectile => { projectile.gameObject.SetActive(false); }, //3. Deactivate function - retrieves instantiated object that is no longer in use
+            projectile => { Destroy(projectile); }, //4. Destroy function - Destroys object if pool is too big
             false, //5. Checks if ???
             _minProjectilePoolSize,//6. Max objects in pool
             _maxProjectilePoolSize //7. Max objects in pool
-        );
+       );
     }
 
 
     void HandleShooting()
     {
-        if ( Input.GetMouseButton(0) && Time.time >= _lastFireTime )//Time.time returns the time since game has started
+        if (Input.GetMouseButton(0) && Time.time >= _lastFireTime)//Time.time returns the time since game has started
         {
             OnShoot?.Invoke();
         }
 
-        if ( _frameInput.Grenade && Time.time >= _lastGrenadeFireTime )
+        if (_frameInput.Grenade && Time.time >= _lastGrenadeFireTime)
         {
             OnGrenadeShoot?.Invoke();
         }
@@ -139,20 +139,20 @@ public class ShootEmUp2DRangedWeapon : MonoBehaviour
     void ShootProjectile()
     {
         ShootEmUp2DProjectile newProjectile = _projectilePool.Get();
-        newProjectile.Init( this, _projectileSpawnPoint.position, _mousePos );
+        newProjectile.Init(this, _projectileSpawnPoint.position, _mousePos);
     }
 
 
     void ShootGrenade()
     {
-        Instantiate( _grenadePrefab, _grenadeSpawnPoint.position, Quaternion.identity );//TODO: object pooling
+        Instantiate(_grenadePrefab, _grenadeSpawnPoint.position, Quaternion.identity);//TODO: object pooling
         _lastGrenadeFireTime = Time.time;
     }
 
 
     void FireAnimation()
     {
-        _animator.Play( FIRE_HASH, 0, 0f );
+        _animator.Play(FIRE_HASH, 0, 0f);
     }
 
 
@@ -176,28 +176,28 @@ public class ShootEmUp2DRangedWeapon : MonoBehaviour
 
     void RotateGunWithMouse()
     {
-        _mousePos = Camera.main.ScreenToWorldPoint( Input.mousePosition );
-        Vector2 dir = ShootEmUp2DPlayerController.Instance.transform.InverseTransformPoint( _mousePos );//This ensures that the gun sprite is flipping properly
-        float angle = Mathf.Atan2( dir.y, dir.x ) * Mathf.Rad2Deg;
-        transform.localRotation = Quaternion.Euler( 0, 0, angle );
+        _mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 dir = ShootEmUp2DPlayerController.Instance.transform.InverseTransformPoint(_mousePos);//This ensures that the gun sprite is flipping properly
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        transform.localRotation = Quaternion.Euler(0, 0, angle);
     }
 
 
     void MuzzleFlash()
     {
-        if( _muzzleFlashRoutine != null)
+        if(_muzzleFlashRoutine != null)
         {
-            StopCoroutine( _muzzleFlashRoutine ); //this ensures that there is no muzzle flash overlap
+            StopCoroutine(_muzzleFlashRoutine); //this ensures that there is no muzzle flash overlap
         }
 
-        _muzzleFlash.SetActive( true );
-        _muzzleFlashRoutine = StartCoroutine( MuzzleFlashRoutine() );
+        _muzzleFlash.SetActive(true);
+        _muzzleFlashRoutine = StartCoroutine(MuzzleFlashRoutine());
     }
 
 
     IEnumerator MuzzleFlashRoutine()
     {
-        yield return new WaitForSeconds( _muzzleFlashTime );
-        _muzzleFlash.SetActive( false );
+        yield return new WaitForSeconds(_muzzleFlashTime);
+        _muzzleFlash.SetActive(false);
     }
 }

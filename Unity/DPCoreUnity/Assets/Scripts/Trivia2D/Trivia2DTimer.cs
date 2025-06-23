@@ -38,9 +38,9 @@ public class Trivia2DTimer : MonoBehaviour
     {
         timerValue -= Time.deltaTime;
         {
-            if ( IsAnsweringQuestion )
+            if (IsAnsweringQuestion)
             {
-                if ( timerValue > 0 )
+                if (timerValue > 0)
                 {
                     FillFraction = timerValue / _timeToCompleteQuestion;
                 }
@@ -48,12 +48,12 @@ public class Trivia2DTimer : MonoBehaviour
                 {
                     IsAnsweringQuestion = false; 
                     timerValue = _timeToShowCorrectAnswer;
-                    ToggleTimerTextVisibilty( false );
+                    ToggleTimerTextVisibilty(false);
                 }
             }
             else
             {
-                if ( timerValue > 0 )
+                if (timerValue > 0)
                 {
                     FillFraction = timerValue / _timeToShowCorrectAnswer;
                 }
@@ -62,33 +62,33 @@ public class Trivia2DTimer : MonoBehaviour
                     IsAnsweringQuestion = true;
                     timerValue = _timeToCompleteQuestion;
                     LoadNextQuestion = true;
-                    ToggleTimerTextVisibilty( true );
+                    ToggleTimerTextVisibilty(true);
                 }
             }
         }
-        UpdateTimerText( timerValue );
+        UpdateTimerText(timerValue);
         //Debug.Log(isAnsweringQuestion + ": " + timerValue + "= " + fillFraction);
     }
 
 
-    void UpdateTimerText( float timerValue )
+    void UpdateTimerText(float timerValue)
     {
         if (timerText != null)
         {
-            timerText.text = Mathf.Round( timerValue ).ToString();
+            timerText.text = Mathf.Round(timerValue).ToString();
         }
         else
         {
-            Debug.LogWarning( "Timer Text component not found!" );
+            Debug.LogWarning("Timer Text component not found!");
         }
     }
 
 
-    void ToggleTimerTextVisibilty( bool enabled )
+    void ToggleTimerTextVisibilty(bool enabled)
     {
-        if ( timerText != null )
+        if (timerText != null)
         {
-            if ( enabled )
+            if (enabled)
             {
                 timerText.enabled = true;
             }

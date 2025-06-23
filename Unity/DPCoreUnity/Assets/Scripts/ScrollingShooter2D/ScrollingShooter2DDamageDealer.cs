@@ -15,6 +15,6 @@ public class ScrollingShooter2DDamageDealer : MonoBehaviour
 
     public void Hit()
     {
-        Destroy( gameObject );
+        Destroy(gameObject);
     }
 }

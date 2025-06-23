@@ -12,7 +12,7 @@ public class Platformer2DPlayer : MonoBehaviour
     [SerializeField] bool _invertHorizontalMovement = false;
     [SerializeField] float _jumpSpeed = 10f;
     [SerializeField] float _climbSpeed = 5f;
-    [SerializeField] Vector2 _deathKnockback = new Vector2( -2f, 20f );
+    [SerializeField] Vector2 _deathKnockback = new Vector2(-2f, 20f);
     [SerializeField] GameObject _projectile;
     [SerializeField] Transform _projectileWeapon;
 
@@ -24,8 +24,8 @@ public class Platformer2DPlayer : MonoBehaviour
     BoxCollider2D _feetCollider;
     float _defaultPlayerGravity;
 
-    static readonly int _isRunningHash = Animator.StringToHash( "IsRunning" );
-    static readonly int _isClimbingHash = Animator.StringToHash( "IsClimbing" );
+    static readonly int _isRunningHash = Animator.StringToHash("IsRunning");
+    static readonly int _isClimbingHash = Animator.StringToHash("IsClimbing");
 
 
     void Start()
@@ -41,7 +41,7 @@ public class Platformer2DPlayer : MonoBehaviour
 
     void Update()
     {
-        if ( !_isAlive ) { return; }
+        if (!_isAlive) { return; }
         Run();
         FlipSprite();
         Climb();
@@ -49,9 +49,9 @@ public class Platformer2DPlayer : MonoBehaviour
     }
 
 
-    void OnMove( InputValue value )
+    void OnMove(InputValue value)
 {
-    if ( !_isAlive ) return;
+    if (!_isAlive) return;
 
     Vector2 input = value.Get<Vector2>();
     input.x *= _invertHorizontalMovement ? -1 : 1;
@@ -60,73 +60,73 @@ public class Platformer2DPlayer : MonoBehaviour
 }
 
 
-    void OnJump( InputValue value )
+    void OnJump(InputValue value)
     {
-        if ( !_isAlive ) { return; }
-        if ( !_feetCollider.IsTouchingLayers( LayerMask.GetMask( "Ground" ) ) )
+        if (!_isAlive) { return; }
+        if (!_feetCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
         {
             return;
         }
-        if ( value.isPressed )
+        if (value.isPressed)
         {
-            _rb2d.linearVelocity += new Vector2( 0f, _jumpSpeed );
+            _rb2d.linearVelocity += new Vector2(0f, _jumpSpeed);
         }
         if (value.isPressed)
         {
-            _rb2d.linearVelocity += new Vector2( 0f, _jumpSpeed );
+            _rb2d.linearVelocity += new Vector2(0f, _jumpSpeed);
         }
     }
 
 
-    void OnFire( InputValue value )
+    void OnFire(InputValue value)
     {
-        if ( !_isAlive ) { return; }
-        Instantiate( _projectile, _projectileWeapon.position, transform.rotation );
+        if (!_isAlive) { return; }
+        Instantiate(_projectile, _projectileWeapon.position, transform.rotation);
     }
 
 
     void Run()
     {
-        Vector2 playerVelocity = new Vector2( _moveInput.x * _runSpeed, _rb2d.linearVelocity.y );
+        Vector2 playerVelocity = new Vector2(_moveInput.x * _runSpeed, _rb2d.linearVelocity.y);
         _rb2d.linearVelocity = playerVelocity;
-        bool playerHasHorizontalSpeed = Mathf.Abs( _rb2d.linearVelocity.x ) > Mathf.Epsilon;//this prevents sprite from fliping back to facing forward after it stops moving
-        _animator.SetBool( _isRunningHash, playerHasHorizontalSpeed );
+        bool playerHasHorizontalSpeed = Mathf.Abs(_rb2d.linearVelocity.x) > Mathf.Epsilon;//this prevents sprite from fliping back to facing forward after it stops moving
+        _animator.SetBool(_isRunningHash, playerHasHorizontalSpeed);
     }
 
 
     private void FlipSprite()
     {
-        bool playerHasHorizontalSpeed = Mathf.Abs( _rb2d.linearVelocity.x ) > Mathf.Epsilon;//this prevents sprite from fliping back to facing forward after it stops moving
+        bool playerHasHorizontalSpeed = Mathf.Abs(_rb2d.linearVelocity.x) > Mathf.Epsilon;//this prevents sprite from fliping back to facing forward after it stops moving
 
-        if ( playerHasHorizontalSpeed )
+        if (playerHasHorizontalSpeed)
         {
-            transform.localScale = new Vector2( Mathf.Sign(_rb2d.linearVelocity.x ), 1f);
+            transform.localScale = new Vector2(Mathf.Sign(_rb2d.linearVelocity.x), 1f);
         }
     }
 
 
     void Climb()
     {
-        if ( !_bodyCollider.IsTouchingLayers( LayerMask.GetMask( "Climbing" ) ) )
+        if (!_bodyCollider.IsTouchingLayers(LayerMask.GetMask("Climbing")))
         {
             _rb2d.gravityScale = _defaultPlayerGravity;
-            _animator.SetBool( _isClimbingHash, false );
+            _animator.SetBool(_isClimbingHash, false);
             return;
         }
-        Vector2 climbVelocity = new Vector2( _rb2d.linearVelocity.x, _moveInput.y * _climbSpeed );
+        Vector2 climbVelocity = new Vector2(_rb2d.linearVelocity.x, _moveInput.y * _climbSpeed);
         _rb2d.linearVelocity = climbVelocity;
         _rb2d.gravityScale = 0f;
-        bool playerHasVerticalSpeed = Mathf.Abs( _rb2d.linearVelocity.y ) > Mathf.Epsilon;
-        _animator.SetBool( _isClimbingHash, playerHasVerticalSpeed );
+        bool playerHasVerticalSpeed = Mathf.Abs(_rb2d.linearVelocity.y) > Mathf.Epsilon;
+        _animator.SetBool(_isClimbingHash, playerHasVerticalSpeed);
     }
 
 
     void Die()
     {
-        if ( _bodyCollider.IsTouchingLayers( LayerMask.GetMask( "Enemies", "Hazards" ) ) )
+        if (_bodyCollider.IsTouchingLayers(LayerMask.GetMask("Enemies", "Hazards")))
         {
             _isAlive = false;
-            _animator.SetTrigger( "Dying" );
+            _animator.SetTrigger("Dying");
             _rb2d.linearVelocity = _deathKnockback;
             FindFirstObjectByType<Platformer2DGameSession>().ProcessPlayerDeath();
         }

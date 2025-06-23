@@ -17,15 +17,15 @@ public class ScrollingShooter2DScoreKeeper : MonoBehaviour
 
     void ManageSingleton()
     {
-        if ( _instance != null )
+        if (_instance != null)
         {
-            gameObject.SetActive( false );
-            Destroy( gameObject );
+            gameObject.SetActive(false);
+            Destroy(gameObject);
         }
         else
         {
             _instance = this;
-            DontDestroyOnLoad( gameObject ) ;
+            DontDestroyOnLoad(gameObject) ;
         }
     }
 
@@ -36,11 +36,11 @@ public class ScrollingShooter2DScoreKeeper : MonoBehaviour
     }
 
 
-    public void ModifyScore( int value )
+    public void ModifyScore(int value)
     {
         _currentScore += value;
-        Mathf.Clamp( _currentScore, 0, int.MaxValue );
-        Debug.Log( _currentScore );
+        Mathf.Clamp(_currentScore, 0, int.MaxValue);
+        Debug.Log(_currentScore);
     }
     
 

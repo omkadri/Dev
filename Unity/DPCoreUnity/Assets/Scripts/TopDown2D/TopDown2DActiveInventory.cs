@@ -18,7 +18,7 @@ public class TopDown2DActiveInventory : Singleton<TopDown2DActiveInventory>
 
     void Start()
     {
-        inputActions.Inventory.Keyboard.performed += ctx => ToggleActiveSlot( ( int ) ctx.ReadValue<float>() );
+        inputActions.Inventory.Keyboard.performed += ctx => ToggleActiveSlot((int) ctx.ReadValue<float>());
     }
 
 
@@ -36,26 +36,26 @@ public class TopDown2DActiveInventory : Singleton<TopDown2DActiveInventory>
 
     public void EquipStartingWeapon()
     {
-        ToggleActiveHighlight( 0 );
+        ToggleActiveHighlight(0);
     }
 
 
-    void ToggleActiveSlot( int numValue )
+    void ToggleActiveSlot(int numValue)
     {
-        ToggleActiveHighlight( numValue - 1 );
+        ToggleActiveHighlight(numValue - 1);
     }
 
 
-    void ToggleActiveHighlight( int indexNum )
+    void ToggleActiveHighlight(int indexNum)
     {
         activeSlotIndexNum = indexNum;
 
-        foreach ( Transform inventorySlot in this.transform )
+        foreach (Transform inventorySlot in this.transform)
         {
-            inventorySlot.GetChild( 0 ).gameObject.SetActive( false );
+            inventorySlot.GetChild(0).gameObject.SetActive(false);
         }
 
-        this.transform.GetChild( indexNum ).GetChild( 0 ).gameObject.SetActive( true );//this will only work if active highlight is the first child
+        this.transform.GetChild(indexNum).GetChild(0).gameObject.SetActive(true);//this will only work if active highlight is the first child
 
         ChangeActiveWeapon();//TODO: Investigate moving ChangeActiveWeapon() into ToggleActiveSlot()
     }
@@ -63,34 +63,34 @@ public class TopDown2DActiveInventory : Singleton<TopDown2DActiveInventory>
 
     void ChangeActiveWeapon()
     {
-        if ( TopDown2DPlayerHealth.Instance.IsDead )
+        if (TopDown2DPlayerHealth.Instance.IsDead)
         {
             return;
         }
 
-        if ( TopDown2DActiveWeapon.Instance.CurrentActiveWeapon != null )
+        if (TopDown2DActiveWeapon.Instance.CurrentActiveWeapon != null)
         {
-            Destroy( TopDown2DActiveWeapon.Instance.CurrentActiveWeapon.gameObject );
+            Destroy(TopDown2DActiveWeapon.Instance.CurrentActiveWeapon.gameObject);
         }
 
-        Transform childTransform = transform.GetChild( activeSlotIndexNum );
+        Transform childTransform = transform.GetChild(activeSlotIndexNum);
         TopDown2DInventorySlot inventorySlot = childTransform.GetComponentInChildren<TopDown2DInventorySlot>();
         TopDown2DWeaponInfoSO weaponInfo = inventorySlot?.GetWeaponInfo();
         GameObject weaponToSpawn = weaponInfo?.WeaponPrefab;
 
-        if ( weaponInfo == null )
+        if (weaponInfo == null)
         {
             TopDown2DActiveWeapon.Instance.SetWeaponNull();
             return;
         }
 
 
-        Debug.Log( weaponToSpawn.name + " Equipped");
+        Debug.Log(weaponToSpawn.name + " Equipped");
 
-        GameObject newWeapon = Instantiate( weaponToSpawn, TopDown2DActiveWeapon.Instance.transform.position, Quaternion.identity );
-        TopDown2DActiveWeapon.Instance.transform.rotation = Quaternion.Euler( 0, 0, 0 );
+        GameObject newWeapon = Instantiate(weaponToSpawn, TopDown2DActiveWeapon.Instance.transform.position, Quaternion.identity);
+        TopDown2DActiveWeapon.Instance.transform.rotation = Quaternion.Euler(0, 0, 0);
         newWeapon.transform.parent = TopDown2DActiveWeapon.Instance.transform;
 
-        TopDown2DActiveWeapon.Instance.NewWeapon( newWeapon.GetComponent<MonoBehaviour>() );
+        TopDown2DActiveWeapon.Instance.NewWeapon(newWeapon.GetComponent<MonoBehaviour>());
     }
 }

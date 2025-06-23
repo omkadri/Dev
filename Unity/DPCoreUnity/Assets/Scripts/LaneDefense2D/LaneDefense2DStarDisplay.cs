@@ -22,22 +22,22 @@ public class LaneDefense2DStarDisplay : MonoBehaviour
     }
 
 
-    public bool HasEnoughStars( int amount )//TODO: Fixt Tight coupling
+    public bool HasEnoughStars(int amount)//TODO: Fixt Tight coupling
     {
         return _stars >= amount;
     }
 
 
-    public void AddStars( int amount )
+    public void AddStars(int amount)
     {
         _stars += amount;
         UpdateDisplay();
     }
 
 
-    public void SpendStars( int amount )
+    public void SpendStars(int amount)
     {
-        if ( _stars >= amount )
+        if (_stars >= amount)
         {
             _stars -= amount;
             UpdateDisplay();

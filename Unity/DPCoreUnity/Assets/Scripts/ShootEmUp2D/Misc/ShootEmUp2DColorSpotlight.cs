@@ -13,7 +13,7 @@ public class ShootEmUp2DColorSpotlight : MonoBehaviour
 
     void Start()
     {
-        if( _randomizeStartingRotation )
+        if(_randomizeStartingRotation)
         {
             RandomStartingRotation();
         }
@@ -26,11 +26,11 @@ public class ShootEmUp2DColorSpotlight : MonoBehaviour
     }
 
 
-    public IEnumerator SpotlightDiscoPartyRoutine( float discoPartyTime )
+    public IEnumerator SpotlightDiscoPartyRoutine(float discoPartyTime)
     {
         float defaultRotSpeed = _rotationSpeed;
         _rotationSpeed = _discoRotationSpeed;
-        yield return new WaitForSeconds( discoPartyTime );
+        yield return new WaitForSeconds(discoPartyTime);
         _rotationSpeed = defaultRotSpeed;
     }
 
@@ -38,15 +38,15 @@ public class ShootEmUp2DColorSpotlight : MonoBehaviour
     void RotateHead()
     {
         _oscillationTimer += Time.deltaTime * _rotationSpeed;
-        float zAngle = Mathf.PingPong( _oscillationTimer, _maxRotation );//TODO: understand what Mathf.PingPong does
-        _spotlightHead.transform.localRotation = Quaternion.Euler( 0f, 0f, zAngle );
+        float zAngle = Mathf.PingPong(_oscillationTimer, _maxRotation);//TODO: understand what Mathf.PingPong does
+        _spotlightHead.transform.localRotation = Quaternion.Euler(0f, 0f, zAngle);
     }
 
 
     void RandomStartingRotation()
     {
-        float randomAngleZ = Random.Range( -_maxRotation, _maxRotation );
-        _spotlightHead.transform.localRotation = Quaternion.Euler( 0f, 0f, randomAngleZ );
+        float randomAngleZ = Random.Range(-_maxRotation, _maxRotation);
+        _spotlightHead.transform.localRotation = Quaternion.Euler(0f, 0f, randomAngleZ);
         _oscillationTimer = randomAngleZ + _maxRotation;
     }
 }

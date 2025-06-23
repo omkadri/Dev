@@ -12,34 +12,34 @@ public class TopDown2DScreenFade : Singleton<TopDown2DScreenFade>
 
     public void FadeToBlack()
     {
-        if ( fadeRoutine != null )
+        if (fadeRoutine != null)
         {
-            StopCoroutine( fadeRoutine );
+            StopCoroutine(fadeRoutine);
         }
 
-        fadeRoutine = FadeRoutine( 1 );
-        StartCoroutine( fadeRoutine );
+        fadeRoutine = FadeRoutine(1);
+        StartCoroutine(fadeRoutine);
     }
 
 
     public void FadeToClear()
     {
-        if ( fadeRoutine != null )
+        if (fadeRoutine != null)
         {
-            StopCoroutine( fadeRoutine );
+            StopCoroutine(fadeRoutine);
         }
 
-        fadeRoutine = FadeRoutine( 0 );
-        StartCoroutine( fadeRoutine );
+        fadeRoutine = FadeRoutine(0);
+        StartCoroutine(fadeRoutine);
     }
 
 
-    IEnumerator FadeRoutine( float targetAlpha )
+    IEnumerator FadeRoutine(float targetAlpha)
     {
-        while ( !Mathf.Approximately( fadeScreen.color.a, targetAlpha ) )
+        while (!Mathf.Approximately(fadeScreen.color.a, targetAlpha))
         {
-            float alpha = Mathf.MoveTowards( fadeScreen.color.a, targetAlpha, fadeSpeed * Time.deltaTime );
-            fadeScreen.color = new Color( fadeScreen.color.r, fadeScreen.color.g, fadeScreen.color.b, alpha );
+            float alpha = Mathf.MoveTowards(fadeScreen.color.a, targetAlpha, fadeSpeed * Time.deltaTime);
+            fadeScreen.color = new Color(fadeScreen.color.r, fadeScreen.color.g, fadeScreen.color.b, alpha);
             yield return null;
         }
     }

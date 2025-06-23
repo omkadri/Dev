@@ -10,7 +10,7 @@ public class Singleton<T> : MonoBehaviour where T : Singleton<T>
 
     protected virtual void Awake()
     {
-        if ( instance != null && instance != this )
+        if (instance != null && instance != this)
         {
             //Debug.LogWarningFormat("[Singleton] Duplicate instance of {0} found on {1}. Destroying this instance.", typeof(T).Name, gameObject.name);
             Destroy(gameObject);
@@ -19,15 +19,15 @@ public class Singleton<T> : MonoBehaviour where T : Singleton<T>
 
         instance = (T)this;
 
-        if ( !requireNoParentToPersist || transform.parent == null )
+        if (!requireNoParentToPersist || transform.parent == null)
         {
-            DontDestroyOnLoad( gameObject );
+            DontDestroyOnLoad(gameObject);
         }
     }
 
     protected virtual void OnDestroy()
     {
-        if ( instance == this )
+        if (instance == this)
         {
             instance = null;
         }

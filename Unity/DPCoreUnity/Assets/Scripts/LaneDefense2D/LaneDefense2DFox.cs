@@ -13,15 +13,15 @@ public class LaneDefense2DFox : MonoBehaviour
     }
 
 
-    void OnTriggerEnter2D( Collider2D other )
+    void OnTriggerEnter2D(Collider2D other)
     {
-        if ( other.GetComponent<LaneDefense2DGravestone>() )
+        if (other.GetComponent<LaneDefense2DGravestone>())
         {
-            _animator.SetTrigger( "Jump" );
+            _animator.SetTrigger("Jump");
         }
-        else if ( other.GetComponent<LaneDefense2DDefender>() )
+        else if (other.GetComponent<LaneDefense2DDefender>())
         {
-            _attacker.Attack( other.gameObject );
+            _attacker.Attack(other.gameObject);
         }
     }
 }

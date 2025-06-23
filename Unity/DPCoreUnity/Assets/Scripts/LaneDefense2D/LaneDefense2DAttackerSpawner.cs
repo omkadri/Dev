@@ -12,9 +12,9 @@ public class LaneDefense2DAttackerSpawner : MonoBehaviour
 
     IEnumerator Start()
     {
-        while( _spawn )
+        while(_spawn)
         {
-            yield return new WaitForSeconds( UnityEngine.Random.Range( _minSpawnDelay, _maxSpawnDelay ) );
+            yield return new WaitForSeconds(UnityEngine.Random.Range(_minSpawnDelay, _maxSpawnDelay));
             SpawnAttacker();
         }
     }
@@ -22,9 +22,9 @@ public class LaneDefense2DAttackerSpawner : MonoBehaviour
 
     void SpawnAttacker()
     {
-        int attackerIndex = Random.Range( 0, _attackerPrefabs.Length );
+        int attackerIndex = Random.Range(0, _attackerPrefabs.Length);
 
-        LaneDefense2DAttacker newAttacker = Instantiate( _attackerPrefabs[attackerIndex], transform.position, transform.rotation );
+        LaneDefense2DAttacker newAttacker = Instantiate(_attackerPrefabs[attackerIndex], transform.position, transform.rotation);
         newAttacker.transform.parent = transform;//ensures that the attacker is spawned as a child of the object this script is attached to
     }
 }

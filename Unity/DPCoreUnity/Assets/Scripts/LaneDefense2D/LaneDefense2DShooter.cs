@@ -11,7 +11,7 @@ public class LaneDefense2DShooter : MonoBehaviour
     LaneDefense2DAttackerSpawner _currentLaneAttackerSpawner;
     Animator _animator;
 
-    static readonly int _isAttackingHash = Animator.StringToHash( "IsAttacking" );
+    static readonly int _isAttackingHash = Animator.StringToHash("IsAttacking");
 
 
     void Awake()
@@ -28,25 +28,25 @@ public class LaneDefense2DShooter : MonoBehaviour
 
     void Update()
     {
-        if( IsAttackerInLane() )
+        if(IsAttackerInLane())
         {
-            _animator.SetBool( _isAttackingHash, true );
+            _animator.SetBool(_isAttackingHash, true);
         }
         else
         {
-            _animator.SetBool( _isAttackingHash, false );
+            _animator.SetBool(_isAttackingHash, false);
         }
     }
 
 
     void SetCurrentLaneAttackerSpawner()
     {
-        LaneDefense2DAttackerSpawner[] spawners = FindObjectsByType<LaneDefense2DAttackerSpawner>( FindObjectsSortMode.None );
+        LaneDefense2DAttackerSpawner[] spawners = FindObjectsByType<LaneDefense2DAttackerSpawner>(FindObjectsSortMode.None);
 
-        foreach ( LaneDefense2DAttackerSpawner spawner in spawners )
+        foreach (LaneDefense2DAttackerSpawner spawner in spawners)
         {
             bool isCloseEnough = Mathf.Abs(spawner.transform.position.y - transform.position.y) < 0.1f; //using 0.1 because Mathf.Epsilon returns an error
-            if ( isCloseEnough )
+            if (isCloseEnough)
             {
                 _currentLaneAttackerSpawner = spawner;
             }
@@ -55,7 +55,7 @@ public class LaneDefense2DShooter : MonoBehaviour
 
     bool IsAttackerInLane()
     {
-        if ( _currentLaneAttackerSpawner.transform.childCount <= 0 )
+        if (_currentLaneAttackerSpawner.transform.childCount <= 0)
         {
             return false;
         }
@@ -67,6 +67,6 @@ public class LaneDefense2DShooter : MonoBehaviour
 
     public void Fire()
     {
-        Instantiate( _projectile, _gun.transform.position, transform.rotation ); //notice how we are instantiating at the gun's transform position
+        Instantiate(_projectile, _gun.transform.position, transform.rotation); //notice how we are instantiating at the gun's transform position
     }
 }

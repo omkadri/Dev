@@ -21,7 +21,7 @@ public class Wobble2D : MonoBehaviour
     {
         float rotationAmount = rotateSpeed * Time.deltaTime;
 
-        if ( _rotatingRight )
+        if (_rotatingRight)
         {
             _currentAngle += rotationAmount;
             CheckMaxAngle();
@@ -32,12 +32,12 @@ public class Wobble2D : MonoBehaviour
             CheckMinAngle();
         }
 
-        transform.rotation = Quaternion.Euler( 0, 0, _currentAngle );
+        transform.rotation = Quaternion.Euler(0, 0, _currentAngle);
     }
 
     void CheckMaxAngle()
     {
-        if ( _currentAngle >= maxRotationAngle )
+        if (_currentAngle >= maxRotationAngle)
         {
             _currentAngle = maxRotationAngle;
             _rotatingRight = false;
@@ -46,7 +46,7 @@ public class Wobble2D : MonoBehaviour
 
     void CheckMinAngle()
     {
-        if ( _currentAngle <= -maxRotationAngle )
+        if (_currentAngle <= -maxRotationAngle)
         {
             _currentAngle = -maxRotationAngle;
             _rotatingRight = true;

@@ -9,15 +9,15 @@ public class TopDown2DEconomyManager : Singleton<TopDown2DEconomyManager>
     const string COIN_AMOUNT_TEXT_REF = "CurrencyAmountText";
 
 
-    public void UpdateCurrency( int amount )
+    public void UpdateCurrency(int amount)
     {
         currentCurrency += amount;
 
-        if ( currencyText == null )
+        if (currencyText == null)
         {
-            currencyText = GameObject.Find( COIN_AMOUNT_TEXT_REF ).GetComponent<TMP_Text>();
+            currencyText = GameObject.Find(COIN_AMOUNT_TEXT_REF).GetComponent<TMP_Text>();
         }
 
-        currencyText.text = currentCurrency.ToString( "D3" ); //D3 ensure there are always 3 digits
+        currencyText.text = currentCurrency.ToString("D3"); //D3 ensure there are always 3 digits
     }
 }

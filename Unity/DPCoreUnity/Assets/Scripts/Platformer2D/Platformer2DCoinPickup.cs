@@ -9,15 +9,15 @@ public class Platformer2DCoinPickup : MonoBehaviour
 
     bool wasCollected = false;
 
-    void OnTriggerEnter2D( Collider2D other )
+    void OnTriggerEnter2D(Collider2D other)
     {
-        if ( other.tag == "Player" && !wasCollected )
+        if (other.tag == "Player" && !wasCollected)
         {
             wasCollected = true;
-            FindFirstObjectByType<Platformer2DGameSession>().AddToScore( _pointsForCoinPickup );
-            AudioSource.PlayClipAtPoint( _coinPickupSFX, Camera.main.transform.position );
-            gameObject.SetActive( false );
-            Destroy( gameObject );
+            FindFirstObjectByType<Platformer2DGameSession>().AddToScore(_pointsForCoinPickup);
+            AudioSource.PlayClipAtPoint(_coinPickupSFX, Camera.main.transform.position);
+            gameObject.SetActive(false);
+            Destroy(gameObject);
         }
     }
 }

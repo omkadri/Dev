@@ -21,32 +21,32 @@ public class ScrollingShooter2DGameManager : MonoBehaviour
     public void LoadGameScene()
     {
         _scoreKeeper.ResetScore();
-        SceneUtils.LoadSceneByName( _gameSceneName );
+        SceneUtils.LoadSceneByName(_gameSceneName);
     }
 
 
     public void LoadMainMenuScene()
     {
-        SceneUtils.LoadSceneByName( _mainMenuSceneName );
+        SceneUtils.LoadSceneByName(_mainMenuSceneName);
     }
 
 
     public void LoadGameOverScene()
     {
-        StartCoroutine( WaitAndLoadRoutine( _gameOverSceneName, _gameOverLoadDelay) );
+        StartCoroutine(WaitAndLoadRoutine(_gameOverSceneName, _gameOverLoadDelay));
     }
 
 
     public void QuitGame()
     {
-        Debug.Log( "Quitting Game..." );
+        Debug.Log("Quitting Game...");
         Application.Quit();
     }
     
 
-    IEnumerator WaitAndLoadRoutine( string sceneName, float delay )
+    IEnumerator WaitAndLoadRoutine(string sceneName, float delay)
     {
-        yield return new WaitForSeconds( delay );
-        SceneUtils.LoadSceneByName( sceneName );
+        yield return new WaitForSeconds(delay);
+        SceneUtils.LoadSceneByName(sceneName);
     }
 }

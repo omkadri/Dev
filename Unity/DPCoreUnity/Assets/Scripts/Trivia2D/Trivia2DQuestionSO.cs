@@ -17,7 +17,7 @@ public class Trivia2DQuestionSO : ScriptableObject
     }
 
 
-     public string GetAnswer( int index )
+     public string GetAnswer(int index)
     {
         return _answers[index];
     }

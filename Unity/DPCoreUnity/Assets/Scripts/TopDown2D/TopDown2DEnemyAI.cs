@@ -45,7 +45,7 @@ public class TopDown2DEnemyAI : MonoBehaviour
 
     void MovementStateControl()
     {
-        switch ( state )
+        switch (state)
         {
             default:
             case State.Roaming:
@@ -63,14 +63,14 @@ public class TopDown2DEnemyAI : MonoBehaviour
     {
         timeRoaming += Time.deltaTime;
 
-        enemyPathfinding.MoveTo( roamPos );
+        enemyPathfinding.MoveTo(roamPos);
 
-        if ( Vector2.Distance( transform.position, TopDown2DPlayerController.Instance.transform.position ) < attackRange )
+        if (Vector2.Distance(transform.position, TopDown2DPlayerController.Instance.transform.position) < attackRange)
         {
             state = State.Attacking;
         }
 
-        if ( timeRoaming > roamDirChangeTime )
+        if (timeRoaming > roamDirChangeTime)
         {
             roamPos = GetRoamingPos();
         }
@@ -84,30 +84,30 @@ public class TopDown2DEnemyAI : MonoBehaviour
             state = State.Roaming;
         }
 
-        if ( attackRange != 0 && canAttack )
+        if (attackRange != 0 && canAttack)
         {
             canAttack = false;
         
-            ( enemyType as TopDown2DIEnemy ).Attack();
+            (enemyType as TopDown2DIEnemy).Attack();
 
 
-            if( stopMovingWhileAttacking )
+            if(stopMovingWhileAttacking)
             {
                 enemyPathfinding.StopMoving();
             }
             else
             {
-                enemyPathfinding.MoveTo( roamPos );
+                enemyPathfinding.MoveTo(roamPos);
             }
 
-            StartCoroutine( AttackCooldownRoutine() );
+            StartCoroutine(AttackCooldownRoutine());
         }
     }
 
 
     IEnumerator AttackCooldownRoutine()
     {
-        yield return new WaitForSeconds( attackCooldown );
+        yield return new WaitForSeconds(attackCooldown);
         canAttack = true;
     }
 
@@ -115,6 +115,6 @@ public class TopDown2DEnemyAI : MonoBehaviour
     Vector2 GetRoamingPos()
     {
         timeRoaming = 0f;
-        return new Vector2( Random.Range( -1f, 1f ), Random.Range( -1f, 1f ) ).normalized;
+        return new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
     }
 }

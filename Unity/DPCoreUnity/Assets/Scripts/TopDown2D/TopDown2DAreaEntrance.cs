@@ -7,7 +7,7 @@ public class TopDown2DAreaEntrance : MonoBehaviour
 
     void Start()
     {
-        if ( transitionName == TopDown2DSceneManagement.Instance.SceneTransitionName )
+        if (transitionName == TopDown2DSceneManagement.Instance.SceneTransitionName)
         {
             TopDown2DPlayerController.Instance.transform.position = this.transform.position;
             TopDown2DCameraController.Instance.SetPlayerCameraFollow();

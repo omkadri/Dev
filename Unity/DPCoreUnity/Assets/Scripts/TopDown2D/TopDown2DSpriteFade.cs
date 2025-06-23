@@ -18,14 +18,14 @@ public class TopDown2DSpriteFade : MonoBehaviour
         {
                 float elapsedTime = 0;
                 float startValue = _spriteRenderer.color.a;
-                while( elapsedTime <_fadeTime )
+                while(elapsedTime <_fadeTime)
                 {
                         elapsedTime += Time.deltaTime;
-                        float newAlpha = Mathf.Lerp( startValue, 0f, elapsedTime / _fadeTime );
-                        _spriteRenderer.color = new Color( _spriteRenderer.color.r, _spriteRenderer.color.g, _spriteRenderer.color.b, newAlpha );
+                        float newAlpha = Mathf.Lerp(startValue, 0f, elapsedTime / _fadeTime);
+                        _spriteRenderer.color = new Color(_spriteRenderer.color.r, _spriteRenderer.color.g, _spriteRenderer.color.b, newAlpha);
                         yield return null;
                 }
-                Destroy( gameObject );
+                Destroy(gameObject);
         }
 
 }

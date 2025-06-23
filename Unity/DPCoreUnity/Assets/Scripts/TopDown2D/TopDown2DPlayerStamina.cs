@@ -26,7 +26,7 @@ public class TopDown2DPlayerStamina : Singleton<TopDown2DPlayerStamina>
 
     void Start()
     {
-        staminaContainer = GameObject.Find( STAMINA_CONTAINER_REF ).transform;
+        staminaContainer = GameObject.Find(STAMINA_CONTAINER_REF).transform;
     }
 
 
@@ -35,13 +35,13 @@ public class TopDown2DPlayerStamina : Singleton<TopDown2DPlayerStamina>
         CurrentStamina--;
         UpdateStaminaImages();
         StopAllCoroutines(); //TODO: will need to fix this if additional coroutines are added to this class
-        StartCoroutine( RefreshStaminaRoutine() );
+        StartCoroutine(RefreshStaminaRoutine());
     }
 
 
-    public void RefreshStamina( int amount )
+    public void RefreshStamina(int amount)
     {
-        if ( CurrentStamina < maxStamina && !TopDown2DPlayerHealth.Instance.IsDead )
+        if (CurrentStamina < maxStamina && !TopDown2DPlayerHealth.Instance.IsDead)
         {
             CurrentStamina += amount;
         }
@@ -60,20 +60,20 @@ public class TopDown2DPlayerStamina : Singleton<TopDown2DPlayerStamina>
     {
         while (true)
         {
-            yield return new WaitForSeconds( timeBetweenStaminaRefresh );
-            RefreshStamina( _staminaRefreshAmount );
+            yield return new WaitForSeconds(timeBetweenStaminaRefresh);
+            RefreshStamina(_staminaRefreshAmount);
         }
     }
 
 
     void UpdateStaminaImages()
     {
-        for ( int i = 0; i < maxStamina; i++ )
+        for (int i = 0; i < maxStamina; i++)
         {
-            Transform child = staminaContainer.GetChild( i );
+            Transform child = staminaContainer.GetChild(i);
             Image image = child?.GetComponent<Image>();
 
-            if ( i <= CurrentStamina - 1 )
+            if (i <= CurrentStamina - 1)
             {
                 image.sprite = fullStaminaImage;
             }

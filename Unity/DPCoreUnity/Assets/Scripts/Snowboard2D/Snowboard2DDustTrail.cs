@@ -8,15 +8,15 @@ public class Snowboard2DDustTrail : MonoBehaviour
     [SerializeField] AudioSource _trailSFXAudioSource;
 
 
-    void OnCollisionEnter2D( Collision2D other )
+    void OnCollisionEnter2D(Collision2D other)
     {   
-        if ( other.gameObject.tag == "Ground" )
+        if (other.gameObject.tag == "Ground")
         {
-            if ( _trailVXF != null )
+            if (_trailVXF != null)
             {
                 _trailVXF.Play();
             }
-            if ( _trailSFXAudioSource != null )
+            if (_trailSFXAudioSource != null)
             {
                 _trailSFXAudioSource.Play();
             }            
@@ -24,11 +24,11 @@ public class Snowboard2DDustTrail : MonoBehaviour
     }
 
 
-    void OnCollisionExit2D( Collision2D other )
+    void OnCollisionExit2D(Collision2D other)
     {
-        if ( other.gameObject.tag == "Ground" )
+        if (other.gameObject.tag == "Ground")
         {
-            if ( _trailVXF != null )
+            if (_trailVXF != null)
             {
                 _trailVXF.Stop();
                 _trailSFXAudioSource.Stop();

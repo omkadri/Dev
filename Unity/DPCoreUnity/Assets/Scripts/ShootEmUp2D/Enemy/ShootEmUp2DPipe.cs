@@ -28,7 +28,7 @@ public class ShootEmUp2DPipe : MonoBehaviour
         {
             _colorChanger.SetRandomColor();
             ShootEmUp2DEnemy enemy = Instantiate(_enemyPrefab, transform.position, transform.rotation);
-            enemy.Init( _colorChanger.DefaultColor );
+            enemy.Init(_colorChanger.DefaultColor);
             yield return new WaitForSeconds(_spawnTimer);
         }
     }

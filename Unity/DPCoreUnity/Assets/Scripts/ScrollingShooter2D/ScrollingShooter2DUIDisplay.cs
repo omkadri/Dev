@@ -4,11 +4,11 @@ using TMPro;
 
 public class ScrollingShooter2DUIDisplay : MonoBehaviour
 {
-    [Header( "Health" )]
+    [Header("Health")]
     [SerializeField] Slider _healthSlider;
     [SerializeField] ScrollingShooter2DHealth _playerHealth;
 
-    [Header( "Score" )]
+    [Header("Score")]
     [SerializeField] TextMeshProUGUI _scoreText;
     ScrollingShooter2DScoreKeeper _scoreKeeper;
 
@@ -28,6 +28,6 @@ public class ScrollingShooter2DUIDisplay : MonoBehaviour
     void Update()
     {
         _healthSlider.value = _playerHealth.GetHealth();
-        _scoreText.text = _scoreKeeper.GetCurrentScore().ToString( "000000000" );
+        _scoreText.text = _scoreKeeper.GetCurrentScore().ToString("000000000");
     }
 }

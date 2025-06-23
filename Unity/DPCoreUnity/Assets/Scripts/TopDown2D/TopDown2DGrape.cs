@@ -7,7 +7,7 @@ public class TopDown2DGrape : MonoBehaviour, TopDown2DIEnemy
     Animator animator;
     SpriteRenderer spriteRenderer;
 
-    readonly int ATTACK_HASH = Animator.StringToHash( "Attack" );
+    readonly int ATTACK_HASH = Animator.StringToHash("Attack");
 
 
     void Awake()
@@ -19,9 +19,9 @@ public class TopDown2DGrape : MonoBehaviour, TopDown2DIEnemy
 
     public void Attack()
     {
-        animator.SetTrigger( ATTACK_HASH );
+        animator.SetTrigger(ATTACK_HASH);
 
-        if ( transform.position.x - TopDown2DPlayerController.Instance.transform.position.x < 0 )
+        if (transform.position.x - TopDown2DPlayerController.Instance.transform.position.x < 0)
         {
             spriteRenderer.flipX = false;
         }
@@ -34,6 +34,6 @@ public class TopDown2DGrape : MonoBehaviour, TopDown2DIEnemy
 
     public void SpawnProjectileAnimEvent()
     {
-        Instantiate( grapeProjectilePrefab, transform.position, Quaternion.identity );
+        Instantiate(grapeProjectilePrefab, transform.position, Quaternion.identity);
     }
 }

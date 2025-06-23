@@ -18,7 +18,7 @@ public class ScrollingShooter2DWaveConfigSO : ScriptableObject
     }
 
 
-    public GameObject GetEnemyPrefab( int index )
+    public GameObject GetEnemyPrefab(int index)
     {
         return _enemyPrefabs[index];
     }
@@ -26,16 +26,16 @@ public class ScrollingShooter2DWaveConfigSO : ScriptableObject
 
     public Transform GetStartingWaypoint()
     {
-        return _pathPrefab.GetChild( 0 );
+        return _pathPrefab.GetChild(0);
     }
 
 
     public List<Transform> GetWaypoints()
     {
         List<Transform> waypoints = new List<Transform>();
-        foreach( Transform child in _pathPrefab )
+        foreach(Transform child in _pathPrefab)
         {
-            waypoints.Add( child );
+            waypoints.Add(child);
         }
         return waypoints;
     }
@@ -49,7 +49,7 @@ public class ScrollingShooter2DWaveConfigSO : ScriptableObject
 
     public float GetRandomSpawnTime()
     {
-        float spawnTime = Random.Range( ( _timeBetweenEnemySpawns - _spawnTimeVariance ), ( _timeBetweenEnemySpawns + _spawnTimeVariance ) );
-        return Mathf.Clamp( spawnTime, _minSpawnTime, float.MaxValue );//we only want to clamp the min, so max is set to float.MaxValue
+        float spawnTime = Random.Range((_timeBetweenEnemySpawns - _spawnTimeVariance), (_timeBetweenEnemySpawns + _spawnTimeVariance));
+        return Mathf.Clamp(spawnTime, _minSpawnTime, float.MaxValue);//we only want to clamp the min, so max is set to float.MaxValue
     }
 }

@@ -32,19 +32,19 @@ public class ScrollingShooter2DPathfinder : MonoBehaviour
 
     void FollowPath()
     {
-        if ( _waypointIndex < waypoints.Count )
+        if (_waypointIndex < waypoints.Count)
         {
             Vector3 targetPos = waypoints[_waypointIndex].position;
             float delta = _waveConfig.GetMoveSpeed() * Time.deltaTime;
-            transform.position = Vector2.MoveTowards( transform.position, targetPos, delta );
-            if ( transform.position == targetPos )
+            transform.position = Vector2.MoveTowards(transform.position, targetPos, delta);
+            if (transform.position == targetPos)
             {
                 _waypointIndex++;
             }
         }
         else
         {
-            Destroy( gameObject );
+            Destroy(gameObject);
         }
     }
 }

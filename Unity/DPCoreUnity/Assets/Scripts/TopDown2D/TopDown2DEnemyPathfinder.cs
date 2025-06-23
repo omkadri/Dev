@@ -21,24 +21,24 @@ public class TopDown2DEnemyPathfinder : MonoBehaviour
 
     void FixedUpdate()
     {
-        if ( knockback.gettingKnockedBack )
+        if (knockback.gettingKnockedBack)
         {
             return;
         }
-        rb2d.MovePosition( rb2d.position + moveDir * ( moveSpeed * Time.fixedDeltaTime ) );
+        rb2d.MovePosition(rb2d.position + moveDir * (moveSpeed * Time.fixedDeltaTime));
         
-        if ( moveDir.x < 0 )
+        if (moveDir.x < 0)
         {
             spriteRenderer.flipX = true;
         }
-        else if ( moveDir.x > 0 )
+        else if (moveDir.x > 0)
         {
             spriteRenderer.flipX = false;
         }
     }
     
 
-    public void MoveTo( Vector2 targetPos )
+    public void MoveTo(Vector2 targetPos)
     {
         moveDir = targetPos;
     }

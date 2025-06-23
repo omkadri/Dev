@@ -40,22 +40,22 @@ public class ShootEmUp2DHealth : MonoBehaviour, IDamageable
     }
 
 
-    public void TakeDamage( int amount ) 
+    public void TakeDamage(int amount) 
     {
         _currentHealth -= amount;
 
         if (_currentHealth <= 0) 
         {
-            OnDeath?.Invoke( this );//this ensure that we are passing in this specific instance of the health class
+            OnDeath?.Invoke(this);//this ensure that we are passing in this specific instance of the health class
             Destroy(gameObject);
         }
     }
 
     
-    public void TakeDamage( Vector2 damageSourceDir, int damageAmount, float knockbackThrust )
+    public void TakeDamage(Vector2 damageSourceDir, int damageAmount, float knockbackThrust)
     {
-        _health.TakeDamage( damageAmount );
-        _knockback.ActivateKnockback( ShootEmUp2DPlayerController.Instance.transform.position, knockbackThrust );
+        _health.TakeDamage(damageAmount);
+        _knockback.ActivateKnockback(ShootEmUp2DPlayerController.Instance.transform.position, knockbackThrust);
     }
 
     public void TakeHit()

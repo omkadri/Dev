@@ -13,12 +13,12 @@ public class AnimationStartTimeRandomizer : MonoBehaviour
 
     void Start()
     {
-        if (!_animator )
+        if (!_animator)
         {
             return;
         }
         
-        AnimatorStateInfo state = _animator.GetCurrentAnimatorStateInfo( 0 );
-        _animator.Play( state.fullPathHash, -1, Random.Range( 0f, 1f ) );
+        AnimatorStateInfo state = _animator.GetCurrentAnimatorStateInfo(0);
+        _animator.Play(state.fullPathHash, -1, Random.Range(0f, 1f));
     }
 }

@@ -48,11 +48,11 @@ public class TopDown2DActiveWeapon : Singleton<TopDown2DActiveWeapon>
     }
 
 
-    public void NewWeapon( MonoBehaviour newWeapon )
+    public void NewWeapon(MonoBehaviour newWeapon)
     {
         CurrentActiveWeapon = newWeapon;
         AttackCooldown();//TODO: Ensure that this call does not mess with future Coroutines
-        timeBetweenAttacks = ( CurrentActiveWeapon as TopDown2DIWeapon).GetWeaponInfo().WeaponCooldown;
+        timeBetweenAttacks = (CurrentActiveWeapon as TopDown2DIWeapon).GetWeaponInfo().WeaponCooldown;
     }
 
 
@@ -66,13 +66,13 @@ public class TopDown2DActiveWeapon : Singleton<TopDown2DActiveWeapon>
     {
         isAttacking = true;
         StopAllCoroutines();
-        StartCoroutine( TimeBetweenAttacksRoutine() );
+        StartCoroutine(TimeBetweenAttacksRoutine());
     }
 
 
     IEnumerator TimeBetweenAttacksRoutine()
     {
-        yield return new WaitForSeconds( timeBetweenAttacks );
+        yield return new WaitForSeconds(timeBetweenAttacks);
         isAttacking = false;
     }
 
@@ -91,10 +91,10 @@ public class TopDown2DActiveWeapon : Singleton<TopDown2DActiveWeapon>
 
     void Attack()
     {
-        if( attackButtonDown && !isAttacking && CurrentActiveWeapon )
+        if(attackButtonDown && !isAttacking && CurrentActiveWeapon)
         {
             AttackCooldown();
-            ( CurrentActiveWeapon as TopDown2DIWeapon ).Attack();
+            (CurrentActiveWeapon as TopDown2DIWeapon).Attack();
         }   
     }
 }

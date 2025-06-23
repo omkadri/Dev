@@ -7,7 +7,7 @@ public class TopDown2DParallax : MonoBehaviour
 
     Camera cam;
     Vector2 startPos;
-    Vector2 travel => ( Vector2 )cam.transform.position - startPos;
+    Vector2 travel => (Vector2)cam.transform.position - startPos;
 
 
     void Awake()

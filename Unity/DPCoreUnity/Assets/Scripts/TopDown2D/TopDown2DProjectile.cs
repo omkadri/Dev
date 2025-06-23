@@ -24,36 +24,36 @@ public class TopDown2DProjectile : MonoBehaviour
     }
 
 
-    public void UpdateRange( float projectileRange )
+    public void UpdateRange(float projectileRange)
     {
         this.projectileRange = projectileRange;
     }
 
 
-    public void UpdateMoveSpeed( float moveSpeed )
+    public void UpdateMoveSpeed(float moveSpeed)
     {
         this.projectileRange = moveSpeed;
     }
 
 
-    void OnTriggerEnter2D( Collider2D other )
+    void OnTriggerEnter2D(Collider2D other)
     {
         TopDown2DEnemyHealth enemyHealth = other.gameObject.GetComponent<TopDown2DEnemyHealth>();
         TopDown2DIndestructible indestructible = other.gameObject.GetComponent<TopDown2DIndestructible>();
         TopDown2DPlayerHealth playerHealth = other.gameObject.GetComponent<TopDown2DPlayerHealth>();
 
-        if ( !other.isTrigger && ( enemyHealth || playerHealth || indestructible ) )
+        if (!other.isTrigger && (enemyHealth || playerHealth || indestructible))
         {
-            if ( ( playerHealth && isEnemyProjectile || ( enemyHealth && !isEnemyProjectile ) ) )
+            if ((playerHealth && isEnemyProjectile || (enemyHealth && !isEnemyProjectile)))
             {
-                playerHealth?.TakeDamage( 1, transform );//TODO: fix magic number
-                Instantiate( hitVFXPrefab, transform.position, transform.rotation );
-                Destroy( gameObject );
+                playerHealth?.TakeDamage(1, transform);//TODO: fix magic number
+                Instantiate(hitVFXPrefab, transform.position, transform.rotation);
+                Destroy(gameObject);
             }
-            else if ( !other.isTrigger && indestructible )
+            else if (!other.isTrigger && indestructible)
             {
-                Instantiate( hitVFXPrefab, transform.position, transform.rotation );
-                Destroy( gameObject );
+                Instantiate(hitVFXPrefab, transform.position, transform.rotation);
+                Destroy(gameObject);
             }
         }
     }
@@ -61,15 +61,15 @@ public class TopDown2DProjectile : MonoBehaviour
 
     void DetectFireDistance()
     {
-        if ( Vector3.Distance( transform.position, startPos ) > projectileRange )
+        if (Vector3.Distance(transform.position, startPos) > projectileRange)
         {
-            Destroy( gameObject );
+            Destroy(gameObject);
         }
     }
 
 
     void MoveProjectile()
     {
-        transform.Translate( Vector3.right * Time.deltaTime * moveSpeed );
+        transform.Translate(Vector3.right * Time.deltaTime * moveSpeed);
     }
 }

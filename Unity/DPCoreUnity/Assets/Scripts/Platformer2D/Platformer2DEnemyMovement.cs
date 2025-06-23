@@ -16,11 +16,11 @@ public class Platformer2DEnemyMovement : MonoBehaviour
 
     void Update()
     {
-        rb2d.linearVelocity = new Vector2( _moveSpeed,0f );
+        rb2d.linearVelocity = new Vector2(_moveSpeed,0f);
     }
 
 
-    void OnTriggerExit2D( Collider2D other )
+    void OnTriggerExit2D(Collider2D other)
     {
         _moveSpeed = -_moveSpeed;
         FlipEnemyFacing();
@@ -29,6 +29,6 @@ public class Platformer2DEnemyMovement : MonoBehaviour
 
     void FlipEnemyFacing()
     {
-        transform.localScale = new Vector2( -( Mathf.Sign( rb2d.linearVelocity.x ) ), 1f );
+        transform.localScale = new Vector2(-(Mathf.Sign(rb2d.linearVelocity.x)), 1f);
     }
 }

@@ -18,16 +18,16 @@ public class ScrollingShooter2DCameraShake : MonoBehaviour
 
     public void Play()
     {
-        StartCoroutine( ShakeRoutine() );
+        StartCoroutine(ShakeRoutine());
     }
 
 
     IEnumerator ShakeRoutine()
     {
         float elapsedTime = 0;
-        while( elapsedTime < _shakeDuration )
+        while(elapsedTime < _shakeDuration)
         {
-            transform.position = _initialPos + ( Vector3 )Random.insideUnitCircle * _shakeMagnitude; //insideUnitCircle is a position inside of a 1 by 1 circle
+            transform.position = _initialPos + (Vector3)Random.insideUnitCircle * _shakeMagnitude; //insideUnitCircle is a position inside of a 1 by 1 circle
             elapsedTime += Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }

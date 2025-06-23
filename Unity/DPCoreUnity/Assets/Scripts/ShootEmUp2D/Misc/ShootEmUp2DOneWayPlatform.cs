@@ -21,18 +21,18 @@ public class ShootEmUp2DOneWayPlatform : MonoBehaviour
     }
 
 
-    void OnCollisionEnter2D( Collision2D other )
+    void OnCollisionEnter2D(Collision2D other)
     {
-        if ( other.gameObject.GetComponent<ShootEmUp2DPlayerController>() )
+        if (other.gameObject.GetComponent<ShootEmUp2DPlayerController>())
         {
             _playerOnPlatform = true;
         }
     }
 
 
-    void OnCollisionExit2D( Collision2D other )
+    void OnCollisionExit2D(Collision2D other)
     {
-        if ( other.gameObject.GetComponent<ShootEmUp2DPlayerController>() )
+        if (other.gameObject.GetComponent<ShootEmUp2DPlayerController>())
         {
             _playerOnPlatform = false;
         } 
@@ -41,14 +41,14 @@ public class ShootEmUp2DOneWayPlatform : MonoBehaviour
 
     void DetectPlayerInput()
     {
-        if ( !_playerOnPlatform )
+        if (!_playerOnPlatform)
         {
             return;
         }
 
-        if ( ShootEmUp2DPlayerController.Instance.MoveInput.y < 0f ) //TODO: Add a check for if jum button is pressed as well
+        if (ShootEmUp2DPlayerController.Instance.MoveInput.y < 0f) //TODO: Add a check for if jum button is pressed as well
         {
-            StartCoroutine( DisablePlatformColliderRoutine() );
+            StartCoroutine(DisablePlatformColliderRoutine());
         }
     }
 
@@ -57,16 +57,16 @@ public class ShootEmUp2DOneWayPlatform : MonoBehaviour
     {
         Collider2D[] playerColliders = ShootEmUp2DPlayerController.Instance.GetComponents<Collider2D>(); //this is an array because the player has more than one collider
 
-        foreach ( Collider2D playerCollider in playerColliders )
+        foreach (Collider2D playerCollider in playerColliders)
         {
-            Physics2D.IgnoreCollision( playerCollider, _platformCollider, true );// This does not disable physics, but rather disables collision.
+            Physics2D.IgnoreCollision(playerCollider, _platformCollider, true);// This does not disable physics, but rather disables collision.
         }
 
-        yield return new WaitForSeconds( _disableColliderTime );
+        yield return new WaitForSeconds(_disableColliderTime);
 
-        foreach ( Collider2D playerCollider in playerColliders )
+        foreach (Collider2D playerCollider in playerColliders)
         {
-            Physics2D.IgnoreCollision( playerCollider, _platformCollider, false );
+            Physics2D.IgnoreCollision(playerCollider, _platformCollider, false);
         }
     }
 }

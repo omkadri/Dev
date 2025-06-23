@@ -3,13 +3,13 @@ using UnityEngine;
 
 public class ScrollingShooter2DShooter : MonoBehaviour
 {
-    [Header( "General" )]
+    [Header("General")]
     [SerializeField] GameObject _projectilePrefab;
     [SerializeField] float _projectileSpeed = 10f;
     [SerializeField] float _projectileLifetime = 5f;
     [SerializeField] float _baseFireRate = 0.2f;
 
-    [Header( "Enemy AI" )]
+    [Header("Enemy AI")]
     [SerializeField] bool _useEnemyAI;
     [SerializeField] float _fireRateVariance = 0f;
     [SerializeField] float _minFireRate = 0.1f;
@@ -28,7 +28,7 @@ public class ScrollingShooter2DShooter : MonoBehaviour
 
     void Start()
     {
-        if ( _useEnemyAI )
+        if (_useEnemyAI)
         {
             _isFiring = true;
         }   
@@ -43,13 +43,13 @@ public class ScrollingShooter2DShooter : MonoBehaviour
 
     void Fire()
     {
-        if ( _isFiring && _firingCoroutine == null )//ensure that firingCoroutine is not being called twice
+        if (_isFiring && _firingCoroutine == null)//ensure that firingCoroutine is not being called twice
         {
-            _firingCoroutine = StartCoroutine( FireContinuouslyRoutine() );
+            _firingCoroutine = StartCoroutine(FireContinuouslyRoutine());
         }
-        else if ( !_isFiring && _firingCoroutine != null )
+        else if (!_isFiring && _firingCoroutine != null)
         {
-            StopCoroutine( _firingCoroutine );
+            StopCoroutine(_firingCoroutine);
             _firingCoroutine = null;
         }
     }
@@ -57,13 +57,13 @@ public class ScrollingShooter2DShooter : MonoBehaviour
 
     IEnumerator FireContinuouslyRoutine()
     {
-        while( true )
+        while(true)
         {
-            GameObject instance = Instantiate( _projectilePrefab, transform.position, Quaternion.identity );
+            GameObject instance = Instantiate(_projectilePrefab, transform.position, Quaternion.identity);
             Rigidbody2D rb2d = instance.GetComponent<Rigidbody2D>();
-            if ( rb2d != null )
+            if (rb2d != null)
             {
-                if ( _useEnemyAI )
+                if (_useEnemyAI)
                 {
                     rb2d.linearVelocity = -transform.up * _projectileSpeed; //the negative sign reverses the projectile to come towards the player
                 }
@@ -72,24 +72,24 @@ public class ScrollingShooter2DShooter : MonoBehaviour
                     rb2d.linearVelocity = transform.up * _projectileSpeed;
                 }
             }
-            Destroy( instance, _projectileLifetime );
+            Destroy(instance, _projectileLifetime);
 
-            float timeToNextProjectile = Random.Range( ( _baseFireRate - _fireRateVariance ), ( _baseFireRate + _fireRateVariance ) );
+            float timeToNextProjectile = Random.Range((_baseFireRate - _fireRateVariance), (_baseFireRate + _fireRateVariance));
 
-            timeToNextProjectile = Mathf.Clamp( timeToNextProjectile, _minFireRate, float.MaxValue );
+            timeToNextProjectile = Mathf.Clamp(timeToNextProjectile, _minFireRate, float.MaxValue);
 
             PlayShootingSFX();
             
-            yield return new WaitForSecondsRealtime( timeToNextProjectile );
+            yield return new WaitForSecondsRealtime(timeToNextProjectile);
         }
     }
 
 
     void PlayShootingSFX()
     {
-        if ( _audioPlayer != null )
+        if (_audioPlayer != null)
         {
-            if ( _useEnemyAI )
+            if (_useEnemyAI)
             {
                 _audioPlayer.PlayEnemyShootingSFX();
             }

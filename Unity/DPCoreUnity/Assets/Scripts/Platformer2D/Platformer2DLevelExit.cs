@@ -9,11 +9,11 @@ public class Platformer2DLevelExit : MonoBehaviour
     [SerializeField] string _nextSceneName;
 
 
-    void OnTriggerEnter2D( Collider2D other )
+    void OnTriggerEnter2D(Collider2D other)
     {
-        if ( other.tag == "Player" )
+        if (other.tag == "Player")
         {
-            StartCoroutine( LoadNextLevelRoutine() );
+            StartCoroutine(LoadNextLevelRoutine());
         }
     }
 
@@ -21,7 +21,7 @@ public class Platformer2DLevelExit : MonoBehaviour
     IEnumerator LoadNextLevelRoutine()
     {
         FindFirstObjectByType<Platformer2DScenePersist>().ResetScenePersist();
-        yield return new WaitForSecondsRealtime( _levelLoadDelay );
-        SceneUtils.LoadSceneByName( _nextSceneName );
+        yield return new WaitForSecondsRealtime(_levelLoadDelay);
+        SceneUtils.LoadSceneByName(_nextSceneName);
     }
 }

@@ -24,19 +24,19 @@ public class TopDown2DStaffLaser : MonoBehaviour
     }
 
 
-    void OnTriggerEnter2D( Collider2D other )
+    void OnTriggerEnter2D(Collider2D other)
     {
-        if ( other.gameObject.GetComponent<TopDown2DIndestructible>() && !other.isTrigger )
+        if (other.gameObject.GetComponent<TopDown2DIndestructible>() && !other.isTrigger)
         {
             _isGrowing = false;
         }
     }
 
 
-    public void UpdateLaserRange( float laserRange )
+    public void UpdateLaserRange(float laserRange)
     {
         this._laserRange = laserRange;
-        StartCoroutine( IncreaseLaserLengthRoutine() );
+        StartCoroutine(IncreaseLaserLengthRoutine());
     }
 
 
@@ -44,27 +44,27 @@ public class TopDown2DStaffLaser : MonoBehaviour
     {
         float timePassed = 0;
 
-        while ( _spriteRenderer.size.x < _laserRange && _isGrowing )
+        while (_spriteRenderer.size.x < _laserRange && _isGrowing)
         {
             timePassed += Time.deltaTime;
             float linaerT = timePassed / _laserGrowTime;
 
             //sprite
-            _spriteRenderer.size = new Vector2( Mathf.Lerp( 1, _laserRange, linaerT ), 1f );
+            _spriteRenderer.size = new Vector2(Mathf.Lerp(1, _laserRange, linaerT), 1f);
 
             //collider
-            _capsuleCollider2D.size = new Vector2( Mathf.Lerp( 1f, _laserRange, linaerT ), _capsuleCollider2D.size.y );
-            _capsuleCollider2D.offset = new Vector2( Mathf.Lerp( 1f, _laserRange, linaerT ) / 2, _capsuleCollider2D.offset.y ); // dividing by 2 is the key to making the collider offset line up with the sprite size
+            _capsuleCollider2D.size = new Vector2(Mathf.Lerp(1f, _laserRange, linaerT), _capsuleCollider2D.size.y);
+            _capsuleCollider2D.offset = new Vector2(Mathf.Lerp(1f, _laserRange, linaerT) / 2, _capsuleCollider2D.offset.y); // dividing by 2 is the key to making the collider offset line up with the sprite size
 
             yield return null;
         }
-        StartCoroutine( GetComponent<TopDown2DSpriteFade>().SlowFadeRoutine() );
+        StartCoroutine(GetComponent<TopDown2DSpriteFade>().SlowFadeRoutine());
     }
 
 
     void LaserFaceMouse()
     {
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint( Input.mousePosition );
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 dir = transform.position - mousePos;
         transform.right = -dir;
     }

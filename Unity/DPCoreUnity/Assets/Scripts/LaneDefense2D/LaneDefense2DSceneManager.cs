@@ -10,7 +10,7 @@ public class LaneDefense2DSceneManager : MonoBehaviour
     void Start()
     {
         _currentSceneIndex = SceneUtils.GetCurrentSceneIndex();
-        if ( _currentSceneIndex == 0 )
+        if (_currentSceneIndex == 0)
         {
             StartCoroutine(WaitForTimeRoutine());
         }
@@ -19,13 +19,13 @@ public class LaneDefense2DSceneManager : MonoBehaviour
 
     IEnumerator WaitForTimeRoutine()
     {
-        yield return new WaitForSeconds( _timeToWait );
+        yield return new WaitForSeconds(_timeToWait);
         LoadNextScene();
     }
 
 
     public void LoadNextScene()
     {
-        SceneUtils.LoadSceneByIndex( _currentSceneIndex + 1 ); //because in build index, Loading screen is 0 and Start Screen is 1
+        SceneUtils.LoadSceneByIndex(_currentSceneIndex + 1); //because in build index, Loading screen is 0 and Start Screen is 1
     }
 }

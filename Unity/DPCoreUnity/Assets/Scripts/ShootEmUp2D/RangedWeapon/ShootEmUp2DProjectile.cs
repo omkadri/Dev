@@ -26,24 +26,24 @@ public class ShootEmUp2DProjectile : MonoBehaviour
     }
 
 
-    public void Init( ShootEmUp2DRangedWeapon rangedWeapon, Vector2 projectileSpawnPos, Vector2 mousePos )
+    public void Init(ShootEmUp2DRangedWeapon rangedWeapon, Vector2 projectileSpawnPos, Vector2 mousePos)
     {
         _rangedWeapon = rangedWeapon;
         transform.position = projectileSpawnPos;
-        _fireDir = ( mousePos - projectileSpawnPos ).normalized;
+        _fireDir = (mousePos - projectileSpawnPos).normalized;
     }
 
 
-    void OnTriggerEnter2D( Collider2D other )
+    void OnTriggerEnter2D(Collider2D other)
     {
-        Instantiate( _projectileHitVFX, transform.position, Quaternion.identity );
+        Instantiate(_projectileHitVFX, transform.position, Quaternion.identity);
 
         IHitable iHitable = other.gameObject.GetComponent<IHitable>();
         iHitable?.TakeHit();
 
         IDamageable iDamageable = other.gameObject.GetComponent<IDamageable>();
-        iDamageable?.TakeDamage( _fireDir, _damageAmount, _knockbackThrust );
+        iDamageable?.TakeDamage(_fireDir, _damageAmount, _knockbackThrust);
 
-        _rangedWeapon.ReleaseProjectileFromPool( this );
+        _rangedWeapon.ReleaseProjectileFromPool(this);
     }
 }

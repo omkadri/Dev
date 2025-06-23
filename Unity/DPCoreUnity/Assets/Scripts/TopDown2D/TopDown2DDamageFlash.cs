@@ -26,7 +26,7 @@ public class TopDown2DDamageFlash : MonoBehaviour
     public IEnumerator DamageFlashRoutine()
     {
         spriteRenderer.material = damageFlashMat;
-        yield return new WaitForSeconds( restoreDefaultMatTime );
+        yield return new WaitForSeconds(restoreDefaultMatTime);
         spriteRenderer.material = defaultMat;
     }
 }

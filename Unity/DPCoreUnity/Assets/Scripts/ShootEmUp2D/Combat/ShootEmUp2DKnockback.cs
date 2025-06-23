@@ -36,7 +36,7 @@ public class ShootEmUp2DKnockback : MonoBehaviour
     }
 
 
-    public void ActivateKnockback( Vector3 hitDir, float knockbackThrust )
+    public void ActivateKnockback(Vector3 hitDir, float knockbackThrust)
     {
         _hitDir = hitDir;
         _knockbackThrust = knockbackThrust;
@@ -47,15 +47,15 @@ public class ShootEmUp2DKnockback : MonoBehaviour
 
     void ApplyKnockbackForce()
     {
-        Vector3 difference = ( transform.position - _hitDir ).normalized * _knockbackThrust * _rb2d.mass;
-        _rb2d.AddForce( difference, ForceMode2D.Impulse );
-        StartCoroutine( KnockbackRoutine() );
+        Vector3 difference = (transform.position - _hitDir).normalized * _knockbackThrust * _rb2d.mass;
+        _rb2d.AddForce(difference, ForceMode2D.Impulse);
+        StartCoroutine(KnockbackRoutine());
     }
 
 
     IEnumerator KnockbackRoutine()
     {
-        yield return new WaitForSeconds( _knockbackTime );
+        yield return new WaitForSeconds(_knockbackTime);
         OnKnockbackEnd?.Invoke();
     }
 

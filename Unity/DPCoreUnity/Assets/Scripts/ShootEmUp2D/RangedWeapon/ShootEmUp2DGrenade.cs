@@ -56,13 +56,13 @@ public class ShootEmUp2DGrenade : MonoBehaviour
     void Start()
     {
         LaunchGrenade();
-        StartCoroutine( CountdownExplodeRoutine() );
+        StartCoroutine(CountdownExplodeRoutine());
     }
 
 
-    void OnCollisionEnter2D( Collision2D other )
+    void OnCollisionEnter2D(Collision2D other)
     {
-        if( other.gameObject.GetComponent<ShootEmUp2DEnemy>() )
+        if(other.gameObject.GetComponent<ShootEmUp2DEnemy>())
         {
             OnGrenadeExplode?.Invoke();
         }
@@ -71,17 +71,17 @@ public class ShootEmUp2DGrenade : MonoBehaviour
 
     void LaunchGrenade()
     {
-        Vector2 mousePos = Camera.main.ScreenToWorldPoint( Input.mousePosition ); //TODO: Investigate exactly what ScreenToWorldPoint does
-        Vector2 dirToMouse = ( mousePos - (Vector2)transform.position ).normalized; //TODO: investigate vector2 casting and normalization
-        _rb2d.AddForce( dirToMouse * _launchForce, ForceMode2D.Impulse );
-        _rb2d.AddTorque( _torqueAmount, ForceMode2D.Impulse );
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition); //TODO: Investigate exactly what ScreenToWorldPoint does
+        Vector2 dirToMouse = (mousePos - (Vector2)transform.position).normalized; //TODO: investigate vector2 casting and normalization
+        _rb2d.AddForce(dirToMouse * _launchForce, ForceMode2D.Impulse);
+        _rb2d.AddTorque(_torqueAmount, ForceMode2D.Impulse);
     }
 
 
     void GrenadeExplosion()
     {
-        Instantiate( _explodeVFX, transform.position, Quaternion.identity );
-        Destroy( gameObject );
+        Instantiate(_explodeVFX, transform.position, Quaternion.identity);
+        Destroy(gameObject);
     }
 
 
@@ -93,24 +93,24 @@ public class ShootEmUp2DGrenade : MonoBehaviour
 
     void DamageEnemiesInRadius() //TODO: think of better name
     {
-        Collider2D[] hits = Physics2D.OverlapCircleAll( transform.position, _explosionRadius, _enemyLayerMask );
-        foreach ( Collider2D hit in hits )
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, _explosionRadius, _enemyLayerMask);
+        foreach (Collider2D hit in hits)
         {
             ShootEmUp2DHealth health = hit.GetComponent<ShootEmUp2DHealth>();
-            health?.TakeDamage( _damageAmount );
+            health?.TakeDamage(_damageAmount);
         }
     }
 
 
     IEnumerator CountdownExplodeRoutine()
     {
-        _grenadeLight.SetActive( false );
-        while ( _currentBlinks < _totalBlinks )
+        _grenadeLight.SetActive(false);
+        while (_currentBlinks < _totalBlinks)
         {
-            yield return new WaitForSeconds( _explodeTime / _totalBlinks ); //using basic algebra to sync up the beeps with the time
+            yield return new WaitForSeconds(_explodeTime / _totalBlinks); //using basic algebra to sync up the beeps with the time
             OnGrenadeBeep?.Invoke();
-            yield return new WaitForSeconds( _lightBlinkTime );//TODO: Investigate issue where lowering this value shortens the explode time of the grenade????
-            _grenadeLight.SetActive( false );
+            yield return new WaitForSeconds(_lightBlinkTime);//TODO: Investigate issue where lowering this value shortens the explode time of the grenade????
+            _grenadeLight.SetActive(false);
         }
 
         OnGrenadeExplode?.Invoke();
@@ -119,7 +119,7 @@ public class ShootEmUp2DGrenade : MonoBehaviour
 
     void BlinkLight()
     {
-        _grenadeLight.SetActive( true );
+        _grenadeLight.SetActive(true);
         _currentBlinks++;
     }
 }

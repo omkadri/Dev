@@ -4,15 +4,15 @@ using UnityEngine;
 
 public static class Utils
 {
-    public static void RunAfterDelay( MonoBehaviour monoBehaviour, float delay, Action task )
+    public static void RunAfterDelay(MonoBehaviour monoBehaviour, float delay, Action task)
     {
-        monoBehaviour.StartCoroutine( RunAfterDelayRoutine( delay,task ) );
+        monoBehaviour.StartCoroutine(RunAfterDelayRoutine(delay,task));
     }
 
 
-    static IEnumerator RunAfterDelayRoutine( float delay, Action task )
+    static IEnumerator RunAfterDelayRoutine(float delay, Action task)
     {
-        yield return new WaitForSeconds( delay );
+        yield return new WaitForSeconds(delay);
         task.Invoke();
     }
 }

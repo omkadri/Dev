@@ -40,7 +40,7 @@ public class ShootEmUp2DMovement : MonoBehaviour
     }
 
 
-    public void SetCurrentDirection( float currentDir)
+    public void SetCurrentDirection(float currentDir)
     {
         _moveX = currentDir;
     }
@@ -60,12 +60,12 @@ public class ShootEmUp2DMovement : MonoBehaviour
 
     void Move()
     {
-        if( !_canMove )
+        if(!_canMove)
         { 
             return;
         }
 
-        Vector2 movement = new Vector2( _moveX * _moveSpeed, _rb2d.linearVelocity.y );//TODO: Rename movement to something better
+        Vector2 movement = new Vector2(_moveX * _moveSpeed, _rb2d.linearVelocity.y);//TODO: Rename movement to something better
         _rb2d.linearVelocity = movement;
     }
 }

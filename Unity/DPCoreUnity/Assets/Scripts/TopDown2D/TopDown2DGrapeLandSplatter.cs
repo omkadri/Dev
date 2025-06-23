@@ -13,16 +13,16 @@ public class TopDown2DGrapeLandSplatter : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine( spriteFade.SlowFadeRoutine() );
+        StartCoroutine(spriteFade.SlowFadeRoutine());
 
-        Invoke( "DisableCollider", 0.2f );//TODO: fix magic number
+        Invoke("DisableCollider", 0.2f);//TODO: fix magic number
     }
 
 
-    void OnTriggerEnter2D( Collider2D other )
+    void OnTriggerEnter2D(Collider2D other)
     {
         TopDown2DPlayerHealth playerHealth = other.gameObject.GetComponent<TopDown2DPlayerHealth>();
-        playerHealth?.TakeDamage( 1, transform );//TODO: fix magic number
+        playerHealth?.TakeDamage(1, transform);//TODO: fix magic number
     }
 
 

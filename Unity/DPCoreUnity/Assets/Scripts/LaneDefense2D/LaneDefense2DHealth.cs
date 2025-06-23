@@ -8,25 +8,25 @@ public class LaneDefense2DHealth : MonoBehaviour
     [SerializeField] GameObject _deathVFX;
 
 
-    public void DealDamage( float damage )
+    public void DealDamage(float damage)
     {
         _health -= damage;
-        if ( _health <= 0 )
+        if (_health <= 0)
         {
             TriggerDeathVFX();
-            Destroy( gameObject );
+            Destroy(gameObject);
         }
     }
     
 
     private void TriggerDeathVFX()
     {
-        if ( !_deathVFX )
+        if (!_deathVFX)
         { 
             return;
         }
 
-        GameObject deathVFXObject = Instantiate( _deathVFX, transform.position, transform.rotation );
-        Destroy( deathVFXObject, 1f );
+        GameObject deathVFXObject = Instantiate(_deathVFX, transform.position, transform.rotation);
+        Destroy(deathVFXObject, 1f);
     }
 }

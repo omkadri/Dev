@@ -7,24 +7,24 @@ public class TopDown2DPickupSpawner : MonoBehaviour
 
     public void DropItems()
     {
-        int randomNum = Random.Range( 1, 5 );
+        int randomNum = Random.Range(1, 5);
 
-        if ( randomNum == 1 )
+        if (randomNum == 1)
         {
-            Instantiate( healthPickup, transform.position, Quaternion.identity );
+            Instantiate(healthPickup, transform.position, Quaternion.identity);
         }
 
-        if ( randomNum == 2 )
+        if (randomNum == 2)
         {
-            Instantiate( staminaPickup, transform.position, Quaternion.identity );
+            Instantiate(staminaPickup, transform.position, Quaternion.identity);
         }
 
-        if ( randomNum == 3 )
+        if (randomNum == 3)
         {
-            int randomNumberOfCoins = Random.Range(  1, 4 );
-            for ( int i = 0; i < randomNumberOfCoins; i++ )
+            int randomNumberOfCoins = Random.Range( 1, 4);
+            for (int i = 0; i < randomNumberOfCoins; i++)
             {
-                Instantiate( coinPickup, transform.position, Quaternion.identity );
+                Instantiate(coinPickup, transform.position, Quaternion.identity);
             }
         }
     }

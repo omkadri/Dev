@@ -26,7 +26,7 @@ public class RPGAreaExit : MonoBehaviour
             if(waitToLoad <= 0) 
             {
                 shouldLoadAfterFade = false;
-                SceneUtils.LoadSceneByName( areaToLoad );
+                SceneUtils.LoadSceneByName(areaToLoad);
             }
         }
     }

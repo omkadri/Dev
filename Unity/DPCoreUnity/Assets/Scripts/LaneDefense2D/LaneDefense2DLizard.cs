@@ -11,11 +11,11 @@ public class LaneDefense2DLizard : MonoBehaviour//TODO: Investigate getting rid 
     }
 
 
-    void OnTriggerEnter2D( Collider2D other )
+    void OnTriggerEnter2D(Collider2D other)
     {
-        if ( other.GetComponent<LaneDefense2DDefender>() )
+        if (other.GetComponent<LaneDefense2DDefender>())
         {
-            _attacker.Attack( other.gameObject );
+            _attacker.Attack(other.gameObject);
         }
     }
 }
