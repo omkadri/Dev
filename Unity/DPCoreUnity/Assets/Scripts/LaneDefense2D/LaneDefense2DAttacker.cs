@@ -15,6 +15,12 @@ public class LaneDefense2DAttacker : MonoBehaviour
     void Awake()
     {
         _animator = GetComponent<Animator>();
+        FindFirstObjectByType<LaneDefense2DLevelController>().AttackerSpawned(); //TODO: Fix Tight Coupling
+    }
+
+    void OnDestroy()
+    {
+        FindFirstObjectByType<LaneDefense2DLevelController>().AttackerKilled(); //TODO: Fix Tight Coupling
     }
 
 

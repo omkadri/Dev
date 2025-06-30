@@ -7,16 +7,22 @@ public class LaneDefense2DAttackerSpawner : MonoBehaviour
     [SerializeField] float _maxSpawnDelay = 1f;
     [SerializeField] LaneDefense2DAttacker[] _attackerPrefabs;
 
-    bool _spawn = true;
+    bool _canSpawn = true;
 
 
     IEnumerator Start()
     {
-        while(_spawn)
+        while(_canSpawn)
         {
             yield return new WaitForSeconds(UnityEngine.Random.Range(_minSpawnDelay, _maxSpawnDelay));
             SpawnAttacker();
         }
+    }
+
+
+    public void StopSpawning()
+    {
+        _canSpawn = false;
     }
 
 
