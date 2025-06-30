@@ -6316,8 +6316,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aacf8f2be4644ea46ab7f98e32cbd3cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transparencyAmount: 0.8
-  fadeTime: 0.4
+  _transparencyAmount: 0.8
+  _fadeTime: 0.4
 --- !u!19719996 &57138512
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -7301,7 +7301,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1727251605
-  m_SortingLayer: -1
+  m_SortingLayer: -2
   m_SortingOrder: -1
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -25422,7 +25422,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1727251605
-  m_SortingLayer: -1
+  m_SortingLayer: -2
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -27446,7 +27446,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1727251605
-  m_SortingLayer: -1
+  m_SortingLayer: -2
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -28996,9 +28996,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3f78b1112b1dbf48b32c6faedd11b4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  requireNoParentToPersist: 1
   fullStaminaImage: {fileID: 21300000, guid: ad1feb0eb13f7394fb192e991cd7048e, type: 3}
   emptyStaminaImage: {fileID: 21300000, guid: 20faae4ecd7e5124e82ec0d0de811593, type: 3}
   timeBetweenStaminaRefresh: 3
+  _staminaRefreshAmount: 1
 --- !u!4 &1545176656 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2340782476934595336, guid: e49358cff9a81a84cb94aa4eef5dad09, type: 3}
@@ -29851,7 +29853,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1727251605
-  m_SortingLayer: -1
+  m_SortingLayer: -2
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -32701,13 +32703,17 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 1.49
       objectReference: {fileID: 0}
+    - target: {fileID: 809820395266244569, guid: 877eaf9e485a47f4998c5b5f27557f1c, type: 3}
+      propertyPath: m_RendererIndex
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1430481011374549445, guid: 877eaf9e485a47f4998c5b5f27557f1c, type: 3}
       propertyPath: Target.TrackingTarget
       value: 
       objectReference: {fileID: 1507464710}
     - target: {fileID: 2859658568949449076, guid: 877eaf9e485a47f4998c5b5f27557f1c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 14.175377
+      value: 14.178332
       objectReference: {fileID: 0}
     - target: {fileID: 2859658568949449076, guid: 877eaf9e485a47f4998c5b5f27557f1c, type: 3}
       propertyPath: m_LocalPosition.y
