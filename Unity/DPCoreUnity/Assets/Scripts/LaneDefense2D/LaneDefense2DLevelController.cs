@@ -4,8 +4,10 @@ using UnityEngine;
 public class LaneDefense2DLevelController : MonoBehaviour
 {
     [SerializeField] GameObject _levelCompleteLabel;
+    [SerializeField] GameObject _levelFailedLabel;
     [SerializeField] float _loadDelay = 4f;
     [SerializeField] string _sceneToLoad; //TODO: Hash this value.
+    [SerializeField] string _mainMenuSceneName;
     int _numberOfAttackers = 0;
     bool _levelTimerFinished = false;
     AudioSource _audioSource;
@@ -20,6 +22,34 @@ public class LaneDefense2DLevelController : MonoBehaviour
     void Start()
     {
         _levelCompleteLabel.SetActive(false);
+        _levelFailedLabel.SetActive(false);
+    }
+
+
+    public void ReloadScene()
+    {
+        Time.timeScale = 1;
+        SceneUtils.ReloadCurrentScene();
+    }
+
+
+    public void LoadMainMenuScene()
+    {
+        Time.timeScale = 1;
+        SceneUtils.LoadSceneByName(_mainMenuSceneName);
+    }
+
+
+    public void LoadNextScene()
+    {
+        Time.timeScale = 1;
+        SceneUtils.LoadSceneByName(_sceneToLoad);
+    }
+
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 
 
@@ -45,6 +75,13 @@ public class LaneDefense2DLevelController : MonoBehaviour
         _audioSource.Play();
         yield return new WaitForSeconds(_loadDelay);
         SceneUtils.LoadSceneByName(_sceneToLoad);
+    }
+
+
+    public void HandleLoseConditionRoutine()
+    {
+        _levelFailedLabel.SetActive(true);
+        Time.timeScale = 0;
     }
 
 
