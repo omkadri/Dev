@@ -6,10 +6,14 @@ public class LaneDefense2DOptionsController : MonoBehaviour
     [SerializeField] Slider _volumeSlider;
     [SerializeField] float _defaultVolume = 0.8f;
 
+    [SerializeField] Slider _difficultySlider;
+    [SerializeField] float _defaultDifficulty = 0f;
+
 
     void Start()
     {
         _volumeSlider.value = LaneDefense2DPlayerPrefsController.GetMasterVolume();
+        _difficultySlider.value = LaneDefense2DPlayerPrefsController.GetDifficulty();
     }
 
     void Update()
@@ -29,6 +33,7 @@ public class LaneDefense2DOptionsController : MonoBehaviour
     public void SaveAndExit()
     {
         LaneDefense2DPlayerPrefsController.SetMasterVolume(_volumeSlider.value);
+        LaneDefense2DPlayerPrefsController.SetDifficulty(_difficultySlider.value);
         FindFirstObjectByType<LaneDefense2DLevelController>().LoadMainMenuScene(); //TODO: Fix Tight Coupling
     }
 
@@ -36,5 +41,6 @@ public class LaneDefense2DOptionsController : MonoBehaviour
     public void SetDefaultOptions()
     {
         _volumeSlider.value = _defaultVolume;
+        _difficultySlider.value = _defaultDifficulty;
     }
 }

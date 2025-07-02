@@ -6,6 +6,9 @@ public class LaneDefense2DPlayerPrefsController : MonoBehaviour
     const float MIN_VOLUME = 0f;
     const float MAX_VOLUME = 1f;
 
+    const float MIN_DIFFICULTY = 0f;
+    const float MAX_DIFFICULTY = 2f;
+
     const string DIFFICULTY_KEY = "difficulty";
 
 
@@ -26,5 +29,24 @@ public class LaneDefense2DPlayerPrefsController : MonoBehaviour
     public static float GetMasterVolume()
     {
         return PlayerPrefs.GetFloat(MASTER_VOLUME_KEY);
+    }
+
+
+    public static void SetDifficulty(float difficulty)
+    {
+        if (difficulty >= MIN_DIFFICULTY && difficulty <= MAX_DIFFICULTY)
+        {
+            PlayerPrefs.SetFloat(DIFFICULTY_KEY, difficulty);
+        }
+        else
+        {
+            Debug.Log("Difficulty setting is not in range");
+        }
+    }
+
+
+    public static float GetDifficulty()
+    {
+        return PlayerPrefs.GetFloat(DIFFICULTY_KEY);
     }
 }

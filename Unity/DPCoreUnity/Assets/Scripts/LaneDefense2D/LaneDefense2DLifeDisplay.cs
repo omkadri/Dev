@@ -4,11 +4,11 @@ using UnityEngine.UI;
 
 public class LaneDefense2DLifeDisplay : MonoBehaviour
 {
-
-    [SerializeField] int _lifePoints = 5;
+    [SerializeField] float _baseLifePoints = 3f;
     [SerializeField] int _damage = 1;
     [SerializeField] string _gameOverSceneName;
 
+    float _lifePoints;
     Text _livesText;
 
     void Awake()
@@ -19,6 +19,7 @@ public class LaneDefense2DLifeDisplay : MonoBehaviour
 
     void Start()
     {
+        _lifePoints = _baseLifePoints - LaneDefense2DPlayerPrefsController.GetDifficulty();
         UpdateDisplay();
     }
 
