@@ -7,6 +7,7 @@ public class LaneDefense2DLevelController : MonoBehaviour
     [SerializeField] GameObject _levelFailedLabel;
     [SerializeField] float _loadDelay = 4f;
     [SerializeField] string _sceneToLoad; //TODO: Hash this value.
+    [SerializeField] string _optionsSceneName; //TODO: Hash this value.
     [SerializeField] string _mainMenuSceneName;
     int _numberOfAttackers = 0;
     bool _levelTimerFinished = false;
@@ -43,6 +44,13 @@ public class LaneDefense2DLevelController : MonoBehaviour
     {
         Time.timeScale = 1;
         SceneUtils.LoadSceneByName(_mainMenuSceneName);
+    }
+
+
+    public void LoadOptionsMenuScene()
+    {
+        Time.timeScale = 1;
+        SceneUtils.LoadSceneByName(_optionsSceneName);
     }
 
 
