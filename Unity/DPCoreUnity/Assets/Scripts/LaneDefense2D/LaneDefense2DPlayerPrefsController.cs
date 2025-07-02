@@ -4,7 +4,7 @@ public class LaneDefense2DPlayerPrefsController : MonoBehaviour
 {
     const string MASTER_VOLUME_KEY = "master_volume";
     const float MIN_VOLUME = 0f;
-    const float MAX_VOLUME = 0f;
+    const float MAX_VOLUME = 1f;
 
     const string DIFFICULTY_KEY = "difficulty";
 

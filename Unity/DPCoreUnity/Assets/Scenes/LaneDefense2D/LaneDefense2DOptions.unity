@@ -241,7 +241,6 @@ GameObject:
   - component: {fileID: 39041488}
   - component: {fileID: 39041491}
   - component: {fileID: 39041490}
-  - component: {fileID: 39041489}
   m_Layer: 5
   m_Name: DifficultyHeading
   m_TagString: Untagged
@@ -268,62 +267,6 @@ RectTransform:
   m_AnchoredPosition: {x: -1596, y: -599}
   m_SizeDelta: {x: 520.30005, y: 208}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &39041489
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 39041487}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 39041490}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1080872768}
-        m_TargetAssemblyTypeName: LaneDefense2DLevelController, Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &39041490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -552,6 +495,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 226943733}
   m_CullTransparentMesh: 1
+--- !u!114 &314027786 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5857339522131848378, guid: 017b8a935d5eab046b18e3c1ddacf848, type: 3}
+  m_PrefabInstance: {fileID: 466943544355154810}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fed0adafda0f274bb910dd65fb1d103, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -764,7 +718,6 @@ GameObject:
   - component: {fileID: 637329645}
   - component: {fileID: 637329647}
   - component: {fileID: 637329646}
-  - component: {fileID: 637329648}
   m_Layer: 5
   m_Name: OptionsHeading
   m_TagString: Untagged
@@ -833,62 +786,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 637329644}
   m_CullTransparentMesh: 0
---- !u!114 &637329648
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 637329644}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 637329646}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1080872768}
-        m_TargetAssemblyTypeName: LaneDefense2DLevelController, Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &823852618
 GameObject:
   m_ObjectHideFlags: 0
@@ -1229,17 +1126,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd14176e1e5f70e46ad1ad58244170d7, type: 3}
---- !u!114 &1080872768 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5194696991414192874, guid: cd14176e1e5f70e46ad1ad58244170d7, type: 3}
-  m_PrefabInstance: {fileID: 1080872767}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1aa4e265404f3ce4ebdfa62daabfe0bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1093847828
 GameObject:
   m_ObjectHideFlags: 0
@@ -1251,7 +1137,6 @@ GameObject:
   - component: {fileID: 1093847829}
   - component: {fileID: 1093847832}
   - component: {fileID: 1093847831}
-  - component: {fileID: 1093847830}
   m_Layer: 5
   m_Name: VolumeHeading
   m_TagString: Untagged
@@ -1278,62 +1163,6 @@ RectTransform:
   m_AnchoredPosition: {x: -1596, y: -435}
   m_SizeDelta: {x: 520.30005, y: 208}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1093847830
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1093847828}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 1093847831}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1080872768}
-        m_TargetAssemblyTypeName: LaneDefense2DLevelController, Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &1093847831
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1701,9 +1530,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1080872768}
-        m_TargetAssemblyTypeName: LaneDefense2DLevelController, Assembly-CSharp
-        m_MethodName: LoadMainMenuScene
+      - m_Target: {fileID: 314027786}
+        m_TargetAssemblyTypeName: LaneDefense2DOptionsController, Assembly-CSharp
+        m_MethodName: SaveAndExit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1974,9 +1803,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1080872768}
-        m_TargetAssemblyTypeName: LaneDefense2DLevelController, Assembly-CSharp
-        m_MethodName: 
+      - m_Target: {fileID: 314027786}
+        m_TargetAssemblyTypeName: LaneDefense2DOptionsController, Assembly-CSharp
+        m_MethodName: SetDefaultOptions
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2118,6 +1947,67 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1001 &466943544355154810
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 108004949370549763, guid: 017b8a935d5eab046b18e3c1ddacf848, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 794.12085
+      objectReference: {fileID: 0}
+    - target: {fileID: 108004949370549763, guid: 017b8a935d5eab046b18e3c1ddacf848, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 425.95526
+      objectReference: {fileID: 0}
+    - target: {fileID: 108004949370549763, guid: 017b8a935d5eab046b18e3c1ddacf848, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -6.847412
+      objectReference: {fileID: 0}
+    - target: {fileID: 108004949370549763, guid: 017b8a935d5eab046b18e3c1ddacf848, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 108004949370549763, guid: 017b8a935d5eab046b18e3c1ddacf848, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 108004949370549763, guid: 017b8a935d5eab046b18e3c1ddacf848, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 108004949370549763, guid: 017b8a935d5eab046b18e3c1ddacf848, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 108004949370549763, guid: 017b8a935d5eab046b18e3c1ddacf848, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 108004949370549763, guid: 017b8a935d5eab046b18e3c1ddacf848, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 108004949370549763, guid: 017b8a935d5eab046b18e3c1ddacf848, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2068734915016458946, guid: 017b8a935d5eab046b18e3c1ddacf848, type: 3}
+      propertyPath: m_Name
+      value: LaneDefense2DOptionsController
+      objectReference: {fileID: 0}
+    - target: {fileID: 5857339522131848378, guid: 017b8a935d5eab046b18e3c1ddacf848, type: 3}
+      propertyPath: _volumeSlider
+      value: 
+      objectReference: {fileID: 2139963369}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 017b8a935d5eab046b18e3c1ddacf848, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -2127,3 +2017,4 @@ SceneRoots:
   - {fileID: 1672145039}
   - {fileID: 852944265}
   - {fileID: 1080872767}
+  - {fileID: 466943544355154810}
