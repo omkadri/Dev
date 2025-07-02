@@ -5,8 +5,27 @@ using UnityEngine;
 public class LaneDefense2DDefenderSpawner : MonoBehaviour
 {
     LaneDefense2DDefender _defender;
+    GameObject _defenderParent;
+    const string DEFENDER_PARENT_NAME = "Defenders";
 
-    private void OnMouseDown()
+
+    void Start()
+    {
+        CreateDefenderParent(); 
+    }
+
+
+    void CreateDefenderParent()
+    {
+        _defenderParent = GameObject.Find(DEFENDER_PARENT_NAME); //TODO: Optimize this
+        if (!_defenderParent)
+        {
+            _defenderParent = new GameObject(DEFENDER_PARENT_NAME);
+        }
+    }
+
+
+    void OnMouseDown()
     {
         AttemptDefenderPlacement(GetSquareClicked());
     }
@@ -39,7 +58,7 @@ public class LaneDefense2DDefenderSpawner : MonoBehaviour
     }
 
 
-    private Vector2 GetSquareClicked()
+    Vector2 GetSquareClicked()
     {
         Vector2 rawMousePos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
 
@@ -53,7 +72,7 @@ public class LaneDefense2DDefenderSpawner : MonoBehaviour
     }
     
 
-    private Vector2 SnapToGrid(Vector2 rawWorldPos)
+    Vector2 SnapToGrid(Vector2 rawWorldPos)
     {
         float newX = Mathf.RoundToInt(rawWorldPos.x);
         float newY = Mathf.RoundToInt(rawWorldPos.y);
@@ -61,13 +80,12 @@ public class LaneDefense2DDefenderSpawner : MonoBehaviour
     }
 
 
-    private void SpawnDefender(Vector2 inGameMousePos) //this function cannot run without getting the inGameMousePos vector
+    void SpawnDefender(Vector2 inGameMousePos)
     {
         if (_defender)
         {
             LaneDefense2DDefender newDefender = Instantiate(_defender, inGameMousePos, Quaternion.identity) as LaneDefense2DDefender;
-            //"as gameObject" allows us to see the instance in the unity hierarchy, as well as interact with it
+            newDefender.transform.parent = _defenderParent.transform;
         }
     }
 }
-

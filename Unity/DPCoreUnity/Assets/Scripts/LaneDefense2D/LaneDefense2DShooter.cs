@@ -11,6 +11,9 @@ public class LaneDefense2DShooter : MonoBehaviour
     LaneDefense2DAttackerSpawner _currentLaneAttackerSpawner;
     Animator _animator;
 
+    GameObject _projectileParent;
+    const string PROJECTILE_PARENT_NAME = "Projectiles";
+
     static readonly int _isAttackingHash = Animator.StringToHash("IsAttacking");
 
 
@@ -23,6 +26,7 @@ public class LaneDefense2DShooter : MonoBehaviour
     void Start()
     {
         SetCurrentLaneAttackerSpawner();
+        CreateProjectileParent();
     }
 
 
@@ -35,6 +39,18 @@ public class LaneDefense2DShooter : MonoBehaviour
         else
         {
             _animator.SetBool(_isAttackingHash, false);
+        }
+    }
+
+
+    
+
+    void CreateProjectileParent()
+    {
+        _projectileParent = GameObject.Find(PROJECTILE_PARENT_NAME); //TODO: Optimize this
+        if (!_projectileParent)
+        {
+            _projectileParent = new GameObject(PROJECTILE_PARENT_NAME);
         }
     }
 
@@ -67,6 +83,7 @@ public class LaneDefense2DShooter : MonoBehaviour
 
     public void Fire()
     {
-        Instantiate(_projectile, _gun.transform.position, transform.rotation); //notice how we are instantiating at the gun's transform position
+        GameObject newProjectile = Instantiate(_projectile, _gun.transform.position, transform.rotation);
+       newProjectile.transform.parent = _projectileParent.transform;
     }
 }
