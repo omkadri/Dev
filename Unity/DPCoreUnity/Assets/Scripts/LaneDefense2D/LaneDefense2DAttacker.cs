@@ -10,17 +10,26 @@ public class LaneDefense2DAttacker : MonoBehaviour
     GameObject _currentTarget;
     Animator _animator;
     static readonly int _isAttackingHash = Animator.StringToHash("IsAttacking");
+    LaneDefense2DLevelController _levelController;
 
 
     void Awake()
     {
         _animator = GetComponent<Animator>();
-        FindFirstObjectByType<LaneDefense2DLevelController>().AttackerSpawned(); //TODO: Fix Tight Coupling
+        _levelController = FindFirstObjectByType<LaneDefense2DLevelController>();
+        if (_levelController)
+        {
+            FindFirstObjectByType<LaneDefense2DLevelController>().AttackerSpawned(); //TODO: Fix Tight Coupling
+        }
     }
+
 
     void OnDestroy()
     {
-        FindFirstObjectByType<LaneDefense2DLevelController>().AttackerKilled(); //TODO: Fix Tight Coupling
+        if (_levelController)
+        {
+            FindFirstObjectByType<LaneDefense2DLevelController>().AttackerKilled(); //TODO: Fix Tight Coupling
+        }
     }
 
 
