@@ -21,8 +21,14 @@ public class LaneDefense2DLevelController : MonoBehaviour
 
     void Start()
     {
-        _levelCompleteLabel.SetActive(false);
-        _levelFailedLabel.SetActive(false);
+        if (_levelCompleteLabel)
+        {
+            _levelCompleteLabel.SetActive(false);
+        }
+        if (_levelFailedLabel)
+        {
+            _levelFailedLabel.SetActive(false);
+        }
     }
 
 
@@ -71,7 +77,10 @@ public class LaneDefense2DLevelController : MonoBehaviour
 
     IEnumerator HandleWinConditionRoutine()
     {
-        _levelCompleteLabel.SetActive(true);
+        if (_levelCompleteLabel)
+        {
+            _levelCompleteLabel.SetActive(true);
+        }
         _audioSource.Play();
         yield return new WaitForSeconds(_loadDelay);
         SceneUtils.LoadSceneByName(_sceneToLoad);
@@ -80,7 +89,10 @@ public class LaneDefense2DLevelController : MonoBehaviour
 
     public void HandleLoseConditionRoutine()
     {
-        _levelFailedLabel.SetActive(true);
+        if (_levelFailedLabel)
+        {
+            _levelFailedLabel.SetActive(true);
+        }
         Time.timeScale = 0;
     }
 
