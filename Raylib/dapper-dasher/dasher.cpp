@@ -33,6 +33,13 @@ int main()
         _playerPos.x = _windowWidth/2 - _playerRec.width/2;
         _playerPos.y = _windowHeight - _playerRec.height;
 
+        //animation frame
+        int _playerFrame = 0;
+
+        //amount of time before updating animation frame
+        const float _updateTime = 1.0 / 12.0;
+        float _runningTime = 0;
+
         
         while(!WindowShouldClose())
         {
@@ -62,9 +69,25 @@ int main()
                         _playerVelocityY -= _playerJumpVelocity;
                 }
 
-                //player logic
-                DrawTextureRec( _playerSpriteSheet, _playerRec, _playerPos, WHITE);
+                //update player position
                 _playerPos.y += _playerVelocityY * dT;
+
+                //update running time
+                _runningTime += dT;
+                if (_runningTime >= _updateTime)
+                {
+                        _runningTime = 0.0;
+                        //update player animation frame
+                        _playerRec.x = _playerFrame * _playerRec.width;
+                        _playerFrame++;
+                        if (_playerFrame > 5)
+                        {
+                                _playerFrame = 0;
+                        }
+                }
+
+                //draw player
+                DrawTextureRec( _playerSpriteSheet, _playerRec, _playerPos, WHITE);
 
                 //stop drawing
                 EndDrawing();
