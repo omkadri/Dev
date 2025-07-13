@@ -11,12 +11,12 @@ int main()
         SetTargetFPS(_targetFramerate);
 
         //player properties
+        int _playerJumpVelocity = 600;
         int _playerVelocityY = 0;
-        int _playerJumpVelocity = 10;
         bool _isGrounded = true;
 
-        //acceleration due to gravity (pixels per frame per frame)
-        const int _gravity = 1;
+        //acceleration due to gravity ( (pixels per second) per second )
+        const int _gravity = 1000;
 
         //player sprite sheet setup
         Texture2D _playerSpriteSheet = LoadTexture("textures/scarfy.png"); //TODO: make string variable
@@ -36,6 +36,9 @@ int main()
         
         while(!WindowShouldClose())
         {
+                //delta time (time since last frame)
+                const float dT = GetFrameTime();
+
                 //start drawing
                 BeginDrawing();
                 ClearBackground(WHITE);
@@ -49,7 +52,7 @@ int main()
                 else
                 {
                         //apply gravity
-                        _playerVelocityY += _gravity;
+                        _playerVelocityY += _gravity * dT;
                         _isGrounded = false;
                 }
 
@@ -61,7 +64,7 @@ int main()
 
                 //player logic
                 DrawTextureRec( _playerSpriteSheet, _playerRec, _playerPos, WHITE);
-                _playerPos.y += _playerVelocityY;
+                _playerPos.y += _playerVelocityY * dT;
 
                 //stop drawing
                 EndDrawing();
