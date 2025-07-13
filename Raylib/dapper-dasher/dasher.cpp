@@ -12,6 +12,7 @@ int main()
         int _playerPosY = _windowHeight - _playerHeight;
         int _playerVelocityY = 0;
         int _playerJumpVelocity = 10;
+        bool _isGrounded = true;
 
         //acceleration due to gravity (pixels per frame per frame)
         const int _gravity = 1;
@@ -30,18 +31,20 @@ int main()
                 if (_playerPosY >= _windowHeight - _playerHeight)
                 {
                         _playerVelocityY = 0;
+                        _isGrounded = true;
                 }
                 else
                 {
                         //apply gravity
                         _playerVelocityY += _gravity;
+                        _isGrounded = false;
                 }
 
                 //player logic
                 DrawRectangle( _windowWidth/2, _playerPosY, _playerWidth, _playerHeight, BLUE );
                 
                 //jump logic
-                if (IsKeyPressed(KEY_SPACE))
+                if (IsKeyPressed(KEY_SPACE) && _isGrounded)
                 {
                         _playerVelocityY -= _playerJumpVelocity;
                 }
