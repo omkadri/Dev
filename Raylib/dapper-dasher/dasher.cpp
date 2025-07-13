@@ -6,10 +6,11 @@ int main()
         const int _windowHeight = 450;
         int _targetFramerate = 60;
 
+        //initialize window
+        InitWindow(_windowWidth, _windowHeight, "Dapper Dasher"); //TODO: make string variable
+        SetTargetFPS(_targetFramerate);
+
         //player properties
-        const int _playerWidth = 50;
-        const int _playerHeight = 50;
-        int _playerPosY = _windowHeight - _playerHeight;
         int _playerVelocityY = 0;
         int _playerJumpVelocity = 10;
         bool _isGrounded = true;
@@ -17,9 +18,21 @@ int main()
         //acceleration due to gravity (pixels per frame per frame)
         const int _gravity = 1;
 
-        //initialize window
-        InitWindow(_windowWidth, _windowHeight, "Dapper Dasher");
-        SetTargetFPS(_targetFramerate);
+        //player sprite sheet setup
+        Texture2D _playerSpriteSheet = LoadTexture("textures/scarfy.png"); //TODO: make string variable
+        int _playerSpriteSheetRowCount = 6;
+        int _playerSpriteSheetColumnCount = 1;
+        Rectangle _playerRec;
+        _playerRec.x = 0;
+        _playerRec.y = 0;
+        _playerRec.width = _playerSpriteSheet.width / _playerSpriteSheetRowCount;
+        _playerRec.height = _playerSpriteSheet.height / _playerSpriteSheetColumnCount;
+
+        //player texture position
+        Vector2 _playerPos;
+        _playerPos.x = _windowWidth/2 - _playerRec.width/2;
+        _playerPos.y = _windowHeight - _playerRec.height;
+
         
         while(!WindowShouldClose())
         {
@@ -28,7 +41,7 @@ int main()
                 ClearBackground(WHITE);
 
                 //perform ground check
-                if (_playerPosY >= _windowHeight - _playerHeight)
+                if (_playerPos.y >= _windowHeight - _playerRec.height)
                 {
                         _playerVelocityY = 0;
                         _isGrounded = true;
@@ -40,19 +53,19 @@ int main()
                         _isGrounded = false;
                 }
 
-                //player logic
-                DrawRectangle( _windowWidth/2, _playerPosY, _playerWidth, _playerHeight, BLUE );
-                
                 //jump logic
                 if (IsKeyPressed(KEY_SPACE) && _isGrounded)
                 {
                         _playerVelocityY -= _playerJumpVelocity;
                 }
-                
-                _playerPosY += _playerVelocityY;
+
+                //player logic
+                DrawTextureRec( _playerSpriteSheet, _playerRec, _playerPos, WHITE);
+                _playerPos.y += _playerVelocityY;
 
                 //stop drawing
                 EndDrawing();
         }
+        UnloadTexture(_playerSpriteSheet);
         CloseWindow();
 }
