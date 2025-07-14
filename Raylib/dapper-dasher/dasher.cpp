@@ -28,6 +28,14 @@ int main()
         _playerRec.width = _playerSpriteSheet.width / _playerSpriteSheetRowCount;
         _playerRec.height = _playerSpriteSheet.height / _playerSpriteSheetColumnCount;
 
+        //hazard variables
+        Texture2D _hazardSpriteSheet = LoadTexture("textures/12_nebula_spritesheet.png"); //TODO: make string variable
+        int _hazardSpriteSheetRowCount = 8;
+        int _hazardSpriteSheetColumnCount = 8;
+        Rectangle _hazardRec{0.0, 0.0, _hazardSpriteSheet.width/_hazardSpriteSheetRowCount, _hazardSpriteSheet.height/_hazardSpriteSheetColumnCount};
+        Vector2 _hazardPos{_windowWidth, _windowHeight - _hazardRec.height};
+        int _hazardVelocityX = -600;
+
         //player texture position
         Vector2 _playerPos;
         _playerPos.x = _windowWidth/2 - _playerRec.width/2;
@@ -72,26 +80,36 @@ int main()
                 //update player position
                 _playerPos.y += _playerVelocityY * dT;
 
+                //update hazard position
+                _hazardPos.x += _hazardVelocityX * dT;
+
                 //update running time
-                _runningTime += dT;
-                if (_runningTime >= _updateTime)
+                if (_isGrounded)
                 {
-                        _runningTime = 0.0;
-                        //update player animation frame
-                        _playerRec.x = _playerFrame * _playerRec.width;
-                        _playerFrame++;
-                        if (_playerFrame > 5)
+                        _runningTime += dT;
+                        if (_runningTime >= _updateTime)
                         {
-                                _playerFrame = 0;
+                                _runningTime = 0.0;
+                                //update player animation frame
+                                _playerRec.x = _playerFrame * _playerRec.width;
+                                _playerFrame++;
+                                if (_playerFrame > 5)
+                                {
+                                        _playerFrame = 0;
+                                }
                         }
                 }
 
                 //draw player
                 DrawTextureRec( _playerSpriteSheet, _playerRec, _playerPos, WHITE);
 
+                //draw hazard
+                DrawTextureRec( _hazardSpriteSheet, _hazardRec, _hazardPos, WHITE);
+
                 //stop drawing
                 EndDrawing();
         }
         UnloadTexture(_playerSpriteSheet);
+        UnloadTexture(_hazardSpriteSheet);
         CloseWindow();
 }
