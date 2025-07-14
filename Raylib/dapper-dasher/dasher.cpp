@@ -9,14 +9,14 @@ int main()
         //initialize window
         InitWindow(_windowWidth, _windowHeight, "Dapper Dasher"); //TODO: make string variable
         SetTargetFPS(_targetFramerate);
-
+        
+        //acceleration due to gravity ( (pixels per second) per second )
+        const int _gravity = 1000;
+        
         //player properties
         int _playerJumpVelocity = 600;
         int _playerVelocityY = 0;
         bool _isGrounded = true;
-
-        //acceleration due to gravity ( (pixels per second) per second )
-        const int _gravity = 1000;
 
         //player sprite sheet setup
         Texture2D _playerSpriteSheet = LoadTexture("textures/scarfy.png"); //TODO: make string variable
@@ -27,28 +27,30 @@ int main()
         _playerRec.y = 0;
         _playerRec.width = _playerSpriteSheet.width / _playerSpriteSheetRowCount;
         _playerRec.height = _playerSpriteSheet.height / _playerSpriteSheetColumnCount;
+        
+        //player position
+        Vector2 _playerPos;
+        _playerPos.x = _windowWidth/2 - _playerRec.width/2;
+        _playerPos.y = _windowHeight - _playerRec.height;
 
-        //hazard variables
+        //player animation variables
+        int _currentPlayerFrame = 0;
+        const float _updateTimePlayer = 1.0 / 12.0;
+        float _runningTimePlayer = 0;
+
+        //hazard properties
         Texture2D _hazardSpriteSheet = LoadTexture("textures/12_nebula_spritesheet.png"); //TODO: make string variable
         int _hazardSpriteSheetRowCount = 8;
         int _hazardSpriteSheetColumnCount = 8;
         Rectangle _hazardRec{0.0, 0.0, _hazardSpriteSheet.width/_hazardSpriteSheetRowCount, _hazardSpriteSheet.height/_hazardSpriteSheetColumnCount};
         Vector2 _hazardPos{_windowWidth, _windowHeight - _hazardRec.height};
-        int _hazardVelocityX = -600;
+        int _hazardVelocityX = -200;
 
-        //player texture position
-        Vector2 _playerPos;
-        _playerPos.x = _windowWidth/2 - _playerRec.width/2;
-        _playerPos.y = _windowHeight - _playerRec.height;
+        //hazard annimation variables
+        int _currentHazardFrame = 0;
+        const float _updateTimeHazard = 1.0 / 12.0;
+        float _runningTimeHazard = 0;
 
-        //animation frame
-        int _playerFrame = 0;
-
-        //amount of time before updating animation frame
-        const float _updateTime = 1.0 / 12.0;
-        float _runningTime = 0;
-
-        
         while(!WindowShouldClose())
         {
                 //delta time (time since last frame)
@@ -83,20 +85,35 @@ int main()
                 //update hazard position
                 _hazardPos.x += _hazardVelocityX * dT;
 
-                //update running time
+                //update player animation frame
                 if (_isGrounded)
                 {
-                        _runningTime += dT;
-                        if (_runningTime >= _updateTime)
+                        //update player running time
+                        _runningTimePlayer += dT;
+                        if (_runningTimePlayer >= _updateTimePlayer)
                         {
-                                _runningTime = 0.0;
+                                _runningTimePlayer = 0.0;
                                 //update player animation frame
-                                _playerRec.x = _playerFrame * _playerRec.width;
-                                _playerFrame++;
-                                if (_playerFrame > 5)
+                                _playerRec.x = _currentPlayerFrame * _playerRec.width;
+                                _currentPlayerFrame++;
+                                if (_currentPlayerFrame > 5)
                                 {
-                                        _playerFrame = 0;
+                                        _currentPlayerFrame = 0;
                                 }
+                        }
+                }
+
+                //update hazard animation frame
+                _runningTimeHazard += dT;
+                if (_runningTimeHazard >= _updateTimePlayer)
+                {
+                        _runningTimeHazard = 0.0;
+                        //update hazard animation frame
+                        _hazardRec.x = _currentHazardFrame * _hazardRec.width;
+                        _currentHazardFrame++;
+                        if (_currentHazardFrame > 7)
+                        {
+                                _currentHazardFrame = 0;
                         }
                 }
 
