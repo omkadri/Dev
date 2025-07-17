@@ -1,4 +1,14 @@
 #include "raylib.h"
+
+struct AnimData
+{
+        Rectangle rec;
+        Vector2 pos;
+        int currentFrame;
+        float updateTime;
+        float runningTime;
+};
+
 int main()
 { 
         //window properties
@@ -14,42 +24,47 @@ int main()
         const int _gravity = 1000;
         
         //player properties
+        Texture2D _playerSpriteSheet = LoadTexture("textures/scarfy.png"); //TODO: make string variable
+        int _playerSpriteSheetRowCount = 6;
+        int _playerSpriteSheetColumnCount = 1;
         int _playerJumpVelocity = 600;
         int _playerVelocityY = 0;
         bool _isGrounded = true;
 
-        //player sprite sheet setup
-        Texture2D _playerSpriteSheet = LoadTexture("textures/scarfy.png"); //TODO: make string variable
-        int _playerSpriteSheetRowCount = 6;
-        int _playerSpriteSheetColumnCount = 1;
-        Rectangle _playerRec;
-        _playerRec.x = 0;
-        _playerRec.y = 0;
-        _playerRec.width = _playerSpriteSheet.width / _playerSpriteSheetRowCount;
-        _playerRec.height = _playerSpriteSheet.height / _playerSpriteSheetColumnCount;
-        
-        //player position
-        Vector2 _playerPos;
-        _playerPos.x = _windowWidth/2 - _playerRec.width/2;
-        _playerPos.y = _windowHeight - _playerRec.height;
-
-        //player animation variables
-        int _currentPlayerFrame = 0;
-        const float _updateTimePlayer = 1.0 / 12.0;
-        float _runningTimePlayer = 0;
+        //player anim data
+        AnimData _playerData;
+        _playerData.rec.width = _playerSpriteSheet.width / _playerSpriteSheetRowCount;
+        _playerData.rec.height = _playerSpriteSheet.height / _playerSpriteSheetColumnCount;
+        _playerData.rec.x = 0;
+        _playerData.rec.y = 0;
+        _playerData.pos.x = _windowWidth / 2 - _playerData.rec.width / 2;
+        _playerData.pos.y = _windowHeight - _playerData.rec.height;
+        _playerData.currentFrame = 0;
+        _playerData.updateTime = 1.0 / 12.0;
+        _playerData.runningTime = 0.0;
 
         //hazard properties
         Texture2D _hazardSpriteSheet = LoadTexture("textures/12_nebula_spritesheet.png"); //TODO: make string variable
         int _hazardSpriteSheetRowCount = 8;
         int _hazardSpriteSheetColumnCount = 8;
-        Rectangle _hazardRec{0.0, 0.0, _hazardSpriteSheet.width/_hazardSpriteSheetRowCount, _hazardSpriteSheet.height/_hazardSpriteSheetColumnCount};
-        Vector2 _hazardPos{_windowWidth, _windowHeight - _hazardRec.height};
         int _hazardVelocityX = -200;
 
-        //hazard annimation variables
-        int _currentHazardFrame = 0;
-        const float _updateTimeHazard = 1.0 / 12.0;
-        float _runningTimeHazard = 0;
+        //hazard anim data setup
+        AnimData _hazardAData{
+                {0.0, 0.0, _hazardSpriteSheet.width / _hazardSpriteSheetRowCount, _hazardSpriteSheet.height / _hazardSpriteSheetColumnCount},//Rectangle rec
+                {_windowWidth, _windowHeight - _hazardSpriteSheet.height / _hazardSpriteSheetColumnCount},// Vector2 pos
+                0,// int currentFrame
+                1.0/16.0,// float updateTime
+                0 // float runningTime
+        };
+
+        AnimData _hazardBData{
+                {0.0, 0.0, _hazardSpriteSheet.width / _hazardSpriteSheetRowCount, _hazardSpriteSheet.height / _hazardSpriteSheetColumnCount},//Rectangle rec
+                {_windowWidth + 300, _windowHeight - _hazardSpriteSheet.height / _hazardSpriteSheetColumnCount},// Vector2 pos
+                0,// int currentFrame
+                1.0/12.0,// float updateTime
+                0 // float runningTime
+        };
 
         while(!WindowShouldClose())
         {
@@ -61,7 +76,7 @@ int main()
                 ClearBackground(WHITE);
 
                 //perform ground check
-                if (_playerPos.y >= _windowHeight - _playerRec.height)
+                if (_playerData.pos.y >= _windowHeight - _playerData.rec.height)
                 {
                         _playerVelocityY = 0;
                         _isGrounded = true;
@@ -80,48 +95,66 @@ int main()
                 }
 
                 //update player position
-                _playerPos.y += _playerVelocityY * dT;
+                _playerData.pos.y += _playerVelocityY * dT;
 
                 //update hazard position
-                _hazardPos.x += _hazardVelocityX * dT;
+                _hazardAData.pos.x += _hazardVelocityX * dT;
+                _hazardBData.pos.x += _hazardVelocityX * dT;
 
                 //update player animation frame
                 if (_isGrounded)
                 {
                         //update player running time
-                        _runningTimePlayer += dT;
-                        if (_runningTimePlayer >= _updateTimePlayer)
+                        _playerData.runningTime += dT;
+                        if (_playerData.runningTime >= _playerData.updateTime)
                         {
-                                _runningTimePlayer = 0.0;
+                                _playerData.runningTime = 0.0;
                                 //update player animation frame
-                                _playerRec.x = _currentPlayerFrame * _playerRec.width;
-                                _currentPlayerFrame++;
-                                if (_currentPlayerFrame > 5)
+                                _playerData.rec.x = _playerData.currentFrame * _playerData.rec.width;
+                                _playerData.currentFrame++;
+                                if (_playerData.currentFrame > 5)
                                 {
-                                        _currentPlayerFrame = 0;
+                                        _playerData.currentFrame = 0;
                                 }
                         }
                 }
 
-                //update hazard animation frame
-                _runningTimeHazard += dT;
-                if (_runningTimeHazard >= _updateTimePlayer)
+                //update hazard A animation frame
+                _hazardAData.runningTime += dT;
+                if (_hazardAData.runningTime >= _hazardAData.updateTime)
                 {
-                        _runningTimeHazard = 0.0;
+                        _hazardAData.runningTime = 0.0;
                         //update hazard animation frame
-                        _hazardRec.x = _currentHazardFrame * _hazardRec.width;
-                        _currentHazardFrame++;
-                        if (_currentHazardFrame > 7)
+                        _hazardAData.rec.x = _hazardAData.currentFrame * _hazardAData.rec.width;
+                        _hazardAData.currentFrame++;
+                        if (_hazardAData.currentFrame > 7)
                         {
-                                _currentHazardFrame = 0;
+                                _hazardAData.currentFrame = 0;
+                        }
+                }
+
+                //update hazard B animation frame
+                _hazardBData.runningTime += dT;
+                if (_hazardBData.runningTime >= _hazardBData.updateTime)
+                {
+                        _hazardBData.runningTime = 0.0;
+                        //update hazard animation frame
+                        _hazardBData.rec.x = _hazardBData.currentFrame * _hazardBData.rec.width;
+                        _hazardBData.currentFrame++;
+                        if (_hazardBData.currentFrame > 7)
+                        {
+                                _hazardBData.currentFrame = 0;
                         }
                 }
 
                 //draw player
-                DrawTextureRec( _playerSpriteSheet, _playerRec, _playerPos, WHITE);
+                DrawTextureRec( _playerSpriteSheet, _playerData.rec, _playerData.pos, WHITE);
 
                 //draw hazard
-                DrawTextureRec( _hazardSpriteSheet, _hazardRec, _hazardPos, WHITE);
+                DrawTextureRec( _hazardSpriteSheet, _hazardAData.rec, _hazardAData.pos, WHITE);
+
+                //draw hazard 2
+                DrawTextureRec( _hazardSpriteSheet, _hazardBData.rec, _hazardBData.pos, RED);
 
                 //stop drawing
                 EndDrawing();
