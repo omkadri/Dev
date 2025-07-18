@@ -103,6 +103,8 @@ int main()
                 _hazards[i].updateTime = 1.0 / 16.0;
         }
 
+        float _finishLine{ _hazards[_hazardCount - 1].pos.x };
+
         while(!WindowShouldClose())
         {
                 //delta time (time since last frame)
@@ -169,11 +171,14 @@ int main()
                 //update player position
                 _player.pos.y += _playerVelocityY * dT;
 
-                //update hazard x position
+                //update hazard position
                 for (int i = 0; i < _hazardCount; i++)
                 {
                         _hazards[i].pos.x += _hazardVelocityX * dT;
                 }
+
+                //update finish line position
+                _finishLine += _hazardVelocityX * dT;
 
                 //update player animation frame
                 if (_isGrounded)
