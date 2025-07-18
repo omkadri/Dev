@@ -12,12 +12,14 @@ struct AnimData
 int main()
 { 
         //window properties
-        const int _windowWidth = 800;
-        const int _windowHeight = 450;
+        int _windowDimensions[2];
+        _windowDimensions[0] = 800; //width
+        _windowDimensions[1] = 450; //height
+
         int _targetFramerate = 60;
 
         //initialize window
-        InitWindow(_windowWidth, _windowHeight, "Dapper Dasher"); //TODO: make string variable
+        InitWindow(_windowDimensions[0], _windowDimensions[1], "Dapper Dasher"); //TODO: make string variable
         SetTargetFPS(_targetFramerate);
         
         //acceleration due to gravity ( (pixels per second) per second )
@@ -37,8 +39,8 @@ int main()
         _playerData.rec.height = _playerSpriteSheet.height / _playerSpriteSheetColumnCount;
         _playerData.rec.x = 0;
         _playerData.rec.y = 0;
-        _playerData.pos.x = _windowWidth / 2 - _playerData.rec.width / 2;
-        _playerData.pos.y = _windowHeight - _playerData.rec.height;
+        _playerData.pos.x = _windowDimensions[0] / 2 - _playerData.rec.width / 2;
+        _playerData.pos.y = _windowDimensions[1] - _playerData.rec.height;
         _playerData.currentFrame = 0;
         _playerData.updateTime = 1.0 / 12.0;
         _playerData.runningTime = 0.0;
@@ -52,7 +54,7 @@ int main()
         //hazard anim data setup
         AnimData _hazardAData{
                 {0.0, 0.0, _hazardSpriteSheet.width / _hazardSpriteSheetRowCount, _hazardSpriteSheet.height / _hazardSpriteSheetColumnCount},//Rectangle rec
-                {_windowWidth, _windowHeight - _hazardSpriteSheet.height / _hazardSpriteSheetColumnCount},// Vector2 pos
+                {_windowDimensions[0], _windowDimensions[1] - _hazardSpriteSheet.height / _hazardSpriteSheetColumnCount},// Vector2 pos
                 0,// int currentFrame
                 1.0/16.0,// float updateTime
                 0 // float runningTime
@@ -60,7 +62,7 @@ int main()
 
         AnimData _hazardBData{
                 {0.0, 0.0, _hazardSpriteSheet.width / _hazardSpriteSheetRowCount, _hazardSpriteSheet.height / _hazardSpriteSheetColumnCount},//Rectangle rec
-                {_windowWidth + 300, _windowHeight - _hazardSpriteSheet.height / _hazardSpriteSheetColumnCount},// Vector2 pos
+                {_windowDimensions[0] + 300, _windowDimensions[1] - _hazardSpriteSheet.height / _hazardSpriteSheetColumnCount},// Vector2 pos
                 0,// int currentFrame
                 1.0/12.0,// float updateTime
                 0 // float runningTime
@@ -76,7 +78,7 @@ int main()
                 ClearBackground(WHITE);
 
                 //perform ground check
-                if (_playerData.pos.y >= _windowHeight - _playerData.rec.height)
+                if (_playerData.pos.y >= _windowDimensions[1] - _playerData.rec.height)
                 {
                         _playerVelocityY = 0;
                         _isGrounded = true;
