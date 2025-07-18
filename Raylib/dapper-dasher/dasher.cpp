@@ -37,7 +37,7 @@ int main()
         //window properties
         int _windowDimensions[2];
         _windowDimensions[0] = 500; //width
-        _windowDimensions[1] = 300; //height
+        _windowDimensions[1] = 350; //height
         int _targetFramerate = 60;
 
         //initialize window
@@ -50,6 +50,15 @@ int main()
         //background
         Texture2D _backgroundImage = LoadTexture("textures/far-buildings.png"); //TODO: make string variable
         float _backgroundX{};
+        int _backgroundScrollingSpeed = 20;
+
+        Texture2D _midgroundImage = LoadTexture("textures/back-buildings.png"); //TODO: make string variable
+        float _midgroundX{};
+        int _midgroundScrollingSpeed = 40;
+
+        Texture2D _foregroundImage = LoadTexture("textures/foreground.png"); //TODO: make string variable
+        float _foregroundX{};
+        int _foregroundScrollingSpeed = 80;
         
         //player properties
         Texture2D _playerSpriteSheet = LoadTexture("textures/scarfy.png"); //TODO: make string variable
@@ -103,10 +112,21 @@ int main()
                 BeginDrawing();
                 ClearBackground(WHITE);
 
-                _backgroundX -= 50 * dT;
+                _backgroundX -= _backgroundScrollingSpeed * dT;
+                _midgroundX -= _midgroundScrollingSpeed * dT;
+                _foregroundX -= _foregroundScrollingSpeed * dT;
+
                 if (_backgroundX <= -_backgroundImage.width * 2)
                 {
                         _backgroundX = 0.0;
+                }
+                if (_midgroundX <= -_midgroundImage.width * 2)
+                {
+                        _midgroundX = 0.0;
+                }
+                if (_foregroundX <= -_foregroundImage.width * 2)
+                {
+                        _foregroundX = 0.0;
                 }
 
                 //draw background
@@ -114,6 +134,18 @@ int main()
                 DrawTextureEx(_backgroundImage, _backgroundAPos, 0.0, 2.0, WHITE);
                 Vector2 _backgroundBPos = {_backgroundX + _backgroundImage.width*2, 0.0};
                 DrawTextureEx(_backgroundImage, _backgroundBPos, 0.0, 2.0, WHITE);
+
+                //draw midground
+                Vector2 _midgroundPos = {_midgroundX, 0.0};
+                DrawTextureEx(_midgroundImage, _midgroundPos, 0.0, 2.0, WHITE);
+                Vector2 _midgroundBPos = {_midgroundX + _midgroundImage.width*2, 0.0};
+                DrawTextureEx(_midgroundImage, _midgroundBPos, 0.0, 2.0, WHITE);
+
+                //draw foreground
+                Vector2 _foregroundPos = {_foregroundX, 0.0};
+                DrawTextureEx(_foregroundImage, _foregroundPos, 0.0, 2.0, WHITE);
+                Vector2 _foregroundBPos = {_foregroundX + _foregroundImage.width*2, 0.0};
+                DrawTextureEx(_foregroundImage, _foregroundBPos, 0.0, 2.0, WHITE);
 
                 //perform ground check
                 if (isGrounded(_player, _windowDimensions[1]))
@@ -169,5 +201,7 @@ int main()
         UnloadTexture(_playerSpriteSheet);
         UnloadTexture(_hazardSpriteSheet);
         UnloadTexture(_backgroundImage);
+        UnloadTexture(_midgroundImage);
+        UnloadTexture(_foregroundImage);
         CloseWindow();
 }
