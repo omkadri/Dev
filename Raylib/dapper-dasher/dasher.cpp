@@ -52,24 +52,21 @@ int main()
         int _hazardVelocityX = -200;
 
         //hazard anim data setup
-        AnimData _hazards[3]{};
+        const int _hazardCount = 6;
+        AnimData _hazards[_hazardCount]{};
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < _hazardCount; i++)
         {
                 _hazards[i].rec.x = 0.0;
                 _hazards[i].rec.y = 0.0;
                 _hazards[i].rec.width = _hazardSpriteSheet.width / _hazardSpriteSheetRowCount;
                 _hazards[i].rec.height = _hazardSpriteSheet.height / _hazardSpriteSheetColumnCount;
+                _hazards[i].pos.x = _windowDimensions[0] + i * 300;
                 _hazards[i].pos.y = _windowDimensions[1] - _hazardSpriteSheet.height / _hazardSpriteSheetColumnCount;
                 _hazards[i].currentFrame = 0;
                 _hazards[i].runningTime = 0.0;
                 _hazards[i].updateTime = 1.0 / 16.0;
         }
-
-        _hazards[0].pos.x = _windowDimensions[0];
-        _hazards[1].pos.x = _windowDimensions[0] + 300;
-        _hazards[2].pos.x = _windowDimensions[0] + 600;
-
 
         while(!WindowShouldClose())
         {
@@ -102,9 +99,11 @@ int main()
                 //update player position
                 _player.pos.y += _playerVelocityY * dT;
 
-                //update hazard position
-                _hazards[0].pos.x += _hazardVelocityX * dT;
-                _hazards[1].pos.x += _hazardVelocityX * dT;
+                //update hazard x position
+                for (int i = 0; i < _hazardCount; i++)
+                {
+                        _hazards[i].pos.x += _hazardVelocityX * dT;
+                }
 
                 //update player animation frame
                 if (_isGrounded)
@@ -124,31 +123,20 @@ int main()
                         }
                 }
 
-                //update hazard A animation frame
-                _hazards[0].runningTime += dT;
-                if (_hazards[0].runningTime >= _hazards[0].updateTime)
+                for (int i = 0; i < _hazardCount; i++)
                 {
-                        _hazards[0].runningTime = 0.0;
                         //update hazard animation frame
-                        _hazards[0].rec.x = _hazards[0].currentFrame * _hazards[0].rec.width;
-                        _hazards[0].currentFrame++;
-                        if (_hazards[0].currentFrame > 7)
+                        _hazards[i].runningTime += dT;
+                        if (_hazards[i].runningTime >= _hazards[i].updateTime)
                         {
-                                _hazards[0].currentFrame = 0;
-                        }
-                }
-
-                //update hazard B animation frame
-                _hazards[1].runningTime += dT;
-                if (_hazards[1].runningTime >= _hazards[1].updateTime)
-                {
-                        _hazards[1].runningTime = 0.0;
-                        //update hazard animation frame
-                        _hazards[1].rec.x = _hazards[1].currentFrame * _hazards[1].rec.width;
-                        _hazards[1].currentFrame++;
-                        if (_hazards[1].currentFrame > 7)
-                        {
-                                _hazards[1].currentFrame = 0;
+                                _hazards[i].runningTime = 0.0;
+                                //update hazard animation frame
+                                _hazards[i].rec.x = _hazards[i].currentFrame * _hazards[i].rec.width;
+                                _hazards[i].currentFrame++;
+                                if (_hazards[i].currentFrame > 7)
+                                {
+                                        _hazards[i].currentFrame = 0;
+                                }
                         }
                 }
 
@@ -156,11 +144,10 @@ int main()
                 DrawTextureRec( _playerSpriteSheet, _player.rec, _player.pos, WHITE);
 
                 //draw hazard
-                DrawTextureRec( _hazardSpriteSheet, _hazards[0].rec, _hazards[0].pos, WHITE);
-
-                //draw hazard 2
-                DrawTextureRec( _hazardSpriteSheet, _hazards[1].rec, _hazards[1].pos, RED);
-
+                for (int i = 0; i < _hazardCount; i++)
+                {
+                        DrawTextureRec( _hazardSpriteSheet, _hazards[i].rec, _hazards[i].pos, WHITE);
+                }
                 //stop drawing
                 EndDrawing();
         }
