@@ -9,6 +9,29 @@ struct AnimData
         float runningTime;
 };
 
+bool isGrounded( AnimData data, int windowHeight )
+{
+        return data.pos.y >= windowHeight - data.rec.height;
+}
+
+AnimData updateAnimData(AnimData data, float deltaTime, int maxFrame)
+{
+        //update running time
+        data.runningTime += deltaTime;
+        if (data.runningTime >= data.updateTime)
+        {
+                data.runningTime = 0.0f;
+                //update animation frame
+                data.rec.x = data.currentFrame * data.rec.width;
+                data.currentFrame++;
+                if (data.currentFrame >= maxFrame)
+                {
+                        data.currentFrame = 0;
+                }
+        }
+        return data;
+}
+
 int main()
 { 
         //window properties
@@ -78,7 +101,7 @@ int main()
                 ClearBackground(WHITE);
 
                 //perform ground check
-                if (_player.pos.y >= _windowDimensions[1] - _player.rec.height)
+                if (isGrounded(_player, _windowDimensions[1]))
                 {
                         _playerVelocityY = 0;
                         _isGrounded = true;
@@ -108,36 +131,13 @@ int main()
                 //update player animation frame
                 if (_isGrounded)
                 {
-                        //update player running time
-                        _player.runningTime += dT;
-                        if (_player.runningTime >= _player.updateTime)
-                        {
-                                _player.runningTime = 0.0;
-                                //update player animation frame
-                                _player.rec.x = _player.currentFrame * _player.rec.width;
-                                _player.currentFrame++;
-                                if (_player.currentFrame > 5)
-                                {
-                                        _player.currentFrame = 0;
-                                }
-                        }
+                      _player = updateAnimData(_player, dT, _playerSpriteSheetRowCount - 1);  
                 }
 
                 for (int i = 0; i < _hazardCount; i++)
                 {
                         //update hazard animation frame
-                        _hazards[i].runningTime += dT;
-                        if (_hazards[i].runningTime >= _hazards[i].updateTime)
-                        {
-                                _hazards[i].runningTime = 0.0;
-                                //update hazard animation frame
-                                _hazards[i].rec.x = _hazards[i].currentFrame * _hazards[i].rec.width;
-                                _hazards[i].currentFrame++;
-                                if (_hazards[i].currentFrame > 7)
-                                {
-                                        _hazards[i].currentFrame = 0;
-                                }
-                        }
+                        _hazards[i] = updateAnimData(_hazards[i], dT, _hazardSpriteSheetRowCount - 1);
                 }
 
                 //draw player
