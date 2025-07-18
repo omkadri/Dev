@@ -52,24 +52,23 @@ int main()
         int _hazardVelocityX = -200;
 
         //hazard anim data setup
-        AnimData _hazardA{
-                {0.0, 0.0, _hazardSpriteSheet.width / _hazardSpriteSheetRowCount, _hazardSpriteSheet.height / _hazardSpriteSheetColumnCount},//Rectangle rec
-                {_windowDimensions[0], _windowDimensions[1] - _hazardSpriteSheet.height / _hazardSpriteSheetColumnCount},// Vector2 pos
-                0,// int currentFrame
-                1.0/16.0,// float updateTime
-                0 // float runningTime
-        };
+        AnimData _hazards[3]{};
 
-        AnimData _hazardB{
-                {0.0, 0.0, _hazardSpriteSheet.width / _hazardSpriteSheetRowCount, _hazardSpriteSheet.height / _hazardSpriteSheetColumnCount},//Rectangle rec
-                {_windowDimensions[0] + 300, _windowDimensions[1] - _hazardSpriteSheet.height / _hazardSpriteSheetColumnCount},// Vector2 pos
-                0,// int currentFrame
-                1.0/12.0,// float updateTime
-                0 // float runningTime
-        };
+        for (int i = 0; i < 3; i++)
+        {
+                _hazards[i].rec.x = 0.0;
+                _hazards[i].rec.y = 0.0;
+                _hazards[i].rec.width = _hazardSpriteSheet.width / _hazardSpriteSheetRowCount;
+                _hazards[i].rec.height = _hazardSpriteSheet.height / _hazardSpriteSheetColumnCount;
+                _hazards[i].pos.y = _windowDimensions[1] - _hazardSpriteSheet.height / _hazardSpriteSheetColumnCount;
+                _hazards[i].currentFrame = 0;
+                _hazards[i].runningTime = 0.0;
+                _hazards[i].updateTime = 1.0 / 16.0;
+        }
 
-
-        AnimData _hazards[2]{ _hazardA, _hazardB };
+        _hazards[0].pos.x = _windowDimensions[0];
+        _hazards[1].pos.x = _windowDimensions[0] + 300;
+        _hazards[2].pos.x = _windowDimensions[0] + 600;
 
 
         while(!WindowShouldClose())
