@@ -34,16 +34,16 @@ int main()
         bool _isGrounded = true;
 
         //player anim data
-        AnimData _playerData;
-        _playerData.rec.width = _playerSpriteSheet.width / _playerSpriteSheetRowCount;
-        _playerData.rec.height = _playerSpriteSheet.height / _playerSpriteSheetColumnCount;
-        _playerData.rec.x = 0;
-        _playerData.rec.y = 0;
-        _playerData.pos.x = _windowDimensions[0] / 2 - _playerData.rec.width / 2;
-        _playerData.pos.y = _windowDimensions[1] - _playerData.rec.height;
-        _playerData.currentFrame = 0;
-        _playerData.updateTime = 1.0 / 12.0;
-        _playerData.runningTime = 0.0;
+        AnimData _player;
+        _player.rec.width = _playerSpriteSheet.width / _playerSpriteSheetRowCount;
+        _player.rec.height = _playerSpriteSheet.height / _playerSpriteSheetColumnCount;
+        _player.rec.x = 0;
+        _player.rec.y = 0;
+        _player.pos.x = _windowDimensions[0] / 2 - _player.rec.width / 2;
+        _player.pos.y = _windowDimensions[1] - _player.rec.height;
+        _player.currentFrame = 0;
+        _player.updateTime = 1.0 / 12.0;
+        _player.runningTime = 0.0;
 
         //hazard properties
         Texture2D _hazardSpriteSheet = LoadTexture("textures/12_nebula_spritesheet.png"); //TODO: make string variable
@@ -52,7 +52,7 @@ int main()
         int _hazardVelocityX = -200;
 
         //hazard anim data setup
-        AnimData _hazardAData{
+        AnimData _hazardA{
                 {0.0, 0.0, _hazardSpriteSheet.width / _hazardSpriteSheetRowCount, _hazardSpriteSheet.height / _hazardSpriteSheetColumnCount},//Rectangle rec
                 {_windowDimensions[0], _windowDimensions[1] - _hazardSpriteSheet.height / _hazardSpriteSheetColumnCount},// Vector2 pos
                 0,// int currentFrame
@@ -60,13 +60,17 @@ int main()
                 0 // float runningTime
         };
 
-        AnimData _hazardBData{
+        AnimData _hazardB{
                 {0.0, 0.0, _hazardSpriteSheet.width / _hazardSpriteSheetRowCount, _hazardSpriteSheet.height / _hazardSpriteSheetColumnCount},//Rectangle rec
                 {_windowDimensions[0] + 300, _windowDimensions[1] - _hazardSpriteSheet.height / _hazardSpriteSheetColumnCount},// Vector2 pos
                 0,// int currentFrame
                 1.0/12.0,// float updateTime
                 0 // float runningTime
         };
+
+
+        AnimData _hazards[2]{ _hazardA, _hazardB };
+
 
         while(!WindowShouldClose())
         {
@@ -78,7 +82,7 @@ int main()
                 ClearBackground(WHITE);
 
                 //perform ground check
-                if (_playerData.pos.y >= _windowDimensions[1] - _playerData.rec.height)
+                if (_player.pos.y >= _windowDimensions[1] - _player.rec.height)
                 {
                         _playerVelocityY = 0;
                         _isGrounded = true;
@@ -97,66 +101,66 @@ int main()
                 }
 
                 //update player position
-                _playerData.pos.y += _playerVelocityY * dT;
+                _player.pos.y += _playerVelocityY * dT;
 
                 //update hazard position
-                _hazardAData.pos.x += _hazardVelocityX * dT;
-                _hazardBData.pos.x += _hazardVelocityX * dT;
+                _hazards[0].pos.x += _hazardVelocityX * dT;
+                _hazards[1].pos.x += _hazardVelocityX * dT;
 
                 //update player animation frame
                 if (_isGrounded)
                 {
                         //update player running time
-                        _playerData.runningTime += dT;
-                        if (_playerData.runningTime >= _playerData.updateTime)
+                        _player.runningTime += dT;
+                        if (_player.runningTime >= _player.updateTime)
                         {
-                                _playerData.runningTime = 0.0;
+                                _player.runningTime = 0.0;
                                 //update player animation frame
-                                _playerData.rec.x = _playerData.currentFrame * _playerData.rec.width;
-                                _playerData.currentFrame++;
-                                if (_playerData.currentFrame > 5)
+                                _player.rec.x = _player.currentFrame * _player.rec.width;
+                                _player.currentFrame++;
+                                if (_player.currentFrame > 5)
                                 {
-                                        _playerData.currentFrame = 0;
+                                        _player.currentFrame = 0;
                                 }
                         }
                 }
 
                 //update hazard A animation frame
-                _hazardAData.runningTime += dT;
-                if (_hazardAData.runningTime >= _hazardAData.updateTime)
+                _hazards[0].runningTime += dT;
+                if (_hazards[0].runningTime >= _hazards[0].updateTime)
                 {
-                        _hazardAData.runningTime = 0.0;
+                        _hazards[0].runningTime = 0.0;
                         //update hazard animation frame
-                        _hazardAData.rec.x = _hazardAData.currentFrame * _hazardAData.rec.width;
-                        _hazardAData.currentFrame++;
-                        if (_hazardAData.currentFrame > 7)
+                        _hazards[0].rec.x = _hazards[0].currentFrame * _hazards[0].rec.width;
+                        _hazards[0].currentFrame++;
+                        if (_hazards[0].currentFrame > 7)
                         {
-                                _hazardAData.currentFrame = 0;
+                                _hazards[0].currentFrame = 0;
                         }
                 }
 
                 //update hazard B animation frame
-                _hazardBData.runningTime += dT;
-                if (_hazardBData.runningTime >= _hazardBData.updateTime)
+                _hazards[1].runningTime += dT;
+                if (_hazards[1].runningTime >= _hazards[1].updateTime)
                 {
-                        _hazardBData.runningTime = 0.0;
+                        _hazards[1].runningTime = 0.0;
                         //update hazard animation frame
-                        _hazardBData.rec.x = _hazardBData.currentFrame * _hazardBData.rec.width;
-                        _hazardBData.currentFrame++;
-                        if (_hazardBData.currentFrame > 7)
+                        _hazards[1].rec.x = _hazards[1].currentFrame * _hazards[1].rec.width;
+                        _hazards[1].currentFrame++;
+                        if (_hazards[1].currentFrame > 7)
                         {
-                                _hazardBData.currentFrame = 0;
+                                _hazards[1].currentFrame = 0;
                         }
                 }
 
                 //draw player
-                DrawTextureRec( _playerSpriteSheet, _playerData.rec, _playerData.pos, WHITE);
+                DrawTextureRec( _playerSpriteSheet, _player.rec, _player.pos, WHITE);
 
                 //draw hazard
-                DrawTextureRec( _hazardSpriteSheet, _hazardAData.rec, _hazardAData.pos, WHITE);
+                DrawTextureRec( _hazardSpriteSheet, _hazards[0].rec, _hazards[0].pos, WHITE);
 
                 //draw hazard 2
-                DrawTextureRec( _hazardSpriteSheet, _hazardBData.rec, _hazardBData.pos, RED);
+                DrawTextureRec( _hazardSpriteSheet, _hazards[1].rec, _hazards[1].pos, RED);
 
                 //stop drawing
                 EndDrawing();
