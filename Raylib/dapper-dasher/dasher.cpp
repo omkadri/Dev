@@ -36,9 +36,8 @@ int main()
 { 
         //window properties
         int _windowDimensions[2];
-        _windowDimensions[0] = 800; //width
-        _windowDimensions[1] = 450; //height
-
+        _windowDimensions[0] = 500; //width
+        _windowDimensions[1] = 300; //height
         int _targetFramerate = 60;
 
         //initialize window
@@ -47,6 +46,10 @@ int main()
         
         //acceleration due to gravity ( (pixels per second) per second )
         const int _gravity = 1000;
+
+        //background
+        Texture2D _backgroundImage = LoadTexture("textures/far-buildings.png"); //TODO: make string variable
+        float _backgroundX{};
         
         //player properties
         Texture2D _playerSpriteSheet = LoadTexture("textures/scarfy.png"); //TODO: make string variable
@@ -99,6 +102,12 @@ int main()
                 //start drawing
                 BeginDrawing();
                 ClearBackground(WHITE);
+
+                _backgroundX -= 20 * dT;
+
+                //draw background
+                Vector2 _backgroundPos = {_backgroundX, 0.0};
+                DrawTextureEx(_backgroundImage, _backgroundPos, 0.0, 2.0, WHITE);
 
                 //perform ground check
                 if (isGrounded(_player, _windowDimensions[1]))
@@ -153,5 +162,6 @@ int main()
         }
         UnloadTexture(_playerSpriteSheet);
         UnloadTexture(_hazardSpriteSheet);
+        UnloadTexture(_backgroundImage);
         CloseWindow();
 }
