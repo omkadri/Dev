@@ -103,11 +103,17 @@ int main()
                 BeginDrawing();
                 ClearBackground(WHITE);
 
-                _backgroundX -= 20 * dT;
+                _backgroundX -= 50 * dT;
+                if (_backgroundX <= -_backgroundImage.width * 2)
+                {
+                        _backgroundX = 0.0;
+                }
 
                 //draw background
-                Vector2 _backgroundPos = {_backgroundX, 0.0};
-                DrawTextureEx(_backgroundImage, _backgroundPos, 0.0, 2.0, WHITE);
+                Vector2 _backgroundAPos = {_backgroundX, 0.0};
+                DrawTextureEx(_backgroundImage, _backgroundAPos, 0.0, 2.0, WHITE);
+                Vector2 _backgroundBPos = {_backgroundX + _backgroundImage.width*2, 0.0};
+                DrawTextureEx(_backgroundImage, _backgroundBPos, 0.0, 2.0, WHITE);
 
                 //perform ground check
                 if (isGrounded(_player, _windowDimensions[1]))
