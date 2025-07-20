@@ -218,7 +218,11 @@ int main()
 
                 if (collisionDetected)
                 {
-                        //lose the game
+                        DrawText("Game Over!", _windowDimensions[0] / 2 - 40, _windowDimensions[1] / 2, 20, RED);
+                }
+                else if (_player.pos.x >= _finishLine)
+                {
+                        DrawText("You Win!", _windowDimensions[0] / 2 - 40, _windowDimensions[1] / 2, 20, GREEN);
                 }
                 else
                 {
