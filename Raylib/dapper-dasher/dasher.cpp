@@ -59,6 +59,9 @@ int main()
         Texture2D _foregroundImage = LoadTexture("textures/foreground.png"); //TODO: make string variable
         float _foregroundX{};
         int _foregroundScrollingSpeed = 80;
+
+        //collision detection
+        bool collisionDetected{};
         
         //player properties
         Texture2D _playerSpriteSheet = LoadTexture("textures/scarfy.png"); //TODO: make string variable
@@ -192,17 +195,49 @@ int main()
                         _hazards[i] = updateAnimData(_hazards[i], dT, _hazardSpriteSheetRowCount - 1);
                 }
 
-                //draw player
-                DrawTextureRec( _playerSpriteSheet, _player.rec, _player.pos, WHITE);
-
-                //draw hazard
-                for (int i = 0; i < _hazardCount; i++)
+                for (AnimData hazard : _hazards)
                 {
-                        DrawTextureRec( _hazardSpriteSheet, _hazards[i].rec, _hazards[i].pos, WHITE);
+                        float padding{50};
+                        Rectangle hazardRec{
+                                hazard.pos.x + padding,
+                                hazard.pos.y + padding,
+                                hazard.rec.width - padding * 2,
+                                hazard.rec.height - padding * 2
+                        };
+                        Rectangle playerRec{
+                                _player.pos.x,
+                                _player.pos.y,
+                                _player.rec.width,
+                                _player.rec.height
+                        };
+                        if (CheckCollisionRecs(hazardRec, playerRec))
+                        {
+                                collisionDetected = true;
+                        }
                 }
+
+                if (collisionDetected)
+                {
+                        //lose the game
+                }
+                else
+                {
+                        //draw hazard
+                        for (int i = 0; i < _hazardCount; i++)
+                        {
+                                DrawTextureRec( _hazardSpriteSheet, _hazards[i].rec, _hazards[i].pos, WHITE);
+                        }
+
+                        //draw player
+                        DrawTextureRec( _playerSpriteSheet, _player.rec, _player.pos, WHITE);
+
+                }
+
                 //stop drawing
                 EndDrawing();
         }
+
+        //unload textures and close window
         UnloadTexture(_playerSpriteSheet);
         UnloadTexture(_hazardSpriteSheet);
         UnloadTexture(_backgroundImage);
