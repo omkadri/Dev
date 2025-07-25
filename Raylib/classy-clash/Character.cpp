@@ -6,8 +6,8 @@ Character::Character(int windowWidth, int windowHeight)
         width = defaultSpritesheet.width / defaultSpritesheetRowCount;
         height = defaultSpritesheet.height / defaultSpritesheetColumnCount;
         screenPos = {
-            static_cast<float>(windowWidth) / 2.0f - scale * (0.5f * (float)width),
-            static_cast<float>(windowHeight) / 2.0f - scale * (0.5f * (float)height)};
+            static_cast<float>(windowWidth) / 2.0f - scale * (0.5f * width),
+            static_cast<float>(windowHeight) / 2.0f - scale * (0.5f * height)};
 }
 
 void Character::tick(float deltaTime)
@@ -45,8 +45,8 @@ void Character::tick(float deltaTime)
         }
 
         // Draw the player
-        Rectangle source = {currentFrame * (float)width, 0.0f, rightLeft * (float)width, (float)height};
-        Rectangle dest = {screenPos.x, screenPos.y, scale * (float)width, scale * (float)height};
+        Rectangle source = {currentFrame * (float)width, 0.0f, rightLeft * (float)width, (float)height};//TODO: use static_cast<float>
+        Rectangle dest = {screenPos.x, screenPos.y, scale * (float)width, scale * (float)height};//TODO: use static_cast<float>
 
         DrawTexturePro(defaultSpritesheet, source, dest, (Vector2){}, 0.0f, WHITE);
 }
