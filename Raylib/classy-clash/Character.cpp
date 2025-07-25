@@ -16,6 +16,7 @@ void Character::setScreenPos(int windowWidth, int windowHeight)
 
 void Character::tick(float deltaTime)
 {
+        worldPosLastFrame = worldPos;
         Vector2 direction{};
         if (IsKeyDown(KEY_A))
                 direction.x -= 1.0f;
@@ -52,4 +53,9 @@ void Character::tick(float deltaTime)
         Rectangle dest = {screenPos.x, screenPos.y, scale * (float)width, scale * (float)height};
 
         DrawTexturePro(defaultSpritesheet, source, dest, (Vector2){}, 0.0f, WHITE);
+}
+
+void Character::undoMovement()
+{
+        worldPos = worldPosLastFrame;
 }

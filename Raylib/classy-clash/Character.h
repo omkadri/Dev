@@ -7,17 +7,17 @@ public:
         Vector2 getWorldPos() const { return worldPos; }
         void setScreenPos(int windowWidth, int windowHeight);
         void tick(float deltaTime);
+        void undoMovement();
 
 private:
         Texture2D defaultSpritesheet{LoadTexture("assets/characters/knight_idle_spritesheet.png")};
         int defaultSpritesheetRowCount{6};
         int defaultSpritesheetColumnCount{1};
         Texture2D idleSpritesheet{LoadTexture("assets/characters/knight_idle_spritesheet.png")};
-        ;
         Texture2D runSpritesheet{LoadTexture("assets/characters/knight_run_spritesheet.png")};
-        ;
         Vector2 screenPos{};
         Vector2 worldPos{};
+        Vector2 worldPosLastFrame{};
         // 1 = facing right, -1 = facing left
         float rightLeft{1.0f};
         // animation variables
