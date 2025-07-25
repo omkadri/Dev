@@ -1,6 +1,23 @@
 #include "raylib.h"
 #include "raymath.h"
 
+class Character
+{
+        public:
+        Vector2 GetWorldPos() const { return _worldPos; }
+
+        private:
+        Texture2D _defaultSpritesheet;
+        Texture2D _idleSpritesheet;
+        Texture2D _runSpritesheet;
+        Vector2 _screenPos;
+        Vector2 _worldPos;
+        float runningTime{1.0f};
+        int currentFrame{0};
+        const int maxFrames{6};
+        const float updateTime{1.0f / 12.0f}; // 12 frames per second
+};
+
 int main()
 { 
         //window properties
