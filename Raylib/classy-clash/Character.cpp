@@ -1,17 +1,13 @@
 #include "Character.h"
 #include "raymath.h"
 
-Character::Character()
+Character::Character(int windowWidth, int windowHeight)
 {
-    width = defaultSpritesheet.width / defaultSpritesheetRowCount;
-    height = defaultSpritesheet.height / defaultSpritesheetColumnCount;
-}
-
-void Character::setScreenPos(int windowWidth, int windowHeight)
-{
+        width = defaultSpritesheet.width / defaultSpritesheetRowCount;
+        height = defaultSpritesheet.height / defaultSpritesheetColumnCount;
         screenPos = {
-            (float)windowWidth / 2.0f - scale * (0.5f * (float)width),
-            (float)windowHeight / 2.0f - scale * (0.5f * (float)height)};
+            static_cast<float>(windowWidth) / 2.0f - scale * (0.5f * (float)width),
+            static_cast<float>(windowHeight) / 2.0f - scale * (0.5f * (float)height)};
 }
 
 void Character::tick(float deltaTime)

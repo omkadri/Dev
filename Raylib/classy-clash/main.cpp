@@ -13,8 +13,7 @@ int main()
         InitWindow(_windowWidth, _windowHeight, "Classy Clash");
         SetTargetFPS(_targetFramerate);
 
-        Character _player;
-        _player.setScreenPos(_windowWidth, _windowHeight);
+        Character _player(_windowWidth, _windowHeight);
 
         // map properties
         Texture2D _worldMap = LoadTexture("assets/maps/worldMap/WorldMap.png");
@@ -35,7 +34,7 @@ int main()
                 _player.tick(GetFrameTime());
 
                 // check map bounds
-                if (_player.getWorldPos().x < 0.0f || //TODO: make bounds into variables
+                if (_player.getWorldPos().x < 0.0f || // TODO: make bounds into variables
                     _player.getWorldPos().y < 0.0f ||
                     _player.getWorldPos().x + _windowWidth > _worldMap.width * _worldMapScale ||
                     _player.getWorldPos().y + _windowHeight > _worldMap.height * _worldMapScale)
