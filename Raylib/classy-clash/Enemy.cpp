@@ -1,10 +1,12 @@
 #include "Enemy.h"
 
-Enemy::Enemy(Vector2 pos, Texture2D idleSpritesheet, Texture2D runSpritesheet) : worldPos(pos),
-                                                                                 defaultSpritesheet(idleSpritesheet),
-                                                                                 idleSpritesheet(idleSpritesheet),
-                                                                                 runSpritesheet(runSpritesheet)
+Enemy::Enemy(Vector2 pos, Texture2D idleSpritesheet, Texture2D runSpritesheet)
 {
+        worldPos = pos;
+        defaultSpritesheet = idleSpritesheet;
+        idleSpritesheet = idleSpritesheet;
+        runSpritesheet = runSpritesheet;
+
         width = defaultSpritesheet.width / defaultSpritesheetRowCount;
         height = defaultSpritesheet.height / defaultSpritesheetColumnCount;
 }
@@ -28,14 +30,4 @@ void Enemy::tick(float deltaTime)
         Rectangle dest = {screenPos.x, screenPos.y, scale * (float)width, scale * (float)height};        // TODO: use static_cast<float>
 
         DrawTexturePro(defaultSpritesheet, source, dest, (Vector2){}, 0.0f, WHITE);
-}
-
-void Enemy::undoMovement()
-{
-        worldPos = worldPosLastFrame;
-}
-
-Rectangle Enemy::getCollisionRect()
-{
-        return Rectangle{screenPos.x, screenPos.y, width * scale, height * scale};
 }
