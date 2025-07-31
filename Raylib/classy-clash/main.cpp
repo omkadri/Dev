@@ -2,6 +2,7 @@
 #include "raymath.h"
 #include "Character.h"
 #include "Prop.h"
+#include "Enemy.h"
 
 int main()
 {
@@ -21,10 +22,13 @@ int main()
         Vector2 _worldMapPos = {0, 0};
         const float _worldMapScale{4.0f};
 
-        // load props
+        // setup props
         Prop _props[2]{
             Prop{Vector2{600.0f, 300.0f}, LoadTexture("assets/sprites/Rock.png")},
             Prop{Vector2{400.0f, 500.0f}, LoadTexture("assets/sprites/Log.png")}};
+
+        // enemy properties
+        Enemy _goblin(Vector2{}, LoadTexture("assets/characters/goblin_idle_spritesheet.png"), LoadTexture("assets/characters/goblin_run_spritesheet.png"));
 
         while (!WindowShouldClose())
         {
@@ -44,6 +48,7 @@ int main()
                 }
 
                 _player.tick(GetFrameTime());
+                _goblin.tick(GetFrameTime());
 
                 // check map bounds
                 if (_player.getWorldPos().x < 0.0f || // TODO: make bounds into variables
@@ -62,7 +67,7 @@ int main()
                         }
                 }
 
-                // stop Drawing
+                // stop drawing
                 EndDrawing();
         }
         UnloadTexture(_worldMap);
