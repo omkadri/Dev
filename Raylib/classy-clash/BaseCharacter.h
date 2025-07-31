@@ -6,6 +6,7 @@ class BaseCharacter
 {
 public:
         BaseCharacter();
+        virtual void tick(float deltaTime);
         Vector2 getWorldPos() const { return worldPos; }
         void undoMovement();
         Rectangle getCollisionRect();
