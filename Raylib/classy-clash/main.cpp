@@ -22,21 +22,27 @@ int main()
         const float _worldMapScale{4.0f};
 
         // load props
-        Prop _rock(Vector2{0.0f, 0.0f}, LoadTexture("assets/sprites/Rock.png"));
+        Prop _props[2]{
+                Prop{Vector2{600.0f, 300.0f}, LoadTexture("assets/sprites/Rock.png")},
+                Prop{Vector2{400.0f, 500.0f}, LoadTexture("assets/sprites/Log.png")}
+        };
 
         while (!WindowShouldClose())
         {
-                // Start Drawing
+                // start Drawing
                 BeginDrawing();
                 ClearBackground(WHITE);
 
                 _worldMapPos = Vector2Scale(_player.getWorldPos(), -1.0f);
 
-                // Draw the world map
+                // draw the world map
                 DrawTextureEx(_worldMap, _worldMapPos, 0.0f, _worldMapScale, WHITE);
 
-                // Draw props
-                _rock.Render(_player.getWorldPos());
+                // draw props
+                for (auto prop : _props)
+                {
+                       prop.Render(_player.getWorldPos()); 
+                }
 
                 _player.tick(GetFrameTime());
 
@@ -48,7 +54,7 @@ int main()
                 {
                         _player.undoMovement();
                 }
-                // Stop Drawing
+                // stop Drawing
                 EndDrawing();
         }
         UnloadTexture(_worldMap);
