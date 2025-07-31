@@ -45,8 +45,8 @@ void Character::tick(float deltaTime)
         }
 
         // Draw the player
-        Rectangle source = {currentFrame * (float)width, 0.0f, rightLeft * (float)width, (float)height};//TODO: use static_cast<float>
-        Rectangle dest = {screenPos.x, screenPos.y, scale * (float)width, scale * (float)height};//TODO: use static_cast<float>
+        Rectangle source = {currentFrame * (float)width, 0.0f, rightLeft * (float)width, (float)height}; // TODO: use static_cast<float>
+        Rectangle dest = {screenPos.x, screenPos.y, scale * (float)width, scale * (float)height};        // TODO: use static_cast<float>
 
         DrawTexturePro(defaultSpritesheet, source, dest, (Vector2){}, 0.0f, WHITE);
 }
@@ -54,4 +54,9 @@ void Character::tick(float deltaTime)
 void Character::undoMovement()
 {
         worldPos = worldPosLastFrame;
+}
+
+Rectangle Character::getCollisionRect()
+{
+        return Rectangle{screenPos.x, screenPos.y, width * scale, height * scale};
 }

@@ -7,6 +7,7 @@ public:
         Vector2 getWorldPos() const { return worldPos; }
         void tick(float deltaTime);
         void undoMovement();
+        Rectangle getCollisionRect();
 
 private:
         Texture2D defaultSpritesheet{LoadTexture("assets/characters/knight_idle_spritesheet.png")};

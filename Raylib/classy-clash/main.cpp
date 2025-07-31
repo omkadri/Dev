@@ -23,9 +23,8 @@ int main()
 
         // load props
         Prop _props[2]{
-                Prop{Vector2{600.0f, 300.0f}, LoadTexture("assets/sprites/Rock.png")},
-                Prop{Vector2{400.0f, 500.0f}, LoadTexture("assets/sprites/Log.png")}
-        };
+            Prop{Vector2{600.0f, 300.0f}, LoadTexture("assets/sprites/Rock.png")},
+            Prop{Vector2{400.0f, 500.0f}, LoadTexture("assets/sprites/Log.png")}};
 
         while (!WindowShouldClose())
         {
@@ -41,7 +40,7 @@ int main()
                 // draw props
                 for (auto prop : _props)
                 {
-                       prop.Render(_player.getWorldPos()); 
+                        prop.Render(_player.getWorldPos());
                 }
 
                 _player.tick(GetFrameTime());
@@ -54,6 +53,15 @@ int main()
                 {
                         _player.undoMovement();
                 }
+                // check prop collisions
+                for (auto prop : _props)
+                {
+                        if (CheckCollisionRecs(prop.getCollisionRect(_player.getWorldPos()), _player.getCollisionRect()))
+                        {
+                                _player.undoMovement();
+                        }
+                }
+
                 // stop Drawing
                 EndDrawing();
         }
