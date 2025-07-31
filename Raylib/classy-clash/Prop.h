@@ -1,9 +1,11 @@
 #include "raylib.h"
+#include "raymath.h"
 
 class Prop
 {
 public:
         Prop(Vector2 pos, Texture2D texture);
+        void Render(Vector2 playerPos);
 private:
         Texture2D texture{};
         Vector2 worldPos{};

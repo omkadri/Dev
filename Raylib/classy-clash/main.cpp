@@ -1,6 +1,7 @@
 #include "raylib.h"
 #include "raymath.h"
 #include "Character.h"
+#include "Prop.h"
 
 int main()
 {
@@ -20,6 +21,9 @@ int main()
         Vector2 _worldMapPos = {0, 0};
         const float _worldMapScale{4.0f};
 
+        // load props
+        Prop _rock(Vector2{0.0f, 0.0f}, LoadTexture("assets/sprites/Rock.png"));
+
         while (!WindowShouldClose())
         {
                 // Start Drawing
@@ -30,6 +34,9 @@ int main()
 
                 // Draw the world map
                 DrawTextureEx(_worldMap, _worldMapPos, 0.0f, _worldMapScale, WHITE);
+
+                // Draw props
+                _rock.Render(_player.getWorldPos());
 
                 _player.tick(GetFrameTime());
 
