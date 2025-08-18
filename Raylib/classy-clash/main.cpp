@@ -29,6 +29,7 @@ int main()
 
         // enemy properties
         Enemy _goblin(Vector2{}, LoadTexture("assets/characters/goblin_idle_spritesheet.png"), LoadTexture("assets/characters/goblin_run_spritesheet.png"));
+        _goblin.setTarget(&_player);
 
         while (!WindowShouldClose())
         {

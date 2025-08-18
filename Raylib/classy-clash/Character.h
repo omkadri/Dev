@@ -1,3 +1,5 @@
+#ifndef CHARACTER_H
+#define CHARACTER_H // This is a check to prevent multiple inclusions of this header file
 #include "raylib.h"
 #include "BaseCharacter.h"
 
@@ -9,3 +11,5 @@ public:
 
 private:
 };
+
+#endif
