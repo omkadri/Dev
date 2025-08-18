@@ -8,6 +8,7 @@ class Character : public BaseCharacter
 public:
         Character(int windowWidth, int windowHeight);
         virtual void tick(float deltaTime) override;
+        Vector2 getScreenPos() { return screenPos; }
 
 private:
 };
