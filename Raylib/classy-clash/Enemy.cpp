@@ -1,4 +1,5 @@
 #include "Enemy.h"
+#include "raymath.h"
 
 Enemy::Enemy(Vector2 pos, Texture2D idleSpritesheet, Texture2D runSpritesheet)
 {
@@ -13,5 +14,6 @@ Enemy::Enemy(Vector2 pos, Texture2D idleSpritesheet, Texture2D runSpritesheet)
 
 void Enemy::tick(float deltaTime)
 {
+        screenPos = Vector2Subtract(worldPos, target->getWorldPos());
         BaseCharacter::tick(deltaTime); // Call the base class tick to handle animation and drawing
 }
