@@ -6,10 +6,11 @@ class BaseCharacter
 {
 public:
         BaseCharacter();
-        virtual void tick(float deltaTime);
         Vector2 getWorldPos() const { return worldPos; }
         void undoMovement();
         Rectangle getCollisionRect();
+        virtual void tick(float deltaTime);
+        virtual Vector2 getScreenPos() = 0;
 
 protected:
         Texture2D defaultSpritesheet{LoadTexture("assets/characters/knight_idle_spritesheet.png")};
@@ -17,7 +18,6 @@ protected:
         int defaultSpritesheetColumnCount{1};
         Texture2D idleSpritesheet{LoadTexture("assets/characters/knight_idle_spritesheet.png")};
         Texture2D runSpritesheet{LoadTexture("assets/characters/knight_run_spritesheet.png")};
-        Vector2 screenPos{};
         Vector2 worldPos{};
         Vector2 worldPosLastFrame{};
         // 1 = facing right, -1 = facing left
@@ -31,6 +31,7 @@ protected:
         float scale{4.0f};
         float width{};
         float height{};
+        Vector2 velocity{};
 
 private:
 };

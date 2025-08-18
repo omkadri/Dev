@@ -13,7 +13,6 @@ int main()
 
         // initialize window
         InitWindow(_windowWidth, _windowHeight, "Classy Clash");
-        SetTargetFPS(_targetFramerate);
 
         Character _player(_windowWidth, _windowHeight);
 
@@ -27,10 +26,16 @@ int main()
             Prop{Vector2{600.0f, 300.0f}, LoadTexture("assets/sprites/Rock.png")},
             Prop{Vector2{400.0f, 500.0f}, LoadTexture("assets/sprites/Log.png")}};
 
-        // enemy properties
-        Enemy _goblin(Vector2{}, LoadTexture("assets/characters/goblin_idle_spritesheet.png"), LoadTexture("assets/characters/goblin_run_spritesheet.png"));
+        // enemy properties        
+        Enemy _goblin{
+                Vector2{},
+                LoadTexture("assets/characters/goblin_idle_spritesheet.png"),
+                LoadTexture("assets/characters/goblin_run_spritesheet.png")
+        };
+
         _goblin.setTarget(&_player);
 
+        SetTargetFPS(_targetFramerate);
         while (!WindowShouldClose())
         {
                 // start Drawing
@@ -49,7 +54,6 @@ int main()
                 }
 
                 _player.tick(GetFrameTime());
-                _goblin.tick(GetFrameTime());
 
                 // check map bounds
                 if (_player.getWorldPos().x < 0.0f || // TODO: make bounds into variables
@@ -59,6 +63,7 @@ int main()
                 {
                         _player.undoMovement();
                 }
+
                 // check prop collisions
                 for (auto prop : _props)
                 {
@@ -67,6 +72,8 @@ int main()
                                 _player.undoMovement();
                         }
                 }
+
+                _goblin.tick(GetFrameTime());
 
                 // stop drawing
                 EndDrawing();
