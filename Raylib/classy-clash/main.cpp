@@ -3,6 +3,7 @@
 #include "Character.h"
 #include "Prop.h"
 #include "Enemy.h"
+#include <string>
 
 int main()
 {
@@ -50,6 +51,20 @@ int main()
                 for (auto prop : _props)
                 {
                         prop.Render(_player.getWorldPos());
+                }
+
+                // draw player
+                if (!_player.getAlive())
+                {
+                       DrawText("Game Over!", 55.0f, 45.0f, 40, RED);
+                       EndDrawing();
+                       continue;
+                }
+                else
+                {
+                        std::string playerHealth = "Health: ";
+                        playerHealth.append(std::to_string(_player.getHealth()), 0, 5);
+                        DrawText(playerHealth.c_str(), 55.0f, 45.0f, 40, RED);
                 }
 
                 _player.tick(GetFrameTime());
