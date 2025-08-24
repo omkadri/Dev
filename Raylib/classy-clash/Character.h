@@ -11,12 +11,15 @@ public:
         virtual void tick(float deltaTime) override;
         virtual Vector2 getScreenPos() override;
         Rectangle getWeaponCollisionRect() { return weaponCollisionRect; }
+        float getHealth() const { return heatlh; }
+        void takeDamage(float damage);
 
 private:
         int windowWidth{};
         int windowHeight{};
         Texture2D weaponTexture{LoadTexture("assets/characters/weapon_sword.png")};
         Rectangle weaponCollisionRect{};
+        float heatlh{100.f};
 };
 
 #endif

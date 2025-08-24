@@ -69,3 +69,12 @@ void Character::tick(float deltaTime)
                 weaponCollisionRect.x, weaponCollisionRect.y, weaponCollisionRect.width, weaponCollisionRect.height, RED
         );
 }
+
+void Character::takeDamage(float damage)
+{
+        heatlh -= damage;
+        if (heatlh <= 0.f)
+        {
+                setAlive(false);
+        }
+}

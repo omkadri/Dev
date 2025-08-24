@@ -20,6 +20,11 @@ void Enemy::tick(float deltaTime)
         //Calculate velocity towards target
         velocity = Vector2Subtract(target->getScreenPos(), getScreenPos()); // VectorA + VectorB = VectorC or VectorB = VectorC - VectorA
         BaseCharacter::tick(deltaTime); // Call the base class tick to handle animation and drawing
+
+        if (CheckCollisionRecs(target->getCollisionRect(), getCollisionRect()))
+        {
+                target->takeDamage(damagePerSec * deltaTime);
+        }
 }
 
 Vector2 Enemy::getScreenPos()
