@@ -28,12 +28,25 @@ int main()
             Prop{Vector2{400.0f, 500.0f}, LoadTexture("assets/sprites/Log.png")}};
 
         // enemy properties
+        Enemy _slime{
+            Vector2{500.0f, 700.0f},
+            LoadTexture("assets/characters/slime_idle_spritesheet.png"),
+            LoadTexture("assets/characters/slime_run_spritesheet.png")};
+
         Enemy _goblin{
-            Vector2{},
+            Vector2{800.0f, 300.0f},
             LoadTexture("assets/characters/goblin_idle_spritesheet.png"),
             LoadTexture("assets/characters/goblin_run_spritesheet.png")};
 
-        _goblin.setTarget(&_player);
+        Enemy* _enemies[]{
+                &_slime,
+                &_goblin
+        };
+
+        for ( auto enemy : _enemies) 
+        {
+                enemy->setTarget(&_player);
+        }
 
         SetTargetFPS(_targetFramerate);
         while (!WindowShouldClose())
@@ -56,9 +69,9 @@ int main()
                 // draw player
                 if (!_player.getAlive())
                 {
-                       DrawText("Game Over!", 55.0f, 45.0f, 40, RED);
-                       EndDrawing();
-                       continue;
+                        DrawText("Game Over!", 55.0f, 45.0f, 40, RED);
+                        EndDrawing();
+                        continue;
                 }
                 else
                 {
@@ -87,16 +100,22 @@ int main()
                         }
                 }
 
-                _goblin.tick(GetFrameTime());
+                for (auto enemy : _enemies)
+                {
+                        enemy->tick(GetFrameTime());
+                }
 
                 // stop drawing
                 EndDrawing();
 
                 if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
                 {
-                        if (CheckCollisionRecs(_goblin.getCollisionRect(), _player.getWeaponCollisionRect()))
-                        {
-                                _goblin.setAlive(false);
+                        for (auto enemy : _enemies)
+                        {    
+                                if (CheckCollisionRecs(enemy->getCollisionRect(), _player.getWeaponCollisionRect()))
+                                {
+                                        enemy->setAlive(false);
+                                }
                         }
                 }
         }
