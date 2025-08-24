@@ -15,6 +15,8 @@ Enemy::Enemy(Vector2 pos, Texture2D idleSpritesheet, Texture2D runSpritesheet)
 
 void Enemy::tick(float deltaTime)
 {
+        if (!getAlive()) { return; }
+
         //Calculate velocity towards target
         velocity = Vector2Subtract(target->getScreenPos(), getScreenPos()); // VectorA + VectorB = VectorC or VectorB = VectorC - VectorA
         BaseCharacter::tick(deltaTime); // Call the base class tick to handle animation and drawing

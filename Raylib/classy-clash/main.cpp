@@ -26,12 +26,11 @@ int main()
             Prop{Vector2{600.0f, 300.0f}, LoadTexture("assets/sprites/Rock.png")},
             Prop{Vector2{400.0f, 500.0f}, LoadTexture("assets/sprites/Log.png")}};
 
-        // enemy properties        
+        // enemy properties
         Enemy _goblin{
-                Vector2{},
-                LoadTexture("assets/characters/goblin_idle_spritesheet.png"),
-                LoadTexture("assets/characters/goblin_run_spritesheet.png")
-        };
+            Vector2{},
+            LoadTexture("assets/characters/goblin_idle_spritesheet.png"),
+            LoadTexture("assets/characters/goblin_run_spritesheet.png")};
 
         _goblin.setTarget(&_player);
 
@@ -77,6 +76,14 @@ int main()
 
                 // stop drawing
                 EndDrawing();
+
+                if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+                {
+                        if (CheckCollisionRecs(_goblin.getCollisionRect(), _player.getWeaponCollisionRect()))
+                        {
+                                _goblin.setAlive(false);
+                        }
+                }
         }
         UnloadTexture(_worldMap);
         // UnloadTexture(_playerSpritesheet);
