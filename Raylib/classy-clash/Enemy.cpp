@@ -19,6 +19,7 @@ void Enemy::tick(float deltaTime)
 
         //Calculate velocity towards target
         velocity = Vector2Subtract(target->getScreenPos(), getScreenPos()); // VectorA + VectorB = VectorC or VectorB = VectorC - VectorA
+        if (Vector2Length(velocity) < chaseRadius ) velocity = {};
         BaseCharacter::tick(deltaTime); // Call the base class tick to handle animation and drawing
 
         if (CheckCollisionRecs(target->getCollisionRect(), getCollisionRect()))

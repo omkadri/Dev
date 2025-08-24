@@ -13,4 +13,5 @@ public:
 private:
         Character *target;
         float damagePerSec{10.f};
+        float chaseRadius{25.0f};
 };
