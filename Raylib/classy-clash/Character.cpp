@@ -29,4 +29,41 @@ void Character::tick(float deltaTime)
                 velocity.y += 1.0f;
 
         BaseCharacter::tick(deltaTime); // Call the base class tick to handle animation and drawing
+
+        Vector2 origin{};
+        Vector2 swordOffset{};
+        float rotation{};
+        if (rightLeft > 0.f)
+        {
+                origin = {0.0f, weaponTexture.height * scale};
+                swordOffset = {35.0f, 55.0f};
+                weaponCollisionRect = {
+                        getScreenPos().x + swordOffset.x,
+                        getScreenPos().y + swordOffset.y - weaponTexture.height * scale,
+                        weaponTexture.width * scale,
+                        weaponTexture.height * scale
+                };
+                rotation = 35.0f;
+        }
+        else
+        {
+                origin = {weaponTexture.width * scale, weaponTexture.height * scale};
+                swordOffset = {25.0f, 55.0f};
+                weaponCollisionRect = {
+                        getScreenPos().x + swordOffset.x - weaponTexture.width * scale,
+                        getScreenPos().y + swordOffset.y - weaponTexture.height * scale,
+                        weaponTexture.width * scale,
+                        weaponTexture.height * scale
+                };
+                rotation = -35.0f;
+        }
+
+        //draw weapon
+        Rectangle source{0.0f, 0.0f, static_cast<float>(weaponTexture.width) * rightLeft, static_cast<float>(weaponTexture.height)};
+        Rectangle dest{getScreenPos().x + swordOffset.x, getScreenPos().y + swordOffset.y, weaponTexture.width * scale, weaponTexture.height * scale};
+        DrawTexturePro(weaponTexture, source, dest, origin, rotation, WHITE);
+
+        DrawRectangleLines(
+                weaponCollisionRect.x, weaponCollisionRect.y, weaponCollisionRect.width, weaponCollisionRect.height, RED
+        );
 }
