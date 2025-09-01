@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/RPGStarterKit2D/RPGStarterKit2DCave.unity
+    guid: 547ddf090848dcf489921f41932bdef1
+  - enabled: 1
+    path: Assets/Scenes/RPGStarterKit2D/RPGStarterKit2DCountrySide.unity
+    guid: 4ff23f2a2c7283841aef6f03d87b7147
+  - enabled: 1
+    path: Assets/Scenes/RPGStarterKit2D/RPGStarterKit2DShop.unity
+    guid: 4a39070ba033c6b4a8fdb08416d71bc6
+  - enabled: 1
+    path: Assets/Scenes/RPGStarterKit2D/RPGStarterKit2DTown.unity
+    guid: 3c6ab6dbf98a4bd42b5f0a7b94f9be49
+  - enabled: 1
+    path: Assets/Scenes/TopDown2D/TopDown2DTown.unity
+    guid: e3cd071643781944da5d5fde0e1b2e65
+  - enabled: 1
+    path: Assets/Scenes/TopDown2D/TopDown2DScene1.unity
+    guid: 5310c4f022ed5374aa2de73c31ab2a23
+  - enabled: 1
+    path: Assets/Scenes/TopDown2D/TopDown2DScene2.unity
+    guid: f79189a63ab83594691b45593a220108
+  - enabled: 1
+    path: Assets/Scenes/ScrollingShooter2D/ScrollingShooter2DMainMenu.unity
+    guid: f81ab8588bdf6d046959bd560c814f64
+  - enabled: 1
+    path: Assets/Scenes/ScrollingShooter2D/ScrollingShooter2DBaseScene.unity
+    guid: 3aa425d3970e10640982be17f9c3faf8
+  - enabled: 1
+    path: Assets/Scenes/ScrollingShooter2D/ScrollingShooter2DGameOver.unity
+    guid: 29ad952f9249f4f4baf4b0d7b83a802e
+  - enabled: 1
+    path: Assets/Scenes/Platformer2D/Platformer2DBaseScene.unity
+    guid: 95397a63962d5744e8d7d3e7e634e4cd
+  - enabled: 1
+    path: Assets/Scenes/Platformer2D/Platformer2DLevel1.unity
+    guid: 6b72932282cd08b42b25acd2c07c1235
+  - enabled: 1
+    path: Assets/Scenes/Platformer2D/Platformer2DLevel2.unity
+    guid: 19e6866042b2fe94e9155c11bc09409b
+  - enabled: 1
+    path: Assets/Scenes/Platformer2D/Platformer2DLevel3.unity
+    guid: c34c29ac2aac262429b3e49e1cf22d68
+  - enabled: 1
+    path: Assets/Scenes/Trivia2D/Trivia2DBaseScene.unity
+    guid: 1c37072f099526f4c94df15a5e380dd2
+  - enabled: 1
+    path: Assets/Scenes/Snowboard2D/Snowboard2DBaseScene.unity
+    guid: 1de1d6741644c6a48a9b42050c4da780
+  - enabled: 1
+    path: Assets/Scenes/Driver2D/Driver2DBaseScene.unity
+    guid: 5dfd33b86a02c0646ac3af0558b46a3b
+  - enabled: 1
+    path: Assets/Scenes/LaneDefense2D/Menu/LaneDefense2DMainMenu.unity
+    guid: c643979709fba954c869cf1c76104c52
+  - enabled: 1
+    path: Assets/Scenes/LaneDefense2D/Menu/LaneDefense2DOptions.unity
+    guid: 97c6df729c0906a41af86f34d3588405
+  - enabled: 1
+    path: Assets/Scenes/LaneDefense2D/Levels/LaneDefense2DLevel1.unity
+    guid: 40e08184a951b5e429906ddc7ff0375c
+  - enabled: 1
+    path: Assets/Scenes/LaneDefense2D/Levels/LaneDefense2DLevel2.unity
+    guid: 9044df2c7580767418fc4201786b728b
+  - enabled: 1
+    path: Assets/Scenes/LaneDefense2D/Menu/LaneDefense2DGameOver.unity
+    guid: c2d1024e18ac3994da0cfaeee13ce7ca
+  m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: 03147939bd865fd4ba951f2ba440ab37, type: 2}
+  m_UseUCBPForAssetBundles: 0
