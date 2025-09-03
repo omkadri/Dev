@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // AttackDamage class can be put on any object with a trigger collider to set off different instances of damage.
-public class RPGAttackDamage : MonoBehaviour
+public class AttackDamage : MonoBehaviour
 {
     // turned on in Bomb.cs script
     public bool isBombExplosion = false;
@@ -28,8 +28,8 @@ public class RPGAttackDamage : MonoBehaviour
     {
         if (other.gameObject.CompareTag(enemyString)) 
         {
-            other.GetComponent<RPGEnemyHealth>().TakeDamage(damageAmount);
-            other.GetComponent<RPGKnockback>().getKnockedBack(RPGPlayerController.Instance.transform, knockbackThrust);
+            other.GetComponent<EnemyHealth>().TakeDamage(damageAmount);
+            other.GetComponent<Knockback>().getKnockedBack(PlayerController.Instance.transform, knockbackThrust);
         }
     }
 
@@ -38,8 +38,8 @@ public class RPGAttackDamage : MonoBehaviour
     {
         if (other.gameObject.CompareTag(playerString)) 
         {
-            other.GetComponent<RPGPlayerHealth>().TakeDamage(damageAmount);
-            other.GetComponent<RPGKnockback>().getKnockedBack(transform, knockbackThrust);
+            other.GetComponent<PlayerHealth>().TakeDamage(damageAmount);
+            other.GetComponent<Knockback>().getKnockedBack(transform, knockbackThrust);
         }
     }
 
@@ -47,9 +47,9 @@ public class RPGAttackDamage : MonoBehaviour
     // Applies to bushes and pots
     void DestructibleAttack(Collider2D other) 
     {
-        if (other.GetComponent<RPGBreakable>()) 
+        if (other.GetComponent<Breakable>()) 
         {
-            other.GetComponent<RPGBreakable>().BreakObject();
+            other.GetComponent<Breakable>().BreakObject();
         }
     }
 
@@ -57,9 +57,9 @@ public class RPGAttackDamage : MonoBehaviour
     // Cave will only be destroyed by the instance bomb explosion prefab
     void DestroyBoulderBlockingCave(Collider2D other) 
     {
-        if (other.GetComponent<RPGBoulder>() && isBombExplosion) 
+        if (other.GetComponent<Boulder>() && isBombExplosion) 
         {
-            other.GetComponent<RPGBoulder>().DestroyBoulder();
+            other.GetComponent<Boulder>().DestroyBoulder();
         }
     }
 }

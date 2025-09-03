@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RPGBreakable : MonoBehaviour
+public class Breakable : MonoBehaviour
 {
     [SerializeField] GameObject blue_rupee;
     [SerializeField] enum ObjectType {pot, bush};

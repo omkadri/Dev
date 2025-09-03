@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 // Updates UI based on event system's current selected object. 
-public class RPGInventoryManager : RPGSingleton<RPGInventoryManager>
+public class InventoryManager : Singleton<InventoryManager>
 {
     public enum CurrentEquippedItem { Boomerang, Bomb };
     public CurrentEquippedItem currentEquippedItem;
@@ -17,7 +17,7 @@ public class RPGInventoryManager : RPGSingleton<RPGInventoryManager>
     [SerializeField] GameObject selectionBorder;
     [SerializeField] EventSystem eventSystem;
     [SerializeField] Image activeSpriteUI;
-    RPGInputActions inputActions;
+    InputActions inputActions;
     const string boomerangString = "Boomerang";
     const string bombString = "Bomb";
 
@@ -25,7 +25,7 @@ public class RPGInventoryManager : RPGSingleton<RPGInventoryManager>
     protected override void Awake() 
     {
         base.Awake();
-        inputActions = new RPGInputActions();
+        inputActions = new InputActions();
     }
 
 
@@ -68,13 +68,13 @@ public class RPGInventoryManager : RPGSingleton<RPGInventoryManager>
         if (inventoryContainer.gameObject.activeInHierarchy == false) 
         {
             inventoryContainer.gameObject.SetActive(true);
-            RPGPlayerController.Instance.PauseGame();
+            PlayerController.Instance.PauseGame();
         }
 
         else if (inventoryContainer.gameObject.activeInHierarchy == true) 
         {
             inventoryContainer.gameObject.SetActive(false);
-            RPGPlayerController.Instance.UnpauseGame();
+            PlayerController.Instance.UnpauseGame();
         }
     }
 
@@ -99,7 +99,7 @@ public class RPGInventoryManager : RPGSingleton<RPGInventoryManager>
 
     void ChangeCurrentEquippedItem() 
     { 
-        RPGItemDisplay thisItem = currentSelectedItem.GetComponent<RPGItemDisplay>();
+        ItemDisplay thisItem = currentSelectedItem.GetComponent<ItemDisplay>();
         
         if (thisItem) 
         { 

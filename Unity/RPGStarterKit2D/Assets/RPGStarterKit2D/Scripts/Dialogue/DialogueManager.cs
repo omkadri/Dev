@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class RPGDialogueManager : RPGSingleton<RPGDialogueManager>
+public class DialogueManager : Singleton<DialogueManager>
 {
     [SerializeField] public GameObject dialogueBox;
     public bool justStarted;
@@ -26,8 +26,8 @@ public class RPGDialogueManager : RPGSingleton<RPGDialogueManager>
             {
                 dialogueBox.SetActive(false);
                 justStarted = true;
-                RPGPlayerController.Instance.canMove = true;
-                RPGPlayerController.Instance.canAttack = true;
+                PlayerController.Instance.canMove = true;
+                PlayerController.Instance.canAttack = true;
             }
             else
             {
@@ -52,7 +52,7 @@ public class RPGDialogueManager : RPGSingleton<RPGDialogueManager>
         dialogueText.text = dialogueLines[currentLine];
         dialogueBox.SetActive(true);
         nameBox.SetActive(isPerson);
-        RPGPlayerController.Instance.canMove = false;
+        PlayerController.Instance.canMove = false;
         ContinueDialogue();
     }
 

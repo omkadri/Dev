@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RPGParticleDestroy : MonoBehaviour
+public class ParticleDestroy : MonoBehaviour
 {
     [SerializeField] float waitTime = 3f;
 

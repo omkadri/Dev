@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class RPGPlayerHealth : MonoBehaviour
+public class PlayerHealth : MonoBehaviour
 {
     public int currentHealth;
     public int maxHealth;
@@ -35,9 +35,9 @@ public class RPGPlayerHealth : MonoBehaviour
     void OnCollisionStay2D(Collision2D other) 
     { 
         if (other.gameObject.CompareTag("Enemy") && canTakeDamage && currentHealth > 0) {
-            RPGEnemyMovement enemy = other.gameObject.GetComponent<RPGEnemyMovement>();
+            EnemyMovement enemy = other.gameObject.GetComponent<EnemyMovement>();
             TakeDamage(enemy.damageDoneToHero);
-            GetComponent<RPGKnockback>().getKnockedBack(other.gameObject.transform, enemy.enemyKnockBackThrust);
+            GetComponent<Knockback>().getKnockedBack(other.gameObject.transform, enemy.enemyKnockBackThrust);
         }
     }
 
@@ -48,15 +48,15 @@ public class RPGPlayerHealth : MonoBehaviour
         {
             // isDead set to prevent death animation from triggering multiple times
             isDead = true;
-            RPGPlayerController.Instance.canMove = false;
-            RPGPlayerController.Instance.canAttack = false;
+            PlayerController.Instance.canMove = false;
+            PlayerController.Instance.canAttack = false;
             animator.SetTrigger("dead");
             StartCoroutine(RespawnRoutine());
         } 
         else 
         {
-            RPGPlayerController.Instance.canMove = true;
-            RPGPlayerController.Instance.canAttack = true;
+            PlayerController.Instance.canMove = true;
+            PlayerController.Instance.canAttack = true;
         }
     }
 
@@ -88,7 +88,7 @@ public class RPGPlayerHealth : MonoBehaviour
     IEnumerator RespawnRoutine() 
     {
         yield return new WaitForSeconds(respawnTimeFloat);
-        Destroy(RPGPlayerController.Instance.gameObject);
+        Destroy(PlayerController.Instance.gameObject);
         SceneManager.LoadScene("Town");
     }
 }

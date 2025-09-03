@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class RPGRupeeWallet : MonoBehaviour
+public class RupeeWallet : MonoBehaviour
 {
     public int currentRupees;
     

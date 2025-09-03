@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class RPGCameraController : RPGSingleton<RPGCameraController>
+public class CameraController : Singleton<CameraController>
 {
     Transform player;
     Tilemap theMap;
@@ -16,9 +16,9 @@ public class RPGCameraController : RPGSingleton<RPGCameraController>
 
     void Start() 
     {
-        if (FindFirstObjectByType<RPGPlayerController>()) 
+        if (FindFirstObjectByType<PlayerController>()) 
         {
-            player = RPGPlayerController.Instance.transform;
+            player = PlayerController.Instance.transform;
         }
         theMap = GameObject.Find(groundString).GetComponent<Tilemap>();
 
@@ -51,7 +51,7 @@ public class RPGCameraController : RPGSingleton<RPGCameraController>
     {
         if (player == null) 
         {
-            player = RPGPlayerController.Instance.transform;
+            player = PlayerController.Instance.transform;
         }
 
         if (theMap == null) 

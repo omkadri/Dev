@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RPGEnemyMovement : MonoBehaviour
+public class EnemyMovement : MonoBehaviour
 {
     public bool canMove = true;
     public float enemyKnockBackThrust = 15f;

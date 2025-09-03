@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // Knockback class can be put on gameobjects that you want to thrust back with rigidbody force against other objects that would typically deal damage
-public class RPGKnockback : MonoBehaviour
+public class Knockback : MonoBehaviour
 {
     [SerializeField] float knockbackTime;
     Rigidbody2D rb2d;
@@ -22,9 +22,9 @@ public class RPGKnockback : MonoBehaviour
         rb2d.AddForce(difference, ForceMode2D.Impulse);
 
         // if KnockBack class is on our player game object
-        if (GetComponent<RPGPlayerController>()) 
+        if (GetComponent<PlayerController>()) 
         {
-            RPGPlayerController.Instance.canMove = false;
+            PlayerController.Instance.canMove = false;
         }
 
         StartCoroutine(KnockRoutine());
@@ -37,10 +37,10 @@ public class RPGKnockback : MonoBehaviour
         rb2d.linearVelocity = Vector2.zero;
 
         // if KnockBack class is on our player game object
-        if (GetComponent<RPGPlayerController>()) 
+        if (GetComponent<PlayerController>()) 
         {
-            RPGPlayerController.Instance.canMove = true;
-            GetComponent<RPGPlayerHealth>().CheckIfDeath();
+            PlayerController.Instance.canMove = true;
+            GetComponent<PlayerHealth>().CheckIfDeath();
         }
     }
 }

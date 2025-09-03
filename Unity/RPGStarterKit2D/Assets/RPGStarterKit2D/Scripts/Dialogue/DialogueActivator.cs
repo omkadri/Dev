@@ -3,20 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // Put on gameobjects that can be toggled with opening the dialogue window (currently spacebar).  If isPerson isn't toggled true, the name box window will not appear.
-public class RPGDialogueActivator : MonoBehaviour
+public class DialogueActivator : MonoBehaviour
 {
     public string[] lines;
     public bool isPerson;
 
     [SerializeField] GameObject buttonUI;
     bool canActivate;
-    RPGInputActions inputActions;
+    InputActions inputActions;
     const string playerString = "Player";
 
 
     void Awake() 
     {
-        inputActions = new RPGInputActions();
+        inputActions = new InputActions();
     }
 
 
@@ -42,15 +42,15 @@ public class RPGDialogueActivator : MonoBehaviour
     {
         if (canActivate) 
         {
-            if(!RPGDialogueManager.Instance.dialogueBox.activeInHierarchy) 
+            if(!DialogueManager.Instance.dialogueBox.activeInHierarchy) 
             {
-                RPGDialogueManager.Instance.ShowDialogue(lines, isPerson);
-                RPGPlayerController.Instance.canAttack = false;
-                RPGPlayerController.Instance.DialogueStopMove();
+                DialogueManager.Instance.ShowDialogue(lines, isPerson);
+                PlayerController.Instance.canAttack = false;
+                PlayerController.Instance.DialogueStopMove();
             } 
             else 
             {
-                RPGDialogueManager.Instance.ContinueDialogue();
+                DialogueManager.Instance.ContinueDialogue();
             }
         }
     }

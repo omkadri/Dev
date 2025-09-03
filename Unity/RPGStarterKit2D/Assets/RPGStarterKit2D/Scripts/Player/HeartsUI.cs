@@ -4,12 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 
 // Updates the UI on our canvas 
-public class RPGHeartsUI : MonoBehaviour
+public class HeartsUI : MonoBehaviour
 {
     [SerializeField] Image[] hearts;
     [SerializeField] Sprite fullHeart;
     [SerializeField] Sprite emptyHeart;
-    RPGPlayerHealth player;
+    PlayerHealth player;
 
 
     void Awake() 
@@ -29,7 +29,7 @@ public class RPGHeartsUI : MonoBehaviour
 
         if (player == null) 
         {
-            player = FindFirstObjectByType<RPGPlayerHealth>();
+            player = FindFirstObjectByType<PlayerHealth>();
         }
     }
     

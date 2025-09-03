@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RPGPickup : MonoBehaviour
+public class Pickup : MonoBehaviour
 {
     // Keeping Bomb as placeholder if you wanted to implement something like item limited amounts 
     public enum TypeOfPickUp{Rupee, Bomb};
@@ -27,6 +27,6 @@ public class RPGPickup : MonoBehaviour
 
     void PickUpRupee() 
     {
-        FindFirstObjectByType<RPGRupeeWallet>().IncreaseRupeeCount(1);//TODO: MagicNumber
+        FindFirstObjectByType<RupeeWallet>().IncreaseRupeeCount(1);//TODO: MagicNumber
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class RPGPlayerController : RPGSingleton<RPGPlayerController>
+public class PlayerController : Singleton<PlayerController>
 {
     // For use of AreaExit and AreaEntrance scripts
     public string areaTransitionName;
@@ -25,7 +25,7 @@ public class RPGPlayerController : RPGSingleton<RPGPlayerController>
     // GameState used to handle when Hero can take certain actions.  Could expand on this depending on if you wanted to add different player game handling states.
     enum GameState { Playing, Paused};
     GameState currentGameState;
-    RPGInputActions inputActions;
+    InputActions inputActions;
     Vector2 movement;
 
 
@@ -33,7 +33,7 @@ public class RPGPlayerController : RPGSingleton<RPGPlayerController>
     {
         // base.Awake() is called to apply our singleton inherited class, as well as anything else we want to set up in Awake()
         base.Awake();
-        inputActions = new RPGInputActions();
+        inputActions = new InputActions();
     }
 
 
@@ -78,12 +78,12 @@ public class RPGPlayerController : RPGSingleton<RPGPlayerController>
     // SpawnItem() is called in our animator
     public void SpawnItem() 
     {
-        itemEquipped = RPGInventoryManager.Instance.itemEquippedInv;
+        itemEquipped = InventoryManager.Instance.itemEquippedInv;
 
         if (itemInUse || !itemEquipped) { return; }
 
         itemInUse = true;
-        RPGItemDisplay itemDisplay = RPGInventoryManager.Instance.currentSelectedItem.GetComponent<RPGItemDisplay>();
+        ItemDisplay itemDisplay = InventoryManager.Instance.currentSelectedItem.GetComponent<ItemDisplay>();
 
         if (itemDisplay) 
         {

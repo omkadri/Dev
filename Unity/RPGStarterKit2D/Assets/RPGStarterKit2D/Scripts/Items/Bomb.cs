@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RPGBomb : MonoBehaviour
+public class Bomb : MonoBehaviour
 {
     [SerializeField] GameObject explodePrefab;
 
@@ -10,7 +10,7 @@ public class RPGBomb : MonoBehaviour
     public void Explode() 
     {
         GameObject newBomb = Instantiate(explodePrefab, transform.position, transform.rotation);
-        newBomb.GetComponent<RPGAttackDamage>().isBombExplosion = true;
+        newBomb.GetComponent<AttackDamage>().isBombExplosion = true;
         Destroy(gameObject);
     }
 }

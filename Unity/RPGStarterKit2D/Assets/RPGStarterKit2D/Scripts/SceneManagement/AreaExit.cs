@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class RPGAreaExit : MonoBehaviour
+public class AreaExit : MonoBehaviour
 {
-    public RPGAreaEntrance theEntrance;
+    public AreaEntrance theEntrance;
     public float waitToLoad = 1f; 
 
     [SerializeField] string areaToLoad;
@@ -38,9 +38,9 @@ public class RPGAreaExit : MonoBehaviour
         if (other.tag == "Player") 
         {
             shouldLoadAfterFade = true;
-            RPGUIFade.Instance.FadeToBlack();
+            UIFade.Instance.FadeToBlack();
 
-            RPGPlayerController.Instance.areaTransitionName = areaTransitionName;
+            PlayerController.Instance.areaTransitionName = areaTransitionName;
         }
     }
 }

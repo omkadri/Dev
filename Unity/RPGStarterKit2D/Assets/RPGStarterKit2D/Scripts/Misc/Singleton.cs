@@ -1,7 +1,7 @@
 using UnityEngine;
 
 // Singleton class can be inherited by other classes when needed
-public class RPGSingleton<T> : MonoBehaviour where T : RPGSingleton<T> {
+public class Singleton<T> : MonoBehaviour where T : Singleton<T> {
 
     static T instance;
     public static T Instance { get { return instance; } }

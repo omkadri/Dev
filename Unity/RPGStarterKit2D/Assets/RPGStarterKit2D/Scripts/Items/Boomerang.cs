@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RPGBoomerang : MonoBehaviour
+public class Boomerang : MonoBehaviour
 {
     [SerializeField] float spinSpeed = 100f;
     [SerializeField] float throwDistance = 5f;
@@ -10,12 +10,12 @@ public class RPGBoomerang : MonoBehaviour
     [SerializeField] int boomerangDamage = 1;
     [SerializeField] float thrust = 15f;
     [SerializeField] bool goForward = false;
-    RPGPlayerController player;
+    PlayerController player;
     Vector2 locationToThrow;
 
     void Awake() 
     {
-        player = FindFirstObjectByType<RPGPlayerController>();
+        player = FindFirstObjectByType<PlayerController>();
     }
 
 
@@ -91,12 +91,12 @@ public class RPGBoomerang : MonoBehaviour
     void OnCollisionEnter2D(Collision2D other) 
     {
         goForward = false;
-        RPGEnemyHealth enemy = other.gameObject.GetComponent<RPGEnemyHealth>();
+        EnemyHealth enemy = other.gameObject.GetComponent<EnemyHealth>();
 
         if (enemy) 
         {
             enemy.TakeDamage(boomerangDamage);
-            other.gameObject.GetComponent<RPGKnockback>().getKnockedBack(transform, thrust);
+            other.gameObject.GetComponent<Knockback>().getKnockedBack(transform, thrust);
         }
     }
 }

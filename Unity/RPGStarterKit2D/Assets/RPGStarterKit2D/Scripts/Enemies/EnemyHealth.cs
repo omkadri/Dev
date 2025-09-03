@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RPGEnemyHealth : MonoBehaviour
+public class EnemyHealth : MonoBehaviour
 {
     [SerializeField] int startingHealth = 3;
     [SerializeField] int currentHealth;
