@@ -1,0 +1,62 @@
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+public class PlayerInput : MonoBehaviour
+{
+    public FrameInput FrameInput { get; private set; }
+    InputActions _inputActions;
+    InputAction _move;
+    InputAction _jump;
+    InputAction _jetpack;
+    InputAction _grenade;
+
+
+    void Awake()
+    {
+        _inputActions = new InputActions();
+
+        _move = _inputActions.Player.Move;
+        _jump = _inputActions.Player.Jump;
+        _jetpack = _inputActions.Player.Jetpack;
+        _grenade = _inputActions.Player.Grenade;
+    }
+
+
+    void OnEnable()
+    {
+        _inputActions.Enable();
+    }
+
+
+    void OnDisable()
+    {
+        _inputActions.Disable();
+    }
+
+
+    void Update()
+    {
+        FrameInput = GatherInput();
+    }
+
+
+    FrameInput GatherInput()
+    {
+        return new FrameInput
+        {
+            Move = _move.ReadValue<Vector2>(),
+            Jump = _jump.WasPressedThisFrame(),
+            Jetpack = _jetpack.WasPressedThisFrame(),
+            Grenade = _grenade.WasPressedThisFrame(),
+        };
+    }
+}
+
+
+public struct FrameInput
+{
+    public Vector2 Move;
+    public bool Jump;
+    public bool Jetpack;
+    public bool Grenade;
+}
