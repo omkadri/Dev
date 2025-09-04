@@ -1,0 +1,23 @@
+using UnityEngine;
+using TMPro;
+
+public class EconomyManager : Singleton<EconomyManager>
+{
+    TMP_Text currencyText;
+    int currentCurrency = 0;
+
+    const string COIN_AMOUNT_TEXT_REF = "CurrencyAmountText";
+
+
+    public void UpdateCurrency(int amount)
+    {
+        currentCurrency += amount;
+
+        if (currencyText == null)
+        {
+            currencyText = GameObject.Find(COIN_AMOUNT_TEXT_REF).GetComponent<TMP_Text>();
+        }
+
+        currencyText.text = currentCurrency.ToString("D3"); //D3 ensure there are always 3 digits
+    }
+}
