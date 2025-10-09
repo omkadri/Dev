@@ -27,6 +27,5 @@ public class Ball : MonoBehaviour
             _direction = deflector.GetDeflection(transform.position, _direction);
         }
 
-        //TODO: Powerups????
     }
 }
