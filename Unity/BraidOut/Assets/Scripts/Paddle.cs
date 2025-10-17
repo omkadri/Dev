@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerMover : MonoBehaviour
+public class PlayerMover : MonoBehaviour, IDeflector
 {
     public enum ControlMode
     {
@@ -10,6 +10,7 @@ public class PlayerMover : MonoBehaviour
     }
 
     [SerializeField] private ControlMode _controlMode = ControlMode.WD;
+    [SerializeField] float _maxBounceAngle = 75f;
 
     [Header("Movement Settings")]
     [SerializeField] private float _moveSpeed = 5f;
@@ -63,7 +64,7 @@ public class PlayerMover : MonoBehaviour
 
     void MoveWithTouch()
     {
-    #if UNITY_EDITOR
+#if UNITY_EDITOR
         if (Input.GetMouseButtonDown(0))
         {
             Vector3 worldTouchPos = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
@@ -87,7 +88,7 @@ public class PlayerMover : MonoBehaviour
         {
             _isDragging = false;
         }
-    #else
+#else
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
@@ -119,6 +120,18 @@ public class PlayerMover : MonoBehaviour
                     break;
             }
         }
-    #endif
+#endif
+    }
+
+    public Vector2 GetDeflection(Vector2 ballPosition, Vector2 ballDirection)
+    {
+        float paddleWidth = GetComponent<SpriteRenderer>().bounds.size.x;
+        float relativeHit = (ballPosition.x - transform.position.x) / (paddleWidth / 2);
+        relativeHit = Mathf.Clamp(relativeHit, -1f, 1f);
+
+        float bounceAngle = relativeHit * _maxBounceAngle * Mathf.Deg2Rad;
+
+        Vector2 newDirection = new Vector2(Mathf.Sin(bounceAngle), Mathf.Cos(bounceAngle));
+        return newDirection.normalized;
     }
 }
