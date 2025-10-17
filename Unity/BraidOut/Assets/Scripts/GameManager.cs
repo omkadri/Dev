@@ -3,6 +3,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] string _firstLevelSceneName;
+    [SerializeField] string _nextLevelSceneName;
     [SerializeField] string _gameOverSceneName;
     [SerializeField] string _mainMenuSceneName;
 
@@ -11,6 +12,11 @@ public class GameManager : MonoBehaviour
     public void LoadFirstLevelScene()
     {
         SceneUtils.LoadSceneByName(_firstLevelSceneName);
+    }
+
+    public void LoadNextLevelScene()
+    {
+        SceneUtils.LoadSceneByName(_nextLevelSceneName);
     }
 
     public void LoadGameOverScene()
