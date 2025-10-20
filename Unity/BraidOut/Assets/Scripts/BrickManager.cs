@@ -5,6 +5,8 @@ public class BrickManager : MonoBehaviour
     public float _checkInterval = 0.5f; // Check every half-second
     private float _timer;
 
+    [SerializeField] string _levelCompleteScenename;
+
     private void Update()
     {
         _timer += Time.deltaTime;
@@ -20,7 +22,7 @@ public class BrickManager : MonoBehaviour
     {
         if (transform.childCount == 0)
         {
-            SceneUtils.LoadSceneByName("BraidOutLevelCompleteScene");
+            SceneUtils.LoadSceneByName(_levelCompleteScenename);
         }
     }
 }
