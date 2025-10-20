@@ -1,22 +1,22 @@
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class SceneManager : MonoBehaviour
 {
     [SerializeField] string _firstLevelSceneName;
-    [SerializeField] string _nextLevelSceneName;
+    [SerializeField] string _levelSelectSceneName;
     [SerializeField] string _gameOverSceneName;
     [SerializeField] string _mainMenuSceneName;
 
     string _lastLevelReachedName;
 
-    public void LoadFirstLevelScene()
+    public void LoadSceneByName(string sceneName)
     {
-        SceneUtils.LoadSceneByName(_firstLevelSceneName);
+        SceneUtils.LoadSceneByName(sceneName);
     }
 
-    public void LoadNextLevelScene()
+    public void LoadLevelSelectScene()
     {
-        SceneUtils.LoadSceneByName(_nextLevelSceneName);
+        SceneUtils.LoadSceneByName(_levelSelectSceneName);
     }
 
     public void LoadGameOverScene()

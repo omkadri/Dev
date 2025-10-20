@@ -7,7 +7,7 @@ public static class SceneUtils
     {
         if (IsSceneValid(sceneName))
         {
-            SceneManager.LoadScene(sceneName);
+            UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
         }
         else
         {
@@ -18,9 +18,9 @@ public static class SceneUtils
 
     public static void LoadSceneByIndex(int sceneIndex)
     {
-        if (sceneIndex >= 0 && sceneIndex < SceneManager.sceneCountInBuildSettings)
+        if (sceneIndex >= 0 && sceneIndex < UnityEngine.SceneManagement.SceneManager.sceneCountInBuildSettings)
         {
-            SceneManager.LoadScene(sceneIndex);
+            UnityEngine.SceneManagement.SceneManager.LoadScene(sceneIndex);
         }
         else
         {
@@ -31,7 +31,7 @@ public static class SceneUtils
 
     public static void ReloadCurrentScene()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
     }
     
 
@@ -39,7 +39,7 @@ public static class SceneUtils
     {
         if (IsSceneValid(sceneName))
         {
-            return SceneManager.LoadSceneAsync(sceneName);
+            return UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(sceneName);
         }
 
         Debug.LogError($"Scene '{sceneName}' is not in build settings.");
@@ -49,7 +49,7 @@ public static class SceneUtils
 
     public static bool IsSceneValid(string sceneName)
     {
-        int sceneCount = SceneManager.sceneCountInBuildSettings;
+        int sceneCount = UnityEngine.SceneManagement.SceneManager.sceneCountInBuildSettings;
 
         for (int i = 0; i < sceneCount; i++)
         {
@@ -68,12 +68,12 @@ public static class SceneUtils
 
     public static string GetCurrentSceneName()
     {
-        return SceneManager.GetActiveScene().name;
+        return UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
     }
 
 
     public static int GetCurrentSceneIndex()
     {
-        return SceneManager.GetActiveScene().buildIndex;
+        return UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex;
     }
 }
