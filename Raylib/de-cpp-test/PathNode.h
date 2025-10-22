@@ -20,7 +20,7 @@ public:
     PathNode(const char* name, Vertex position) :
         mPosition(position)
     {
-        mName = new char [strlen(name) + 1];
+        mName = new char [strlen(name) + 1]; //FIX: memory allocation did not account for null terminator
         strcpy(mName, name);     // ERROR 3: Possible buffer overflow if name is larger than allocated space
     }
     

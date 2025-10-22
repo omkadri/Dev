@@ -29,7 +29,7 @@ public:
     void SetClanTag(char* n)
     {
         delete mClanTag; // ERROR: Potential memory leak if n is not properly handled (e.g., if n is dynamically allocated elsewhere)
-        mClanTag = new char[strlen(n) + 1];
+        mClanTag = new char[strlen(n) + 1]; //FIX: memory allocation did not account for null terminator
         strcpy(mClanTag, n); // ERROR: Potential buffer overflow if n is larger than allocated space
     }
 
