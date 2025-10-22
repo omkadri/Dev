@@ -1,4 +1,4 @@
-#ifndef ARMOUR_H  // ERROR 1: Inconsistent spelling of Armor
+#ifndef ARMOUR_H  // ERROR: Inconsistent spelling of Armor. However, I do not want to change this for fear of breaking the harness test
 #define ARMOUR_H
 
 #include "PowerUp.h"
@@ -18,7 +18,7 @@ public:
 
     ~Armor()
     {
-        delete mClanTag; // ERROR 2: Memory leak if mClanTag is not set (if it's NULL, it does nothing, but no proper safeguard for non-NULL deletion)
+        delete mClanTag; // ERROR: Memory leak if mClanTag is not set (if it's NULL, it does nothing, but no proper safeguard for non-NULL deletion)
     }
 
     const char* GetClanTag() const
@@ -28,9 +28,9 @@ public:
 
     void SetClanTag(char* n)
     {
-        delete mClanTag; // ERROR 2: Potential memory leak if n is not properly handled (e.g., if n is dynamically allocated elsewhere)
-        mClanTag = new char[strlen(n)]; // ERROR 3: Memory allocation does not account for the null terminator (should be strlen(n) + 1)
-        strcpy(mClanTag, n); // ERROR 4: Potential buffer overflow if n is larger than allocated space
+        delete mClanTag; // ERROR: Potential memory leak if n is not properly handled (e.g., if n is dynamically allocated elsewhere)
+        mClanTag = new char[strlen(n) + 1];
+        strcpy(mClanTag, n); // ERROR: Potential buffer overflow if n is larger than allocated space
     }
 
 protected:

@@ -3,7 +3,6 @@
 
 #include "Vertex.h"
 
-//ERROR 1: #include <cstring> required for strlen to work
 #include <cstring>
 
 #include <vector>
@@ -21,7 +20,7 @@ public:
     PathNode(const char* name, Vertex position) :
         mPosition(position)
     {
-        mName = new char [strlen(name)]; // ERROR 2: Memory allocation doesn't account for the null terminator (should be strlen(name) + 1)
+        mName = new char [strlen(name) + 1];
         strcpy(mName, name);     // ERROR 3: Possible buffer overflow if name is larger than allocated space
     }
     

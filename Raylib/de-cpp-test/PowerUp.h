@@ -10,7 +10,7 @@ public:
     PowerUp(const char* name, Vertex position)
     {
         mPosition = position;
-        mName = new char [strlen(name)]; // ERROR 1: Memory allocation does not account for the null terminator (should be strlen(name) + 1)
+        mName = new char [strlen(name) + 1];
         strcpy(mName, name); // ERROR 2: Possible buffer overflow if name is larger than allocated space
     }
 

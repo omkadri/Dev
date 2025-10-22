@@ -4,3 +4,12 @@ Garbage Collection:
 
 Constructors
 - Default constructor vs Paramaterized Constructors
+
+Memory allocation
+- New is an operator that allocates memory to the Heap
+- Every New needs to have a corresponding delete to ensure proper memory allocation
+
+Stings and Char
+- Every string is an array of char variables plus a null terminator
+- a char represents 1 byte
+- when allocating a string in memory, you must always add 1 extra byte to account for the null terminator
