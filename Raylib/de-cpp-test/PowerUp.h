@@ -12,6 +12,7 @@ public:
         mPosition = position;
         mName = new char [strlen(name) + 1]; //FIX: memory allocation did not account for null terminator
         strcpy(mName, name); // ERROR 2: Possible buffer overflow if name is larger than allocated space
+        mType = NONE; // FIX: `mType` is now initialized, which will prevent undefined behavior
     }
 
     ~PowerUp()
@@ -21,14 +22,15 @@ public:
 
     enum PowerUpType
     {
+        NONE, //FIX: Added NONE for default value initialization.
         WEAPON,
-        ARMOUR,  // ERROR: Inconsistent spelling of Armor
+        ARMOUR,  // MINOR ISSUE: Inconsistent spelling of Armor
         HEALTH
     };
 
     PowerUpType GetPowerUpType() const
     {
-        return(mType); // ERROR 4: `mType` is uninitialized in the constructor, may lead to undefined behavior
+        return(mType);
     };
 
     const Vertex& GetPosition() const
@@ -38,7 +40,7 @@ public:
 
 protected:
     Vertex      mPosition;
-    PowerUpType mType; // ERROR 5: `mType` is not initialized, could cause undefined behavior
+    PowerUpType mType;
     char*       mName;
 };
 
