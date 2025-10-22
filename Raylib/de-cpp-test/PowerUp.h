@@ -17,7 +17,7 @@ public:
 
     ~PowerUp()
     {
-        delete mName; // ERROR 3: Missing delete[] for array allocation (delete[] should be used, not delete)
+        delete[] mName; // FIX: replaced delete with delete[] for array allocation
     }
 
     enum PowerUpType
