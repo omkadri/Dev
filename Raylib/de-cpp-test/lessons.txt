@@ -16,3 +16,8 @@ Stings and Char
 - Every string is an array of char variables plus a null terminator
 - a char represents 1 byte
 - when allocating a string in memory, you must always add 1 extra byte to account for the null terminator
+
+
+Null pointers
+- pointers should not use NULL, but rather, nullptr because of type safety
+- should should never call strcpy on a null pointer because i leads to undefined behaviour

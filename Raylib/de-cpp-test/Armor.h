@@ -13,12 +13,12 @@ public:
         PowerUp(name, position)
     {
         mType = ARMOUR;
-        mClanTag = NULL;
+        mClanTag = nullptr;//FIX: replaced NULL with nullptr for type saftey
     }
 
     ~Armor()
     {
-        delete mClanTag; // ERROR: Memory leak if mClanTag is not set (if it's NULL, it does nothing, but no proper safeguard for non-NULL deletion)
+        delete[] mClanTag; // FIX: replaced delete with delete[] for array allocation
     }
 
     const char* GetClanTag() const
@@ -28,9 +28,18 @@ public:
 
     void SetClanTag(char* n)
     {
-        delete mClanTag; // ERROR: Potential memory leak if n is not properly handled (e.g., if n is dynamically allocated elsewhere)
-        mClanTag = new char[strlen(n) + 1]; //FIX: memory allocation did not account for null terminator
-        strcpy(mClanTag, n); // ERROR: Potential buffer overflow if n is larger than allocated space
+        if (n != nullptr) //FIX: We only want to reallocate memory if 'n' is not nullptr.
+        {
+            
+            delete[] mClanTag;
+            mClanTag = new char[strlen(n) + 1];
+            strcpy(mClanTag, n); // ERROR: Possible buffer overflow if name is larger than allocated space
+        } 
+        else //FIX: If 'n' is nullptr, we do not want to call strcpy() becuase it leads to undefined behaviour
+        {
+            delete[] mClanTag;
+            mClanTag = nullptr;
+        }
     }
 
 protected:
