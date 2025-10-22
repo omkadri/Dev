@@ -6,14 +6,15 @@
 class Health : public PowerUp
 {
 public:
-    Health(const char* name, Vertex position) :
-        PowerUp(name, position)
+    Health(const char* name, Vertex position, float healingAmount = 50.0f) :
+        PowerUp(name, position),
+        healing(healingAmount) //FIX: Initialized healing to prevent garbage issues
     {
-        mType = HEALTH; // ERROR 1: `mType` may not be defined in the base class `PowerUp` (ensure `mType` exists in the base class and is initialized correctly)
+        mType = HEALTH;
     }
     
 protected:
-    float healing; // ERROR 2: `healing` is uninitialized, which could lead to undefined behavior when used
+    float healing;
 };
 
 #endif // HEALTH_H

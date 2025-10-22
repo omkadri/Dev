@@ -11,7 +11,7 @@ public:
     {
         mPosition = position;
         mName = new char [strlen(name) + 1]; //FIX: memory allocation did not account for null terminator
-        strcpy(mName, name); // ERROR 2: Possible buffer overflow if name is larger than allocated space
+        strcpy(mName, name); // ERROR: Possible buffer overflow if name is larger than allocated space
         mType = NONE; // FIX: `mType` is now initialized, which will prevent undefined behavior
     }
 
