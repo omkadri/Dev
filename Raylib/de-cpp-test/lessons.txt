@@ -10,6 +10,7 @@ Memory allocation
 - New is an operator that allocates memory to the Heap
 - Every New needs to have a corresponding delete to ensure proper memory allocation
 - Arrays must be deleted with 'delete[]' instead of 'delete'. The reason for this is because 'delete' will not know how much memory is allocated and will lead to Undefined behaviour.
+- Buffer Overflow occurs when data is written beyond the allocated memory space for a variable.
 
 Stings and Char
 - Every string is an array of char variables plus a null terminator

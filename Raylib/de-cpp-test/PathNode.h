@@ -21,12 +21,12 @@ public:
         mPosition(position)
     {
         mName = new char [strlen(name) + 1]; //FIX: memory allocation did not account for null terminator
-        strcpy(mName, name);     // ERROR 3: Possible buffer overflow if name is larger than allocated space
+        strcpy(mName, name);     // ERROR: Possible buffer overflow if name is larger than allocated space
     }
     
     ~PathNode()
     {
-        // ERROR 4: Destructor doesn't free the allocated memory (memory leak)
+        delete[] mName;//FIX: Destructor now frees the allocated memory, preventing memory leak
     }
 
     void AddLink(PathNode *pathNode)

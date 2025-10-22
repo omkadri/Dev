@@ -18,4 +18,3 @@ protected:
 };
 
 #endif // HEALTH_H
-
