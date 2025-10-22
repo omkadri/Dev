@@ -1,4 +1,4 @@
-#ifndef ARMOUR_H
+#ifndef ARMOUR_H  // ERROR 1: Inconsistent spelling of Armor
 #define ARMOUR_H
 
 #include "PowerUp.h"
@@ -18,7 +18,7 @@ public:
 
     ~Armor()
     {
-        delete mClanTag; // ERROR 1: Memory leak if mClanTag is not set (if it's NULL, it does nothing, but no proper safeguard for non-NULL deletion)
+        delete mClanTag; // ERROR 2: Memory leak if mClanTag is not set (if it's NULL, it does nothing, but no proper safeguard for non-NULL deletion)
     }
 
     const char* GetClanTag() const

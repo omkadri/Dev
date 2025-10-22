@@ -22,7 +22,7 @@ public:
     enum PowerUpType
     {
         WEAPON,
-        ARMOUR, 
+        ARMOUR,  // ERROR: Inconsistent spelling of Armor
         HEALTH
     };
 
