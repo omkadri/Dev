@@ -14,13 +14,6 @@ static PowerUps sPowerUps;
 
 bool FindPowerUp(PathNodes& path, PowerUp::PowerUpType mType, PathNode *start)
 {
-    /* Example:
-    path.push_back(start);
-    path.push_back(secondNode);
-    path.push_back(endNode);
-    return(true);
-    */
-
     // Early exit if the starting node is null or doesn't contain a power-up of the required type
     if (start == nullptr) return false;
 
@@ -80,9 +73,6 @@ inline void LinkNodes(PathNode *n1, PathNode *n2)
 
 int main(int, char*[])
 {
-    // ERROR 1: Memory Leak
-    // These PathNode and PowerUp objects are allocated using 'new', but there is no corresponding delete for them, 
-    // causing memory leaks at the end of the program when it finishes execution.
     sPathNodes.push_back(new PathNode("Node0", Vertex(300, 60, 0))); 
     sPathNodes.push_back(new PathNode("Node1", Vertex(100, 60, 0)));
     sPathNodes.push_back(new PathNode("Node2", Vertex(80, 560, 0)));
@@ -94,8 +84,7 @@ int main(int, char*[])
 
     // ERROR 2: Inconsistent Node Links
     // The LinkNodes function is hardcoding relationships between nodes. If the pathfinding algorithm needs to adapt to a 
-    // dynamically changing world, this approach could become problematic. Additionally, there seems to be a redundancy with 
-    // some of the nodes (e.g., Node5 and Node7 both at position (450, 400, 0), which could cause logical issues).
+    // dynamically changing world, this approach could become problematic.
     
     LinkNodes(sPathNodes[1], sPathNodes[4]);
     LinkNodes(sPathNodes[0], sPathNodes[1]);
@@ -148,6 +137,17 @@ int main(int, char*[])
 
         printf("\n");
     }
+
+    for (PathNode* node : sPathNodes) {
+        delete node; //FIX: Avoids memory leaks
+    }
+    sPathNodes.clear();  // Not mandatory, but generally good practices for when context ends
+
+    for (PowerUp* powerUp : sPowerUps) {
+        delete powerUp;  //FIX: Avoids memory leaks
+    }
+    sPowerUps.clear();  // Not mandatory, but generally good practices for when context ends
+
     // ERROR 5: Missing Memory Management
     // Since raw pointers are used for `PathNode` and `PowerUp` objects, and memory is not freed,
     // this results in a memory leak when the program finishes. Consider using smart pointers (`std::unique_ptr` or `std::shared_ptr`) 
