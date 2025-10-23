@@ -50,6 +50,8 @@ Vector Library
 - To iterate over elements safely and efficiently, you use an iterator, which acts like a pointer to elements in the vector.
 - myVector.begin() returns an iterator to the first element of the vector.
 - myVector.end() returns an iterator to one past the last element.
+- myVector.erase() remove an entry from the container and resizes it, moving all the other elements.
+- calling myVector.erase() on an iterator equal to end() can result in undefined behavior
 
 
 Alias

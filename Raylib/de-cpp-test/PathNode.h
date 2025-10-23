@@ -7,6 +7,8 @@
 
 #include <vector>
 #include <algorithm>
+#include <cassert>
+
 
 class PathNode;
 typedef std::vector<PathNode*> PathNodes;
@@ -31,23 +33,29 @@ public:
 
     void AddLink(PathNode *pathNode)
     {
+        assert(pathNode != nullptr);
         mLinks.push_back(pathNode);
     }
     
     void RemoveLink(PathNode *pathNode)
     {
+        assert(pathNode != nullptr);
         PathNodes::iterator i = std::find(mLinks.begin(), mLinks.end(), pathNode);
+        if (i != mLinks.end()) //FIX: prevents undefined behaviour from occuring on an iterator equal to end()
         mLinks.erase(i);
     }
-
+    
     void AddPowerUp(PowerUp *powerUp)
     {
+        assert(powerUp != nullptr);
         mPowerUps.push_back(powerUp);
     }
     
     void RemovePowerUp(PowerUp *powerUp)
     {
+        assert(powerUp != nullptr);
         PowerUps::iterator i = std::find(mPowerUps.begin(), mPowerUps.end(), powerUp);
+        if (i != mPowerUps.end()) //FIX: prevents undefined behaviour from occuring on an iterator equal to end()
         mPowerUps.erase(i);
     }
 

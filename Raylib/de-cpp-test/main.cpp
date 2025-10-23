@@ -14,53 +14,6 @@ static PowerUps sPowerUps;
 
 bool FindPowerUp(PathNodes& path, PowerUp::PowerUpType mType, PathNode *start)
 {
-    // Early exit if the starting node is null or doesn't contain a power-up of the required type
-    if (start == nullptr) return false;
-
-    // BFS setup
-    std::queue<PathNode*> toVisit; // Nodes to visit
-    std::unordered_map<PathNode*, PathNode*> parentMap; // To reconstruct the path
-    std::unordered_map<PathNode*, bool> visited; // To mark nodes as visited
-
-    toVisit.push(start);
-    visited[start] = true;
-
-    // BFS loop
-    while (!toVisit.empty())
-    {
-        PathNode* currentNode = toVisit.front();
-        toVisit.pop();
-
-        // Check if current node has the desired power-up type
-        for (auto& powerUp : currentNode->GetPowerUps())
-        {
-            if (powerUp->GetPowerUpType() == mType)
-            {
-                // Power-up found, reconstruct path
-                while (currentNode != nullptr)
-                {
-                    path.push_back(currentNode);
-                    currentNode = parentMap[currentNode];
-                }
-                
-                // The path is currently in reverse order, so reverse it
-                std::reverse(path.begin(), path.end());
-                return true;
-            }
-        }
-
-        // Explore all linked nodes
-        for (PathNode* neighbor : currentNode->GetLinks())
-        {
-            if (!visited[neighbor])
-            {
-                toVisit.push(neighbor);
-                visited[neighbor] = true;
-                parentMap[neighbor] = currentNode; // Keep track of the parent for path reconstruction
-            }
-        }
-    }
-    
     return(false); // No path found.
 }
 
