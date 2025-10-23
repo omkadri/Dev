@@ -82,9 +82,6 @@ int main(int, char*[])
     sPathNodes.push_back(new PathNode("Node6", Vertex(450, 60, 0)));
     sPathNodes.push_back(new PathNode("Node7", Vertex(450, 400, 0)));
 
-    // ERROR 2: Inconsistent Node Links
-    // The LinkNodes function is hardcoding relationships between nodes. If the pathfinding algorithm needs to adapt to a 
-    // dynamically changing world, this approach could become problematic.
     
     LinkNodes(sPathNodes[1], sPathNodes[4]);
     LinkNodes(sPathNodes[0], sPathNodes[1]);
@@ -96,9 +93,6 @@ int main(int, char*[])
     LinkNodes(sPathNodes[2], sPathNodes[3]);
     LinkNodes(sPathNodes[3], sPathNodes[5]);
 
-    // ERROR 3: Potential Bad Pointer (Dangling Pointer)
-    // Since the nodes and power-ups are dynamically allocated using 'new', but not deleted, 
-    // there could be a risk of dereferencing invalid pointers or accessing memory that has been freed in the future.
     sPowerUps.push_back(new Weapon("Weapon0", Vertex(340, 670, 0)));
     sPathNodes[3]->AddPowerUp(sPowerUps[0]);    
     sPowerUps.push_back(new Weapon("Weapon1", Vertex(500, 220, 0)));
@@ -115,11 +109,6 @@ int main(int, char*[])
     sPathNodes[2]->AddPowerUp(sPowerUps[5]);    
 
     PathNodes path;
-
-    // ERROR 4: No Check for Invalid Indices
-    // When accessing `sPathNodes` and `sPowerUps` vectors with indices like `sPathNodes[3]`, if the vector size is less than 
-    // or equal to the index, it will cause undefined behavior (out-of-bounds access). There should be checks or use of 
-    // `at()` to avoid this issue.
 
     if(!FindPowerUp(path, PowerUp::WEAPON, sPathNodes[4]))
     {
@@ -148,30 +137,5 @@ int main(int, char*[])
     }
     sPowerUps.clear();  // Not mandatory, but generally good practices for when context ends
 
-    // ERROR 5: Missing Memory Management
-    // Since raw pointers are used for `PathNode` and `PowerUp` objects, and memory is not freed,
-    // this results in a memory leak when the program finishes. Consider using smart pointers (`std::unique_ptr` or `std::shared_ptr`) 
-    // for automatic memory management or manually deleting allocated memory.
-    
-    // ERROR 6: Hardcoded Coordinates and Node Names
-    // The coordinates and names for nodes like "Node0", "Node1", etc., are hardcoded, which reduces flexibility. 
-    // A better approach might be to read these values from a configuration file or generate them dynamically.
-
-    // ERROR 7: Lack of Error Handling for Memory Allocation Failures
-    // There is no error handling for memory allocation failures when using `new`. In case memory allocation fails, the program 
-    // will continue to execute and might behave unpredictably. Adding error handling (e.g., checking if `new` returns `nullptr`) 
-    // would be more robust.
-
-    // ERROR 8: Duplicate PathNode Entries
-    // The LinkNodes function does not check if a link between two nodes already exists. This can result in redundant links, 
-    // causing unnecessary complexity in pathfinding algorithms or other operations.
-
-     // THREAD SAFETY: Potential Data Race Issues
-    // WARNING: Potential thread safety issues if this code is run in a multithreaded environment
-    // Use proper synchronization (e.g., mutexes) to protect shared resources like sPathNodes and sPowerUps.
-    
-    // CONST CORRECTNESS: Function Parameters Should Be Const
-    // The LinkNodes function doesn't modify the nodes passed to it, so marking it as 'const' would make the intent clearer.
-    // Additionally, consider marking the FindPowerUp parameters as 'const' to avoid accidental modification.
     return(0);
 }

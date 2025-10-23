@@ -1,23 +1,49 @@
+Reflection on My C++ Test Experience
+
+As I continue to develop my skills in C++, I approached the recent coding test as an valuable learning 
+opportunity. Although I am not an expert, I made a deliberate effort to identify and understand key 
+concepts throughout the exercise. Below is a summary of the lessons I gained, particularly in areas such
+as memory management, constructors, and safe coding practices. While my current proficiency may not fully 
+meet your expectations, I hope this demonstrates my commitment to learning and growth. With the right 
+guidance, I am confident I can strengthen my skills and contribute by writing more robust and efficient 
+C++ code in the future :)
+
+
 Garbage Collection:
-- Default constructors should always initialize member variables.
+- Unlike other languages, C++ does not use garbage collection and so we must manage deleted objects manually.
 
 
 Constructors
-- Default constructor vs Paramaterized Constructors
+- A default constructor takes no arguments and initializes an object with default values, while a parameterized constructor accepts arguments to initialize an object with specific, user-defined values.
+- A class can have many parameterized constructors for different outcomes.
+
+
 
 Memory allocation
-- Member variables should always be initialized to prevent unpredictable behaviour 
-- New is an operator that allocates memory to the Heap
-- Every New needs to have a corresponding delete to ensure proper memory allocation
-- Arrays must be deleted with 'delete[]' instead of 'delete'. The reason for this is because 'delete' will not know how much memory is allocated and will lead to Undefined behaviour.
-- Buffer Overflow occurs when data is written beyond the allocated memory space for a variable.
+- Member variables must be initialized to prevent undefined behavior.
+-  the 'new' operator allocates memory on the heap.
+- Every 'new' should have a corresponding 'delete' to prevent memory leaks.
+- Arrays allocated with new[] must be freed with delete[]; otherwise, undefined behavior occurs.
+- Buffer overflow happens when data exceeds the allocated memory space, leading to potential crashes or security vulnerabilities.
+- Smart pointers
+
+
+Smart Pointers:
+- I learned about smart pointers and their role in automatic memory management, though I did not use them in this test. I understand they help prevent memory leaks by managing object lifetimes more safely than raw pointers.
+- I chose to stick with manually managing and deleting raw pointers because I wasn’t sure of the expectations for the test and I’m still getting accustomed to using smart pointers in practice.
+
 
 Stings and Char
-- Every string is an array of char variables plus a null terminator
-- a char represents 1 byte
-- when allocating a string in memory, you must always add 1 extra byte to account for the null terminator
+- Strings in C++ are arrays of char plus a null terminator ('\0').
+- Each char occupies 1 byte.
+- When allocating memory for strings, always allocate space for the null terminator as well.
 
 
 Null pointers
-- pointers should not use NULL, but rather, nullptr because of type safety
-- should should never call strcpy on a null pointer because i leads to undefined behaviour
+- Use nullptr instead of NULL for type safety.
+- Never call strcpy (or similar functions) on a null pointer to avoid undefined behavior.
+
+
+Alias
+- Use typedef or using to create aliases for complex types to simplify code readability.
+        Example: typedef std::vector<PathNode*> PathNodes; so you can just write PathNodes instead of std::vector<PathNode*>.
