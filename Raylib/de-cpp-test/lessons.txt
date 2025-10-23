@@ -44,6 +44,14 @@ Null pointers
 - Never call strcpy (or similar functions) on a null pointer to avoid undefined behavior.
 
 
+Vector Library
+- In C++, a vector is a container that holds a sequence of elements.
+- You create a vector using std::vector<Type>, e.g., std::vector<int> numbers;.
+- To iterate over elements safely and efficiently, you use an iterator, which acts like a pointer to elements in the vector.
+- myVector.begin() returns an iterator to the first element of the vector.
+- myVector.end() returns an iterator to one past the last element.
+
+
 Alias
 - Use typedef or using to create aliases for complex types to simplify code readability.
         Example: typedef std::vector<PathNode*> PathNodes; so you can just write PathNodes instead of std::vector<PathNode*>.

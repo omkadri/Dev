@@ -73,6 +73,7 @@ inline void LinkNodes(PathNode *n1, PathNode *n2)
 
 int main(int, char*[])
 {
+    //Setup Path Nodes
     sPathNodes.push_back(new PathNode("Node0", Vertex(300, 60, 0))); 
     sPathNodes.push_back(new PathNode("Node1", Vertex(100, 60, 0)));
     sPathNodes.push_back(new PathNode("Node2", Vertex(80, 560, 0)));
@@ -82,7 +83,7 @@ int main(int, char*[])
     sPathNodes.push_back(new PathNode("Node6", Vertex(450, 60, 0)));
     sPathNodes.push_back(new PathNode("Node7", Vertex(450, 400, 0)));
 
-    
+    //Link Nodes in accordance with PNG file
     LinkNodes(sPathNodes[1], sPathNodes[4]);
     LinkNodes(sPathNodes[0], sPathNodes[1]);
     LinkNodes(sPathNodes[0], sPathNodes[6]);
@@ -92,6 +93,7 @@ int main(int, char*[])
     LinkNodes(sPathNodes[2], sPathNodes[4]);
     LinkNodes(sPathNodes[2], sPathNodes[3]);
     LinkNodes(sPathNodes[3], sPathNodes[5]);
+
 
     sPowerUps.push_back(new Weapon("Weapon0", Vertex(340, 670, 0)));
     sPathNodes[3]->AddPowerUp(sPowerUps[0]);    
@@ -118,13 +120,12 @@ int main(int, char*[])
     {
         printf("Path found: ");
 
-        for(PathNodes::iterator i = path.begin(); i != path.end(); ++i)
+        for (PathNode* n : path)//FIX: Cleaned up for loop for better readability.
         {
-            PathNode *n = *i;
             printf("%s ", n->GetName());
         }
-
         printf("\n");
+
     }
 
     for (PathNode* node : sPathNodes) {
