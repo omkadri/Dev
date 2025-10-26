@@ -31,11 +31,9 @@ bool FindPowerUp(PathNodes& path, PowerUp::PowerUpType mType, PathNode *start)
     However, our graph has weighted edges because the nodes have spatial coordinates, 
     meaning distances between nodes vary. 
 
-    For instance, Node 1 and Node 6 are both health nodes, each one edge away from 
-    the starting Node (Node 0). BFS would consider them equally “short” since it only 
-    counts edges. Measuring actual distance of connected nodeseveals that Node 1 is 
-    slightly closer than Node 6. Dijkstra’s algorithm guarantees that the path we find 
-    truly minimizes travel distance, not just edge count. This also allows flexibility 
+    BFS only counts the number of edges, so it doesn’t guarantee the shortest travel distance 
+    when edge lengths differ. Dijkstra’s algorithm, on the other hand, ensures that the path 
+    we find truly minimizes travel distance along the connected edges. This also allows flexibility 
     for larger or more complex maps where edges differ in length.
 
     Even though I’m still developing my experience with algorithms, I’ve been able to 
