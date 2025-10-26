@@ -14,7 +14,7 @@
 static PathNodes sPathNodes;
 static PowerUps sPowerUps;
 
-static float Distance(const Vertex& a, const Vertex& b)
+static float DistanceBetweenVertices(const Vertex& a, const Vertex& b)
 {
     float dx = a.x - b.x;
     float dy = a.y - b.y;
@@ -44,55 +44,55 @@ bool FindPowerUp(PathNodes& path, PowerUp::PowerUpType mType, PathNode *start)
 */
     if (!start) return false; //Could also be assert, but i stuck with early exit.
 
-    typedef std::pair<float, PathNode*> NodeDist;
+    typedef std::pair<float, PathNode*> NodeDistance;
 
     std::unordered_map<PathNode*, float> shortestDistance;
     std::unordered_map<PathNode*, PathNode*> previousNode;
 
-    auto cmp = [](const NodeDist& a, const NodeDist& b) { return a.first > b.first; };
-    std::priority_queue<NodeDist, std::vector<NodeDist>, decltype(cmp)> pq(cmp);
+    auto isNodeDistanceGreater = [](const NodeDistance& a, const NodeDistance& b) { return a.first > b.first; };
+    std::priority_queue<NodeDistance, std::vector<NodeDistance>, decltype(isNodeDistanceGreater)> nodeQueue(isNodeDistanceGreater);
 
     // Initialize distances
     shortestDistance[start] = 0.0f;
-    pq.push({0.0f, start});
+    nodeQueue.push({0.0f, start});
 
-    PathNode* target = nullptr;
+    PathNode* targetNode = nullptr;
 
-    while (!pq.empty()) {
-        auto [currentDist, current] = pq.top();
-        pq.pop();
+    while (!nodeQueue.empty()) {
+        auto [currentDistance, currentNode] = nodeQueue.top();
+        nodeQueue.pop();
 
         // Skip if we’ve already found a shorter path to this node
-        if (currentDist > shortestDistance[current]) continue;
+        if (currentDistance > shortestDistance[currentNode]) continue;
 
         // Check for PowerUp of desired type
-        for (auto* pu : current->GetPowerUps()) {
-            if (pu && pu->GetPowerUpType() == mType) {
-                target = current;
+        for (auto* powerUp : currentNode->GetPowerUps()) {
+            if (powerUp && powerUp->GetPowerUpType() == mType) {
+                targetNode = currentNode;
                 break;
             }
         }
-        if (target) break;
+        if (targetNode) break;
 
         // Explore neighbors
-        for (auto* neighbor : current->GetLinks()) {
-            float edge = Distance(current->GetPosition(), neighbor->GetPosition());
-            float newDist = currentDist + edge;
+        for (auto* neighbor : currentNode->GetLinks()) {
+            float edge = DistanceBetweenVertices(currentNode->GetPosition(), neighbor->GetPosition());
+            float newDistance = currentDistance + edge;
 
-            if (!shortestDistance.count(neighbor) || newDist < shortestDistance[neighbor]) {
-                shortestDistance[neighbor] = newDist;
-                previousNode[neighbor] = current;
-                pq.push({newDist, neighbor});
+            if (!shortestDistance.count(neighbor) || newDistance < shortestDistance[neighbor]) {
+                shortestDistance[neighbor] = newDistance;
+                previousNode[neighbor] = currentNode;
+                nodeQueue.push({newDistance, neighbor});
             }
         }
     }
 
-    if (!target)
+    if (!targetNode)
         return false; // No matching PowerUp found
 
     // Reconstruct path
     std::vector<PathNode*> reversePath;
-    for (PathNode* n = target; n; n = previousNode.count(n) ? previousNode[n] : nullptr)
+    for (PathNode* n = targetNode; n; n = previousNode.count(n) ? previousNode[n] : nullptr)
         reversePath.push_back(n);
 
     std::reverse(reversePath.begin(), reversePath.end());

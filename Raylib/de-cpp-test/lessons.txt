@@ -58,13 +58,27 @@ Vector Library
 - myVector.erase() remove an entry from the container and resizes it, moving all the other elements.
 - calling myVector.erase() on an iterator equal to end() can result in undefined behavior
 
+Unordered Maps
+- we use unordered_maps when we need a fast, flexible way to associate one piece of data (value) with another (key).
+- std::unordered_map<KeyType, ValueType> stores key-value pairs in a hash table.
+        - Key: input type (e.g., PathNode*)
+        - Value: output type (e.g., float)
+        - Accessing or assigning works like a function: mapName[key] = value;
+- In Dijkstra’s Algorithm:
+        - shortestDistance stores the shortest distance to each node from the start.
+        - previousNode: stores the previous node on the shortest path for reconstruction.
+        - Together, they track the algorithm’s progress and allow path reconstruction.
 
-Alias
+
+Type Alias
 - Use typedef or using to create aliases for complex types to simplify code readability.
         Example: typedef std::vector<PathNode*> PathNodes; so you can just write PathNodes instead of std::vector<PathNode*>.
 - 'using' is another way to declare a type alias.
 
+Lambda Functions:
+- Lambda expressions let you define small, inline functions directly where you need them, as opposed to defining them elsewhere in our code.
+- decltype() is required when a lambda's type is used as a class template parameter.
+
 SORT:
 #include <queue>
-#include <unordered_map>
 #include <limits>
