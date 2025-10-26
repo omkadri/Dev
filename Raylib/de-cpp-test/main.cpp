@@ -27,7 +27,7 @@ bool FindPowerUp(PathNodes& path, PowerUp::PowerUpType mType, PathNode *start)
 /*
     I’m still fairly new to algorithms, so I wanted to explain my reasoning in detail. 
     While learning about pathfinding, I explored several options. Breadth-First Search (BFS) can be effective 
-    for graphs with equal edge weights, like in simple board games or games like pacman. 
+    for graphs with equal edge weights, like in simple board games or games like Pac-Man. 
     However, our graph has weighted edges because the nodes have spatial coordinates, 
     meaning distances between nodes vary. 
 
@@ -36,11 +36,11 @@ bool FindPowerUp(PathNodes& path, PowerUp::PowerUpType mType, PathNode *start)
     we find truly minimizes travel distance along the connected edges. This also allows flexibility 
     for larger or more complex maps where edges differ in length.
 
-    Even though I’m still developing my experience with algorithms, I’ve been able to 
-    research, understand, and implement Dijkstra successfully in this context. This 
-    shows that I can learn new concepts, adapt them to practical problems, and write 
-    working, correct solutions. I’m eager to continue exploring alternative pathfinding 
-    techniques, efficiency improvements, and advanced graph algorithms in future projects.
+    Given my relative inexperience with algorithms, much of this solution was informed by research and examples from 
+    other implementations. I cannot claim to have fully mastered every aspect of Dijkstra’s algorithm, 
+    and some choices I made may seem unconventional. However, through this process I gained a much deeper 
+    understanding of pathfinding algorithms, graph traversal, and practical implementation considerations. 
+    I appreciate any feedback on areas that could be improved.
 */
     if (!start) return false; //Could also be assert, but i stuck with early exit.
 
@@ -52,20 +52,22 @@ bool FindPowerUp(PathNodes& path, PowerUp::PowerUpType mType, PathNode *start)
     auto isNodeDistanceGreater = [](const NodeDistance& a, const NodeDistance& b) { return a.first > b.first; };
     std::priority_queue<NodeDistance, std::vector<NodeDistance>, decltype(isNodeDistanceGreater)> nodeQueue(isNodeDistanceGreater);
 
-    // Initialize distances
+    //Setup starting node
     shortestDistance[start] = 0.0f;
     nodeQueue.push({0.0f, start});
 
+    //Initialize to avoid undefined behaviour
     PathNode* targetNode = nullptr;
+
 
     while (!nodeQueue.empty()) {
         auto [currentDistance, currentNode] = nodeQueue.top();
         nodeQueue.pop();
 
-        // Skip if we’ve already found a shorter path to this node
+        //Skip if we’ve already found a shorter path to this node
         if (currentDistance > shortestDistance[currentNode]) continue;
 
-        // Check for PowerUp of desired type
+        //Check for PowerUp of desired type
         for (auto* powerUp : currentNode->GetPowerUps()) {
             if (powerUp && powerUp->GetPowerUpType() == mType) {
                 targetNode = currentNode;
@@ -74,30 +76,31 @@ bool FindPowerUp(PathNodes& path, PowerUp::PowerUpType mType, PathNode *start)
         }
         if (targetNode) break;
 
-        // Explore neighbors
-        for (auto* neighbor : currentNode->GetLinks()) {
-            float edge = DistanceBetweenVertices(currentNode->GetPosition(), neighbor->GetPosition());
-            float newDistance = currentDistance + edge;
+        //Explore linked nodes
+        for (auto* linkedNode : currentNode->GetLinks()) {
+            float edgeDistance = DistanceBetweenVertices(currentNode->GetPosition(), linkedNode->GetPosition());
+            float newDistance = currentDistance + edgeDistance;
 
-            if (!shortestDistance.count(neighbor) || newDistance < shortestDistance[neighbor]) {
-                shortestDistance[neighbor] = newDistance;
-                previousNode[neighbor] = currentNode;
-                nodeQueue.push({newDistance, neighbor});
+            if (!shortestDistance.count(linkedNode) || newDistance < shortestDistance[linkedNode]) {
+                shortestDistance[linkedNode] = newDistance;
+                previousNode[linkedNode] = currentNode;
+                nodeQueue.push({newDistance, linkedNode});
             }
         }
     }
 
+    //No matching PowerUp found
     if (!targetNode)
-        return false; // No matching PowerUp found
+        return false; 
 
-    // Reconstruct path
-    std::vector<PathNode*> reversePath;
+    //Reconstruct shortest path from start node to target node
+    std::vector<PathNode*> pathToTarget;
     for (PathNode* n = targetNode; n; n = previousNode.count(n) ? previousNode[n] : nullptr)
-        reversePath.push_back(n);
+        pathToTarget.push_back(n);
 
-    std::reverse(reversePath.begin(), reversePath.end());
+    std::reverse(pathToTarget.begin(), pathToTarget.end());
 
-    path.insert(path.end(), reversePath.begin(), reversePath.end());
+    path.insert(path.end(), pathToTarget.begin(), pathToTarget.end());
     return true;
 }
 
@@ -168,12 +171,12 @@ int main(int, char*[])
     for (PathNode* node : sPathNodes) {
         delete node; //FIX: Avoids memory leaks
     }
-    sPathNodes.clear();  // Not mandatory, but generally good practices for when context ends
+    sPathNodes.clear();  //Not mandatory, but generally good practices for when context ends
 
     for (PowerUp* powerUp : sPowerUps) {
         delete powerUp;  //FIX: Avoids memory leaks
     }
-    sPowerUps.clear();  // Not mandatory, but generally good practices for when context ends
+    sPowerUps.clear();  //Not mandatory, but generally good practices for when context ends
 
     return(0);
 }

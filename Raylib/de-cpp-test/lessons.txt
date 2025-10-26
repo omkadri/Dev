@@ -1,21 +1,39 @@
 Reflection on My C++ Test Experience
 
-As I continue to develop my skills in C++, I approached the recent coding test as an valuable learning 
-opportunity. Although I am not an expert, I made a deliberate effort to identify and understand key 
-concepts throughout the exercise. Below is a summary of the lessons I gained, particularly in areas such
-as memory management, constructors, and safe coding practices. While my current proficiency may not fully 
-meet your expectations, I hope this demonstrates my commitment to learning and growth. With the right 
-guidance, I am confident I can strengthen my skills and contribute by writing more robust and efficient 
-C++ code in the future :)
+As I continue to develop my skills in C++, I approached the recent coding test as a valuable learning opportunity. I know you 
+mentioned that this task should have taken an evening tops, but I’ve been forthcoming that my C++ experience is not extensive. 
+With that said, I worked on this over a few evenings. I spent time brushing up on the C++ fundamentals I already knew, as well 
+as identifying gaps in my knowledge. I then applied what I learned to the code you provided for part one of the task. For part 
+two of the task, I had to research pathfinding algorithms, as I was not familiar with them. After understanding the algorithms, 
+I then needed to figure out how to integrate them in a way that aligned with C++ fundamentals, which was the most challenging 
+part of the test for me. Ultimately, my implementation is probably far from perfect, but I feel confident about the concepts 
+I’ve learned in the short time I had. Throughout this exercise, I made a deliberate effort to focus on key areas such as memory
+management, constructors, and safe coding practices. While my current proficiency may not fully meet your expectations, I hope
+this demonstrates my commitment to learning and growth. Whatever decision you make, I truly appreciate transparent feedback, 
+as it will help me continue to strengthen my skills and contribute by writing more robust and efficient C++ code in the future :)
+
+Below is a list of things i learned while doing this Coding test:
 
 
 Garbage Collection:
 - Unlike other languages, C++ does not use garbage collection and so we must manage deleted objects manually.
+- stack-allocated objects are automatically cleaned up, so manual memory management mostly applies to heap-allocated objects.
 
 
 Constructors
 - A default constructor takes no arguments and initializes an object with default values, while a parameterized constructor accepts arguments to initialize an object with specific, user-defined values.
-- A class can have many parameterized constructors for different outcomes.
+- A class can have multiple constructors with different parameter sets, enabling flexible object initialization.
+
+Undefined Behaviour (UB)
+- UB occurs when code violates C++ rules and does not produce predictable or guranteed results, including:
+        - Program Crashing
+        - Memory Corruption
+        - Breakdown Compiler
+- Causes of UB include:
+        - Dereferencing uninitialized or Null Pointers
+        - Accessing out of bound arrays
+        - Using memory that has already been freed
+        - dividing by zero
 
 
 Memory allocation
@@ -24,11 +42,14 @@ Memory allocation
 - Every 'new' should have a corresponding 'delete' to prevent memory leaks.
 - Arrays allocated with new[] must be freed with delete[]; otherwise, undefined behavior occurs.
 - Buffer overflow happens when data exceeds the allocated memory space, leading to potential crashes or security vulnerabilities.
-- Smart pointers
 
 
 Smart Pointers:
 - I learned about smart pointers and their role in automatic memory management, though I did not use them in this test. I understand they help prevent memory leaks by managing object lifetimes more safely than raw pointers.
+- The main types of smart pointers in C++ are:
+        std::unique_ptr – owns a single object exclusively. automatically deletes it when it goes out of scope.
+        std::shared_ptr – allows multiple pointers to share ownership of the same object. deletes the object when the last owner is gone.
+        std::weak_ptr – a non-owning reference to an object managed by a shared_ptr. helps prevent circular references that can cause memory leaks.
 - I chose to stick with manually managing and deleting raw pointers because I wasn’t sure of the expectations for the test and I’m still getting accustomed to using smart pointers in practice.
 
 
@@ -45,14 +66,14 @@ If you want, I can also help you **add one short, personal “lesson learned” 
 
 
 Null pointers
-- Use nullptr instead of NULL for type safety.
+- In C++11 and later, always use nullptr instead of NULL or 0 for type safety.
 - Never call strcpy (or similar functions) on a null pointer to avoid undefined behavior.
 
 
 Vector Library
 - In C++, a vector is a container that holds a sequence of elements.
 - You create a vector using std::vector<Type>, e.g., std::vector<int> numbers;.
-- To iterate over elements safely and efficiently, you use an iterator, which acts like a pointer to elements in the vector.
+- To iterate over elements safely and efficiently, you use an iterator, which acts like a generalized pointer to elements in the vector.
 - myVector.begin() returns an iterator to the first element of the vector.
 - myVector.end() returns an iterator to one past the last element.
 - myVector.erase() remove an entry from the container and resizes it, moving all the other elements.
@@ -78,6 +99,15 @@ Type Alias
 Lambda Functions:
 - Lambda expressions let you define small, inline functions directly where you need them, as opposed to defining them elsewhere in our code.
 - decltype() is required when a lambda's type is used as a class template parameter.
+
+Queues
+- A queue is a container that follows the First-In, First-Out (FIFO) principle. Elements are added to the back and removed from the front.
+- std::priority_queue in C++ is essentially an automated container adapter designed to manage elements in a way that keeps them sorted by priority, but it automates much of the sorting and reordering for you.
+- priority queues use a function called a comperator to decide whether or not an entry is moved up the queue. 
+        - In this test, I used th isNodeDistanceGreatercomperator to move longer distance up the queue to be primed for removal.
+
+Structured Bindings:
+- In C++17, a structured binding is a way to unpack a compound object (like a pair, tuple, or struct) into individual variables in a single, readable line.
 
 SORT:
 #include <queue>
