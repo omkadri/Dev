@@ -37,16 +37,17 @@ bool FindPowerUp(PathNodes& path, PowerUp::PowerUpType mType, PathNode *start)
 
     Given my relative inexperience with algorithms, much of this solution was informed by research and examples from 
     other implementations. I cannot claim to have fully mastered every aspect of Dijkstra’s algorithm, 
-    and some choices I made may seem unconventional. However, through this process I gained a much deeper 
+    and some of my setup may seem unconventional. However, through this process I gained a much deeper 
     understanding of pathfinding algorithms and graph traversal. I appreciate any feedback on areas that could be improved.
 */
     if (!start) return false; //Could also be assert, but i stuck with early exit.
 
-    typedef std::pair<float, PathNode*> NodeDistance;
-
+    //Create node lookup tables
     std::unordered_map<PathNode*, float> shortestDistance;
     std::unordered_map<PathNode*, PathNode*> previousNode;
-
+    
+    //Setup Priority Queue with comparator that checks for greater distance
+    typedef std::pair<float, PathNode*> NodeDistance;
     auto isNodeDistanceGreater = [](const NodeDistance& a, const NodeDistance& b) { return a.first > b.first; };
     std::priority_queue<NodeDistance, std::vector<NodeDistance>, decltype(isNodeDistanceGreater)> nodeQueue(isNodeDistanceGreater);
 
@@ -57,7 +58,7 @@ bool FindPowerUp(PathNodes& path, PowerUp::PowerUpType mType, PathNode *start)
     //Initialize to avoid undefined behaviour
     PathNode* targetNode = nullptr;
 
-
+    //Start processing nodes through priority queue (the above comparator did the leg work for us)
     while (!nodeQueue.empty()) {
         auto [currentDistance, currentNode] = nodeQueue.top();
         nodeQueue.pop();
