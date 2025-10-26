@@ -74,6 +74,11 @@ public:
         return(mPowerUps); 
     }
 
+    const Vertex& GetPosition() const //FIX: Adding public getter to support implementation of Dijkstras Algorithm
+    {
+        return mPosition;
+    }
+
 protected:
     Vertex      mPosition;
     char*       mName;

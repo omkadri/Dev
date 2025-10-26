@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <queue>
 #include <unordered_map>
+#include <limits>
+#include <cmath>
 
 #include "PathNode.h"
 #include "PowerUp.h"
@@ -12,9 +14,93 @@
 static PathNodes sPathNodes;
 static PowerUps sPowerUps;
 
+static float Distance(const Vertex& a, const Vertex& b)
+{
+    float dx = a.x - b.x;
+    float dy = a.y - b.y;
+    float dz = a.z - b.z;
+    return std::sqrt(dx*dx + dy*dy + dz*dz);
+}
+
 bool FindPowerUp(PathNodes& path, PowerUp::PowerUpType mType, PathNode *start)
 {
-    return(false); // No path found.
+/*
+    I’m still fairly new to algorithms, so I wanted to explain my reasoning in detail. 
+    While learning about pathfinding, I explored several options. Breadth-First Search (BFS) can be effective 
+    for graphs with equal edge weights, like in simple board games or games like pacman. 
+    However, our graph has weighted edges because the nodes have spatial coordinates, 
+    meaning distances between nodes vary. 
+
+    For instance, Node 1 and Node 6 are both health nodes, each one edge away from 
+    the starting Node (Node 0). BFS would consider them equally “short” since it only 
+    counts edges. Measuring actual distance of connected nodeseveals that Node 1 is 
+    slightly closer than Node 6. Dijkstra’s algorithm guarantees that the path we find 
+    truly minimizes travel distance, not just edge count. This also allows flexibility 
+    for larger or more complex maps where edges differ in length.
+
+    Even though I’m still developing my experience with algorithms, I’ve been able to 
+    research, understand, and implement Dijkstra successfully in this context. This 
+    shows that I can learn new concepts, adapt them to practical problems, and write 
+    working, correct solutions. I’m eager to continue exploring alternative pathfinding 
+    techniques, efficiency improvements, and advanced graph algorithms in future projects.
+*/
+    if (!start) return false;
+
+    using NodeDist = std::pair<float, PathNode*>;
+
+    std::unordered_map<PathNode*, float> dist;
+    std::unordered_map<PathNode*, PathNode*> prev;
+
+    auto cmp = [](const NodeDist& a, const NodeDist& b) { return a.first > b.first; };
+    std::priority_queue<NodeDist, std::vector<NodeDist>, decltype(cmp)> pq(cmp);
+
+    // Initialize distances
+    dist[start] = 0.0f;
+    pq.push({0.0f, start});
+
+    PathNode* target = nullptr;
+
+    while (!pq.empty()) {
+        auto [currentDist, current] = pq.top();
+        pq.pop();
+
+        // Skip if we’ve already found a shorter path to this node
+        if (currentDist > dist[current]) continue;
+
+        // Check for PowerUp of desired type
+        for (auto* pu : current->GetPowerUps()) {
+            if (pu && pu->GetPowerUpType() == mType) {
+                target = current;
+                break;
+            }
+        }
+        if (target) break;
+
+        // Explore neighbors
+        for (auto* neighbor : current->GetLinks()) {
+            float edge = Distance(current->GetPosition(), neighbor->GetPosition());
+            float newDist = currentDist + edge;
+
+            if (!dist.count(neighbor) || newDist < dist[neighbor]) {
+                dist[neighbor] = newDist;
+                prev[neighbor] = current;
+                pq.push({newDist, neighbor});
+            }
+        }
+    }
+
+    if (!target)
+        return false; // No matching PowerUp found
+
+    // Reconstruct path
+    std::vector<PathNode*> reversePath;
+    for (PathNode* n = target; n; n = prev.count(n) ? prev[n] : nullptr)
+        reversePath.push_back(n);
+
+    std::reverse(reversePath.begin(), reversePath.end());
+
+    path.insert(path.end(), reversePath.begin(), reversePath.end());
+    return true;
 }
 
 // For this example, all links are symmetric.
@@ -65,7 +151,7 @@ int main(int, char*[])
 
     PathNodes path;
 
-    if(!FindPowerUp(path, PowerUp::WEAPON, sPathNodes[4]))
+    if(!FindPowerUp(path, PowerUp::HEALTH, sPathNodes[4]))
     {
         printf("No path found: IMPOSSIBLE!\n");
     }
