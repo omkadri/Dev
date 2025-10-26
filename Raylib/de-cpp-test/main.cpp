@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <queue>
 #include <unordered_map>
-#include <limits>
 #include <cmath>
 
 #include "PathNode.h"
@@ -28,8 +27,8 @@ bool FindPowerUp(PathNodes& path, PowerUp::PowerUpType mType, PathNode *start)
     I’m still fairly new to algorithms, so I wanted to explain my reasoning in detail. 
     While learning about pathfinding, I explored several options. Breadth-First Search (BFS) can be effective 
     for graphs with equal edge weights, like in simple board games or games like Pac-Man. 
-    However, our graph has weighted edges because the nodes have spatial coordinates, 
-    meaning distances between nodes vary. 
+    However, it is implied that our graph has weighted edges because the nodes have spatial 
+    coordinates, meaning distances between nodes vary.
 
     BFS only counts the number of edges, so it doesn’t guarantee the shortest travel distance 
     when edge lengths differ. Dijkstra’s algorithm, on the other hand, ensures that the path 
@@ -39,8 +38,7 @@ bool FindPowerUp(PathNodes& path, PowerUp::PowerUpType mType, PathNode *start)
     Given my relative inexperience with algorithms, much of this solution was informed by research and examples from 
     other implementations. I cannot claim to have fully mastered every aspect of Dijkstra’s algorithm, 
     and some choices I made may seem unconventional. However, through this process I gained a much deeper 
-    understanding of pathfinding algorithms, graph traversal, and practical implementation considerations. 
-    I appreciate any feedback on areas that could be improved.
+    understanding of pathfinding algorithms and graph traversal. I appreciate any feedback on areas that could be improved.
 */
     if (!start) return false; //Could also be assert, but i stuck with early exit.
 
