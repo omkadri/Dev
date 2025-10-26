@@ -62,6 +62,7 @@ Vector Library
 Alias
 - Use typedef or using to create aliases for complex types to simplify code readability.
         Example: typedef std::vector<PathNode*> PathNodes; so you can just write PathNodes instead of std::vector<PathNode*>.
+- 'using' is another way to declare a type alias.
 
 SORT:
 #include <queue>

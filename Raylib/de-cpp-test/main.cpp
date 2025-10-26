@@ -42,18 +42,18 @@ bool FindPowerUp(PathNodes& path, PowerUp::PowerUpType mType, PathNode *start)
     working, correct solutions. I’m eager to continue exploring alternative pathfinding 
     techniques, efficiency improvements, and advanced graph algorithms in future projects.
 */
-    if (!start) return false;
+    if (!start) return false; //Could also be assert, but i stuck with early exit.
 
-    using NodeDist = std::pair<float, PathNode*>;
+    typedef std::pair<float, PathNode*> NodeDist;
 
-    std::unordered_map<PathNode*, float> dist;
-    std::unordered_map<PathNode*, PathNode*> prev;
+    std::unordered_map<PathNode*, float> shortestDistance;
+    std::unordered_map<PathNode*, PathNode*> previousNode;
 
     auto cmp = [](const NodeDist& a, const NodeDist& b) { return a.first > b.first; };
     std::priority_queue<NodeDist, std::vector<NodeDist>, decltype(cmp)> pq(cmp);
 
     // Initialize distances
-    dist[start] = 0.0f;
+    shortestDistance[start] = 0.0f;
     pq.push({0.0f, start});
 
     PathNode* target = nullptr;
@@ -63,7 +63,7 @@ bool FindPowerUp(PathNodes& path, PowerUp::PowerUpType mType, PathNode *start)
         pq.pop();
 
         // Skip if we’ve already found a shorter path to this node
-        if (currentDist > dist[current]) continue;
+        if (currentDist > shortestDistance[current]) continue;
 
         // Check for PowerUp of desired type
         for (auto* pu : current->GetPowerUps()) {
@@ -79,9 +79,9 @@ bool FindPowerUp(PathNodes& path, PowerUp::PowerUpType mType, PathNode *start)
             float edge = Distance(current->GetPosition(), neighbor->GetPosition());
             float newDist = currentDist + edge;
 
-            if (!dist.count(neighbor) || newDist < dist[neighbor]) {
-                dist[neighbor] = newDist;
-                prev[neighbor] = current;
+            if (!shortestDistance.count(neighbor) || newDist < shortestDistance[neighbor]) {
+                shortestDistance[neighbor] = newDist;
+                previousNode[neighbor] = current;
                 pq.push({newDist, neighbor});
             }
         }
@@ -92,7 +92,7 @@ bool FindPowerUp(PathNodes& path, PowerUp::PowerUpType mType, PathNode *start)
 
     // Reconstruct path
     std::vector<PathNode*> reversePath;
-    for (PathNode* n = target; n; n = prev.count(n) ? prev[n] : nullptr)
+    for (PathNode* n = target; n; n = previousNode.count(n) ? previousNode[n] : nullptr)
         reversePath.push_back(n);
 
     std::reverse(reversePath.begin(), reversePath.end());
