@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Ball : MonoBehaviour
 {
@@ -6,65 +7,74 @@ public class Ball : MonoBehaviour
     [SerializeField] Vector2 _direction = new Vector2(1f, 1f); // Initial direction
     [SerializeField] bool _isActivated = false;
 
-    void Start()
+    InputActions _inputActions;
+    InputAction _launchballAction;
+
+    void Awake()
     {
+        _inputActions = new InputActions();
+        _launchballAction = _inputActions.Player.LaunchBall;
         _direction = _direction.normalized;
     }
 
-    void Update()
+    void OnEnable()
+    {
+        _inputActions.Enable();
+        _launchballAction.performed += OnLaunchBall; // Subscribe to input
+    }
+
+    void OnDisable()
+    {
+        _launchballAction.performed -= OnLaunchBall; // Unsubscribe
+        _inputActions.Disable();
+    }
+
+    private void OnLaunchBall(InputAction.CallbackContext context)
     {
         if (!_isActivated)
         {
-            if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonUp(0))
-            {
-                transform.SetParent(null); // Detach from paddle
-                _isActivated = true;
-            }
+            transform.SetParent(null); // Detach from paddle
+            _isActivated = true;
         }
     }
 
     void FixedUpdate()
     {
-        if (_isActivated)
+        if (!_isActivated) return;
+
+        float distance = _speed * Time.fixedDeltaTime;
+        Vector2 currentPosition = transform.position;
+
+        // Check for collision in movement direction
+        RaycastHit2D hit = Physics2D.Raycast(currentPosition, _direction, distance);
+
+        if (hit.collider != null)
         {
-            float distance = _speed * Time.fixedDeltaTime;
-            Vector2 currentPosition = transform.position;
+            transform.position = hit.point;
 
-            // Check for a collision in the direction of movement
-            RaycastHit2D hit = Physics2D.Raycast(currentPosition, _direction, distance);
-
-            if (hit.collider != null)
+            // Handle deflection
+            IDeflector deflector = hit.collider.GetComponent<IDeflector>();
+            if (deflector != null)
             {
-                // Move the ball to the point of collision
-                transform.position = hit.point;
-
-                // Check if the object hit implements IDeflector
-                IDeflector deflector = hit.collider.GetComponent<IDeflector>();
-                if (deflector != null)
-                {
-                    _direction = deflector.GetDeflection(transform.position, _direction).normalized;
-                }
-
-                // Optional: Slightly nudge forward to avoid getting stuck at the hit point
-                transform.position += (Vector3)(_direction * (_speed * 0.01f));
+                _direction = deflector.GetDeflection(transform.position, _direction).normalized;
             }
-            else
-            {
-                // No collision detected, move normally
-                Vector3 movement = (Vector3)(_direction * distance);
-                transform.position += movement;
-            }
+
+            // Nudge forward to prevent sticking
+            transform.position += (Vector3)(_direction * (_speed * 0.01f));
+        }
+        else
+        {
+            // Move normally
+            transform.position += (Vector3)(_direction * distance);
         }
     }
-
 
     void OnTriggerEnter2D(Collider2D other)
     {
         IDeflector deflector = other.GetComponent<IDeflector>();
         if (deflector != null)
         {
-            _direction = deflector.GetDeflection(transform.position, _direction);
+            _direction = deflector.GetDeflection(transform.position, _direction).normalized;
         }
-
     }
 }

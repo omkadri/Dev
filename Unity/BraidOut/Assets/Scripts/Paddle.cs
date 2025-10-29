@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMover : MonoBehaviour, IDeflector
 {
@@ -22,9 +23,23 @@ public class PlayerMover : MonoBehaviour, IDeflector
     Camera _mainCamera;
     bool _isDragging = false;
 
+    //Input
+    InputActions _inputActions;
+    InputAction _moveAction;
+    InputAction _mouseAction;
+    InputAction _touchAction;
+
+
+
     void Awake()
     {
+        _inputActions = new InputActions();
+    
         _mainCamera = Camera.main;
+
+        _moveAction = _inputActions.Player.Move;
+        _mouseAction = _inputActions.Player.MouseMove;
+        _touchAction = _inputActions.Player.TouchMove;
     }
 
     void Update()
@@ -32,8 +47,8 @@ public class PlayerMover : MonoBehaviour, IDeflector
         switch (_controlMode)
         {
             case ControlMode.WD:
-                MoveWithKeys();
-                break;
+            MoveWithKeys();
+            break;
             case ControlMode.Mouse:
                 MoveWithMouse();
                 break;
@@ -48,79 +63,63 @@ public class PlayerMover : MonoBehaviour, IDeflector
         transform.position = clampedPosition;
     }
 
+    void OnEnable()
+    {
+        _inputActions.Enable();
+    }
+
+    void OnDisable()
+    {
+        _inputActions.Disable();
+    }
+
     void MoveWithKeys()
     {
-        float horizontalInput = Input.GetAxisRaw("Horizontal");
-        Vector2 movement = new Vector2(horizontalInput, 0f);
+        Vector2 moveInput = _moveAction.ReadValue<Vector2>();
+        Vector2 movement = new Vector2(moveInput.x, 0f);
         transform.Translate(movement * _moveSpeed * Time.deltaTime);
     }
 
     void MoveWithMouse()
     {
-        Vector3 mousePosition = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
-        Vector3 newPos = new Vector3(mousePosition.x, transform.position.y, transform.position.z);
+        Vector2 mouseScreenPos = _mouseAction.ReadValue<Vector2>();
+        Vector3 worldMousePos = _mainCamera.ScreenToWorldPoint(new Vector3(mouseScreenPos.x, mouseScreenPos.y, 0f));
+        Vector3 newPos = new Vector3(worldMousePos.x, transform.position.y, transform.position.z);
+
         transform.position = Vector3.Lerp(transform.position, newPos, _moveSpeed * Time.deltaTime);
     }
 
     void MoveWithTouch()
     {
-#if UNITY_EDITOR
-        if (Input.GetMouseButtonDown(0))
-        {
-            Vector3 worldTouchPos = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 touchWorld2D = new Vector2(worldTouchPos.x, worldTouchPos.y);
+        // Check if there's a touchscreen device active
+        if (Touchscreen.current == null)
+            return;
 
-            Collider2D hit = Physics2D.OverlapPoint(touchWorld2D);
-            if (hit != null && hit.transform == transform)
+        // Check if the player is currently pressing the screen
+        if (Touchscreen.current.primaryTouch.press.isPressed)
+        {
+            Vector2 touchPos = _touchAction.ReadValue<Vector2>();
+            Vector3 worldTouchPos = _mainCamera.ScreenToWorldPoint(new Vector3(touchPos.x, touchPos.y, 0f));
+
+            // Optional: detect drag start by checking collider
+            if (!_isDragging)
             {
-                _isDragging = true;
+                Collider2D hit = Physics2D.OverlapPoint(worldTouchPos);
+                if (hit != null && hit.transform == transform)
+                    _isDragging = true;
+            }
+
+            // If dragging, move with the finger
+            if (_isDragging)
+            {
+                Vector3 newPos = new Vector3(worldTouchPos.x, transform.position.y, transform.position.z);
+                transform.position = Vector3.Lerp(transform.position, newPos, _moveSpeed * Time.deltaTime);
             }
         }
-
-        if (Input.GetMouseButton(0) && _isDragging)
-        {
-            Vector3 worldTouchPos = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
-            Vector3 newPos = new Vector3(worldTouchPos.x, transform.position.y, transform.position.z);
-            transform.position = Vector3.Lerp(transform.position, newPos, _moveSpeed * Time.deltaTime);
-        }
-
-        if (Input.GetMouseButtonUp(0))
+        else
         {
             _isDragging = false;
         }
-#else
-        if (Input.touchCount > 0)
-        {
-            Touch touch = Input.GetTouch(0);
-            Vector3 worldTouchPos = _mainCamera.ScreenToWorldPoint(touch.position);
-            Vector2 touchWorld2D = new Vector2(worldTouchPos.x, worldTouchPos.y);
-
-            switch (touch.phase)
-            {
-                case TouchPhase.Began:
-                    Collider2D hit = Physics2D.OverlapPoint(touchWorld2D);
-                    if (hit != null && hit.transform == transform)
-                    {
-                        _isDragging = true;
-                    }
-                    break;
-
-                case TouchPhase.Moved:
-                case TouchPhase.Stationary:
-                    if (_isDragging)
-                    {
-                        Vector3 newPos = new Vector3(worldTouchPos.x, transform.position.y, transform.position.z);
-                        transform.position = Vector3.Lerp(transform.position, newPos, _moveSpeed * Time.deltaTime);
-                    }
-                    break;
-
-                case TouchPhase.Ended:
-                case TouchPhase.Canceled:
-                    _isDragging = false;
-                    break;
-            }
-        }
-#endif
     }
 
     public Vector2 GetDeflection(Vector2 ballPosition, Vector2 ballDirection)
