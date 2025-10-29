@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerMover : MonoBehaviour, IDeflector
 {
-    public enum ControlMode
+    [SerializeField] enum ControlMode
     {
         WD,
         Mouse,
@@ -22,14 +22,14 @@ public class PlayerMover : MonoBehaviour, IDeflector
 
     Camera _mainCamera;
     bool _isDragging = false;
+    bool _isActivated = false;
 
     //Input
     InputActions _inputActions;
     InputAction _moveAction;
     InputAction _mouseAction;
     InputAction _touchAction;
-
-
+    InputAction _launchBallAction;
 
     void Awake()
     {
@@ -40,6 +40,7 @@ public class PlayerMover : MonoBehaviour, IDeflector
         _moveAction = _inputActions.Player.Move;
         _mouseAction = _inputActions.Player.MouseMove;
         _touchAction = _inputActions.Player.TouchMove;
+        _launchBallAction = _inputActions.Player.LaunchBall;
     }
 
     void Update()
@@ -66,27 +67,42 @@ public class PlayerMover : MonoBehaviour, IDeflector
     void OnEnable()
     {
         _inputActions.Enable();
+        _launchBallAction.performed += OnLaunchBall;
     }
 
     void OnDisable()
     {
         _inputActions.Disable();
+        _launchBallAction.performed -= OnLaunchBall;
+    }
+
+    void OnLaunchBall(InputAction.CallbackContext context)
+    {
+        Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position);
+        Mouse.current.WarpCursorPosition(screenPos);
+        _isActivated = true;
     }
 
     void MoveWithKeys()
     {
-        Vector2 moveInput = _moveAction.ReadValue<Vector2>();
-        Vector2 movement = new Vector2(moveInput.x, 0f);
-        transform.Translate(movement * _moveSpeed * Time.deltaTime);
+        if (_isActivated)
+        {
+            Vector2 moveInput = _moveAction.ReadValue<Vector2>();
+            Vector2 movement = new Vector2(moveInput.x, 0f);
+            transform.Translate(movement * _moveSpeed * Time.deltaTime);
+        }
     }
 
     void MoveWithMouse()
     {
-        Vector2 mouseScreenPos = _mouseAction.ReadValue<Vector2>();
-        Vector3 worldMousePos = _mainCamera.ScreenToWorldPoint(new Vector3(mouseScreenPos.x, mouseScreenPos.y, 0f));
-        Vector3 newPos = new Vector3(worldMousePos.x, transform.position.y, transform.position.z);
+        if (_isActivated)
+        {
+            Vector2 mouseScreenPos = _mouseAction.ReadValue<Vector2>();
+            Vector3 worldMousePos = _mainCamera.ScreenToWorldPoint(new Vector3(mouseScreenPos.x, mouseScreenPos.y, 0f));
+            Vector3 newPos = new Vector3(worldMousePos.x, transform.position.y, transform.position.z);
 
-        transform.position = Vector3.Lerp(transform.position, newPos, _moveSpeed * Time.deltaTime);
+            transform.position = Vector3.Lerp(transform.position, newPos, _moveSpeed * Time.deltaTime);
+        }
     }
 
     void MoveWithTouch()
