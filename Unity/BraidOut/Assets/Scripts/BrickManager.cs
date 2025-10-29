@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class BrickManager : MonoBehaviour
 {
-    public float _checkInterval = 0.5f; // Check every half-second
-    private float _timer;
+    [SerializeField] float _checkInterval = 0.1f;
+    float _timer;
 
     [SerializeField] string _levelCompleteScenename;
 
-    private void Update()
+    void Update()
     {
         _timer += Time.deltaTime;
 
