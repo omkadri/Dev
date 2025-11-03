@@ -3,8 +3,8 @@ using UnityEngine.InputSystem;
 
 public class BallTrajectory : MonoBehaviour
 {
-    private InputActions _inputActions;
-    private InputAction _launchBallAction;
+    InputActions _inputActions;
+    InputAction _launchBallAction;
 
     void Awake()
     {

@@ -15,6 +15,11 @@ public class Brick : MonoBehaviour, IDeflector
     [SerializeField] bool _moveBrickHorizontally = false;
     [SerializeField] float _moveSpeed = 2f;
 
+    [Header("Power Up")]
+    [SerializeField] GameObject _powerUp;
+    [SerializeField, Range(0f, 100f)] float _powerUpSpawnChance = 25f;
+
+
     public enum StartDirection { Left, Right }
     [SerializeField] StartDirection _startDirection = StartDirection.Right;
 
@@ -38,7 +43,6 @@ public class Brick : MonoBehaviour, IDeflector
 
         _startPos = transform.position;
 
-        // 👇 Set initial direction based on the dropdown
         _moveDirection = _startDirection == StartDirection.Right ? 1 : -1;
     }
 
@@ -96,6 +100,11 @@ public class Brick : MonoBehaviour, IDeflector
 
         if (_destroySFX != null)
             AudioSource.PlayClipAtPoint(_destroySFX, transform.position);
+
+        if (_powerUp != null && Random.value * 100f < _powerUpSpawnChance)
+        {
+            Instantiate(_powerUp, transform.position, Quaternion.identity);
+        }
 
         Destroy(gameObject);
     }

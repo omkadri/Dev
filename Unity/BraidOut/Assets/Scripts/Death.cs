@@ -8,6 +8,9 @@ public class Death : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        if (other.CompareTag("Ball"))
+        {
             SceneUtils.LoadSceneByName(_gameOverSceneName);// TODO: Delegate to game manager????
+        }
     }
 }

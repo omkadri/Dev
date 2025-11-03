@@ -10,15 +10,15 @@ public class PlayerMover : MonoBehaviour, IDeflector
         Touch
     }
 
-    [SerializeField] private ControlMode _controlMode = ControlMode.WD;
+    [SerializeField] ControlMode _controlMode = ControlMode.WD;
     [SerializeField] float _maxBounceAngle = 75f;
 
     [Header("Movement Settings")]
-    [SerializeField] private float _moveSpeed = 5f;
+    [SerializeField] float _moveSpeed = 5f;
 
     [Header("Horizontal Bounds")]
-    [SerializeField] private float _minX = -2.3f;
-    [SerializeField] private float _maxX = 2.3f;
+    [SerializeField] float _minX = -2.3f;
+    [SerializeField] float _maxX = 2.3f;
 
     Camera _mainCamera;
     bool _isDragging = false;

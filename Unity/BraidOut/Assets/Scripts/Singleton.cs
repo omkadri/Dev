@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class Singleton<T> : MonoBehaviour where T : Singleton<T>
 {
-    private static T instance;
+    static T instance;
     public static T Instance => instance;
 
     [Tooltip("Only persist this singleton if it has no parent (recommended for root managers).")]
-    [SerializeField] private bool requireNoParentToPersist = true;
+    [SerializeField] bool requireNoParentToPersist = true;
 
     protected virtual void Awake()
     {

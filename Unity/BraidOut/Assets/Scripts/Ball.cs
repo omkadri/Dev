@@ -94,10 +94,6 @@ public class Ball : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Clamps a launch direction to within allowed launch angles.
-    /// Prevents backward or downward launches.
-    /// </summary>
     Vector2 ClampLaunchDirection(Vector2 dir)
     {
         // Convert direction to angle relative to +X axis
