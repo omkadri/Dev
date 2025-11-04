@@ -1,4 +1,5 @@
 using UnityEngine;
+using System; // For Action
 
 [System.Serializable]
 public class PowerUpData
@@ -10,15 +11,18 @@ public class PowerUpData
 public class PowerUp : MonoBehaviour
 {
     [Header("Settings")]
-    [SerializeField] private float fallSpeed = 5f;  // units per second
+    [SerializeField] float fallSpeed = 5f;  // units per second
 
     [Header("Power-Up List")]
-    [SerializeField] private PowerUpData[] powerUps; // All available power-ups
+    [SerializeField] PowerUpData[] powerUps; // All available power-ups
 
-    private PowerUpData currentPowerUp;   // The power-up assigned when spawned
-    private SpriteRenderer spriteRenderer;
+    public static event Action<PowerUpData> OnPowerUpCollected; 
+    // 👆 Static event so any script can subscribe easily
 
-    private void Awake()
+    PowerUpData currentPowerUp;   // The power-up assigned when spawned
+    SpriteRenderer spriteRenderer;
+
+    void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         if (spriteRenderer == null)
@@ -27,26 +31,26 @@ public class PowerUp : MonoBehaviour
         }
     }
 
-    private void Start()
+    void Start()
     {
         SpawnRandomPowerUp();
     }
 
-    private void Update()
+    void Update()
     {
         transform.Translate(Vector3.down * fallSpeed * Time.deltaTime);
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Paddle"))
         {
-            Debug.Log($"Power-up collected: {currentPowerUp.powerUpName}");
+            OnPowerUpCollected?.Invoke(currentPowerUp);
             Destroy(gameObject);
         }
     }
 
-    private void SpawnRandomPowerUp()
+    void SpawnRandomPowerUp()
     {
         if (powerUps == null || powerUps.Length == 0)
         {
@@ -55,7 +59,7 @@ public class PowerUp : MonoBehaviour
         }
 
         // Pick a random power-up from the list
-        currentPowerUp = powerUps[Random.Range(0, powerUps.Length)];
+        currentPowerUp = powerUps[UnityEngine.Random.Range(0, powerUps.Length)];
 
         // Update the SpriteRenderer with the assigned icon
         if (spriteRenderer != null && currentPowerUp.icon != null)

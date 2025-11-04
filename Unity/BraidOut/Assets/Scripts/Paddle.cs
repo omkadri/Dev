@@ -20,6 +20,12 @@ public class PlayerMover : MonoBehaviour, IDeflector
     [SerializeField] float _minX = -2.3f;
     [SerializeField] float _maxX = 2.3f;
 
+    [Header("PowerUps")]
+    [SerializeField] float _paddleResizeMultiplier = 1.5f; // How much to grow
+    [SerializeField] float _maxWidth = 4f;
+    [SerializeField] float _minWidth = 0.5f;
+
+
     Camera _mainCamera;
     bool _isDragging = false;
     bool _isActivated = false;
@@ -66,14 +72,50 @@ public class PlayerMover : MonoBehaviour, IDeflector
 
     void OnEnable()
     {
+        PowerUp.OnPowerUpCollected += HandlePowerUpCollected;
         _inputActions.Enable();
         _launchBallAction.performed += OnLaunchBall;
     }
 
     void OnDisable()
     {
+        PowerUp.OnPowerUpCollected -= HandlePowerUpCollected;
         _inputActions.Disable();
         _launchBallAction.performed -= OnLaunchBall;
+    }
+
+    void HandlePowerUpCollected(PowerUpData data)
+    {
+        Debug.Log($"Paddle received power-up: {data.powerUpName}");
+
+        switch (data.powerUpName)
+        {
+            case "GrowPaddle":
+                GrowPaddle();
+                break;
+
+            case "ShrinkPaddle":
+                ShrinkPaddle();
+                break;
+
+            case "ShootingPaddle":
+                //EnableShooting();
+                break;
+
+            default:
+                Debug.LogWarning($"Unknown power-up: {data.powerUpName}");
+                break;
+        }
+    }
+
+    void GrowPaddle()
+    {
+        Vector3 currentScale = transform.localScale;
+        if (currentScale.x >= _maxWidth)
+            return;
+
+        transform.localScale = new Vector3(currentScale.x * _paddleResizeMultiplier, currentScale.y, currentScale.z);
+        Debug.Log("Paddle grew larger!");
     }
 
     void OnLaunchBall(InputAction.CallbackContext context)
@@ -82,6 +124,15 @@ public class PlayerMover : MonoBehaviour, IDeflector
         Mouse.current.WarpCursorPosition(screenPos);
         _isActivated = true;
     }
+
+    void ShrinkPaddle()
+{
+    Vector3 currentScale = transform.localScale;
+    if (currentScale.x <= _minWidth) return;
+
+    transform.localScale = new Vector3(currentScale.x / _paddleResizeMultiplier, currentScale.y, currentScale.z);
+    Debug.Log("Paddle shrunk!");
+}
 
     void MoveWithKeys()
     {
