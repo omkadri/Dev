@@ -1,16 +1,14 @@
+using UnityEditor;
 using UnityEngine;
 
 public class ObjectHit : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void OnCollisionEnter(Collision other)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (other.gameObject.CompareTag("Player"))
+        {
+            GetComponent<MeshRenderer>().material.color = Color.blue;
+            gameObject.tag = "Hit";
+        }
     }
 }
