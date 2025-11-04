@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5000084008976411072}
   - component: {fileID: 6162792507996604816}
   - component: {fileID: 883974385348477476}
+  - component: {fileID: 2179596114118873648}
   m_Layer: 0
   m_Name: SpinnerHorizontal
   m_TagString: Untagged
@@ -124,3 +125,15 @@ MonoBehaviour:
   _xAngle: 0
   _yAngle: 0.5
   _zAngle: 0
+--- !u!114 &2179596114118873648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3160212754663620761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59008a8385cf8cb42bac117a94e897ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
