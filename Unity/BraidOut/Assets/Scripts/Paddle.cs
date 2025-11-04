@@ -102,6 +102,10 @@ public class PlayerMover : MonoBehaviour, IDeflector
                 //EnableShooting();
                 break;
 
+            case "InstantDeath":
+                //InstantDeath();
+                break;
+
             default:
                 Debug.LogWarning($"Unknown power-up: {data.powerUpName}");
                 break;

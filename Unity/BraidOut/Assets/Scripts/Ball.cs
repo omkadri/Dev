@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 public class Ball : MonoBehaviour
 {
     [Header("Movement Settings")]
-    [SerializeField] float _speed = 40f;
+    [SerializeField] float _speed = 10f;
     [SerializeField] Vector2 _direction = new Vector2(1f, 1f);
     [SerializeField] bool _isActivated = false;
 
@@ -12,6 +12,14 @@ public class Ball : MonoBehaviour
     [Tooltip("Minimum and maximum allowed launch angles (degrees, relative to the +X axis).")]
     [SerializeField] float _minLaunchAngle = 20f;
     [SerializeField] float _maxLaunchAngle = 160f;
+
+    [Header("PowerUps")]
+    [SerializeField] bool _slowBall = false;
+    [SerializeField] int _slowBallSpeed = 5;
+    [SerializeField] bool _fastBall = false;
+    [SerializeField] int _fastBallSpeed = 20;
+    [SerializeField] bool _throughBall = false;
+
 
     InputActions _inputActions;
     InputAction _launchBallAction;
@@ -26,16 +34,48 @@ public class Ball : MonoBehaviour
         _mainCamera = Camera.main;
     }
 
+    void Start()
+    {
+        if (_slowBall) _speed = _slowBallSpeed;
+        if (_fastBall) _speed = _fastBallSpeed;//TODO: Fix issue where slow ball and fast ball can be enabled at the same time
+    }
+
     void OnEnable()
     {
+        PowerUp.OnPowerUpCollected += HandlePowerUpCollected;
         _inputActions.Enable();
         _launchBallAction.performed += OnLaunchBall;
     }
 
     void OnDisable()
     {
+        PowerUp.OnPowerUpCollected -= HandlePowerUpCollected;
         _launchBallAction.performed -= OnLaunchBall;
         _inputActions.Disable();
+    }
+
+    void HandlePowerUpCollected(PowerUpData data)
+    {
+        Debug.Log($"Paddle received power-up: {data.powerUpName}");
+
+        switch (data.powerUpName)
+        {
+            case "SlowBall":
+                _speed = _slowBallSpeed;
+                break;
+
+            case "FastBall":
+                _speed = _fastBallSpeed;
+                break;
+
+            case "ThroughBall":
+                _throughBall = true;
+                break;
+
+            default:
+                Debug.LogWarning($"Unknown power-up: {data.powerUpName}");
+                break;
+        }
     }
 
     void OnLaunchBall(InputAction.CallbackContext context)
@@ -71,7 +111,7 @@ public class Ball : MonoBehaviour
             transform.position = hit.point;
 
             IDeflector deflector = hit.collider.GetComponent<IDeflector>();
-            if (deflector != null)
+            if (deflector != null && !_throughBall)
             {
                 _direction = deflector.GetDeflection(transform.position, _direction).normalized;
             }
@@ -88,8 +128,10 @@ public class Ball : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         IDeflector deflector = other.GetComponent<IDeflector>();
-        if (deflector != null)
+        if (deflector != null )
         {
+            if (other.gameObject.CompareTag("Brick") && _throughBall) return;
+
             _direction = deflector.GetDeflection(transform.position, _direction).normalized;
         }
     }
