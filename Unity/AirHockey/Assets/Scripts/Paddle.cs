@@ -1,142 +1,87 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
+using System.Collections;
 
-public class PlayerMover : MonoBehaviour, IDeflector
+public class PaddleController : MonoBehaviour
 {
-    [SerializeField] enum ControlMode
-    {
-        WD,
-        Mouse,
-        Touch
-    }
-
-    [SerializeField] ControlMode _controlMode = ControlMode.WD;
-    [SerializeField] float _maxBounceAngle = 75f;
-
     [Header("Movement Settings")]
-    [SerializeField] float _moveSpeed = 5f;
+    public float speed = 10f;
+    public bool isPlayer1 = true;
 
-    [Header("Horizontal Bounds")]
-    [SerializeField] float _minX = -2.3f;
-    [SerializeField] float _maxX = 2.3f;
+    [Header("Nudge Settings")]
+    public float nudgeForce = 12f;       // How strong the forward push is
+    public float returnForce = 8f;       // How strong the return pull is
+    public float nudgeDuration = 0.1f;   // Time between forward and back
+    public float nudgeCooldown = 0.5f;   // Delay before next nudge
 
-    [SerializeField] bool _isTopPaddle = false;
+    private bool isNudging = false;
+    private float lastNudgeTime;
+    private Rigidbody2D rb;
 
-
-    Camera _mainCamera;
-    bool _isDragging = false;
-
-    //Input
-    InputActions _inputActions;
-    InputAction _moveAction;
-    InputAction _mouseAction;
-    InputAction _touchAction;
-    InputAction _launchBallAction;
-
-    void Awake()
+    void Start()
     {
-        _inputActions = new InputActions();
-    
-        _mainCamera = Camera.main;
-
-        _moveAction = _inputActions.Player.Move;
-        _mouseAction = _inputActions.Player.MouseMove;
-        _touchAction = _inputActions.Player.TouchMove;
-        _launchBallAction = _inputActions.Player.LaunchBall;
+        rb = GetComponent<Rigidbody2D>();
     }
 
     void Update()
     {
-        switch (_controlMode)
+        MovePaddle();
+        HandleNudge();
+    }
+
+    void MovePaddle()
+    {
+        if (isNudging) return; // Stop normal movement during a nudge
+
+        float moveX = 0f;
+        float moveY = 0f;
+
+        if (isPlayer1)
         {
-            case ControlMode.WD:
-            MoveWithKeys();
-            break;
-            case ControlMode.Mouse:
-                MoveWithMouse();
-                break;
-            case ControlMode.Touch:
-                MoveWithTouch();
-                break;
-        }
-
-        // Clamp position
-        Vector2 clampedPosition = transform.position;
-        clampedPosition.x = Mathf.Clamp(clampedPosition.x, _minX, _maxX);
-        transform.position = clampedPosition;
-    }
-
-    void OnEnable()
-    {
-        _inputActions.Enable();
-    }
-
-    void OnDisable()
-    {
-        _inputActions.Disable();
-    }
-
-    void MoveWithKeys()
-    {
-        Vector2 moveInput = _moveAction.ReadValue<Vector2>();
-        Vector2 movement = new Vector2(moveInput.x, 0f);
-        transform.Translate(movement * _moveSpeed * Time.deltaTime);
-    }
-
-    void MoveWithMouse()
-    {
-        Vector2 mouseScreenPos = _mouseAction.ReadValue<Vector2>();
-        Vector3 worldMousePos = _mainCamera.ScreenToWorldPoint(new Vector3(mouseScreenPos.x, mouseScreenPos.y, 0f));
-         Vector3 newPos = new Vector3(worldMousePos.x, transform.position.y, transform.position.z);
-        
-        transform.position = Vector3.Lerp(transform.position, newPos, _moveSpeed * Time.deltaTime);
-    }
-
-    void MoveWithTouch()
-    {
-        // Check if there's a touchscreen device active
-        if (Touchscreen.current == null)
-            return;
-
-        // Check if the player is currently pressing the screen
-        if (Touchscreen.current.primaryTouch.press.isPressed)
-        {
-            Vector2 touchPos = _touchAction.ReadValue<Vector2>();
-            Vector3 worldTouchPos = _mainCamera.ScreenToWorldPoint(new Vector3(touchPos.x, touchPos.y, 0f));
-
-            // Optional: detect drag start by checking collider
-            if (!_isDragging)
-            {
-                Collider2D hit = Physics2D.OverlapPoint(worldTouchPos);
-                if (hit != null && hit.transform == transform)
-                    _isDragging = true;
-            }
-
-            // If dragging, move with the finger
-            if (_isDragging)
-            {
-                Vector3 newPos = new Vector3(worldTouchPos.x, transform.position.y, transform.position.z);
-                transform.position = Vector3.Lerp(transform.position, newPos, _moveSpeed * Time.deltaTime);
-            }
+            if (Input.GetKey(KeyCode.W)) moveY = 1f;
+            if (Input.GetKey(KeyCode.S)) moveY = -1f;
+            if (Input.GetKey(KeyCode.A)) moveX = -1f;
+            if (Input.GetKey(KeyCode.D)) moveX = 1f;
         }
         else
         {
-            _isDragging = false;
+            if (Input.GetKey(KeyCode.UpArrow)) moveY = 1f;
+            if (Input.GetKey(KeyCode.DownArrow)) moveY = -1f;
+            if (Input.GetKey(KeyCode.LeftArrow)) moveX = -1f;
+            if (Input.GetKey(KeyCode.RightArrow)) moveX = 1f;
+        }
+
+        Vector2 moveDir = new Vector2(moveX, moveY).normalized;
+        rb.linearVelocity = moveDir * speed;
+    }
+
+    void HandleNudge()
+    {
+        KeyCode nudgeKey = isPlayer1 ? KeyCode.Space : KeyCode.RightControl;
+
+        if (Input.GetKeyDown(nudgeKey) && !isNudging && Time.time >= lastNudgeTime + nudgeCooldown)
+        {
+            StartCoroutine(NudgeRoutine());
         }
     }
 
-    public Vector2 GetDeflection(Vector2 ballPosition, Vector2 ballDirection)
+    IEnumerator NudgeRoutine()
     {
-        float paddleWidth = GetComponent<SpriteRenderer>().bounds.size.x;
-        float relativeHit = (ballPosition.x - transform.position.x) / (paddleWidth / 2);
-        relativeHit = Mathf.Clamp(relativeHit, -1f, 1f);
+        isNudging = true;
+        lastNudgeTime = Time.time;
 
-        float bounceAngle = relativeHit * _maxBounceAngle * Mathf.Deg2Rad;
+        // Stop normal movement briefly
+        rb.linearVelocity = Vector2.zero;
 
-        // Determine direction based on paddle position (top or bottom)
-        float yDir = _isTopPaddle ? -1f : 1f;
+        // Forward push
+        rb.AddForce(transform.up * nudgeForce, ForceMode2D.Impulse);
 
-        Vector2 newDirection = new Vector2(Mathf.Sin(bounceAngle), Mathf.Cos(bounceAngle) * yDir);
-        return newDirection.normalized;
+        yield return new WaitForSeconds(nudgeDuration);
+
+        // Pull back slightly
+        rb.AddForce(-transform.up * returnForce, ForceMode2D.Impulse);
+
+        yield return new WaitForSeconds(0.1f);
+
+        isNudging = false;
     }
 }
