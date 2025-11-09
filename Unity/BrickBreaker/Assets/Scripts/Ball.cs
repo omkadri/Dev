@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 public class Ball : MonoBehaviour
 {
     [Header("Movement Settings")]
-    [SerializeField] float _speed = 10f;
+    [SerializeField, Range(0f, 10f)] float _speed = 10f;
     [SerializeField] Vector2 _direction = new Vector2(1f, 1f);
     [SerializeField] bool _isActivated = false;
 
