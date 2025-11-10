@@ -14,7 +14,7 @@ namespace KartGame.UI
         {
             if (AutoFindKart)
             {
-                ArcadeKart kart = FindObjectOfType<ArcadeKart>();
+                ArcadeKart kart = FindFirstObjectByType<ArcadeKart>();
                 KartController = kart;
             }
 

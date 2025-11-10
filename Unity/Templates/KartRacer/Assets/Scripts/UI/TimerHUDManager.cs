@@ -9,7 +9,7 @@ public class TimerHUDManager : MonoBehaviour
     
     private void Start()
     {
-        m_TimeManager = FindObjectOfType<TimeManager>();
+        m_TimeManager = FindFirstObjectByType<TimeManager>();
         DebugUtility.HandleErrorIfNullFindObject<TimeManager, ObjectiveReachTargets>(m_TimeManager, this);
 
 

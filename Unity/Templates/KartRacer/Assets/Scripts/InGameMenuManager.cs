@@ -21,10 +21,10 @@ public class InGameMenuManager : MonoBehaviour
 
     void Start()
     {
-        //m_PlayerInputsHandler = FindObjectOfType<PlayerInputHandler>();
+        //m_PlayerInputsHandler = FindFirstObjectByType<PlayerInputHandler>();
         //DebugUtility.HandleErrorIfNullFindObject<PlayerInputHandler, InGameMenuManager>(m_PlayerInputsHandler, this);
 
-        m_FramerateCounter = FindObjectOfType<FramerateCounter>();
+        m_FramerateCounter = FindFirstObjectByType<FramerateCounter>();
         //DebugUtility.HandleErrorIfNullFindObject<FramerateCounter, InGameMenuManager>(m_FramerateCounter, this);
 
         menuRoot.SetActive(false);

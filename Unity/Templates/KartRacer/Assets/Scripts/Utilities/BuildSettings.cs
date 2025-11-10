@@ -40,8 +40,8 @@ namespace KartGame
         public GraphicsDeviceType[] SetGraphicsDevices(bool webGL1, bool webGL2)
         {
             return webGL1 && webGL2
-                ? new[] {GraphicsDeviceType.OpenGLES3, GraphicsDeviceType.OpenGLES2}
-                : new[] {webGL1 ? GraphicsDeviceType.OpenGLES2 : GraphicsDeviceType.OpenGLES3};
+                ? new[] {GraphicsDeviceType.OpenGLES3, GraphicsDeviceType.OpenGLES3}
+                : new[] {webGL1 ? GraphicsDeviceType.OpenGLES3 : GraphicsDeviceType.OpenGLES3};
         }
 
         public string GetName()
