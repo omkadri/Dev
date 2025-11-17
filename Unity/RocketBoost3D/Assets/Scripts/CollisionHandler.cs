@@ -62,7 +62,7 @@ public class CollisionHandler : MonoBehaviour
         audioSource.Stop();
         audioSource.PlayOneShot(successSFX);
         successParticles.Play();
-        GetComponent<Movement>().enabled = false;
+        GetComponent<PlayerThrust>().enabled = false;
         Invoke("LoadNextLevel", levelLoadDelay);
     }
 
@@ -72,7 +72,7 @@ public class CollisionHandler : MonoBehaviour
         audioSource.Stop();
         audioSource.PlayOneShot(crashSFX);
         crashParticles.Play();
-        GetComponent<Movement>().enabled = false;
+        GetComponent<PlayerThrust>().enabled = false;
         Invoke("ReloadLevel", levelLoadDelay);
     }
 

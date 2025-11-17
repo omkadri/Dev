@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Movement : MonoBehaviour
+public class PlayerThrust : MonoBehaviour
 {   
     [SerializeField] InputAction thrust;
     [SerializeField] InputAction rotation;
