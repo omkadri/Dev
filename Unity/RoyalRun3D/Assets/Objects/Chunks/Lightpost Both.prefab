@@ -124,6 +124,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2975340561237016750, guid: 8f62c88024afe3245a672aa4c4f252be, type: 3}
+      propertyPath: _coinPrefab
+      value: 
+      objectReference: {fileID: 4819300812737920837, guid: 3fde679711eb59d4d8a40e2a3d9d4025, type: 3}
+    - target: {fileID: 2975340561237016750, guid: 8f62c88024afe3245a672aa4c4f252be, type: 3}
+      propertyPath: _applePrefab
+      value: 
+      objectReference: {fileID: 4494851354694396134, guid: a79f152a34fdafc4abefc000f24c8934, type: 3}
+    - target: {fileID: 2975340561237016750, guid: 8f62c88024afe3245a672aa4c4f252be, type: 3}
+      propertyPath: _fencePrefab
+      value: 
+      objectReference: {fileID: 3162188369651304359, guid: fc51dc76c80812a4d9445aaebe6f2744, type: 3}
+    - target: {fileID: 2975340561237016750, guid: 8f62c88024afe3245a672aa4c4f252be, type: 3}
+      propertyPath: _pointPickupPrefab
+      value: 
+      objectReference: {fileID: 4819300812737920837, guid: 3fde679711eb59d4d8a40e2a3d9d4025, type: 3}
+    - target: {fileID: 2975340561237016750, guid: 8f62c88024afe3245a672aa4c4f252be, type: 3}
+      propertyPath: _speedPickupPrefab
+      value: 
+      objectReference: {fileID: 4494851354694396134, guid: a79f152a34fdafc4abefc000f24c8934, type: 3}
     - target: {fileID: 4437325663932086182, guid: 8f62c88024afe3245a672aa4c4f252be, type: 3}
       propertyPath: m_Name
       value: Lightpost Both

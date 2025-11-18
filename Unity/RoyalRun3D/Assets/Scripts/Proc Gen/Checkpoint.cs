@@ -2,26 +2,26 @@ using UnityEngine;
 
 public class Checkpoint : MonoBehaviour
 {
-    [SerializeField] float checkpointTimeExtension = 5f;
-    [SerializeField] float obstacleDecreaseTimeAmount = .2f;
+    [SerializeField] float _checkpointTimeExtension = 5f;
+    [SerializeField] float _obstacleDecreaseTimeAmount = .2f;
 
-    GameManager gameManager;
-    ObstacleSpawner obstacleSpawner;
+    GameManager _gameManager;
+    ObstacleSpawner _obstacleSpawner;
 
-    const string playerString = "Player";
+    const string _playerString = "Player";
 
     void Start()
     {
-        gameManager = FindFirstObjectByType<GameManager>();
-        obstacleSpawner = FindFirstObjectByType<ObstacleSpawner>();
+        _gameManager = FindFirstObjectByType<GameManager>();
+        _obstacleSpawner = FindFirstObjectByType<ObstacleSpawner>();
     }
 
     void OnTriggerEnter(Collider other) 
     {
-        if (other.CompareTag(playerString)) 
+        if (other.CompareTag(_playerString)) 
         {
-            gameManager.IncreaseTime(checkpointTimeExtension);
-            obstacleSpawner.DecreaseObstacleSpawnTime(obstacleDecreaseTimeAmount);
+            _gameManager.IncreaseTime(_checkpointTimeExtension);
+            _obstacleSpawner.DecreaseObstacleSpawnTime(_obstacleDecreaseTimeAmount);
         }    
     }
 }

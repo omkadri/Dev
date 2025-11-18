@@ -5014,9 +5014,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04feab7bff887324b9c953bb980ea7d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collisionParticleSystem: {fileID: 3467494895655706939}
-  boulderSmashAudioSource: {fileID: 2472377075645483042}
-  shakeModifer: 10
+  _collisionParticleSystem: {fileID: 3467494895655706939}
+  _boulderSmashAudioSource: {fileID: 2472377075645483042}
+  _shakeModifer: 10
+  _collisionCooldown: 1
 --- !u!136 &4445619550001336489
 CapsuleCollider:
   m_ObjectHideFlags: 0

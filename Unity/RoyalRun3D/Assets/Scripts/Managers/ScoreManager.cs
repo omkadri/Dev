@@ -3,16 +3,16 @@ using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
-    [SerializeField] GameManager gameManager;
-    [SerializeField] TMP_Text scoreText;
+    [SerializeField] GameManager _gameManager;
+    [SerializeField] TMP_Text _scoreText;
 
-    int score = 0;
+    int _score = 0;
 
     public void IncreaseScore(int amount) 
     {
-        if (gameManager.GameOver) return;
+        if (_gameManager.GameOver) return;
 
-        score += amount;
-        scoreText.text = score.ToString();
+        _score += amount;
+        _scoreText.text = _score.ToString();
     }
 }

@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 7a407ee272670044e94eca4c1afedc74, type: 2}
+  m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -42,7 +42,8 @@ RenderSettings:
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 12
+  serializedVersion: 13
+  m_BakeOnSceneLoad: 0
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -300,7 +301,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 85
+  field of view: 65
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -326,8 +327,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.15701506, y: -0.000000008535474, z: 0.0000000013570304, w: 0.9875962}
-  m_LocalPosition: {x: -0.00000007756107, y: 2.254239, z: -3.8027701}
+  m_LocalRotation: {x: 0.15875483, y: -0.0008663048, z: 0.00013929667, w: 0.9873177}
+  m_LocalPosition: {x: 0.016944172, y: 2.2871861, z: -3.7918959}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -649,8 +650,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7de5eb5d9de51ff40b0ca09e7a856ef0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 537642970}
-  scoreText: {fileID: 2081258580}
+  _gameManager: {fileID: 537642970}
+  _scoreText: {fileID: 2081258580}
 --- !u!4 &537642969
 Transform:
   m_ObjectHideFlags: 0
@@ -678,10 +679,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a74e5a34e8ed8a43bc8d4d40528bb3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerController: {fileID: 717376058}
-  timeText: {fileID: 721932696}
-  gameOverText: {fileID: 1895544040}
-  startTime: 30
+  _playerController: {fileID: 717376058}
+  _timeText: {fileID: 721932696}
+  _gameOverText: {fileID: 1895544040}
+  _startTime: 25
 --- !u!1 &616264996
 GameObject:
   m_ObjectHideFlags: 0
@@ -5545,8 +5546,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 674685760}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.15701506, y: -0.0000000085354745, z: 0.0000000013570307, w: 0.9875962}
-  m_LocalPosition: {x: -0.00000007756107, y: 2.254239, z: -3.8027701}
+  m_LocalRotation: {x: 0.15875483, y: -0.0008663048, z: 0.00013929667, w: 0.9873177}
+  m_LocalPosition: {x: 0.016944172, y: 2.2871861, z: -3.7918959}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5577,7 +5578,7 @@ MonoBehaviour:
     LookAtTarget: {fileID: 0}
     CustomLookAtTarget: 0
   Lens:
-    FieldOfView: 85
+    FieldOfView: 65
     OrthographicSize: 5
     NearClipPlane: 0.3
     FarClipPlane: 1000
@@ -5608,11 +5609,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a45d71fb1ca75e42b9d02de5cd2580c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedupParticleSystem: {fileID: 2119603005}
-  minFOV: 35
-  maxFOV: 85
-  zoomDuration: 0.35
-  zoomSpeedModifer: 5
+  _speedupParticleSystem: {fileID: 2119603005}
+  _minFOV: 60
+  _maxFOV: 100
+  _zoomDuration: 0.35
+  _zoomSpeedModifer: 5
 --- !u!114 &674685764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5628,10 +5629,10 @@ MonoBehaviour:
   CameraDistance: 4
   DeadZoneDepth: 0
   Composition:
-    ScreenPosition: {x: 0, y: 0}
+    ScreenPosition: {x: -0.001136363, y: 0.004040409}
     DeadZone:
       Enabled: 1
-      Size: {x: 0.38, y: 0.1}
+      Size: {x: 0.3817123, y: 0.1}
     HardLimits:
       Enabled: 0
       Size: {x: 0.8, y: 0.8}
@@ -5809,9 +5810,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb76e61562306104bb3fc47f1c5ffda5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
-  xClamp: 3
-  zClamp: 2
+  _moveSpeed: 5
+  _xClamp: 3
+  _zClamp: 3
 --- !u!54 &717376059
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5874,9 +5875,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c80ed6699e5cca34ba450c46b1eaa869, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 1786677466}
-  collisionCooldown: 1
-  adjustChangeMoveSpeedAmount: -2
+  _animator: {fileID: 1786677466}
+  _collisionCooldown: 1
+  _adjustChangeMoveSpeedAmount: -2
 --- !u!1 &721932695
 GameObject:
   m_ObjectHideFlags: 0
@@ -6042,25 +6043,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53129cb6301b8be418d434020b4927e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraController: {fileID: 674685763}
-  chunkPrefabs:
+  _cameraController: {fileID: 674685763}
+  _chunkPrefabs:
   - {fileID: 4437325663932086182, guid: 8f62c88024afe3245a672aa4c4f252be, type: 3}
   - {fileID: 1728840840784026963, guid: 6a7ac9ec7d113cc47a2ac29ba40687c9, type: 3}
   - {fileID: 1728840840784026963, guid: e7372bb6a6c05f74fa8515467fa7d13a, type: 3}
   - {fileID: 1728840840784026963, guid: d4c9fc1318ee37f48ad58bf4225a3e93, type: 3}
   - {fileID: 4437325663932086182, guid: 8f62c88024afe3245a672aa4c4f252be, type: 3}
   - {fileID: 4437325663932086182, guid: 8f62c88024afe3245a672aa4c4f252be, type: 3}
-  checkpointChunkPrefab: {fileID: 1728840840784026963, guid: 751706759cfaf724998fe139e31a07a8, type: 3}
-  chunkParent: {fileID: 1994617646}
-  scoreManager: {fileID: 537642968}
-  startingChunksAmount: 12
-  checkpointChunkInterval: 8
-  chunkLength: 10
-  moveSpeed: 6
-  minMoveSpeed: 2
-  maxMoveSpeed: 20
-  minGravityZ: -22
-  maxGravityZ: -8
+  _checkpointChunkPrefab: {fileID: 1728840840784026963, guid: 751706759cfaf724998fe139e31a07a8, type: 3}
+  _chunkParent: {fileID: 1994617646}
+  _scoreManager: {fileID: 537642968}
+  _startingChunksAmount: 12
+  _checkpointChunkInterval: 8
+  _chunkLength: 10
+  _moveSpeed: 8
+  _minMoveSpeed: 6
+  _maxMoveSpeed: 20
+  _minGravityZ: -22
+  _maxGravityZ: -8
 --- !u!4 &824414655
 Transform:
   m_ObjectHideFlags: 0
@@ -6154,17 +6155,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01b9bf49865c6c949bdf79868865c403, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstaclePrefabs:
+  _obstaclePrefabs:
   - {fileID: 8519540495954806225, guid: bec1bc6a7632357498e25e17abc8ed68, type: 3}
   - {fileID: 3088142436199196292, guid: f840ed4b1e8b14b47a8ab9c733747806, type: 3}
-  - {fileID: 8402025036317426550, guid: 5dd4a50d4e2a88b42b84db959d06eb25, type: 3}
   - {fileID: 2725064495440541173, guid: d8aba4e6587e5524a89d8f3060547e1c, type: 3}
   - {fileID: 3088142436199196292, guid: be04ffc42d8e9f74ba552ba5ced962b3, type: 3}
   - {fileID: 3088142436199196292, guid: 32ce93e0c7443c24285dcbd1305da6f6, type: 3}
-  obstacleSpawnTime: 3
-  minObstacleSpawnTime: 0.2
-  obstacleParent: {fileID: 1994617646}
-  spawnWidth: 4
+  _obstacleSpawnTime: 3
+  _minObstacleSpawnTime: 0.2
+  _obstacleParent: {fileID: 1994617646}
+  _spawnWidth: 4
 --- !u!4 &853792715
 Transform:
   m_ObjectHideFlags: 0
@@ -16539,6 +16539,7 @@ MonoBehaviour:
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0
+  m_ScrollDeltaPerTick: 6
 --- !u!114 &2123017008
 MonoBehaviour:
   m_ObjectHideFlags: 0

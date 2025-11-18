@@ -45,13 +45,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e99af8c45d22cc4590dbd3e88a9b0ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fencePrefab: {fileID: 3162188369651304359, guid: fc51dc76c80812a4d9445aaebe6f2744, type: 3}
-  applePrefab: {fileID: 4494851354694396134, guid: a79f152a34fdafc4abefc000f24c8934, type: 3}
-  coinPrefab: {fileID: 4819300812737920837, guid: 3fde679711eb59d4d8a40e2a3d9d4025, type: 3}
-  appleSpawnChance: 0.12
-  coinSpawnChance: 0.5
-  coinSeperationLength: 2
-  lanes:
+  _fencePrefab: {fileID: 3162188369651304359, guid: fc51dc76c80812a4d9445aaebe6f2744, type: 3}
+  _speedPickupPrefab: {fileID: 4494851354694396134, guid: a79f152a34fdafc4abefc000f24c8934, type: 3}
+  _pointPickupPrefab: {fileID: 4819300812737920837, guid: 3fde679711eb59d4d8a40e2a3d9d4025, type: 3}
+  _speedPickupSpawnChance: 0.12
+  _pointPickupSpawnChance: 0.5
+  _pointPickupSeperationLength: 2
+  _lanes:
   - -3
   - 0
   - 3

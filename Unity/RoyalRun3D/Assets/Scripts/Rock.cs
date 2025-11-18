@@ -3,47 +3,47 @@ using UnityEngine;
 
 public class Rock : MonoBehaviour
 {   
-    [SerializeField] ParticleSystem collisionParticleSystem;
-    [SerializeField] AudioSource boulderSmashAudioSource;
-    [SerializeField] float shakeModifer = 10f;
-    [SerializeField] float collisionCooldown = 1f;
+    [SerializeField] ParticleSystem _collisionParticleSystem;
+    [SerializeField] AudioSource _boulderSmashAudioSource;
+    [SerializeField] float _shakeModifer = 10f;
+    [SerializeField] float _collisionCooldown = 1f;
 
-    CinemachineImpulseSource cinemachineImpulseSource;
+    CinemachineImpulseSource _cinemachineImpulseSource;
 
-    float collisionTimer = 1f;
+    float _collisionTimer = 1f;
 
     void Awake() 
     {
-        cinemachineImpulseSource = GetComponent<CinemachineImpulseSource>();
+        _cinemachineImpulseSource = GetComponent<CinemachineImpulseSource>();
     }
 
     void Update() 
     {
-        collisionTimer += Time.deltaTime;
+        _collisionTimer += Time.deltaTime;
     }
 
     void OnCollisionEnter(Collision other)
     {
-        if (collisionTimer < collisionCooldown) return;
+        if (_collisionTimer < _collisionCooldown) return;
 
         FireImpulse();
         CollisionFX(other);
-        collisionTimer = 0f;
+        _collisionTimer = 0f;
     }
 
     void FireImpulse()
     {
         float distance = Vector3.Distance(transform.position, Camera.main.transform.position);
-        float shakeIntensity = (1f / distance) * shakeModifer;
+        float shakeIntensity = (1f / distance) * _shakeModifer;
         shakeIntensity = Mathf.Min(shakeIntensity, 1f);
-        cinemachineImpulseSource.GenerateImpulse(shakeIntensity);
+        _cinemachineImpulseSource.GenerateImpulse(shakeIntensity);
     }
 
     void CollisionFX(Collision other)
     {
         ContactPoint contactPoint  = other.contacts[0];
-        collisionParticleSystem.transform.position = contactPoint.point;
-        collisionParticleSystem.Play();
-        boulderSmashAudioSource.Play();
+        _collisionParticleSystem.transform.position = contactPoint.point;
+        _collisionParticleSystem.Play();
+        _boulderSmashAudioSource.Play();
     }
 }

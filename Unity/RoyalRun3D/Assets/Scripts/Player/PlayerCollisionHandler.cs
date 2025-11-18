@@ -2,31 +2,31 @@ using UnityEngine;
 
 public class PlayerCollisionHandler : MonoBehaviour
 {
-    [SerializeField] Animator animator;
-    [SerializeField] float collisionCooldown = 1f;
-    [SerializeField] float adjustChangeMoveSpeedAmount = -2f;
+    [SerializeField] Animator _animator;
+    [SerializeField] float _collisionCooldown = 1f;
+    [SerializeField] float _adjustChangeMoveSpeedAmount = -2f;
 
-    const string hitString = "Hit";
-    float cooldownTimer = 0f;
+    const string _hitString = "Hit";
+    float _cooldownTimer = 0f;
 
-    LevelGenerator levelGenerator;
+    LevelGenerator _levelGenerator;
 
     void Start()
     {
-        levelGenerator = FindFirstObjectByType<LevelGenerator>();
+        _levelGenerator = FindFirstObjectByType<LevelGenerator>();
     }
 
     void Update() 
     {
-        cooldownTimer += Time.deltaTime;
+        _cooldownTimer += Time.deltaTime;
     }
 
     void OnCollisionEnter(Collision other) 
     {
-        if (cooldownTimer < collisionCooldown) return;
+        if (_cooldownTimer < _collisionCooldown) return;
 
-        levelGenerator.ChangeChunkMoveSpeed(adjustChangeMoveSpeedAmount);
-        animator.SetTrigger(hitString);
-        cooldownTimer = 0f;
+        _levelGenerator.ChangeChunkMoveSpeed(_adjustChangeMoveSpeedAmount);
+        _animator.SetTrigger(_hitString);
+        _cooldownTimer = 0f;
     }
 }

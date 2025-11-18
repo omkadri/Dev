@@ -3,19 +3,19 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] PlayerController playerController;
-    [SerializeField] TMP_Text timeText;
-    [SerializeField] GameObject gameOverText;
-    [SerializeField] float startTime = 5f;
+    [SerializeField] PlayerController _playerController;
+    [SerializeField] TMP_Text _timeText;
+    [SerializeField] GameObject _gameOverText;
+    [SerializeField] float _startTime = 5f;
 
-    float timeLeft;
-    bool gameOver = false;
+    float _timeLeft;
+    bool _isGameOver = false;
 
-    public bool GameOver => gameOver;
+    public bool GameOver => _isGameOver;
 
     void Start() 
     {
-        timeLeft = startTime;
+        _timeLeft = _startTime;
     }
 
     void Update()
@@ -25,17 +25,17 @@ public class GameManager : MonoBehaviour
 
     public void IncreaseTime(float amount) 
     {
-        timeLeft += amount;
+        _timeLeft += amount;
     }
 
     void DecreaseTime()
     {
-        if (gameOver) return;
+        if (_isGameOver) return;
 
-        timeLeft -= Time.deltaTime;
-        timeText.text = timeLeft.ToString("F1");
+        _timeLeft -= Time.deltaTime;
+        _timeText.text = _timeLeft.ToString("F1");
 
-        if (timeLeft <= 0f)
+        if (_timeLeft <= 0f)
         {
             PlayerGameOver();
         }
@@ -43,9 +43,9 @@ public class GameManager : MonoBehaviour
 
     void PlayerGameOver() 
     {
-        gameOver = true;
-        playerController.enabled = false;
-        gameOverText.SetActive(true);
+        _isGameOver = true;
+        _playerController.enabled = false;
+        _gameOverText.SetActive(true);
         Time.timeScale = .1f;
     }
 }

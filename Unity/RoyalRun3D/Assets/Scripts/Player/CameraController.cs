@@ -5,17 +5,17 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    [SerializeField] ParticleSystem speedupParticleSystem;
-    [SerializeField] float minFOV = 20f;
-    [SerializeField] float maxFOV = 120f;
-    [SerializeField] float zoomDuration = 1f;
-    [SerializeField] float zoomSpeedModifer = 5f;
+    [SerializeField] ParticleSystem _speedupParticleSystem;
+    [SerializeField] float _minFOV = 20f;
+    [SerializeField] float _maxFOV = 120f;
+    [SerializeField] float _zoomDuration = 1f;
+    [SerializeField] float _zoomSpeedModifer = 5f;
 
-    CinemachineCamera cinemachineCamera;
+    CinemachineCamera _cinemachineCamera;
 
     void Awake()
     {
-        cinemachineCamera = GetComponent<CinemachineCamera>();
+        _cinemachineCamera = GetComponent<CinemachineCamera>();
     }
 
     public void ChangeCameraFOV(float speedAmount)
@@ -25,26 +25,26 @@ public class CameraController : MonoBehaviour
 
         if (speedAmount > 0) 
         {
-            speedupParticleSystem.Play();
+            _speedupParticleSystem.Play();
         }
     }
 
     IEnumerator ChangeFOVRoutine(float speedAmount)
     {
-        float startFOV = cinemachineCamera.Lens.FieldOfView;
-        float targetFOV = Mathf.Clamp(startFOV + speedAmount * zoomSpeedModifer, minFOV, maxFOV);
+        float startFOV = _cinemachineCamera.Lens.FieldOfView;
+        float targetFOV = Mathf.Clamp(startFOV + speedAmount * _zoomSpeedModifer, _minFOV, _maxFOV);
 
         float elapsedTime = 0f;
 
-        while (elapsedTime < zoomDuration)
+        while (elapsedTime < _zoomDuration)
         {
-            float t = elapsedTime / zoomDuration;
+            float t = elapsedTime / _zoomDuration;
             elapsedTime += Time.deltaTime;
 
-            cinemachineCamera.Lens.FieldOfView = Mathf.Lerp(startFOV, targetFOV, t);
+            _cinemachineCamera.Lens.FieldOfView = Mathf.Lerp(startFOV, targetFOV, t);
             yield return null;
         }
 
-        cinemachineCamera.Lens.FieldOfView = targetFOV;
+        _cinemachineCamera.Lens.FieldOfView = targetFOV;
     }
 }

@@ -3,20 +3,20 @@ using UnityEngine;
 
 public class Chunk : MonoBehaviour
 {
-    [SerializeField] GameObject fencePrefab;
-    [SerializeField] GameObject applePrefab;
-    [SerializeField] GameObject coinPrefab;
+    [SerializeField] GameObject _fencePrefab;
+    [SerializeField] GameObject _speedPickupPrefab;
+    [SerializeField] GameObject _pointPickupPrefab;
 
-    [SerializeField] float appleSpawnChance = .3f;
-    [SerializeField] float coinSpawnChance = .5f;
-    [SerializeField] float coinSeperationLength = 2f;
+    [SerializeField] float _speedPickupSpawnChance = .12f;
+    [SerializeField] float _pointPickupSpawnChance = .5f;
+    [SerializeField] float _pointPickupSeperationLength = 2f;
 
-    [SerializeField] float[] lanes = { -2.5f, 0f, 2.5f };
+    [SerializeField] float[] _lanes = { -3f, 0f, 3f };
 
-    LevelGenerator levelGenerator;
-    ScoreManager scoreManager;
+    LevelGenerator _levelGenerator;
+    ScoreManager _scoreManager;
 
-    List<int> availableLanes = new List<int> { 0, 1, 2 };
+    List<int> _availableLanes = new List<int> { 0, 1, 2 };
 
     void Start() 
     {
@@ -27,62 +27,62 @@ public class Chunk : MonoBehaviour
 
     public void Init(LevelGenerator levelGenerator, ScoreManager scoreManager) 
     {
-        this.levelGenerator = levelGenerator;
-        this.scoreManager = scoreManager;
+        this._levelGenerator = levelGenerator;
+        this._scoreManager = scoreManager;
     }
 
     void SpawnFences() 
     {
-        int fencesToSpawn = Random.Range(0, lanes.Length);
+        int fencesToSpawn = Random.Range(0, _lanes.Length);
 
         for (int i = 0; i < fencesToSpawn; i++)
         {
-            if (availableLanes.Count <= 0) break;
+            if (_availableLanes.Count <= 0) break;
 
             int selectedLane = SelectLane();
 
-            Vector3 spawnPosition = new Vector3(lanes[selectedLane], transform.position.y, transform.position.z);
-            Instantiate(fencePrefab, spawnPosition, Quaternion.identity, this.transform);
+            Vector3 spawnPosition = new Vector3(_lanes[selectedLane], transform.position.y, transform.position.z);
+            Instantiate(_fencePrefab, spawnPosition, Quaternion.identity, this.transform);
         }
     }
 
     void SpawnApple() 
     {
-        if (Random.value > appleSpawnChance || availableLanes.Count <= 0 ) return;
+        if (Random.value > _speedPickupSpawnChance || _availableLanes.Count <= 0 ) return;
 
         int selectedLane = SelectLane();
 
-        Vector3 spawnPosition = new Vector3(lanes[selectedLane], transform.position.y, transform.position.z);
-        Apple newApple = Instantiate(applePrefab, spawnPosition, Quaternion.identity, this.transform).GetComponent<Apple>();
-        newApple.Init(levelGenerator);
+        Vector3 spawnPosition = new Vector3(_lanes[selectedLane], transform.position.y, transform.position.z);
+        SpeedPickup newApple = Instantiate(_speedPickupPrefab, spawnPosition, Quaternion.identity, this.transform).GetComponent<SpeedPickup>();
+        newApple.Init(_levelGenerator);
     }
 
     void SpawnCoins()
     {
-        if (Random.value > coinSpawnChance || availableLanes.Count <= 0) return;
+        if (Random.value > _pointPickupSpawnChance || _availableLanes.Count <= 0) return;
 
         int selectedLane = SelectLane();
 
         int maxCoinsToSpawn = 6;
         int coinsToSpawn = Random.Range(1, maxCoinsToSpawn);
 
-        float topOfChunkZPos = transform.position.z + (coinSeperationLength * 2f);
+        float topOfChunkZPos = transform.position.z + (_pointPickupSeperationLength * 2f);
 
         for (int i = 0; i < coinsToSpawn; i++)
         {
-            float spawnPositionZ = topOfChunkZPos - (i * coinSeperationLength);
-            Vector3 spawnPosition = new Vector3(lanes[selectedLane], transform.position.y, spawnPositionZ);
-            Coin newCoin = Instantiate(coinPrefab, spawnPosition, Quaternion.identity, this.transform).GetComponent<Coin>();
-            newCoin.Init(scoreManager);
+            float spawnPositionZ = topOfChunkZPos - (i * _pointPickupSeperationLength);
+            Vector3 spawnPosition = new Vector3(_lanes[selectedLane], transform.position.y, spawnPositionZ);
+            PointPickup newCoin = Instantiate(_pointPickupPrefab, spawnPosition, Quaternion.identity, this.transform).GetComponent<PointPickup>();
+            newCoin.Init(_scoreManager);
         }
 
     }
 
     int SelectLane()
     {
-        int randomLaneIndex = Random.Range(0, availableLanes.Count);
-        int selectedLane = availableLanes[randomLaneIndex];
-        availableLanes.RemoveAt(randomLaneIndex);
+        int randomLaneIndex = Random.Range(0, _availableLanes.Count);
+        int selectedLane = _availableLanes[randomLaneIndex];
+        _availableLanes.RemoveAt(randomLaneIndex);
         return selectedLane;
     }
 }
