@@ -78,6 +78,9 @@ public class Ball : MonoBehaviour
             case "ThroughBall":
                 _throughBall = true;
                 break;
+            case "DuplicateBall":
+                DuplicateBall();
+                break;
 
             default:
                 Debug.LogWarning($"Unknown power-up: {data.powerUpName}");
@@ -153,5 +156,31 @@ public class Ball : MonoBehaviour
 
         // Convert back to a direction vector
         return new Vector2(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad)).normalized;
+    }
+
+    void DuplicateBall()
+    {
+        // Safety: only split if the ball is active and a prefab reference exists
+        GameObject ballPrefab = gameObject; // Assuming this script is on the prefab instance
+        if (!_isActivated || ballPrefab == null) return;
+
+        Vector3 spawnOffset = new Vector3(0.2f, 0.2f, 0f);
+        GameObject newBallObj = Instantiate(ballPrefab, transform.position + spawnOffset, Quaternion.identity);
+
+        Ball newBall = newBallObj.GetComponent<Ball>();
+
+        if (newBall != null)
+        {
+            Vector2 oppositeDirection = new Vector2(-_direction.x, _direction.y).normalized;
+
+            newBall._direction = oppositeDirection;
+            newBall._isActivated = true; // launch immediately
+            newBall.transform.SetParent(null);
+
+            newBall._speed = _speed;
+            newBall._throughBall = _throughBall;
+        }
+
+        Debug.Log("SplitBall: Created new ball with opposite trajectory.");
     }
 }
