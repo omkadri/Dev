@@ -1,8 +1,12 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System;
+using System.Collections;
 
 public class Ball : MonoBehaviour
 {
+    public static int ActiveCount { get; private set; } = 0;
+
     [Header("Movement Settings")]
     [SerializeField, Range(0f, 10f)] float _speed = 10f;
     [SerializeField] Vector2 _direction = new Vector2(1f, 1f);
@@ -26,6 +30,7 @@ public class Ball : MonoBehaviour
 
     Camera _mainCamera;
 
+
     void Awake()
     {
         _inputActions = new InputActions();
@@ -45,6 +50,7 @@ public class Ball : MonoBehaviour
         PowerUp.OnPowerUpCollected += HandlePowerUpCollected;
         _inputActions.Enable();
         _launchBallAction.performed += OnLaunchBall;
+        ActiveCount++;
     }
 
     void OnDisable()
@@ -52,6 +58,7 @@ public class Ball : MonoBehaviour
         PowerUp.OnPowerUpCollected -= HandlePowerUpCollected;
         _launchBallAction.performed -= OnLaunchBall;
         _inputActions.Disable();
+        ActiveCount--;
     }
 
     void HandlePowerUpCollected(PowerUpData data)
