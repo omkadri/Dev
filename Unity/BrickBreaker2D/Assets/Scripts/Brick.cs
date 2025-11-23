@@ -61,7 +61,7 @@ public class Brick : MonoBehaviour, IDeflector
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Ball"))
+        if (other.CompareTag("Ball") || other.CompareTag("Projectile"))
         {
             StartCoroutine(DelayedDamage());
         }

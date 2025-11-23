@@ -26,11 +26,14 @@ public class Paddle : MonoBehaviour, IDeflector
     [SerializeField] float _paddleResizeMultiplier = 1.5f; // How much to grow
     [SerializeField] float _maxWidth = 4f;
     [SerializeField] float _minWidth = 0.5f;
-
+    [SerializeField] GameObject _leftTurretSprite;
+    [SerializeField] GameObject _rightTurretSprite;
+    [SerializeField] GameObject _projectile;
 
     Camera _mainCamera;
     bool _isDragging = false;
     bool _isActivated = false;
+    bool _shootingPaddle = false;
 
     //Input
     InputActions _inputActions;
@@ -38,6 +41,7 @@ public class Paddle : MonoBehaviour, IDeflector
     InputAction _mouseAction;
     InputAction _touchAction;
     InputAction _launchBallAction;
+    InputAction _fireProjectileAction;
 
     void Awake()
     {
@@ -49,6 +53,12 @@ public class Paddle : MonoBehaviour, IDeflector
         _mouseAction = _inputActions.Player.MouseMove;
         _touchAction = _inputActions.Player.TouchMove;
         _launchBallAction = _inputActions.Player.LaunchBall;
+        _fireProjectileAction = _inputActions.Player.FireProjectile;
+    }
+
+    void Start()
+    {
+        SetTurretIconVisibility();
     }
 
     void Update()
@@ -77,6 +87,7 @@ public class Paddle : MonoBehaviour, IDeflector
         PowerUp.OnPowerUpCollected += HandlePowerUpCollected;
         _inputActions.Enable();
         _launchBallAction.performed += OnLaunchBall;
+        _fireProjectileAction.performed += OnFireProjectile;
     }
 
     void OnDisable()
@@ -84,6 +95,7 @@ public class Paddle : MonoBehaviour, IDeflector
         PowerUp.OnPowerUpCollected -= HandlePowerUpCollected;
         _inputActions.Disable();
         _launchBallAction.performed -= OnLaunchBall;
+        _fireProjectileAction.performed -= OnFireProjectile;
     }
 
     void HandlePowerUpCollected(PowerUpData data)
@@ -100,13 +112,14 @@ public class Paddle : MonoBehaviour, IDeflector
                 ShrinkPaddle();
                 break;
 
-            case "ShootingPaddle":
-                //EnableShooting();
-                break;
-
             case "InstantDeath":
                 OnDeathPowerUpCollected?.Invoke();
                 break;
+            
+            case "ShootingPaddle":
+            _shootingPaddle = true;
+            SetTurretIconVisibility();
+            break;
         }
     }
 
@@ -127,14 +140,37 @@ public class Paddle : MonoBehaviour, IDeflector
         _isActivated = true;
     }
 
-    void ShrinkPaddle()
+    void OnFireProjectile(InputAction.CallbackContext context)
 {
-    Vector3 currentScale = transform.localScale;
-    if (currentScale.x <= _minWidth) return;
+    if (!_shootingPaddle) 
+        return;
 
-    transform.localScale = new Vector3(currentScale.x / _paddleResizeMultiplier, currentScale.y, currentScale.z);
-    Debug.Log("Paddle shrunk!");
+    if (_projectile == null)
+    {
+        Debug.LogWarning("No projectile prefab assigned to Paddle!");
+        return;
+    }
+
+    if (_leftTurretSprite == null || _rightTurretSprite == null)
+    {
+        Debug.LogWarning("Turret sprite references missing!");
+        return;
+    }
+
+    Instantiate(_projectile, _leftTurretSprite.transform.position, Quaternion.identity);
+    Instantiate(_projectile, _rightTurretSprite.transform.position, Quaternion.identity);
+
+    Debug.Log("Paddle fired projectiles!");
 }
+
+    void ShrinkPaddle()
+    {
+        Vector3 currentScale = transform.localScale;
+        if (currentScale.x <= _minWidth) return;
+
+        transform.localScale = new Vector3(currentScale.x / _paddleResizeMultiplier, currentScale.y, currentScale.z);
+        Debug.Log("Paddle shrunk!");
+    }
 
     void MoveWithKeys()
     {
@@ -189,6 +225,15 @@ public class Paddle : MonoBehaviour, IDeflector
         {
             _isDragging = false;
         }
+    }
+
+    void SetTurretIconVisibility()
+    {
+        if (_leftTurretSprite != null)
+            _leftTurretSprite.SetActive(_shootingPaddle);
+
+        if (_rightTurretSprite != null)
+            _rightTurretSprite.SetActive(_shootingPaddle);
     }
 
     public Vector2 GetDeflection(Vector2 ballPosition, Vector2 ballDirection)

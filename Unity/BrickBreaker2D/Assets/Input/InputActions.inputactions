@@ -1,4 +1,5 @@
 {
+    "version": 1,
     "name": "InputActions",
     "maps": [
         {
@@ -36,6 +37,15 @@
                     "name": "LaunchBall",
                     "type": "Button",
                     "id": "bbde1ae5-c4d7-4031-ac59-574c34b6bfdb",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "FireProjectile",
+                    "type": "Button",
+                    "id": "b6b12943-0cb2-4640-bfd8-6f6614d9607f",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -227,6 +237,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "LaunchBall",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6005a20e-29fc-47a1-917d-27f553fe0332",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "FireProjectile",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
