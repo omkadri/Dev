@@ -1,8 +1,10 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerMover : MonoBehaviour, IDeflector
+public class Paddle : MonoBehaviour, IDeflector
 {
+    public static Action OnDeathPowerUpCollected;
     [SerializeField] enum ControlMode
     {
         WD,
@@ -103,11 +105,7 @@ public class PlayerMover : MonoBehaviour, IDeflector
                 break;
 
             case "InstantDeath":
-                //InstantDeath();
-                break;
-
-            default:
-                Debug.LogWarning($"Unknown power-up: {data.powerUpName}");
+                OnDeathPowerUpCollected?.Invoke();
                 break;
         }
     }

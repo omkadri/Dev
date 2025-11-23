@@ -81,10 +81,6 @@ public class Ball : MonoBehaviour
             case "DuplicateBall":
                 DuplicateBall();
                 break;
-
-            default:
-                Debug.LogWarning($"Unknown power-up: {data.powerUpName}");
-                break;
         }
     }
 
