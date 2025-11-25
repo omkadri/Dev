@@ -135,8 +135,6 @@ public class Paddle : MonoBehaviour, IDeflector
 
     void OnLaunchBall(InputAction.CallbackContext context)
     {
-        Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position);
-        Mouse.current.WarpCursorPosition(screenPos);
         _isActivated = true;
     }
 
