@@ -1,0 +1,243 @@
+TODO:
+
+- Implement Debug Mode that supports Dev Commands (God Mode, Infinite Ammo, UFO, etc)
+- Integrate Swarm or similar review software
+- Add underscores to all the member variables in EVERY script (including Serialized fields)
+Analyze and assess places in script where Vector3 is used for a 2D game (and whether or not it should be replaced with Vector2)
+Replace all custom follow cameras with cinemachine state driven cameras
+Replace all custom screen shakes with cinemachine impulse source
+- Learn how to make Web GL Games
+- Make an AdaptiveMusicController
+- 
+Replace all possible string references with hashes to improve performance.
+Remove unnecessary entries from layer collision matrix
+Implement consistent sorting layers across all 2D games
+Add relative #region code to all scripts
+Do a pass that removes all unnecessary namespaces from scripts
+Explore replacing game objects and Monobehaviours with DOTS and ECS.
+Understand the difference between when to use quaternion.identity VS using transform.position.rotation
+Ensure all animation events use the “AnimEvent” suffix in C#
+Ensure that all objects are sorted respectively in the layer collision matrix
+Use[Header( "Text" )] to organize serialized variables
+Investigete Screen position frustum error
+Apply object pooling to Instantiation and Destruction Calls
+Combine similar classes from different prototypes (SceneManagement, Health Component, Damage Dealer, etc)
+explore combining SceneManagement with Scene Persist
+Investigate using getters and setters for public bools 
+(example: gettingKnockedBack)
+investigate adding function markup similar to that in Utils files
+Master understanding of the relationship between Sprite Sort Points and URP2D
+Investigate adding a 3D Renderer to the UniversalRP asset list (right now it’s only the 2D renderer) 
+Investigate using [AddComponentMenu("")] to hide Legacy GDTV scripts
+Arrange functions by access type (public, private, etc), and then return type (void, int, string etc)
+Tie All movement To global speed
+DPCore: Investigate more advanced Checkpoint Logic
+Explore Optimization tools
+Create TimeUtils script with a function that can turn Unix time into minutes, hours, days, etc
+Ensure there are no animator.SetTrigger calls that use hard-coded strings. Replace with hashes
+- make a lorenz attractor VFX 
+- make a double pendulum VFX
+- Research making sprites from a 3d animation (like donkey kong)
+- 
+
+
+
+
+RPGStarterKit2D Templates
+Understanding the lambda (+= _ =>) expression (especially with the use of parameters)
+Animation Blend states
+Investigate using Custom camera controller vs cinemachine
+Ensure that Layer Collision Matrix is compatible with DPCore
+Decide which Singleton file is better: RPGStarter or DPCore
+
+TopDownAction2D issues
+Fix crash when ghost kills player in close proximity
+Import Dialogue System from RPGStarterKit
+Implement proper use of Layers and tags
+Implement mouse wheel scrolling
+Make Inventory transparent by default. Have it become visible when switching weapons, and then slowly fade away.
+Fix exit portal rendering alignment issue in town scene
+Investigate issue where trail tile sometimes disappears
+Fix Error: Hero_Idle_0's rect lies (partially) outside of texture.
+UnityEngine.GUIUtility:ProcessEvent (int,intptr,bool&)
+Investigate modernizing Screen Shake Implementation (right now it currently uses Legacy CenemachineImpulseSource)
+Investigate renaming grape to throwable
+Create variants for enemy shooters behaviour(different spread, different stagger, different oscillation, different bursts)
+Make a slime trail renderer for the slime enemy
+Swap weapons with scroll wheel
+Investigate making this a star wars game
+Investigate giving the arrow projectile a damage dealer component
+Allow Enemies to be visible behind trees
+Fix issue with crossbow rotation (by maybe moving ActiveWeapon up?)
+Created Torch that can be held by player
+Fix trail tile corner issue
+Investigate bug when transitioning scenes with global volume
+Investigate camera frutsum warning
+Fix Hacky parent singleton on managers group
+Fix Kacky Processor numbers on inventory key bindings in the inputactions
+Add getters to publicly accessible bools
+Investigate issue where ActiveHighlight MUST be the first child in the inventory slot
+
+Unity 6 upgrade notes
+Adjust materials to use current URP
+Disable compatibility mode for scriptable render
+Ensure all packages work
+FindObjectOfType() is replaced with FindFirstObjectByType()
+FindObjectsOfType has been replaced with FindObjectsByType<>( FindObjectsSortMode.None ) 
+Velocity has been replaced with linear velocity
+Update all canvas event systems to use newer input modules
+
+
+
+
+TODO: convert following Shaders to current URP
+ArnoldStandardSurface
+ArnoldStandardSurfaceTransparent
+AutodeskInteractive
+AutodeskInteractiveMasked
+AutodeskInteractiveTransparent
+Decal
+TextMeshPro/Distance Field shader
+FullscreenInvertColors shader
+PhysicalMaterial3DsMax shader
+PhysicalMaterial3DsMaxTransparent
+Unlit/Color shader
+Universal Render Pipeline/VR/SpatialMapping/Occlusion shader
+Universal Render Pipeline/VR/SpatialMapping/Wireframe shader
+Universal Render Pipeline/Nature/SpeedTree9_URP shader
+Universal Render Pipeline/2D/Sprite-Unlit-Default shader
+Universal Render Pipeline/2D/Sprite-Mask shader
+TextMeshPro/SRP/TMP_SDF-HDRP LIT and UNLIT shaders
+TextMeshPro/SRP/TMP_SDF-URP Lit and Unlit shaders
+Shader Graphs/VFXSpriteLit shader
+Shader Graphs/VFXSpriteUnlit shader
+Create an achievement editor
+
+
+ShootEmUp2D:
+- Make Wet shader for enemy goo
+
+
+LaserDefender2D Taskes:
+Dynamic Resolution Adjustment
+NARRATIVE: The earth has been taken over by aliens and you need journey through the solar system to get back
+Explore rogue like potential
+Health Increase
+Damage Increase
+Distance Increase
+Stamina Increase
+Fire Rate
+Fire Spread
+Power Up occurrence rate
+
+
+Create Stamina bar tied to shooter
+Health bar bug: starts out with a little health missing
+Create new paths
+Create new waves
+Create New Enemies
+Create new levels
+Add delay for game over screen
+Stop enemies from firing after player death
+Fix excessively purple background
+Player speed is faster than projectiles
+Fix issue where i can kill off screen enemies
+Investigate varying firing rate for enemy projectiles
+All Space Pirates Destroyed award
+All Drifters Rescued award
+No Damage Taken award
+Fireball Constellations
+Investigate putting projectiles on the projectiles layer
+Implement PowerUps
+
+
+SideScroller2D: 
+Fix Issue Where Cinemachine Virtual Camera is depreciated (SideScroller2D)
+Fix issue where camera blend value are not set
+GameBreaker: exiting a level while colliding with an enemy crashes the game
+Add gravity inversion
+Add Wall Slide, wall jump, wall climb, and wall stick
+Add Double Jump
+Add Dash
+Add Directional Aiming
+Bug where enemies walk backwards
+Fix Issue where SFX play in one ear only
+Fix issue where mushroom endlessly increases jump
+QuixMaster2D
+Issue where restarting can show weird math numbers in percentage
+
+
+
+
+
+
+
+Rocket Mobile Game
+Explore rogue like potential
+Adjust controls to rely on input actions
+100 Levels
+3 Star System based on Time
+First 20 Levels are free
+Enemies
+Projectile Launchers (Various Patterns)
+Patrolling Enemies
+Wall Crawlers
+Pendulums
+Mechanics
+Portals
+Gravity Inversion Zones
+Slide Keys
+Levels
+Portal Levels
+Tutorial
+Play
+Challenge
+Mastery
+Gravity Inversion Levels
+Tutorial
+Play
+Challenge
+Mastery
+Timed Slide Key Levels
+Tutorial
+Play
+Challenge
+Mastery
+Super Narrow Saw Level
+Donkey Kong Octopus
+Double Pendulum
+Windmills
+Maze
+N. Trophy Inspired Level
+
+
+FlappyBird:
+Implement horizontal parallax scrolling
+Use engineCircular_001 SFX
+
+
+
+Taxi2D Tasks: 
+Fix issue where i have to switch back and forth between 9:16 and 16:9
+change control scheme to PlayerInput component and Input Actions
+Make Boost Temporary
+Use coroutine to wait for customer to get into car
+Implement Objective Compass
+Implement Moving Pedestrians
+Implement Blood Splatter when pedestrians are run over
+Implement time penalty for running over pedestrians
+Use node based paths to determine the civilian direction
+Implement Countdown Timer that trigger game over when reaching 0
+Increase Timer when delivering passengers
+Setup other vehicles that move along spline (like LaserDefender waves)
+Implement 2.5D Buildings and perspective Camera
+Implement ability to get in and out of car
+
+
+
+Snowboard2D: 
+Use proper Sceneloader instead of Hardcoding
+When dying
+When finishing level
+Make risk/reward boosting. Make the level impossible to beat without boosting
+Adjust controls to rely on input actions
