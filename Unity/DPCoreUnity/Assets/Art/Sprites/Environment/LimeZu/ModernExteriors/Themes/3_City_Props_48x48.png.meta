@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -69,7 +69,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 16384
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -134,51 +134,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: Hero_Idle_0
-      rect:
-        serializedVersion: 2
-        x: 41
-        y: 29
-        width: 16
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 08df26f7d18f121f0800000000000000
-      internalID: -1071302430762533504
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Hero_Idle_1
-      rect:
-        serializedVersion: 2
-        x: 137
-        y: 29
-        width: 16
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8ee6b80983d949500800000000000000
-      internalID: 402119133011603176
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     customData: 
     physicsShape: []
@@ -193,6 +149,60 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
+      3_City_Props_48x48_0: 1186190384
+      3_City_Props_48x48_1: -297940976
+      3_City_Props_48x48_10: -1390095716
+      3_City_Props_48x48_11: -2139079216
+      3_City_Props_48x48_12: 1377275092
+      3_City_Props_48x48_13: -399568429
+      3_City_Props_48x48_14: 482839060
+      3_City_Props_48x48_15: 1470782617
+      3_City_Props_48x48_16: 1907857990
+      3_City_Props_48x48_17: -1803662371
+      3_City_Props_48x48_18: 774044362
+      3_City_Props_48x48_19: -719731019
+      3_City_Props_48x48_2: 894597509
+      3_City_Props_48x48_20: -1983639477
+      3_City_Props_48x48_21: 1171536642
+      3_City_Props_48x48_22: -2030996635
+      3_City_Props_48x48_23: -420559995
+      3_City_Props_48x48_24: 916076418
+      3_City_Props_48x48_25: -1782368500
+      3_City_Props_48x48_26: 1864201085
+      3_City_Props_48x48_27: 274183917
+      3_City_Props_48x48_28: -1854664494
+      3_City_Props_48x48_29: 189651663
+      3_City_Props_48x48_3: -1678611639
+      3_City_Props_48x48_30: 1050578505
+      3_City_Props_48x48_31: -1626289043
+      3_City_Props_48x48_32: -1973396751
+      3_City_Props_48x48_33: -1151921905
+      3_City_Props_48x48_34: -1289373267
+      3_City_Props_48x48_35: 1226222669
+      3_City_Props_48x48_36: -648043971
+      3_City_Props_48x48_37: -2052670947
+      3_City_Props_48x48_38: 1968584343
+      3_City_Props_48x48_39: -1749561343
+      3_City_Props_48x48_4: -1126664900
+      3_City_Props_48x48_40: 1013754127
+      3_City_Props_48x48_41: 881841657
+      3_City_Props_48x48_42: -101118014
+      3_City_Props_48x48_43: 353101995
+      3_City_Props_48x48_44: -1311476740
+      3_City_Props_48x48_45: 1545985958
+      3_City_Props_48x48_46: 968683836
+      3_City_Props_48x48_47: 1132354990
+      3_City_Props_48x48_48: 1897375126
+      3_City_Props_48x48_49: 1378468087
+      3_City_Props_48x48_5: -1814715589
+      3_City_Props_48x48_50: -1396493216
+      3_City_Props_48x48_51: 1047019696
+      3_City_Props_48x48_52: -1882293739
+      3_City_Props_48x48_53: -1555567627
+      3_City_Props_48x48_6: -1168592310
+      3_City_Props_48x48_7: -1792140308
+      3_City_Props_48x48_8: -965269819
+      3_City_Props_48x48_9: -1032772350
       Hero_Idle_0: -1071302430762533504
       Hero_Idle_1: 402119133011603176
   mipmapLimitGroupName: 
