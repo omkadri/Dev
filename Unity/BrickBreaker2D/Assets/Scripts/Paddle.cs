@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 public class Paddle : MonoBehaviour, IDeflector
 {
     public static Action OnDeathPowerUpCollected;
-    [SerializeField] enum ControlMode
+    enum ControlMode
     {
         WD,
         Mouse,
