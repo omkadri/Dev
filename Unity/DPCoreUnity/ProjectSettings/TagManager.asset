@@ -20,20 +20,20 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Cinemachine Confiner
+  - CameraConfiner
   - Water
   - UI
-  - Friendly
-  - Ground
-  - Climbing
   - Player
-  - Background
-  - Bouncing
-  - Enemies
-  - Hazards
-  - Projectile
-  - Interactables
-  - Enemy
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 
@@ -50,56 +50,20 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Backdrop
-    uniqueID: 41774015
+  - name: Default
+    uniqueID: 0
     locked: 0
   - name: Background
     uniqueID: 1727251605
     locked: 0
-  - name: No Light
+  - name: Foreground
     uniqueID: 4164748099
     locked: 0
-  - name: Default
-    uniqueID: 0
-    locked: 0
-  - name: Water
+  - name: Main
     uniqueID: 4186144669
     locked: 0
-  - name: Bouncing
+  - name: ForcedFront
     uniqueID: 3825643181
-    locked: 0
-  - name: Platforms
-    uniqueID: 1703202029
-    locked: 0
-  - name: BuildingsBackground
-    uniqueID: 1139564893
-    locked: 0
-  - name: BuildingsForeground
-    uniqueID: 272721693
-    locked: 0
-  - name: Climbing
-    uniqueID: 3344187139
-    locked: 0
-  - name: Projectile
-    uniqueID: 1419198795
-    locked: 0
-  - name: Hazards
-    uniqueID: 4252263845
-    locked: 0
-  - name: Interactables
-    uniqueID: 2537688429
-    locked: 0
-  - name: Enemies
-    uniqueID: 2149319419
-    locked: 0
-  - name: Player
-    uniqueID: 3479684073
-    locked: 0
-  - name: Main
-    uniqueID: 1955431155
-    locked: 0
-  - name: VFX
-    uniqueID: 3549282195
     locked: 0
   m_RenderingLayers:
   - Default
