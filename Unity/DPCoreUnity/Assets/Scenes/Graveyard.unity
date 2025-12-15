@@ -1593,17 +1593,45 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 82118707, guid: 6e29dc9e4ec42fc459cbffd08d059657, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -271.1997
+      objectReference: {fileID: 0}
     - target: {fileID: 502501940, guid: 6e29dc9e4ec42fc459cbffd08d059657, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 700557130, guid: 6e29dc9e4ec42fc459cbffd08d059657, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -151.07208
+      objectReference: {fileID: 0}
+    - target: {fileID: 700557130, guid: 6e29dc9e4ec42fc459cbffd08d059657, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -33.546295
+      objectReference: {fileID: 0}
+    - target: {fileID: 770904825, guid: 6e29dc9e4ec42fc459cbffd08d059657, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 125
       objectReference: {fileID: 0}
     - target: {fileID: 1242931486, guid: 6e29dc9e4ec42fc459cbffd08d059657, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1242931487, guid: 6e29dc9e4ec42fc459cbffd08d059657, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -165
+      objectReference: {fileID: 0}
+    - target: {fileID: 1445953630, guid: 6e29dc9e4ec42fc459cbffd08d059657, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -268.9724
+      objectReference: {fileID: 0}
     - target: {fileID: 1583575461, guid: 6e29dc9e4ec42fc459cbffd08d059657, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1617118566, guid: 6e29dc9e4ec42fc459cbffd08d059657, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 195
       objectReference: {fileID: 0}
     - target: {fileID: 2103015648, guid: 6e29dc9e4ec42fc459cbffd08d059657, type: 3}
       propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
@@ -1654,6 +1682,18 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3478481237002393696, guid: 6e29dc9e4ec42fc459cbffd08d059657, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3478481237002393696, guid: 6e29dc9e4ec42fc459cbffd08d059657, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3478481237002393696, guid: 6e29dc9e4ec42fc459cbffd08d059657, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3478481237002393696, guid: 6e29dc9e4ec42fc459cbffd08d059657, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -1701,6 +1741,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3478481237002393698, guid: 6e29dc9e4ec42fc459cbffd08d059657, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3478481237002393699, guid: 6e29dc9e4ec42fc459cbffd08d059657, type: 3}
       propertyPath: m_Camera
       value: 
@@ -1712,6 +1756,14 @@ PrefabInstance:
     - target: {fileID: 3478481237002393699, guid: 6e29dc9e4ec42fc459cbffd08d059657, type: 3}
       propertyPath: m_PixelPerfect
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3478481237002393699, guid: 6e29dc9e4ec42fc459cbffd08d059657, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3478481237002393699, guid: 6e29dc9e4ec42fc459cbffd08d059657, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -108822627
       objectReference: {fileID: 0}
     - target: {fileID: 3478481237002393700, guid: 6e29dc9e4ec42fc459cbffd08d059657, type: 3}
       propertyPath: m_Name
