@@ -1702,8 +1702,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3478481237002393699, guid: 6e29dc9e4ec42fc459cbffd08d059657, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3478481237002393699, guid: 6e29dc9e4ec42fc459cbffd08d059657, type: 3}
       propertyPath: m_RenderMode
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3478481237002393699, guid: 6e29dc9e4ec42fc459cbffd08d059657, type: 3}
+      propertyPath: m_PixelPerfect
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3478481237002393700, guid: 6e29dc9e4ec42fc459cbffd08d059657, type: 3}
       propertyPath: m_Name
