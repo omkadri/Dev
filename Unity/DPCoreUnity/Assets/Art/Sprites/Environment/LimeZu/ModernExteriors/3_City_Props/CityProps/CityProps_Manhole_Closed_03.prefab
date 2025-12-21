@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 296945166447459893, guid: 7ba80c7379c6bfd4ca037f02fbef222f, type: 3}
       propertyPath: m_Name
-      value: CityProps_Manhole_Closed_03 Variant
+      value: CityProps_Manhole_Closed_03
       objectReference: {fileID: 0}
     - target: {fileID: 7393066636954584863, guid: 7ba80c7379c6bfd4ca037f02fbef222f, type: 3}
       propertyPath: m_Size.x
@@ -21,16 +21,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 909393467, guid: 1b5d0c159218aa545a8ea6c298bec8b0, type: 3}
     - target: {fileID: 7393066636954584863, guid: 7ba80c7379c6bfd4ca037f02fbef222f, type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7393066636954584863, guid: 7ba80c7379c6bfd4ca037f02fbef222f, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7997638181824776415, guid: 7ba80c7379c6bfd4ca037f02fbef222f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 21.75796
       objectReference: {fileID: 0}
     - target: {fileID: 7997638181824776415, guid: 7ba80c7379c6bfd4ca037f02fbef222f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -17.320782
       objectReference: {fileID: 0}
     - target: {fileID: 7997638181824776415, guid: 7ba80c7379c6bfd4ca037f02fbef222f, type: 3}
       propertyPath: m_LocalPosition.z
