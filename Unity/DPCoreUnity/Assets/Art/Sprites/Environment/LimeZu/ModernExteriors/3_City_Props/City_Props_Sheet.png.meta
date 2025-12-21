@@ -6023,15 +6023,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: City_Props_Water_Tower_Base
+      name: CityProps_Water_Tower_Base_Top
       rect:
         serializedVersion: 2
         x: 1392
-        y: 8064
+        y: 8223
         width: 144
-        height: 336
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        height: 177
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6045,15 +6045,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: City_Props_Water_Tower_Railing
+      name: City_Props_Water_Tower_Railing_Top
       rect:
         serializedVersion: 2
         x: 864
-        y: 8064
+        y: 8223
         width: 240
-        height: 240
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        height: 81
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6111,15 +6111,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: City_Props_Water_Tower
+      name: City_Props_Water_Tower_Top
       rect:
         serializedVersion: 2
         x: 1104
-        y: 8064
+        y: 8223
         width: 240
-        height: 336
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        height: 177
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -18232,6 +18232,72 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: City_Props_Water_Tower_Railing_Bottom
+      rect:
+        serializedVersion: 2
+        x: 864
+        y: 8064
+        width: 240
+        height: 159
+      alignment: 9
+      pivot: {x: 0.5, y: 0.65}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6847664b0328cdc47a655c1d1e949cd6
+      internalID: 1531559212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: City_Props_Water_Tower_Bottom
+      rect:
+        serializedVersion: 2
+        x: 1104
+        y: 8064
+        width: 240
+        height: 159
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26c0cf6908e4ad44d98ea7d3c6d3ff31
+      internalID: -1072281585
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CityProps_Water_Tower_Base_To
+      rect:
+        serializedVersion: 2
+        x: 1392
+        y: 8064
+        width: 144
+        height: 159
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11a291487b5c3124e96d5d0ddf844271
+      internalID: -504132175
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -22009,6 +22075,8 @@ TextureImporter:
       3_City_Props_997: 1983476313
       3_City_Props_998: -2838149
       3_City_Props_999: -1295086694
+      CityProps_Water_Tower_Base_To: -504132175
+      CityProps_Water_Tower_Base_Top: 1168612942
       City_Props_ATM_Machine: -974647048
       City_Props_Barricade_01: 2025733633
       City_Props_Barricade_02: 1985051075
@@ -22580,10 +22648,12 @@ TextureImporter:
       City_Props_Tree_13: 1717142780
       City_Props_Tree_14: -2098048011
       City_Props_Tree_Extension: -1818106041
-      City_Props_Water_Tower: -2017523119
-      City_Props_Water_Tower_Base: 1168612942
+      City_Props_Water_Tower_Bottom: -1072281585
       City_Props_Water_Tower_No_Entrance: 177408710
-      City_Props_Water_Tower_Railing: 536664607
+      City_Props_Water_Tower_Railing_Bottom: 1531559212
+      City_Props_Water_Tower_Railing_Top: 536664607
+      City_Props_Water_Tower_Railint: 1531559212
+      City_Props_Water_Tower_Top: -2017523119
       City_Props_Weeds_01: -776597176
       City_Props_Weeds_02: 412015865
       City_Props_Weeds_03: -1805676010
