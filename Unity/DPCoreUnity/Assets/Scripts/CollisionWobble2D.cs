@@ -35,14 +35,14 @@ public class CollisionWobble2D : MonoBehaviour
         _startRotation = transform.rotation;
 
         float elapsed = 0f;
-        Vector3 pivot = GetPivotPoint();
 
         while (elapsed < _wobbleDuration)
         {
             float angle = Mathf.Sin(elapsed * _wobbleSpeed) * _wobbleStrength;
+
             transform.rotation = _startRotation;
 
-            transform.RotateAround(pivot, Vector3.forward, angle);
+            transform.Rotate(Vector3.forward, angle);
 
             elapsed += Time.deltaTime;
             yield return null;
