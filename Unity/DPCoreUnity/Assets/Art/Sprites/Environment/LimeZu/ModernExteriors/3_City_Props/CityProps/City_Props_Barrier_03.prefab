@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &4661387868232489765
+--- !u!1001 &1657273711701437259
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -10,23 +10,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 296945166447459893, guid: 7ba80c7379c6bfd4ca037f02fbef222f, type: 3}
       propertyPath: m_Name
-      value: CityProps_Weeds_02 (9) Variant
+      value: City_Props_Barrier_03 Variant
       objectReference: {fileID: 0}
     - target: {fileID: 7393066636954584863, guid: 7ba80c7379c6bfd4ca037f02fbef222f, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -2137875393, guid: 1b5d0c159218aa545a8ea6c298bec8b0, type: 3}
-    - target: {fileID: 7393066636954584863, guid: 7ba80c7379c6bfd4ca037f02fbef222f, type: 3}
-      propertyPath: m_SortingOrder
-      value: -1
-      objectReference: {fileID: 0}
+      objectReference: {fileID: -29803889, guid: 1b5d0c159218aa545a8ea6c298bec8b0, type: 3}
     - target: {fileID: 7997638181824776415, guid: 7ba80c7379c6bfd4ca037f02fbef222f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 29
+      value: 11.69
       objectReference: {fileID: 0}
     - target: {fileID: 7997638181824776415, guid: 7ba80c7379c6bfd4ca037f02fbef222f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -14.7641
+      value: -17.74
       objectReference: {fileID: 0}
     - target: {fileID: 7997638181824776415, guid: 7ba80c7379c6bfd4ca037f02fbef222f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -63,5 +59,56 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 296945166447459893, guid: 7ba80c7379c6bfd4ca037f02fbef222f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2744607103226791709}
   m_SourcePrefab: {fileID: 100100000, guid: 7ba80c7379c6bfd4ca037f02fbef222f, type: 3}
+--- !u!1 &1360412161633949054 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 296945166447459893, guid: 7ba80c7379c6bfd4ca037f02fbef222f, type: 3}
+  m_PrefabInstance: {fileID: 1657273711701437259}
+  m_PrefabAsset: {fileID: 0}
+--- !u!68 &2744607103226791709
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1360412161633949054}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -0.6828499, y: -0.008363724}
+  - {x: 0.55578136, y: -0.006795883}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
