@@ -1,0 +1,117 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &1971087668416442828
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 296945166447459893, guid: 7ba80c7379c6bfd4ca037f02fbef222f, type: 3}
+      propertyPath: m_Name
+      value: Villas_Flowers_20 Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 7393066636954584863, guid: 7ba80c7379c6bfd4ca037f02fbef222f, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1970266662, guid: 3f071e373d3fc9c4d8a87360e971a039, type: 3}
+    - target: {fileID: 7997638181824776415, guid: 7ba80c7379c6bfd4ca037f02fbef222f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 30.210001
+      objectReference: {fileID: 0}
+    - target: {fileID: 7997638181824776415, guid: 7ba80c7379c6bfd4ca037f02fbef222f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -29
+      objectReference: {fileID: 0}
+    - target: {fileID: 7997638181824776415, guid: 7ba80c7379c6bfd4ca037f02fbef222f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7997638181824776415, guid: 7ba80c7379c6bfd4ca037f02fbef222f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7997638181824776415, guid: 7ba80c7379c6bfd4ca037f02fbef222f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7997638181824776415, guid: 7ba80c7379c6bfd4ca037f02fbef222f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7997638181824776415, guid: 7ba80c7379c6bfd4ca037f02fbef222f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7997638181824776415, guid: 7ba80c7379c6bfd4ca037f02fbef222f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7997638181824776415, guid: 7ba80c7379c6bfd4ca037f02fbef222f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7997638181824776415, guid: 7ba80c7379c6bfd4ca037f02fbef222f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 296945166447459893, guid: 7ba80c7379c6bfd4ca037f02fbef222f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3236400940390280823}
+  m_SourcePrefab: {fileID: 100100000, guid: 7ba80c7379c6bfd4ca037f02fbef222f, type: 3}
+--- !u!1 &2253000225683918841 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 296945166447459893, guid: 7ba80c7379c6bfd4ca037f02fbef222f, type: 3}
+  m_PrefabInstance: {fileID: 1971087668416442828}
+  m_PrefabAsset: {fileID: 0}
+--- !u!61 &3236400940390280823
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2253000225683918841}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -0.005092621, y: 0.06892681}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 0.85120773, y: 0.060174942}
+  m_EdgeRadius: 0
