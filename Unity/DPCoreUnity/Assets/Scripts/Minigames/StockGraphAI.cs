@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using TMPro;
 
 public class StockGraphAI : MonoBehaviour
 {
@@ -19,9 +20,17 @@ public class StockGraphAI : MonoBehaviour
     public float _aiChangeInterval = 0.5f; // how often AI changes direction
     public float _aiRandomness = 0.5f;     // randomness factor
 
+    [Header("UI")]
+    public TMP_Text averageStockText; // assign in inspector
+
     private float _time;
     private float _aiTimer = 0f;
     private List<Vector3> _points = new List<Vector3>();
+
+    // Average stock tracking
+    private float _averageStockValue = 0f;
+    private float _totalStockValue = 0f;
+    private int _sampleCount = 0;
 
     void Start()
     {
@@ -59,6 +68,15 @@ public class StockGraphAI : MonoBehaviour
         _points.Add(point);
         line.positionCount = _points.Count;
         line.SetPositions(_points.ToArray());
+
+        // update average stock value
+        _sampleCount++;
+        _totalStockValue += _stockValue;
+        _averageStockValue = _totalStockValue / _sampleCount;
+
+        // update TMP text
+        if (averageStockText != null)
+            averageStockText.text = $"Avg Stock: {_averageStockValue:F2}";
     }
 
     void HandleAI()
@@ -81,5 +99,10 @@ public class StockGraphAI : MonoBehaviour
                 _acceleration = Mathf.Abs(_acceleration); // force upward
             }
         }
-}
+    }
+
+    public float GetAverageStockValue()
+    {
+        return _averageStockValue;
+    }
 }
