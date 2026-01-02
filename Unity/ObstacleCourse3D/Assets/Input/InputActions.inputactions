@@ -1,4 +1,5 @@
 {
+    "version": 1,
     "name": "InputActions",
     "maps": [
         {
@@ -54,7 +55,16 @@
                     "name": "Jump",
                     "type": "Button",
                     "id": "f1ba0d36-48eb-4cd5-b651-1c94a6531f70",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Dash",
+                    "type": "Button",
+                    "id": "fe05cb07-96a4-4938-8472-8bb8aa4a4e4d",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -63,7 +73,7 @@
                     "name": "Previous",
                     "type": "Button",
                     "id": "2776c80d-3c14-4091-8c56-d04ced07a2b0",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -398,12 +408,23 @@
                 },
                 {
                     "name": "",
-                    "id": "603f3daf-40bd-4854-8724-93e8017f59e3",
-                    "path": "<XRController>/secondaryButton",
+                    "id": "cc44599f-0afe-4b28-9f6e-e5d6953662fa",
+                    "path": "<Keyboard>/shift",
                     "interactions": "",
                     "processors": "",
-                    "groups": "XR",
-                    "action": "Jump",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2e8e421f-66d4-4b60-a306-70e5dfb9fe27",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
