@@ -14,6 +14,8 @@ public class PlayerJump : MonoBehaviour
     float _verticalVelocity;
     bool _jumpPressed;
 
+    public float VerticalVelocity => _verticalVelocity;
+
     void Awake()
     {
         _inputActions = new InputActions();
@@ -44,7 +46,7 @@ public class PlayerJump : MonoBehaviour
         if (_controller.isGrounded)
         {
             if (_verticalVelocity < 0f)
-                _verticalVelocity = -2f; // keeps controller grounded
+                _verticalVelocity = -2f; // stick to ground
 
             if (_jumpPressed)
             {
@@ -53,7 +55,5 @@ public class PlayerJump : MonoBehaviour
         }
 
         _verticalVelocity += _gravity * Time.deltaTime;
-
-        _controller.Move(Vector3.up * _verticalVelocity * Time.deltaTime);
     }
 }

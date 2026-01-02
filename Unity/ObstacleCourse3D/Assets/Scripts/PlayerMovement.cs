@@ -1,21 +1,27 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(CharacterController))]
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement Settings")]
     [SerializeField] float _speed = 10f;
 
     [Header("Rotation Settings")]
-    [SerializeField] bool _snapTurning = false; // Toggle for instant rotation
-    [SerializeField] float _turnRotationSpeed = 10f; // Speed for smooth rotation
+    [SerializeField] bool _snapTurning = false;
+    [SerializeField] float _turnRotationSpeed = 10f;
 
     InputActions _inputActions;
     Vector2 _moveInput;
 
+    CharacterController _controller;
+    PlayerJump _jump;
+
     void Awake()
     {
         _inputActions = new InputActions();
+        _controller = GetComponent<CharacterController>();
+        _jump = GetComponent<PlayerJump>();
     }
 
     void OnEnable()
@@ -39,28 +45,27 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        Vector3 move = new Vector3(_moveInput.x, 0f, _moveInput.y);
+        Vector3 horizontal = new Vector3(_moveInput.x, 0f, _moveInput.y);
 
-        transform.Translate(move * _speed * Time.deltaTime, Space.World);
+        Vector3 velocity = new Vector3(
+            horizontal.x * _speed,
+            _jump.VerticalVelocity,
+            horizontal.z * _speed
+        );
 
-        if (move.sqrMagnitude > 0.001f)
+        _controller.Move(velocity * Time.deltaTime);
+
+        if (horizontal.sqrMagnitude > 0.001f)
         {
-            Quaternion targetRotation = Quaternion.LookRotation(move);
+            Quaternion targetRotation = Quaternion.LookRotation(horizontal);
 
-            if (_snapTurning)
-            {
-                // Instantly face the direction of movement
-                transform.rotation = targetRotation;
-            }
-            else
-            {
-                // Smoothly rotate towards movement direction
-                transform.rotation = Quaternion.Slerp(
+            transform.rotation = _snapTurning
+                ? targetRotation
+                : Quaternion.Slerp(
                     transform.rotation,
                     targetRotation,
                     _turnRotationSpeed * Time.deltaTime
                 );
-            }
         }
     }
 }
