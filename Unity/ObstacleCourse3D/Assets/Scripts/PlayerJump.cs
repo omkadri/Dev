@@ -8,11 +8,15 @@ public class PlayerJump : MonoBehaviour
     [SerializeField] float _jumpHeight = 2.5f;
     [SerializeField] float _gravity = -20f;
 
+    [Header("Double Jump")]
+    [SerializeField] bool _enableDoubleJump = false;
+
     InputActions _inputActions;
     CharacterController _controller;
 
     float _verticalVelocity;
     bool _jumpPressed;
+    bool _hasDoubleJumped;
 
     public float VerticalVelocity => _verticalVelocity;
 
@@ -25,20 +29,18 @@ public class PlayerJump : MonoBehaviour
     void OnEnable()
     {
         _inputActions.Player.Enable();
-        _inputActions.Player.Jump.performed += OnJump;
-        _inputActions.Player.Jump.canceled += OnJump;
+        _inputActions.Player.Jump.performed += OnJumpPerformed;
     }
 
     void OnDisable()
     {
-        _inputActions.Player.Jump.performed -= OnJump;
-        _inputActions.Player.Jump.canceled -= OnJump;
+        _inputActions.Player.Jump.performed -= OnJumpPerformed;
         _inputActions.Player.Disable();
     }
 
-    void OnJump(InputAction.CallbackContext context)
+    void OnJumpPerformed(InputAction.CallbackContext context)
     {
-        _jumpPressed = context.ReadValueAsButton();
+        _jumpPressed = true; // register jump press once
     }
 
     void Update()
@@ -46,14 +48,32 @@ public class PlayerJump : MonoBehaviour
         if (_controller.isGrounded)
         {
             if (_verticalVelocity < 0f)
-                _verticalVelocity = -2f; // stick to ground
+                _verticalVelocity = -2f;
+
+            _hasDoubleJumped = false;
 
             if (_jumpPressed)
             {
-                _verticalVelocity = Mathf.Sqrt(_jumpHeight * -2f * _gravity);
+                Jump();
+            }
+        }
+        else
+        {
+            if (_jumpPressed && _enableDoubleJump && !_hasDoubleJumped)
+            {
+                Jump();
+                _hasDoubleJumped = true;
             }
         }
 
         _verticalVelocity += _gravity * Time.deltaTime;
+        _controller.Move(new Vector3(0, _verticalVelocity, 0) * Time.deltaTime);
+
+        _jumpPressed = false; // reset after handling
+    }
+
+    void Jump()
+    {
+        _verticalVelocity = Mathf.Sqrt(_jumpHeight * -2f * _gravity);
     }
 }

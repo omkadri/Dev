@@ -1075,8 +1075,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e57136fdc06b50348a063362cc99a621, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerJump
-  _jumpHeight: 2.5
+  _jumpHeight: 1.5
   _gravity: -20
+  _enableDoubleJump: 1
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
