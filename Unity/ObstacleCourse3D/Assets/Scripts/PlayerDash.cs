@@ -2,15 +2,25 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(CharacterController))]
+[RequireComponent(typeof(PlayerJump))] // Needed to check grounded state
 public class PlayerDash : MonoBehaviour
 {
+    public enum DashType
+    {
+        Disabled,   // Dash is completely disabled
+        Grounded,   // Can dash only when grounded
+        Air         // Can dash anytime (only limited by cooldown)
+    }
+
     [Header("Dash Settings")]
     [SerializeField] float _dashDistance = 5f;
     [SerializeField] float _dashDuration = 0.2f;
     [SerializeField] float _dashCooldown = 1f;
+    [SerializeField] DashType _dashMode = DashType.Grounded;
 
     InputActions _inputActions;
     CharacterController _controller;
+    PlayerJump _jump;
 
     Vector2 _latestMoveInput;
     bool _dashPressed;
@@ -25,6 +35,7 @@ public class PlayerDash : MonoBehaviour
     {
         _inputActions = new InputActions();
         _controller = GetComponent<CharacterController>();
+        _jump = GetComponent<PlayerJump>();
     }
 
     void OnEnable()
@@ -68,9 +79,21 @@ public class PlayerDash : MonoBehaviour
                 _canDash = true;
         }
 
-        // Start dash if pressed
+        // Attempt to start dash
         if (_dashPressed && _canDash && !_isDashing)
         {
+            if (_dashMode == DashType.Disabled)
+            {
+                _dashPressed = false;
+                return; // Dash disabled
+            }
+
+            if (_dashMode == DashType.Grounded && !_controller.isGrounded)
+            {
+                _dashPressed = false;
+                return; // Grounded dash only, can't dash mid-air
+            }
+
             StartDash();
         }
 

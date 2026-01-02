@@ -150,6 +150,8 @@ MonoBehaviour:
   _jumpHeight: 1.5
   _gravity: -20
   _enableDoubleJump: 1
+  _enableHover: 1
+  _hoverGravityPercent: 0.1
 --- !u!114 &844152741812881688
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,6 +167,7 @@ MonoBehaviour:
   _dashDistance: 5
   _dashDuration: 0.2
   _dashCooldown: 1
+  _dashMode: 2
 --- !u!54 &1977960084575097088
 Rigidbody:
   m_ObjectHideFlags: 0
