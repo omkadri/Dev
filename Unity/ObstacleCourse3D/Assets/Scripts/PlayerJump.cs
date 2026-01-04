@@ -14,6 +14,7 @@ public class PlayerJump : MonoBehaviour
     [Header("Hover Settings")]
     [SerializeField] bool _enableHover = true;
     [SerializeField] float _hoverGravityPercent = 0.3f;
+    [SerializeField] GameObject _hoverVisual;
 
     InputActions _inputActions;
     CharacterController _controller;
@@ -89,10 +90,13 @@ public class PlayerJump : MonoBehaviour
         }
 
         // --- Hover logic ---
-        // Only allow hover if jump has started and player is airborne
         if (_enableHover && _hoverHeld && _jumpStarted && !_controller.isGrounded && !_isHovering)
         {
             _isHovering = true;
+            if (_hoverVisual != null)
+            { 
+                _hoverVisual.SetActive(true);  
+            }
 
             // Cancel double jump
             _hasDoubleJumped = true;
@@ -104,7 +108,13 @@ public class PlayerJump : MonoBehaviour
 
         // Stop hovering if hover released
         if (!_hoverHeld)
+        {
             _isHovering = false;
+            if (_hoverVisual != null)
+            { 
+                _hoverVisual.SetActive(false);  
+            }
+        }
 
         // --- Apply gravity ---
         float gravityMultiplier = _isHovering ? _hoverGravityPercent : 1f;
