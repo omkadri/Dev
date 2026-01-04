@@ -14,6 +14,7 @@ public class PlayerJump : MonoBehaviour
     [Header("Hover Settings")]
     [SerializeField] bool _enableHover = true;
     [SerializeField] float _hoverGravityPercent = 0.3f;
+    [SerializeField] float _hoverDelay = 0.2f;
     [SerializeField] GameObject _hoverVisual;
 
     InputActions _inputActions;
@@ -25,14 +26,13 @@ public class PlayerJump : MonoBehaviour
     bool _jumpPressed;
     bool _hoverHeld;
 
-    // Hover
-    bool _isHovering;
-
-    // Double jump
+    // Jump state
+    bool _jumpStarted;
     bool _hasDoubleJumped;
 
-    // Track jump state
-    bool _jumpStarted;
+    // Hover state
+    bool _isHovering;
+    float _hoverTimer;
 
     public float VerticalVelocity => _verticalVelocity;
 
@@ -46,87 +46,120 @@ public class PlayerJump : MonoBehaviour
     {
         _inputActions.Player.Enable();
 
-        _inputActions.Player.Jump.performed += ctx => _jumpPressed = true;
-        _inputActions.Player.Hover.performed += ctx => _hoverHeld = true;
-        _inputActions.Player.Hover.canceled += ctx => _hoverHeld = false;
+        _inputActions.Player.Jump.performed += OnJump;
+        _inputActions.Player.Hover.performed += OnHoverStarted;
+        _inputActions.Player.Hover.canceled += OnHoverCanceled;
     }
 
     void OnDisable()
     {
-        _inputActions.Player.Jump.performed -= ctx => _jumpPressed = true;
-        _inputActions.Player.Hover.performed -= ctx => _hoverHeld = true;
-        _inputActions.Player.Hover.canceled -= ctx => _hoverHeld = false;
+        _inputActions.Player.Jump.performed -= OnJump;
+        _inputActions.Player.Hover.performed -= OnHoverStarted;
+        _inputActions.Player.Hover.canceled -= OnHoverCanceled;
 
         _inputActions.Player.Disable();
     }
 
     void Update()
     {
-        // Reset grounded state
-        if (_controller.isGrounded)
-        {
-            if (_verticalVelocity < 0f) _verticalVelocity = -2f;
+        HandleGroundedState();
+        HandleJump();
+        HandleHover();
+        ApplyGravity();
+        ApplyMovement();
 
-            _hasDoubleJumped = false;
-            _isHovering = false;
-            _jumpStarted = false;
+        _jumpPressed = false;
+    }
+
+    void HandleGroundedState()
+    {
+        if (!_controller.isGrounded) return;
+
+        if (_verticalVelocity < 0f)
+            _verticalVelocity = -2f;
+
+        _jumpStarted = false;
+        _hasDoubleJumped = false;
+        _isHovering = false;
+        _hoverTimer = 0f;
+
+        if (_hoverVisual != null)
+            _hoverVisual.SetActive(false);
+    }
+
+    void HandleJump()
+    {
+        if (!_jumpPressed) return;
+
+        if (!_jumpStarted)
+        {
+            Jump();
+            _jumpStarted = true;
         }
-
-        // --- Jump logic ---
-        if (_jumpPressed)
+        else if (_enableDoubleJump && !_hasDoubleJumped && !_isHovering)
         {
-            if (!_jumpStarted)
-            {
-                // First jump always allowed
-                Jump();
-                _jumpStarted = true;
-            }
-            else if (_enableDoubleJump && !_hasDoubleJumped && !_isHovering)
-            {
-                // Double jump
-                Jump();
-                _hasDoubleJumped = true;
-            }
-        }
-
-        // --- Hover logic ---
-        if (_enableHover && _hoverHeld && _jumpStarted && !_controller.isGrounded && !_isHovering)
-        {
-            _isHovering = true;
-            if (_hoverVisual != null)
-            { 
-                _hoverVisual.SetActive(true);  
-            }
-
-            // Cancel double jump
+            Jump();
             _hasDoubleJumped = true;
-
-            // Stop any upward movement immediately
-            if (_verticalVelocity > 0f)
-                _verticalVelocity = 0f;
         }
+    }
 
-        // Stop hovering if hover released
-        if (!_hoverHeld)
-        {
-            _isHovering = false;
-            if (_hoverVisual != null)
-            { 
-                _hoverVisual.SetActive(false);  
-            }
-        }
+    void HandleHover()
+    {
+        if (!_enableHover || !_hoverHeld || !_jumpStarted || _controller.isGrounded)
+            return;
 
-        // --- Apply gravity ---
+        if (_isHovering)
+            return;
+
+        _hoverTimer += Time.deltaTime;
+
+        if (_hoverTimer < _hoverDelay)
+            return;
+
+        _isHovering = true;
+        _hasDoubleJumped = true;
+
+        if (_verticalVelocity > 0f)
+            _verticalVelocity = 0f;
+
+        if (_hoverVisual != null)
+            _hoverVisual.SetActive(true);
+    }
+
+    void ApplyGravity()
+    {
         float gravityMultiplier = _isHovering ? _hoverGravityPercent : 1f;
         _verticalVelocity += _gravity * gravityMultiplier * Time.deltaTime;
+    }
 
-        _controller.Move(new Vector3(0f, _verticalVelocity, 0f) * Time.deltaTime);
-
-        _jumpPressed = false; // reset one-frame press
+    void ApplyMovement()
+    {
+        _controller.Move(Vector3.up * _verticalVelocity * Time.deltaTime);
     }
 
     void Jump()
     {
         _verticalVelocity = Mathf.Sqrt(_jumpHeight * -2f * _gravity);
+    }
+
+    // Input callbacks
+    void OnJump(InputAction.CallbackContext _)
+    {
+        _jumpPressed = true;
+    }
+
+    void OnHoverStarted(InputAction.CallbackContext _)
+    {
+        _hoverHeld = true;
+    }
+
+    void OnHoverCanceled(InputAction.CallbackContext _)
+    {
+        _hoverHeld = false;
+        _isHovering = false;
+        _hoverTimer = 0f;
+
+        if (_hoverVisual != null)
+            _hoverVisual.SetActive(false);
     }
 }
