@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(CharacterController))]
+[RequireComponent(typeof(Rigidbody))]
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement Settings")]
@@ -12,16 +12,17 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float _turnRotationSpeed = 10f;
 
     InputActions _inputActions;
-    Vector2 _moveInput;
+    Vector2 _moveInputValue;
 
-    CharacterController _controller;
-    PlayerJump _jump;
+    Rigidbody _rb;
 
     void Awake()
     {
         _inputActions = new InputActions();
-        _controller = GetComponent<CharacterController>();
-        _jump = GetComponent<PlayerJump>();
+        _rb = GetComponent<Rigidbody>();
+
+        // Lock rotation so physics doesn't tip the player
+        _rb.freezeRotation = true;
     }
 
     void OnEnable()
@@ -33,28 +34,22 @@ public class PlayerMovement : MonoBehaviour
 
     void OnDisable()
     {
+        _inputActions.Player.Disable();
         _inputActions.Player.Move.performed -= OnMove;
         _inputActions.Player.Move.canceled -= OnMove;
-        _inputActions.Player.Disable();
     }
 
     void OnMove(InputAction.CallbackContext context)
     {
-        _moveInput = context.ReadValue<Vector2>();
+        _moveInputValue = context.ReadValue<Vector2>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        Vector3 horizontal = new Vector3(_moveInput.x, 0f, _moveInput.y);
+        // Convert 2D input to 3D horizontal movement
+        Vector3 horizontal = new Vector3(_moveInputValue.x, 0f, _moveInputValue.y);
 
-        Vector3 velocity = new Vector3(
-            horizontal.x * _speed,
-            _jump.VerticalVelocity,
-            horizontal.z * _speed
-        );
-
-        _controller.Move(velocity * Time.deltaTime);
-
+        // Handle rotation
         if (horizontal.sqrMagnitude > 0.001f)
         {
             Quaternion targetRotation = Quaternion.LookRotation(horizontal);
@@ -64,8 +59,18 @@ public class PlayerMovement : MonoBehaviour
                 : Quaternion.Slerp(
                     transform.rotation,
                     targetRotation,
-                    _turnRotationSpeed * Time.deltaTime
+                    _turnRotationSpeed * Time.fixedDeltaTime
                 );
+        }
+
+        // Apply movement
+        if (horizontal.sqrMagnitude > 0.001f)
+        {
+            // Transform direction relative to player rotation
+            Vector3 move = transform.forward * horizontal.magnitude;
+
+            // Move the Rigidbody
+            _rb.MovePosition(_rb.position + move * _speed * Time.fixedDeltaTime);
         }
     }
 }

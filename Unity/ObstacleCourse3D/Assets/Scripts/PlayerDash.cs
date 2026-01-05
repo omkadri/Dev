@@ -1,26 +1,16 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(CharacterController))]
-[RequireComponent(typeof(PlayerJump))] // Needed to check grounded state
+[RequireComponent(typeof(Rigidbody))]
 public class PlayerDash : MonoBehaviour
 {
-    public enum DashType
-    {
-        Disabled,   // Dash is completely disabled
-        Grounded,   // Can dash only when grounded
-        Air         // Can dash anytime (only limited by cooldown)
-    }
-
     [Header("Dash Settings")]
     [SerializeField] float _dashDistance = 5f;
     [SerializeField] float _dashDuration = 0.2f;
     [SerializeField] float _dashCooldown = 1f;
-    [SerializeField] DashType _dashMode = DashType.Grounded;
 
+    Rigidbody _rb;
     InputActions _inputActions;
-    CharacterController _controller;
-    PlayerJump _jump;
 
     Vector2 _latestMoveInput;
     bool _dashPressed;
@@ -33,19 +23,14 @@ public class PlayerDash : MonoBehaviour
 
     void Awake()
     {
+        _rb = GetComponent<Rigidbody>();
         _inputActions = new InputActions();
-        _controller = GetComponent<CharacterController>();
-        _jump = GetComponent<PlayerJump>();
     }
 
     void OnEnable()
     {
         _inputActions.Player.Enable();
-
-        // Listen for dash input
         _inputActions.Player.Dash.performed += OnDashPerformed;
-
-        // Listen for move input directly
         _inputActions.Player.Move.performed += OnMovePerformed;
         _inputActions.Player.Move.canceled += OnMovePerformed;
     }
@@ -55,7 +40,6 @@ public class PlayerDash : MonoBehaviour
         _inputActions.Player.Dash.performed -= OnDashPerformed;
         _inputActions.Player.Move.performed -= OnMovePerformed;
         _inputActions.Player.Move.canceled -= OnMovePerformed;
-
         _inputActions.Player.Disable();
     }
 
@@ -79,32 +63,23 @@ public class PlayerDash : MonoBehaviour
                 _canDash = true;
         }
 
-        // Attempt to start dash
+        // Start dash if pressed
         if (_dashPressed && _canDash && !_isDashing)
         {
-            if (_dashMode == DashType.Disabled)
-            {
-                _dashPressed = false;
-                return; // Dash disabled
-            }
-
-            if (_dashMode == DashType.Grounded && !_controller.isGrounded)
-            {
-                _dashPressed = false;
-                return; // Grounded dash only, can't dash mid-air
-            }
-
             StartDash();
         }
 
-        // Perform dash movement
+        // Perform dash
         if (_isDashing)
         {
             _dashTime += Time.deltaTime;
             float dashSpeed = _dashDistance / _dashDuration;
 
-            // Move in dash direction (ignoring gravity for snappy dash)
-            _controller.Move(_dashDirection * dashSpeed * Time.deltaTime);
+            // Only apply horizontal movement
+            Vector3 horizontalMove = new Vector3(_dashDirection.x, 0f, _dashDirection.z) * dashSpeed * Time.deltaTime;
+
+            // Move Rigidbody manually; Y velocity unaffected
+            _rb.MovePosition(_rb.position + horizontalMove);
 
             if (_dashTime >= _dashDuration)
             {
@@ -117,7 +92,7 @@ public class PlayerDash : MonoBehaviour
 
     void StartDash()
     {
-        // Use input direction, fallback to forward if no input
+        // Use input direction if available; fallback to facing forward
         Vector3 inputDir = new Vector3(_latestMoveInput.x, 0f, _latestMoveInput.y);
         _dashDirection = inputDir.sqrMagnitude > 0.01f ? inputDir.normalized : transform.forward;
 
@@ -125,5 +100,10 @@ public class PlayerDash : MonoBehaviour
         _dashTime = 0f;
         _canDash = false;
         _dashCooldownTimer = _dashCooldown;
+    }
+
+    public bool IsDashing()
+    {
+        return _isDashing;
     }
 }
