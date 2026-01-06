@@ -4,79 +4,127 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerJump : MonoBehaviour
 {
-    [Header("Jump Settings")]
-    [SerializeField] float _jumpForce = 7f;          // Upward velocity
-    [SerializeField] float _fallMultiplier = 2.5f;   // Gravity multiplier when falling
-    [SerializeField] float _lowJumpMultiplier = 2f;  // Gravity multiplier for short hops
+    [Header("Jump Settings (in units & seconds)")]
+    [SerializeField] float _minJumpHeight = 1.5f;   // Short hop
+    [SerializeField] float _maxJumpHeight = 3f;     // Full jump
+    [SerializeField] float _timeToApex = 0.4f;      // Time to reach apex for full jump
+    [SerializeField] float _maxJumpHoldTime = 0.15f;// Max time player can hold jump
+    [SerializeField] float _coyoteTime = 0.1f;
+    [SerializeField] float _jumpBufferTime = 0.1f;
 
     [Header("Ground Check")]
     [SerializeField] Transform _groundCheck;
-    [SerializeField] float _groundCheckRadius = 0.2f;
+    [SerializeField] float _groundRadius = 0.3f;
     [SerializeField] LayerMask _groundLayer;
 
     Rigidbody _rb;
     InputActions _inputActions;
+
+    float _coyoteTimer;
+    float _jumpBufferTimer;
+    float _jumpHoldTimer;
     bool _isGrounded;
+    bool _isJumping;
+
+    float _gravity;
+    float _v0Min;
+    float _v0Max;
 
     void Awake()
     {
         _rb = GetComponent<Rigidbody>();
+        _rb.useGravity = false; // We'll handle gravity manually
+
         _inputActions = new InputActions();
+
+        // Precompute velocities and gravity
+        _gravity = -2f * _maxJumpHeight / (_timeToApex * _timeToApex);
+        _v0Max = 2f * _maxJumpHeight / _timeToApex;
+        float minApexTime = _timeToApex * (_minJumpHeight / _maxJumpHeight);
+        _v0Min = 2f * _minJumpHeight / minApexTime;
     }
 
     void OnEnable()
     {
         _inputActions.Player.Enable();
-        _inputActions.Player.Jump.performed += OnJump;
+        _inputActions.Player.Jump.performed += OnJumpPressed;
+        _inputActions.Player.Jump.canceled += OnJumpReleased;
     }
 
     void OnDisable()
     {
-        _inputActions.Player.Jump.performed -= OnJump;
+        _inputActions.Player.Jump.performed -= OnJumpPressed;
+        _inputActions.Player.Jump.canceled -= OnJumpReleased;
         _inputActions.Player.Disable();
     }
 
     void Update()
     {
-        // Check if the player is on the ground
-        _isGrounded = Physics.CheckSphere(_groundCheck.position, _groundCheckRadius, _groundLayer);
+        // Ground & coyote time
+        _isGrounded = Physics.CheckSphere(_groundCheck.position, _groundRadius, _groundLayer);
+        if (_isGrounded) _coyoteTimer = _coyoteTime;
+
+        _coyoteTimer -= Time.deltaTime;
+        _jumpBufferTimer -= Time.deltaTime;
+
+        // Start jump if buffered and allowed
+        if (_jumpBufferTimer > 0f && _coyoteTimer > 0f)
+        {
+            StartJump();
+            _jumpBufferTimer = 0f;
+        }
+
+        if (_isJumping)
+        {
+            _jumpHoldTimer -= Time.deltaTime;
+            if (_jumpHoldTimer <= 0f)
+                _isJumping = false;
+        }
     }
 
     void FixedUpdate()
     {
-        ApplyBetterJumpPhysics();
+        Vector3 velocity = _rb.linearVelocity;
+
+        // Apply jump force if still holding
+        if (_isJumping && velocity.y > 0f)
+        {
+            float t = 1f - (_jumpHoldTimer / _maxJumpHoldTime);
+            float currentV0 = Mathf.Lerp(_v0Min, _v0Max, t);
+            velocity.y = currentV0;
+        }
+
+        // Manual gravity
+        velocity.y += _gravity * Time.fixedDeltaTime;
+
+        _rb.linearVelocity = velocity;
     }
 
-    void OnJump(InputAction.CallbackContext context)
+    void OnJumpPressed(InputAction.CallbackContext ctx)
     {
-        if (_isGrounded)
-        {
-            // Instant jump by setting Y velocity directly
-            _rb.linearVelocity = new Vector3(_rb.linearVelocity.x, _jumpForce, _rb.linearVelocity.z);
-        }
+        _jumpBufferTimer = _jumpBufferTime;
     }
 
-    void ApplyBetterJumpPhysics()
+    void OnJumpReleased(InputAction.CallbackContext ctx)
     {
-        if (_rb.linearVelocity.y < 0) 
-        {
-            // Falling faster than normal
-            _rb.linearVelocity += Vector3.up * Physics.gravity.y * (_fallMultiplier - 1) * Time.fixedDeltaTime;
-        }
-        else if (_rb.linearVelocity.y > 0 && !_inputActions.Player.Jump.IsPressed())
-        {
-            // Short hop if jump button released early
-            _rb.linearVelocity += Vector3.up * Physics.gravity.y * (_lowJumpMultiplier - 1) * Time.fixedDeltaTime;
-        }
+        _isJumping = false;
     }
 
-    // Optional: visualize the ground check in the Scene view
+    void StartJump()
+    {
+        Vector3 v = _rb.linearVelocity;
+        v.y = _v0Min;  // Start with minimum jump velocity
+        _rb.linearVelocity = v;
+
+        _coyoteTimer = 0f;
+        _isJumping = true;
+        _jumpHoldTimer = _maxJumpHoldTime;
+    }
+
     void OnDrawGizmosSelected()
     {
-        if (_groundCheck != null)
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(_groundCheck.position, _groundCheckRadius);
-        }
+        if (_groundCheck == null) return;
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(_groundCheck.position, _groundRadius);
     }
 }

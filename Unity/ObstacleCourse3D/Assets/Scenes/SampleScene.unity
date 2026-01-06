@@ -2468,6 +2468,38 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2749839744413689882, guid: 979f1f3946eb54840b5e81172d9526b6, type: 3}
+      propertyPath: _jumpForce
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2749839744413689882, guid: 979f1f3946eb54840b5e81172d9526b6, type: 3}
+      propertyPath: _maxUpTime
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 2749839744413689882, guid: 979f1f3946eb54840b5e81172d9526b6, type: 3}
+      propertyPath: _jumpForceMax
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2749839744413689882, guid: 979f1f3946eb54840b5e81172d9526b6, type: 3}
+      propertyPath: _jumpForceMin
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2749839744413689882, guid: 979f1f3946eb54840b5e81172d9526b6, type: 3}
+      propertyPath: _minJumpHeight
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2749839744413689882, guid: 979f1f3946eb54840b5e81172d9526b6, type: 3}
+      propertyPath: _fallMultiplier
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2749839744413689882, guid: 979f1f3946eb54840b5e81172d9526b6, type: 3}
+      propertyPath: _maxJumpHoldTime
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5592935957880348260, guid: 979f1f3946eb54840b5e81172d9526b6, type: 3}
+      propertyPath: _dashDistance
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7222284390925917638, guid: 979f1f3946eb54840b5e81172d9526b6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
