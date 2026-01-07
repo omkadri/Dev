@@ -6,254 +6,218 @@ using Random = UnityEngine.Random;
 
 namespace UnityStandardAssets.Characters.FirstPerson
 {
-    [RequireComponent(typeof (CharacterController))]
-    [RequireComponent(typeof (AudioSource))]
+    [RequireComponent(typeof(CharacterController))]
+    [RequireComponent(typeof(AudioSource))]
     public class FirstPersonController : MonoBehaviour
     {
-        [SerializeField] private bool m_IsWalking;
-        [SerializeField] private float m_WalkSpeed;
-        [SerializeField] private float m_RunSpeed;
-        [SerializeField] [Range(0f, 1f)] private float m_RunstepLenghten;
-        [SerializeField] private float m_JumpSpeed;
-        [SerializeField] private float m_StickToGroundForce;
-        [SerializeField] private float m_GravityMultiplier;
-        [SerializeField] private MouseLook m_MouseLook;
-        [SerializeField] private bool m_UseFovKick;
-        [SerializeField] private FOVKick m_FovKick = new FOVKick();
-        [SerializeField] private bool m_UseHeadBob;
-        [SerializeField] private CurveControlledBob m_HeadBob = new CurveControlledBob();
-        [SerializeField] private LerpControlledBob m_JumpBob = new LerpControlledBob();
-        [SerializeField] private float m_StepInterval;
-        [SerializeField] private AudioClip[] m_FootstepSounds;    // an array of footstep sounds that will be randomly selected from.
-        [SerializeField] private AudioClip m_JumpSound;           // the sound played when character leaves the ground.
-        [SerializeField] private AudioClip m_LandSound;           // the sound played when character touches back on ground.
+        [SerializeField] bool _isWalking;
+        [SerializeField] float _walkSpeed;
+        [SerializeField] float _runSpeed;
+        [SerializeField] [Range(0f, 1f)] float _runstepLenghten;
+        [SerializeField] float _jumpSpeed;
+        [SerializeField] float _stickToGroundForce;
+        [SerializeField] float _gravityMultiplier;
+        [SerializeField] MouseLook _mouseLook;
+        [SerializeField] bool _useFovKick;
+        [SerializeField] FOVKick _fovKick = new FOVKick();
+        [SerializeField] bool _useHeadBob;
+        [SerializeField] CurveControlledBob _headBob = new CurveControlledBob();
+        [SerializeField] LerpControlledBob _jumpBob = new LerpControlledBob();
+        [SerializeField] float _stepInterval;
+        [SerializeField] AudioClip[] _footstepSounds; // an array of footstep sounds that will be randomly selected from
+        [SerializeField] AudioClip _jumpSound;        // the sound played when character leaves the ground
+        [SerializeField] AudioClip _landSound;        // the sound played when character touches back on ground
 
-        private Camera m_Camera;
-        private bool m_Jump;
-        private float m_YRotation;
-        private Vector2 m_Input;
-        private Vector3 m_MoveDir = Vector3.zero;
-        private CharacterController m_CharacterController;
-        private CollisionFlags m_CollisionFlags;
-        private bool m_PreviouslyGrounded;
-        private Vector3 m_OriginalCameraPosition;
-        private float m_StepCycle;
-        private float m_NextStep;
-        private bool m_Jumping;
-        private AudioSource m_AudioSource;
+        Camera _camera;
+        bool _jump;
+        float _yRotation;
+        Vector2 _input;
+        Vector3 _moveDir = Vector3.zero;
+        CharacterController _characterController;
+        CollisionFlags _collisionFlags;
+        bool _previouslyGrounded;
+        Vector3 _originalCameraPosition;
+        float _stepCycle;
+        float _nextStep;
+        bool _jumping;
+        AudioSource _audioSource;
 
-        // Use this for initialization
-        private void Start()
+        void Start()
         {
-            m_CharacterController = GetComponent<CharacterController>();
-            m_Camera = Camera.main;
-            m_OriginalCameraPosition = m_Camera.transform.localPosition;
-            m_FovKick.Setup(m_Camera);
-            m_HeadBob.Setup(m_Camera, m_StepInterval);
-            m_StepCycle = 0f;
-            m_NextStep = m_StepCycle/2f;
-            m_Jumping = false;
-            m_AudioSource = GetComponent<AudioSource>();
-			m_MouseLook.Init(transform , m_Camera.transform);
+            _characterController = GetComponent<CharacterController>();
+            _camera = Camera.main;
+            _originalCameraPosition = _camera.transform.localPosition;
+            _fovKick.Setup(_camera);
+            _headBob.Setup(_camera, _stepInterval);
+            _stepCycle = 0f;
+            _nextStep = _stepCycle / 2f;
+            _jumping = false;
+            _audioSource = GetComponent<AudioSource>();
+            _mouseLook.Init(transform, _camera.transform);
         }
 
-
-        // Update is called once per frame
-        private void Update()
+        void Update()
         {
             RotateView();
-            // the jump state needs to read here to make sure it is not missed
-            if (!m_Jump)
+            if (!_jump)
             {
-                m_Jump = CrossPlatformInputManager.GetButtonDown("Jump");
+                _jump = CrossPlatformInputManager.GetButtonDown("Jump");
             }
 
-            if (!m_PreviouslyGrounded && m_CharacterController.isGrounded)
+            if (!_previouslyGrounded && _characterController.isGrounded)
             {
-                StartCoroutine(m_JumpBob.DoBobCycle());
+                StartCoroutine(_jumpBob.DoBobCycle());
                 PlayLandingSound();
-                m_MoveDir.y = 0f;
-                m_Jumping = false;
+                _moveDir.y = 0f;
+                _jumping = false;
             }
-            if (!m_CharacterController.isGrounded && !m_Jumping && m_PreviouslyGrounded)
+
+            if (!_characterController.isGrounded && !_jumping && _previouslyGrounded)
             {
-                m_MoveDir.y = 0f;
+                _moveDir.y = 0f;
             }
 
-            m_PreviouslyGrounded = m_CharacterController.isGrounded;
+            _previouslyGrounded = _characterController.isGrounded;
         }
 
-
-        private void PlayLandingSound()
+        void PlayLandingSound()
         {
-            m_AudioSource.clip = m_LandSound;
-            m_AudioSource.Play();
-            m_NextStep = m_StepCycle + .5f;
+            _audioSource.clip = _landSound;
+            _audioSource.Play();
+            _nextStep = _stepCycle + .5f;
         }
 
-
-        private void FixedUpdate()
+        void FixedUpdate()
         {
             float speed;
             GetInput(out speed);
-            // always move along the camera forward as it is the direction that it being aimed at
-            Vector3 desiredMove = transform.forward*m_Input.y + transform.right*m_Input.x;
 
-            // get a normal for the surface that is being touched to move along it
+            Vector3 desiredMove = transform.forward * _input.y + transform.right * _input.x;
+
             RaycastHit hitInfo;
-            Physics.SphereCast(transform.position, m_CharacterController.radius, Vector3.down, out hitInfo,
-                               m_CharacterController.height/2f, Physics.AllLayers, QueryTriggerInteraction.Ignore);
+            Physics.SphereCast(transform.position, _characterController.radius, Vector3.down, out hitInfo,
+                               _characterController.height / 2f, Physics.AllLayers, QueryTriggerInteraction.Ignore);
             desiredMove = Vector3.ProjectOnPlane(desiredMove, hitInfo.normal).normalized;
 
-            m_MoveDir.x = desiredMove.x*speed;
-            m_MoveDir.z = desiredMove.z*speed;
+            _moveDir.x = desiredMove.x * speed;
+            _moveDir.z = desiredMove.z * speed;
 
-
-            if (m_CharacterController.isGrounded)
+            if (_characterController.isGrounded)
             {
-                m_MoveDir.y = -m_StickToGroundForce;
+                _moveDir.y = -_stickToGroundForce;
 
-                if (m_Jump)
+                if (_jump)
                 {
-                    m_MoveDir.y = m_JumpSpeed;
+                    _moveDir.y = _jumpSpeed;
                     PlayJumpSound();
-                    m_Jump = false;
-                    m_Jumping = true;
+                    _jump = false;
+                    _jumping = true;
                 }
             }
             else
             {
-                m_MoveDir += Physics.gravity*m_GravityMultiplier*Time.fixedDeltaTime;
+                _moveDir += Physics.gravity * _gravityMultiplier * Time.fixedDeltaTime;
             }
-            m_CollisionFlags = m_CharacterController.Move(m_MoveDir*Time.fixedDeltaTime);
+
+            _collisionFlags = _characterController.Move(_moveDir * Time.fixedDeltaTime);
 
             ProgressStepCycle(speed);
             UpdateCameraPosition(speed);
 
-            m_MouseLook.UpdateCursorLock();
+            _mouseLook.UpdateCursorLock();
         }
 
-
-        private void PlayJumpSound()
+        void PlayJumpSound()
         {
-            m_AudioSource.clip = m_JumpSound;
-            m_AudioSource.Play();
+            _audioSource.clip = _jumpSound;
+            _audioSource.Play();
         }
 
-
-        private void ProgressStepCycle(float speed)
+        void ProgressStepCycle(float speed)
         {
-            if (m_CharacterController.velocity.sqrMagnitude > 0 && (m_Input.x != 0 || m_Input.y != 0))
+            if (_characterController.velocity.sqrMagnitude > 0 && (_input.x != 0 || _input.y != 0))
             {
-                m_StepCycle += (m_CharacterController.velocity.magnitude + (speed*(m_IsWalking ? 1f : m_RunstepLenghten)))*
-                             Time.fixedDeltaTime;
+                _stepCycle += (_characterController.velocity.magnitude + (speed * (_isWalking ? 1f : _runstepLenghten))) *
+                              Time.fixedDeltaTime;
             }
 
-            if (!(m_StepCycle > m_NextStep))
-            {
-                return;
-            }
+            if (!(_stepCycle > _nextStep)) return;
 
-            m_NextStep = m_StepCycle + m_StepInterval;
+            _nextStep = _stepCycle + _stepInterval;
 
             PlayFootStepAudio();
         }
 
-
-        private void PlayFootStepAudio()
+        void PlayFootStepAudio()
         {
-            if (!m_CharacterController.isGrounded)
-            {
-                return;
-            }
-            // pick & play a random footstep sound from the array,
-            // excluding sound at index 0
-            int n = Random.Range(1, m_FootstepSounds.Length);
-            m_AudioSource.clip = m_FootstepSounds[n];
-            m_AudioSource.PlayOneShot(m_AudioSource.clip);
-            // move picked sound to index 0 so it's not picked next time
-            m_FootstepSounds[n] = m_FootstepSounds[0];
-            m_FootstepSounds[0] = m_AudioSource.clip;
+            if (!_characterController.isGrounded) return;
+
+            int n = Random.Range(1, _footstepSounds.Length);
+            _audioSource.clip = _footstepSounds[n];
+            _audioSource.PlayOneShot(_audioSource.clip);
+
+            _footstepSounds[n] = _footstepSounds[0];
+            _footstepSounds[0] = _audioSource.clip;
         }
 
-
-        private void UpdateCameraPosition(float speed)
+        void UpdateCameraPosition(float speed)
         {
             Vector3 newCameraPosition;
-            if (!m_UseHeadBob)
+            if (!_useHeadBob) return;
+
+            if (_characterController.velocity.magnitude > 0 && _characterController.isGrounded)
             {
-                return;
-            }
-            if (m_CharacterController.velocity.magnitude > 0 && m_CharacterController.isGrounded)
-            {
-                m_Camera.transform.localPosition =
-                    m_HeadBob.DoHeadBob(m_CharacterController.velocity.magnitude +
-                                      (speed*(m_IsWalking ? 1f : m_RunstepLenghten)));
-                newCameraPosition = m_Camera.transform.localPosition;
-                newCameraPosition.y = m_Camera.transform.localPosition.y - m_JumpBob.Offset();
+                _camera.transform.localPosition =
+                    _headBob.DoHeadBob(_characterController.velocity.magnitude + (speed * (_isWalking ? 1f : _runstepLenghten)));
+                newCameraPosition = _camera.transform.localPosition;
+                newCameraPosition.y = _camera.transform.localPosition.y - _jumpBob.Offset();
             }
             else
             {
-                newCameraPosition = m_Camera.transform.localPosition;
-                newCameraPosition.y = m_OriginalCameraPosition.y - m_JumpBob.Offset();
+                newCameraPosition = _camera.transform.localPosition;
+                newCameraPosition.y = _originalCameraPosition.y - _jumpBob.Offset();
             }
-            m_Camera.transform.localPosition = newCameraPosition;
+            _camera.transform.localPosition = newCameraPosition;
         }
 
-
-        private void GetInput(out float speed)
+        void GetInput(out float speed)
         {
-            // Read input
             float horizontal = CrossPlatformInputManager.GetAxis("Horizontal");
             float vertical = CrossPlatformInputManager.GetAxis("Vertical");
 
-            bool waswalking = m_IsWalking;
+            bool wasWalking = _isWalking;
 
 #if !MOBILE_INPUT
-            // On standalone builds, walk/run speed is modified by a key press.
-            // keep track of whether or not the character is walking or running
-            m_IsWalking = !Input.GetKey(KeyCode.LeftShift);
+            _isWalking = !Input.GetKey(KeyCode.LeftShift);
 #endif
-            // set the desired speed to be walking or running
-            speed = m_IsWalking ? m_WalkSpeed : m_RunSpeed;
-            m_Input = new Vector2(horizontal, vertical);
+            speed = _isWalking ? _walkSpeed : _runSpeed;
+            _input = new Vector2(horizontal, vertical);
 
-            // normalize input if it exceeds 1 in combined length:
-            if (m_Input.sqrMagnitude > 1)
+            if (_input.sqrMagnitude > 1)
             {
-                m_Input.Normalize();
+                _input.Normalize();
             }
 
-            // handle speed change to give an fov kick
-            // only if the player is going to a run, is running and the fovkick is to be used
-            if (m_IsWalking != waswalking && m_UseFovKick && m_CharacterController.velocity.sqrMagnitude > 0)
+            if (_isWalking != wasWalking && _useFovKick && _characterController.velocity.sqrMagnitude > 0)
             {
                 StopAllCoroutines();
-                StartCoroutine(!m_IsWalking ? m_FovKick.FOVKickUp() : m_FovKick.FOVKickDown());
+                StartCoroutine(!_isWalking ? _fovKick.FOVKickUp() : _fovKick.FOVKickDown());
             }
         }
 
-
-        private void RotateView()
+        void RotateView()
         {
-            m_MouseLook.LookRotation (transform, m_Camera.transform);
+            _mouseLook.LookRotation(transform, _camera.transform);
         }
 
-
-        private void OnControllerColliderHit(ControllerColliderHit hit)
+        void OnControllerColliderHit(ControllerColliderHit hit)
         {
             Rigidbody body = hit.collider.attachedRigidbody;
-            //dont move the rigidbody if the character is on top of it
-            if (m_CollisionFlags == CollisionFlags.Below)
-            {
-                return;
-            }
 
-            if (body == null || body.isKinematic)
-            {
-                return;
-            }
-            body.AddForceAtPosition(m_CharacterController.velocity*0.1f, hit.point, ForceMode.Impulse);
+            if (_collisionFlags == CollisionFlags.Below) return;
+            if (body == null || body.isKinematic) return;
+
+            body.AddForceAtPosition(_characterController.velocity * 0.1f, hit.point, ForceMode.Impulse);
         }
     }
 }
