@@ -1,27 +1,38 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
+using UnityEngine.UI;
 
 public class Driver : MonoBehaviour
 {
-    [SerializeField] float currentSpeed = 5f;
-    [SerializeField] float steerSpeed = 200f;
-    [SerializeField] float boostSpeed = 10f;
-    [SerializeField] float regularSpeed = 5f;
+    [SerializeField] float _currentSpeed = 5f;
+    [SerializeField] float _steerSpeed = 200f;
+    [SerializeField] float _boostSpeed = 10f;
+    [SerializeField] float _regularSpeed = 5f;
+    [SerializeField] int _maxHealth = 10;
+    [SerializeField] int _collisionDamageAmount = 1;
 
-    [SerializeField] TMP_Text boostText;
+    [SerializeField] TMP_Text _boostText;
+    [SerializeField] TMP_Text _healthText;
+    [SerializeField] Slider _healthSlider;
+
+    int _currentHealth;
 
     void Start()
     {
-        boostText.gameObject.SetActive(false);
+        _boostText.gameObject.SetActive(false);
+        _currentHealth = _maxHealth;
+        _healthSlider.maxValue = _maxHealth;
+        _healthSlider.minValue = 0;
+        _healthText.SetText(Mathf.RoundToInt((_currentHealth / (float)_maxHealth) * 100f) + "%");
     }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Boost"))
         {
-            currentSpeed = boostSpeed;
-            boostText.gameObject.SetActive(true);
+            _currentSpeed = _boostSpeed;
+            _boostText.gameObject.SetActive(true);
             Destroy(collision.gameObject);
         }
     }
@@ -30,9 +41,13 @@ public class Driver : MonoBehaviour
     {
         if (collision.collider.CompareTag("WorldCollision"))
         {
-            currentSpeed = regularSpeed;
-            boostText.gameObject.SetActive(false);
+            _currentSpeed = _regularSpeed;
+            _boostText.gameObject.SetActive(false);
         }
+
+        _currentHealth -= _collisionDamageAmount;
+        _healthSlider.value = _currentHealth;
+        _healthText.SetText(Mathf.RoundToInt((_currentHealth / (float)_maxHealth) * 100f) + "%");
     }
 
     void Update()
@@ -60,8 +75,8 @@ public class Driver : MonoBehaviour
             steer = -1f;
         }
 
-        float moveAmount = move * currentSpeed * Time.deltaTime;
-        float steerAmount = steer * steerSpeed * Time.deltaTime;
+        float moveAmount = move * _currentSpeed * Time.deltaTime;
+        float steerAmount = steer * _steerSpeed * Time.deltaTime;
 
         transform.Translate(0, moveAmount, 0);
         transform.Rotate(0, 0, steerAmount);
