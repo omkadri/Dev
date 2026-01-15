@@ -11,6 +11,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] bool _snapTurning = false;
     [SerializeField] float _turnRotationSpeed = 10f;
 
+    [Header("Player Animation")]
+    [SerializeField] Animator _animator;
+
     InputActions _inputActions;
     Vector2 _moveInputValue;
 
@@ -71,6 +74,13 @@ public class PlayerMovement : MonoBehaviour
 
             // Move the Rigidbody
             _rb.MovePosition(_rb.position + move * _speed * Time.fixedDeltaTime);
+
+            // Animate Player
+            _animator.SetBool("IsRunning", true);
+        }
+        else
+        {
+            _animator.SetBool("IsRunning", false);
         }
     }
 }

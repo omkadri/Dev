@@ -17,6 +17,9 @@ public class PlayerJump : MonoBehaviour
     [SerializeField] float _groundRadius = 0.3f;
     [SerializeField] LayerMask _groundLayer;
 
+    [Header("Player Animation")]
+    [SerializeField] Animator _animator;
+
     Rigidbody _rb;
     InputActions _inputActions;
 
