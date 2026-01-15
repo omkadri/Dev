@@ -83,6 +83,9 @@ public class PlayerJump : MonoBehaviour
             if (_jumpHoldTimer <= 0f)
                 _isJumping = false;
         }
+
+        _animator.SetBool("IsJumping", !_isGrounded);
+
     }
 
     void FixedUpdate()
