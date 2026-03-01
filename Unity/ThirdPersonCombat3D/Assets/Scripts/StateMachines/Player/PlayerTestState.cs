@@ -19,7 +19,14 @@ public class PlayerTestState : PlayerBaseState
         movement.z = _stateMachine.InputHandler.MovementValue.y;
         _stateMachine.CharacterController.Move(movement * _stateMachine.FreeLookMovementSpeed * deltaTime);
 
-        if (_stateMachine.InputHandler.MovementValue == Vector2.zero ) { return; }
+        if (_stateMachine.InputHandler.MovementValue == Vector2.zero ) 
+        {
+            _stateMachine.Animator.SetFloat("FreeLookSpeed", 0, 0.025f, deltaTime ); //TODO: Fix magic numbers
+            return; 
+        }
+
+        _stateMachine.Animator.SetFloat("FreeLookSpeed", 1, 0.075f, deltaTime ); //TODO: Fix magic numbers
+
         _stateMachine.transform.rotation = Quaternion.LookRotation(movement);
     }
 
