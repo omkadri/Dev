@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 
 public class InputHandler : MonoBehaviour, InputActions.IPlayerActions
 {
+    public Vector2 MovementValue { get; set; }
     public event Action JumpEvent; //TODO: Find better name
     public event Action DodgeEvent;
 
@@ -53,6 +54,7 @@ public class InputHandler : MonoBehaviour, InputActions.IPlayerActions
 
     public void OnMove(InputAction.CallbackContext context)
     {
+        MovementValue = context.ReadValue<Vector2>();
     }
 
     public void OnNext(InputAction.CallbackContext context)
