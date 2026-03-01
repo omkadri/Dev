@@ -4,11 +4,6 @@ public class PlayerStateMachine : StateMachine
 {
     void Start()
     {
-        
-    }
-
-    void Update()
-    {
-        
+        SwitchState(new PlayerTestState(this));
     }
 }
