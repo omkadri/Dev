@@ -1,4 +1,3 @@
-using System.Threading;
 using UnityEngine;
 
 public class PlayerTestState : PlayerBaseState
@@ -13,10 +12,7 @@ public class PlayerTestState : PlayerBaseState
 
     public override void Tick(float deltaTime)
     {
-        Vector3 movement = new Vector3();
-        movement.x = _stateMachine.InputHandler.MovementValue.x;
-        movement.y = 0;
-        movement.z = _stateMachine.InputHandler.MovementValue.y;
+        Vector3 movement = CalculateMovement();
         _stateMachine.CharacterController.Move(movement * _stateMachine.FreeLookMovementSpeed * deltaTime);
 
         if (_stateMachine.InputHandler.MovementValue == Vector2.zero ) 
@@ -32,5 +28,19 @@ public class PlayerTestState : PlayerBaseState
 
     public override void Exit()
     {
+    }
+
+    Vector3 CalculateMovement()
+    {
+        Vector3 forward = _stateMachine.MainCameraTransform.forward;
+        forward.y = 0;
+        forward.Normalize();
+
+        Vector3 right = _stateMachine.MainCameraTransform.right;
+        right.y = 0;
+        right.Normalize();
+
+        // Combine camera forward/right directions with input so movement is relative to the camera's facing direction
+        return (forward * _stateMachine.InputHandler.MovementValue.y) + (right * _stateMachine.InputHandler.MovementValue.x);
     }
 }
