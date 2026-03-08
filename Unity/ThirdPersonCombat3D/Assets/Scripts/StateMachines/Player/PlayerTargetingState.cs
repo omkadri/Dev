@@ -13,6 +13,7 @@ public class PlayerTargetingState : PlayerBaseState
 
     public override void Tick(float deltaTime)
     {
+        Debug.Log(_stateMachine.Targeter.CurrentTarget.name);
     }
 
     public override void Exit()
@@ -22,6 +23,7 @@ public class PlayerTargetingState : PlayerBaseState
 
     void OnCancel()
     {
+        _stateMachine.Targeter.CancelTarget();
         _stateMachine.SwitchState(new PlayerFreeLookState(_stateMachine));
     }
 }
