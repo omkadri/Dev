@@ -10,6 +10,7 @@ public class PlayerFreeLookState : PlayerBaseState
 
     public override void Enter()
     {
+        _stateMachine.InputHandler.TargetActivateEvent += OnTarget;
     }
 
     public override void Tick(float deltaTime)
@@ -30,6 +31,7 @@ public class PlayerFreeLookState : PlayerBaseState
 
     public override void Exit()
     {
+        _stateMachine.InputHandler.TargetActivateEvent -= OnTarget;
     }
 
     Vector3 CalculateMovement()
@@ -52,5 +54,10 @@ public class PlayerFreeLookState : PlayerBaseState
             _stateMachine.transform.rotation,
             Quaternion.LookRotation(movement),
             deltaTime * _stateMachine.RotationDamping);
+    }
+
+    void OnTarget()
+    {
+        _stateMachine.SwitchState(new PlayerTargetingState(_stateMachine));
     }
 }

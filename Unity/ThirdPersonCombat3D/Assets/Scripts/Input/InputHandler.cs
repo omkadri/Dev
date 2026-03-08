@@ -7,6 +7,8 @@ public class InputHandler : MonoBehaviour, InputActions.IPlayerActions
     public Vector2 MovementValue { get; set; }
     public event Action JumpEvent; //TODO: Find better name
     public event Action DodgeEvent;
+    public event Action TargetActivateEvent;
+    public event Action TargetCancelEvent;
 
     InputActions _inputActions;
 
@@ -68,5 +70,16 @@ public class InputHandler : MonoBehaviour, InputActions.IPlayerActions
     public void OnSprint(InputAction.CallbackContext context)
     {
     }
+    public void OnTargetActivate(InputAction.CallbackContext context)
+    {
+        if (!context.performed) { return; }
 
+        TargetActivateEvent?.Invoke();
+    }
+    public void OnTargetCancel(InputAction.CallbackContext context)//TODO: Blend Target Activate and Target cancel into the same input action
+    {
+        if (!context.performed) { return; }
+
+        TargetCancelEvent?.Invoke();
+    }
 }
