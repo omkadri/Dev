@@ -12,6 +12,7 @@ public class PlayerFreeLookState : PlayerBaseState
     public override void Enter()
     {
         _stateMachine.InputHandler.TargetActivateEvent += OnTarget;
+        _stateMachine.InputHandler.AimActivateEvent += OnAim;
         _stateMachine.Animator.Play(FreeLookBlendTreeHash);
     }
 
@@ -34,6 +35,7 @@ public class PlayerFreeLookState : PlayerBaseState
     public override void Exit()
     {
         _stateMachine.InputHandler.TargetActivateEvent -= OnTarget;
+        _stateMachine.InputHandler.AimActivateEvent -= OnAim;
     }
 
     Vector3 CalculateMovement()
@@ -63,5 +65,9 @@ public class PlayerFreeLookState : PlayerBaseState
         if (!_stateMachine.Targeter.SelectTarget()) { return; }
 
         _stateMachine.SwitchState(new PlayerTargetingState(_stateMachine));
+    }
+    void OnAim()
+    {
+        _stateMachine.SwitchState(new PlayerAimingState(_stateMachine));
     }
 }

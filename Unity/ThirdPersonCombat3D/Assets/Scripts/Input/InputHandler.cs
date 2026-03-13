@@ -9,6 +9,8 @@ public class InputHandler : MonoBehaviour, InputActions.IPlayerActions
     public event Action DodgeEvent;
     public event Action TargetActivateEvent;
     public event Action TargetCancelEvent;
+    public event Action AimActivateEvent;
+    public event Action AimCancelEvent;
 
     InputActions _inputActions;
 
@@ -81,5 +83,16 @@ public class InputHandler : MonoBehaviour, InputActions.IPlayerActions
         if (!context.performed) { return; }
 
         TargetCancelEvent?.Invoke();
+    }
+    public void OnAim(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            AimActivateEvent?.Invoke();
+        }
+        else if (context.canceled)
+        {
+            AimCancelEvent?.Invoke();
+        }
     }
 }
