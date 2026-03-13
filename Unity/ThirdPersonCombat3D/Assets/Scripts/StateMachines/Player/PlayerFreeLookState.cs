@@ -3,6 +3,7 @@ using UnityEngine;
 public class PlayerFreeLookState : PlayerBaseState
 {
     readonly int FreeLookSpeedHash = Animator.StringToHash("FreeLookSpeed"); //integers are processed faster than strings.
+    readonly int FreeLookBlendTreeHash = Animator.StringToHash("FreeLookBlendTree");
     const float AnimatorDampTime = 0.075f;
     public PlayerFreeLookState(PlayerStateMachine stateMachine) : base(stateMachine)
     {
@@ -11,6 +12,7 @@ public class PlayerFreeLookState : PlayerBaseState
     public override void Enter()
     {
         _stateMachine.InputHandler.TargetActivateEvent += OnTarget;
+        _stateMachine.Animator.Play(FreeLookBlendTreeHash);
     }
 
     public override void Tick(float deltaTime)
