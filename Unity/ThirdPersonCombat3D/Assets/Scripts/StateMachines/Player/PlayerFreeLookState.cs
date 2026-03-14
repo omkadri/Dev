@@ -19,7 +19,7 @@ public class PlayerFreeLookState : PlayerBaseState
     public override void Tick(float deltaTime)
     {
         Vector3 movement = CalculateMovement();
-        _stateMachine.CharacterController.Move(movement * _stateMachine.FreeLookMovementSpeed * deltaTime);
+        Move(movement * _stateMachine.FreeLookMovementSpeed, deltaTime);
 
         if (_stateMachine.InputHandler.MovementValue == Vector2.zero)
         {
@@ -38,7 +38,7 @@ public class PlayerFreeLookState : PlayerBaseState
         _stateMachine.InputHandler.AimActivateEvent -= OnAim;
     }
 
-    Vector3 CalculateMovement()
+    Vector3 CalculateMovement()//TODO: Investigate adding this to base class
     {
         Vector3 forward = _stateMachine.MainCameraTransform.forward;
         forward.y = 0;
@@ -52,7 +52,7 @@ public class PlayerFreeLookState : PlayerBaseState
         return (forward * _stateMachine.InputHandler.MovementValue.y) + (right * _stateMachine.InputHandler.MovementValue.x);
     }
 
-    void FaceMovementDirection(Vector3 movement, float deltaTime)
+    void FaceMovementDirection(Vector3 movement, float deltaTime) //TODO: Investigate adding this to base class
     {
         _stateMachine.transform.rotation = Quaternion.Lerp(
             _stateMachine.transform.rotation,
