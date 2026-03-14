@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 public class InputHandler : MonoBehaviour, InputActions.IPlayerActions
 {
     public Vector2 MovementValue { get; set; }
+    public Vector2 LookValue { get; set; }
     public event Action JumpEvent; //TODO: Find better name
     public event Action DodgeEvent;
     public event Action TargetActivateEvent;
@@ -54,6 +55,7 @@ public class InputHandler : MonoBehaviour, InputActions.IPlayerActions
 
     public void OnLook(InputAction.CallbackContext context)
     {
+        LookValue = context.ReadValue<Vector2>();
     }
 
     public void OnMove(InputAction.CallbackContext context)
