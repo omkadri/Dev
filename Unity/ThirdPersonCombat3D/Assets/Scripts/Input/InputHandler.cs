@@ -16,11 +16,14 @@ public class InputHandler : MonoBehaviour, InputActions.IPlayerActions
     public event Action VantagePointCancelEvent;
     public event Action TopDownActivateEvent;
     public event Action TopDownCancelEvent;
+    public event Action SideScrollActivateEvent;
+    public event Action SideScrollCancelEvent;
 
     InputActions _inputActions;
 
     bool _vantageActive = false;
     bool _topDownActive = false;
+    bool _sideScrollActive = false;
 
 
     void Start()
@@ -139,6 +142,23 @@ public class InputHandler : MonoBehaviour, InputActions.IPlayerActions
             else
             {
                 TopDownCancelEvent?.Invoke();
+            }
+        }
+    }
+
+    public void OnSideScroll(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            _sideScrollActive = !_sideScrollActive;
+
+            if (_sideScrollActive)
+            {
+                SideScrollActivateEvent?.Invoke();
+            }
+            else
+            {
+                SideScrollCancelEvent?.Invoke();
             }
         }
     }

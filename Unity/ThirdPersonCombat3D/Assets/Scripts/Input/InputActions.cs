@@ -192,6 +192,15 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""SideScroll"",
+                    ""type"": ""Button"",
+                    ""id"": ""43413b3f-a58d-4cea-8966-4242199c7993"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Dodge"",
                     ""type"": ""Button"",
                     ""id"": ""808fd3a9-898a-40a4-bc46-f55f8a9394b9"",
@@ -628,7 +637,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""5c87b4de-af46-4536-89a5-8a65e444c218"",
-                    ""path"": ""<Gamepad>/select"",
+                    ""path"": ""<Gamepad>/dpad/right"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
@@ -655,6 +664,28 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""TopDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2f5a6942-44c4-4b8b-b06d-3c27d2dc3793"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""SideScroll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""af857953-57e7-444d-be20-84dd8b9e5c94"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""SideScroll"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1341,6 +1372,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_Player_Aim = m_Player.FindAction("Aim", throwIfNotFound: true);
         m_Player_VantagePoint = m_Player.FindAction("VantagePoint", throwIfNotFound: true);
         m_Player_TopDown = m_Player.FindAction("TopDown", throwIfNotFound: true);
+        m_Player_SideScroll = m_Player.FindAction("SideScroll", throwIfNotFound: true);
         m_Player_Dodge = m_Player.FindAction("Dodge", throwIfNotFound: true);
         m_Player_Previous = m_Player.FindAction("Previous", throwIfNotFound: true);
         m_Player_Next = m_Player.FindAction("Next", throwIfNotFound: true);
@@ -1449,6 +1481,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Aim;
     private readonly InputAction m_Player_VantagePoint;
     private readonly InputAction m_Player_TopDown;
+    private readonly InputAction m_Player_SideScroll;
     private readonly InputAction m_Player_Dodge;
     private readonly InputAction m_Player_Previous;
     private readonly InputAction m_Player_Next;
@@ -1508,6 +1541,10 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/TopDown".
         /// </summary>
         public InputAction @TopDown => m_Wrapper.m_Player_TopDown;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/SideScroll".
+        /// </summary>
+        public InputAction @SideScroll => m_Wrapper.m_Player_SideScroll;
         /// <summary>
         /// Provides access to the underlying input action "Player/Dodge".
         /// </summary>
@@ -1583,6 +1620,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @TopDown.started += instance.OnTopDown;
             @TopDown.performed += instance.OnTopDown;
             @TopDown.canceled += instance.OnTopDown;
+            @SideScroll.started += instance.OnSideScroll;
+            @SideScroll.performed += instance.OnSideScroll;
+            @SideScroll.canceled += instance.OnSideScroll;
             @Dodge.started += instance.OnDodge;
             @Dodge.performed += instance.OnDodge;
             @Dodge.canceled += instance.OnDodge;
@@ -1639,6 +1679,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @TopDown.started -= instance.OnTopDown;
             @TopDown.performed -= instance.OnTopDown;
             @TopDown.canceled -= instance.OnTopDown;
+            @SideScroll.started -= instance.OnSideScroll;
+            @SideScroll.performed -= instance.OnSideScroll;
+            @SideScroll.canceled -= instance.OnSideScroll;
             @Dodge.started -= instance.OnDodge;
             @Dodge.performed -= instance.OnDodge;
             @Dodge.canceled -= instance.OnDodge;
@@ -2028,6 +2071,13 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnTopDown(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "SideScroll" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSideScroll(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "Dodge" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>

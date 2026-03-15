@@ -15,6 +15,7 @@ public class PlayerFreeLookState : PlayerBaseState
         _stateMachine.InputHandler.AimActivateEvent += OnAim;
         _stateMachine.InputHandler.VantagePointActivateEvent += OnVantagePointActivate;
         _stateMachine.InputHandler.TopDownActivateEvent += OnTopDownActivate;
+        _stateMachine.InputHandler.SideScrollActivateEvent += OnsideScrollActivate;
         _stateMachine.Animator.Play(FreeLookBlendTreeHash);
     }
 
@@ -40,6 +41,7 @@ public class PlayerFreeLookState : PlayerBaseState
         _stateMachine.InputHandler.AimActivateEvent -= OnAim;
         _stateMachine.InputHandler.VantagePointActivateEvent -= OnVantagePointActivate;
         _stateMachine.InputHandler.TopDownActivateEvent -= OnTopDownActivate;
+        _stateMachine.InputHandler.SideScrollActivateEvent -= OnsideScrollActivate;
 
     }
 
@@ -85,5 +87,10 @@ public class PlayerFreeLookState : PlayerBaseState
     void OnTopDownActivate()
     {
         _stateMachine.SwitchState(new PlayerTopDownState(_stateMachine));
+    }
+
+    void OnsideScrollActivate()
+    {
+        _stateMachine.SwitchState(new PlayerSideScrollState(_stateMachine));
     }
 }
