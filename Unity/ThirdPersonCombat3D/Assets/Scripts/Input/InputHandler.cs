@@ -18,12 +18,15 @@ public class InputHandler : MonoBehaviour, InputActions.IPlayerActions
     public event Action TopDownCancelEvent;
     public event Action SideScrollActivateEvent;
     public event Action SideScrollCancelEvent;
+    public event Action ChaseCameraActivateEvent;
+    public event Action ChaseCameraCancelEvent;
 
     InputActions _inputActions;
 
     bool _vantageActive = false;
     bool _topDownActive = false;
     bool _sideScrollActive = false;
+    bool _chaseCameraActive = false;
 
 
     void Start()
@@ -159,6 +162,23 @@ public class InputHandler : MonoBehaviour, InputActions.IPlayerActions
             else
             {
                 SideScrollCancelEvent?.Invoke();
+            }
+        }
+    }
+
+    public void OnChaseCamera(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            _chaseCameraActive = !_chaseCameraActive;
+
+            if (_chaseCameraActive)
+            {
+                ChaseCameraActivateEvent?.Invoke();
+            }
+            else
+            {
+                ChaseCameraCancelEvent?.Invoke();
             }
         }
     }

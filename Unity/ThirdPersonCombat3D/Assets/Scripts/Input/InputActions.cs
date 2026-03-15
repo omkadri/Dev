@@ -192,6 +192,15 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""ChaseCamera"",
+                    ""type"": ""Button"",
+                    ""id"": ""3e07e219-d84c-4dab-8ad0-a7d62caae46e"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""SideScroll"",
                     ""type"": ""Button"",
                     ""id"": ""43413b3f-a58d-4cea-8966-4242199c7993"",
@@ -664,6 +673,28 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""TopDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7ff98ff1-a306-4f29-b534-44b332d397c3"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""ChaseCamera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5f695242-89de-4162-b457-fcf9f9dbed77"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""ChaseCamera"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1372,6 +1403,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_Player_Aim = m_Player.FindAction("Aim", throwIfNotFound: true);
         m_Player_VantagePoint = m_Player.FindAction("VantagePoint", throwIfNotFound: true);
         m_Player_TopDown = m_Player.FindAction("TopDown", throwIfNotFound: true);
+        m_Player_ChaseCamera = m_Player.FindAction("ChaseCamera", throwIfNotFound: true);
         m_Player_SideScroll = m_Player.FindAction("SideScroll", throwIfNotFound: true);
         m_Player_Dodge = m_Player.FindAction("Dodge", throwIfNotFound: true);
         m_Player_Previous = m_Player.FindAction("Previous", throwIfNotFound: true);
@@ -1481,6 +1513,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Aim;
     private readonly InputAction m_Player_VantagePoint;
     private readonly InputAction m_Player_TopDown;
+    private readonly InputAction m_Player_ChaseCamera;
     private readonly InputAction m_Player_SideScroll;
     private readonly InputAction m_Player_Dodge;
     private readonly InputAction m_Player_Previous;
@@ -1541,6 +1574,10 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/TopDown".
         /// </summary>
         public InputAction @TopDown => m_Wrapper.m_Player_TopDown;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/ChaseCamera".
+        /// </summary>
+        public InputAction @ChaseCamera => m_Wrapper.m_Player_ChaseCamera;
         /// <summary>
         /// Provides access to the underlying input action "Player/SideScroll".
         /// </summary>
@@ -1620,6 +1657,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @TopDown.started += instance.OnTopDown;
             @TopDown.performed += instance.OnTopDown;
             @TopDown.canceled += instance.OnTopDown;
+            @ChaseCamera.started += instance.OnChaseCamera;
+            @ChaseCamera.performed += instance.OnChaseCamera;
+            @ChaseCamera.canceled += instance.OnChaseCamera;
             @SideScroll.started += instance.OnSideScroll;
             @SideScroll.performed += instance.OnSideScroll;
             @SideScroll.canceled += instance.OnSideScroll;
@@ -1679,6 +1719,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @TopDown.started -= instance.OnTopDown;
             @TopDown.performed -= instance.OnTopDown;
             @TopDown.canceled -= instance.OnTopDown;
+            @ChaseCamera.started -= instance.OnChaseCamera;
+            @ChaseCamera.performed -= instance.OnChaseCamera;
+            @ChaseCamera.canceled -= instance.OnChaseCamera;
             @SideScroll.started -= instance.OnSideScroll;
             @SideScroll.performed -= instance.OnSideScroll;
             @SideScroll.canceled -= instance.OnSideScroll;
@@ -2071,6 +2114,13 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnTopDown(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "ChaseCamera" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnChaseCamera(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "SideScroll" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>

@@ -15,7 +15,8 @@ public class PlayerFreeLookState : PlayerBaseState
         _stateMachine.InputHandler.AimActivateEvent += OnAim;
         _stateMachine.InputHandler.VantagePointActivateEvent += OnVantagePointActivate;
         _stateMachine.InputHandler.TopDownActivateEvent += OnTopDownActivate;
-        _stateMachine.InputHandler.SideScrollActivateEvent += OnsideScrollActivate;
+        _stateMachine.InputHandler.SideScrollActivateEvent += OnSideScrollActivate;
+        _stateMachine.InputHandler.ChaseCameraActivateEvent += OnChaseCameraActive;
         _stateMachine.Animator.Play(FreeLookBlendTreeHash);
     }
 
@@ -41,8 +42,8 @@ public class PlayerFreeLookState : PlayerBaseState
         _stateMachine.InputHandler.AimActivateEvent -= OnAim;
         _stateMachine.InputHandler.VantagePointActivateEvent -= OnVantagePointActivate;
         _stateMachine.InputHandler.TopDownActivateEvent -= OnTopDownActivate;
-        _stateMachine.InputHandler.SideScrollActivateEvent -= OnsideScrollActivate;
-
+        _stateMachine.InputHandler.SideScrollActivateEvent -= OnSideScrollActivate;
+        _stateMachine.InputHandler.ChaseCameraActivateEvent -= OnChaseCameraActive;
     }
 
     Vector3 CalculateMovement()//TODO: Investigate adding this to base class
@@ -89,8 +90,13 @@ public class PlayerFreeLookState : PlayerBaseState
         _stateMachine.SwitchState(new PlayerTopDownState(_stateMachine));
     }
 
-    void OnsideScrollActivate()
+    void OnSideScrollActivate()
     {
         _stateMachine.SwitchState(new PlayerSideScrollState(_stateMachine));
+    }
+
+    void OnChaseCameraActive()
+    {
+        _stateMachine.SwitchState(new PlayerChaseCameraState(_stateMachine));
     }
 }

@@ -106,6 +106,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "ChaseCamera",
+                    "type": "Button",
+                    "id": "3e07e219-d84c-4dab-8ad0-a7d62caae46e",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "SideScroll",
                     "type": "Button",
                     "id": "43413b3f-a58d-4cea-8966-4242199c7993",
@@ -578,6 +587,28 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "TopDown",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7ff98ff1-a306-4f29-b534-44b332d397c3",
+                    "path": "<Keyboard>/c",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "ChaseCamera",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5f695242-89de-4162-b457-fcf9f9dbed77",
+                    "path": "<Gamepad>/dpad/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "ChaseCamera",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
