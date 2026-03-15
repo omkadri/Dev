@@ -12,8 +12,13 @@ public class InputHandler : MonoBehaviour, InputActions.IPlayerActions
     public event Action TargetCancelEvent;
     public event Action AimActivateEvent;
     public event Action AimCancelEvent;
+    public event Action VantagePointActivateEvent;
+    public event Action VantagePointCancelEvent;
 
     InputActions _inputActions;
+
+    bool _vantageActive = false;
+
 
     void Start()
     {
@@ -74,18 +79,21 @@ public class InputHandler : MonoBehaviour, InputActions.IPlayerActions
     public void OnSprint(InputAction.CallbackContext context)
     {
     }
+
     public void OnTargetActivate(InputAction.CallbackContext context)
     {
         if (!context.performed) { return; }
 
         TargetActivateEvent?.Invoke();
     }
+
     public void OnTargetCancel(InputAction.CallbackContext context)//TODO: Blend Target Activate and Target cancel into the same input action
     {
         if (!context.performed) { return; }
 
         TargetCancelEvent?.Invoke();
     }
+
     public void OnAim(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -95,6 +103,23 @@ public class InputHandler : MonoBehaviour, InputActions.IPlayerActions
         else if (context.canceled)
         {
             AimCancelEvent?.Invoke();
+        }
+    }
+
+    public void OnVantagePoint(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            _vantageActive = !_vantageActive;
+
+            if (_vantageActive)
+            {
+                VantagePointActivateEvent?.Invoke();
+            }
+            else
+            {
+                VantagePointCancelEvent?.Invoke();
+            }
         }
     }
 }

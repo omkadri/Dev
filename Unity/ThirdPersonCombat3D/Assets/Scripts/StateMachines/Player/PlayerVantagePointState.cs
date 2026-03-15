@@ -1,20 +1,25 @@
 using UnityEngine;
 
-public class PlayerFreeLookState : PlayerBaseState
+public class PlayerVantagePointState : PlayerBaseState
 {
     readonly int FreeLookSpeedHash = Animator.StringToHash("FreeLookSpeed"); //integers are processed faster than strings.
-    readonly int FreeLookBlendTreeHash = Animator.StringToHash("FreeLookBlendTree");
+    readonly int VantagePointBlendTreeHash = Animator.StringToHash("VantagePointBlendTree");
     const float AnimatorDampTime = 0.075f;
-    public PlayerFreeLookState(PlayerStateMachine stateMachine) : base(stateMachine)
+    public PlayerVantagePointState(PlayerStateMachine stateMachine) : base(stateMachine)
     {
     }
 
     public override void Enter()
     {
-        _stateMachine.InputHandler.TargetActivateEvent += OnTarget;
-        _stateMachine.InputHandler.AimActivateEvent += OnAim;
-        _stateMachine.InputHandler.VantagePointActivateEvent += OnVantagePointActivate;
-        _stateMachine.Animator.Play(FreeLookBlendTreeHash);
+        _stateMachine.InputHandler.VantagePointCancelEvent += OnVantagePointCancel;
+
+        Vector3 cameraForward = _stateMachine.MainCameraTransform.forward;
+        cameraForward.y = 0f;
+        cameraForward.Normalize();
+
+        _stateMachine.transform.forward = cameraForward;
+
+        _stateMachine.Animator.Play(VantagePointBlendTreeHash);
     }
 
     public override void Tick(float deltaTime)
@@ -35,13 +40,15 @@ public class PlayerFreeLookState : PlayerBaseState
 
     public override void Exit()
     {
-        _stateMachine.InputHandler.TargetActivateEvent -= OnTarget;
-        _stateMachine.InputHandler.AimActivateEvent -= OnAim;
-        _stateMachine.InputHandler.VantagePointActivateEvent -= OnVantagePointActivate;
-
+        _stateMachine.InputHandler.VantagePointCancelEvent -= OnVantagePointCancel;
     }
 
-    Vector3 CalculateMovement()//TODO: Investigate adding this to base class
+    void OnVantagePointCancel()
+    {
+        _stateMachine.SwitchState(new PlayerFreeLookState(_stateMachine));
+    }
+
+    Vector3 CalculateMovement()
     {
         Vector3 forward = _stateMachine.MainCameraTransform.forward;
         forward.y = 0;
@@ -61,22 +68,5 @@ public class PlayerFreeLookState : PlayerBaseState
             _stateMachine.transform.rotation,
             Quaternion.LookRotation(movement),
             deltaTime * _stateMachine.RotationDamping);
-    }
-
-    void OnTarget()
-    {
-        if (!_stateMachine.Targeter.SelectTarget()) { return; }
-
-        _stateMachine.SwitchState(new PlayerTargetingState(_stateMachine));
-    }
-
-    void OnAim()
-    {
-        _stateMachine.SwitchState(new PlayerAimingState(_stateMachine));
-    }
-
-    void OnVantagePointActivate()
-    {
-        _stateMachine.SwitchState(new PlayerVantagePointState(_stateMachine));
     }
 }

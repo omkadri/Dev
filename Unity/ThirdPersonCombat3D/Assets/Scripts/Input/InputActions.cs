@@ -174,6 +174,15 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""VantagePoint"",
+                    ""type"": ""Button"",
+                    ""id"": ""b4df2a1f-aae7-473c-940d-4778a9fbce63"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Dodge"",
                     ""type"": ""Button"",
                     ""id"": ""808fd3a9-898a-40a4-bc46-f55f8a9394b9"",
@@ -593,6 +602,28 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Aim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d59ec7e5-1ae0-471d-9437-1a3f6d3b2c6b"",
+                    ""path"": ""<Keyboard>/m"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""VantagePoint"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5c87b4de-af46-4536-89a5-8a65e444c218"",
+                    ""path"": ""<Gamepad>/select"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""VantagePoint"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1277,6 +1308,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_Player_TargetActivate = m_Player.FindAction("TargetActivate", throwIfNotFound: true);
         m_Player_TargetCancel = m_Player.FindAction("TargetCancel", throwIfNotFound: true);
         m_Player_Aim = m_Player.FindAction("Aim", throwIfNotFound: true);
+        m_Player_VantagePoint = m_Player.FindAction("VantagePoint", throwIfNotFound: true);
         m_Player_Dodge = m_Player.FindAction("Dodge", throwIfNotFound: true);
         m_Player_Previous = m_Player.FindAction("Previous", throwIfNotFound: true);
         m_Player_Next = m_Player.FindAction("Next", throwIfNotFound: true);
@@ -1383,6 +1415,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_TargetActivate;
     private readonly InputAction m_Player_TargetCancel;
     private readonly InputAction m_Player_Aim;
+    private readonly InputAction m_Player_VantagePoint;
     private readonly InputAction m_Player_Dodge;
     private readonly InputAction m_Player_Previous;
     private readonly InputAction m_Player_Next;
@@ -1434,6 +1467,10 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/Aim".
         /// </summary>
         public InputAction @Aim => m_Wrapper.m_Player_Aim;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/VantagePoint".
+        /// </summary>
+        public InputAction @VantagePoint => m_Wrapper.m_Player_VantagePoint;
         /// <summary>
         /// Provides access to the underlying input action "Player/Dodge".
         /// </summary>
@@ -1503,6 +1540,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Aim.started += instance.OnAim;
             @Aim.performed += instance.OnAim;
             @Aim.canceled += instance.OnAim;
+            @VantagePoint.started += instance.OnVantagePoint;
+            @VantagePoint.performed += instance.OnVantagePoint;
+            @VantagePoint.canceled += instance.OnVantagePoint;
             @Dodge.started += instance.OnDodge;
             @Dodge.performed += instance.OnDodge;
             @Dodge.canceled += instance.OnDodge;
@@ -1553,6 +1593,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Aim.started -= instance.OnAim;
             @Aim.performed -= instance.OnAim;
             @Aim.canceled -= instance.OnAim;
+            @VantagePoint.started -= instance.OnVantagePoint;
+            @VantagePoint.performed -= instance.OnVantagePoint;
+            @VantagePoint.canceled -= instance.OnVantagePoint;
             @Dodge.started -= instance.OnDodge;
             @Dodge.performed -= instance.OnDodge;
             @Dodge.canceled -= instance.OnDodge;
@@ -1928,6 +1971,13 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnAim(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "VantagePoint" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnVantagePoint(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "Dodge" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
