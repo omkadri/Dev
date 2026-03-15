@@ -183,6 +183,15 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""TopDown"",
+                    ""type"": ""Button"",
+                    ""id"": ""340de9c9-ed1c-4421-aa57-46bc66af47a3"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Dodge"",
                     ""type"": ""Button"",
                     ""id"": ""808fd3a9-898a-40a4-bc46-f55f8a9394b9"",
@@ -624,6 +633,28 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""VantagePoint"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""45cb6313-5552-424c-b45d-da3830155155"",
+                    ""path"": ""<Keyboard>/t"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""TopDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3de87aec-5ad0-4dd0-b848-9c3f18dee9d2"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""TopDown"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1309,6 +1340,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_Player_TargetCancel = m_Player.FindAction("TargetCancel", throwIfNotFound: true);
         m_Player_Aim = m_Player.FindAction("Aim", throwIfNotFound: true);
         m_Player_VantagePoint = m_Player.FindAction("VantagePoint", throwIfNotFound: true);
+        m_Player_TopDown = m_Player.FindAction("TopDown", throwIfNotFound: true);
         m_Player_Dodge = m_Player.FindAction("Dodge", throwIfNotFound: true);
         m_Player_Previous = m_Player.FindAction("Previous", throwIfNotFound: true);
         m_Player_Next = m_Player.FindAction("Next", throwIfNotFound: true);
@@ -1416,6 +1448,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_TargetCancel;
     private readonly InputAction m_Player_Aim;
     private readonly InputAction m_Player_VantagePoint;
+    private readonly InputAction m_Player_TopDown;
     private readonly InputAction m_Player_Dodge;
     private readonly InputAction m_Player_Previous;
     private readonly InputAction m_Player_Next;
@@ -1471,6 +1504,10 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/VantagePoint".
         /// </summary>
         public InputAction @VantagePoint => m_Wrapper.m_Player_VantagePoint;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/TopDown".
+        /// </summary>
+        public InputAction @TopDown => m_Wrapper.m_Player_TopDown;
         /// <summary>
         /// Provides access to the underlying input action "Player/Dodge".
         /// </summary>
@@ -1543,6 +1580,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @VantagePoint.started += instance.OnVantagePoint;
             @VantagePoint.performed += instance.OnVantagePoint;
             @VantagePoint.canceled += instance.OnVantagePoint;
+            @TopDown.started += instance.OnTopDown;
+            @TopDown.performed += instance.OnTopDown;
+            @TopDown.canceled += instance.OnTopDown;
             @Dodge.started += instance.OnDodge;
             @Dodge.performed += instance.OnDodge;
             @Dodge.canceled += instance.OnDodge;
@@ -1596,6 +1636,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @VantagePoint.started -= instance.OnVantagePoint;
             @VantagePoint.performed -= instance.OnVantagePoint;
             @VantagePoint.canceled -= instance.OnVantagePoint;
+            @TopDown.started -= instance.OnTopDown;
+            @TopDown.performed -= instance.OnTopDown;
+            @TopDown.canceled -= instance.OnTopDown;
             @Dodge.started -= instance.OnDodge;
             @Dodge.performed -= instance.OnDodge;
             @Dodge.canceled -= instance.OnDodge;
@@ -1978,6 +2021,13 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnVantagePoint(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "TopDown" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnTopDown(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "Dodge" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>

@@ -14,10 +14,13 @@ public class InputHandler : MonoBehaviour, InputActions.IPlayerActions
     public event Action AimCancelEvent;
     public event Action VantagePointActivateEvent;
     public event Action VantagePointCancelEvent;
+    public event Action TopDownActivateEvent;
+    public event Action TopDownCancelEvent;
 
     InputActions _inputActions;
 
     bool _vantageActive = false;
+    bool _topDownActive = false;
 
 
     void Start()
@@ -119,6 +122,23 @@ public class InputHandler : MonoBehaviour, InputActions.IPlayerActions
             else
             {
                 VantagePointCancelEvent?.Invoke();
+            }
+        }
+    }
+
+    public void OnTopDown(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            _topDownActive = !_topDownActive;
+
+            if (_topDownActive)
+            {
+                TopDownActivateEvent?.Invoke();
+            }
+            else
+            {
+                TopDownCancelEvent?.Invoke();
             }
         }
     }

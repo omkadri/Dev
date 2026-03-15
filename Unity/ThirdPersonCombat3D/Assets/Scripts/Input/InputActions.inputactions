@@ -97,6 +97,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "TopDown",
+                    "type": "Button",
+                    "id": "340de9c9-ed1c-4421-aa57-46bc66af47a3",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Dodge",
                     "type": "Button",
                     "id": "808fd3a9-898a-40a4-bc46-f55f8a9394b9",
@@ -538,6 +547,28 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "VantagePoint",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "45cb6313-5552-424c-b45d-da3830155155",
+                    "path": "<Keyboard>/t",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "TopDown",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3de87aec-5ad0-4dd0-b848-9c3f18dee9d2",
+                    "path": "<Gamepad>/dpad/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "TopDown",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
