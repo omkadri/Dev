@@ -5,9 +5,16 @@ using UnityEngine;
 public class Targeter : MonoBehaviour
 {
     [SerializeField] CinemachineTargetGroup _cinemachineTargetGroup;
+
+    Camera _mainCamera;
     public List<Target> _targets = new List<Target>();
 
     public Target CurrentTarget { get; set; }
+
+    void Start()
+    {
+        _mainCamera = Camera.main; //TODO: put this in awake????
+    }
 
     void OnTriggerEnter(Collider other)
     {
@@ -30,7 +37,29 @@ public class Targeter : MonoBehaviour
     {
         if (_targets.Count == 0) { return false; }
 
-        CurrentTarget = _targets[0];
+        Target closestTarget = null;
+        float closestTargetDistance = Mathf.Infinity; //largest possible float in unity
+
+        foreach (Target target in _targets)
+        {
+            Vector2 viewPos = _mainCamera.WorldToViewportPoint(target.transform.position);
+            //check if the targets position is within the screen
+            if (viewPos.x < 0 || viewPos.x > 1 || viewPos.y < 0 || viewPos.y > 1)
+            {
+                continue;
+            }
+
+            Vector2 toCenter = viewPos - new Vector2(0.5f, 0.5f);
+            if (toCenter.sqrMagnitude < closestTargetDistance) //sqrMagnitude is more performant than magnitude
+            {
+                closestTarget = target;
+                closestTargetDistance = toCenter.sqrMagnitude;
+            }
+        }
+
+        if (closestTarget == null) { return false; }
+
+        CurrentTarget = closestTarget;
         _cinemachineTargetGroup.AddMember(CurrentTarget.transform, 1f, 2f); //are weight and radius magic numbers?
         
         return true;
