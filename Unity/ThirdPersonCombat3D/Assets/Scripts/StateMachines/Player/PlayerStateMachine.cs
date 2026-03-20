@@ -10,6 +10,7 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public float FreeLookMovementSpeed { get; set; }
     [field: SerializeField] public float TargetingMovementSpeed { get; set; }
     [field: SerializeField] public float RotationDamping { get; set; }
+    [field: SerializeField] public Attack[] Attacks { get; set; }
     public Transform MainCameraTransform { get; set; }
 
     void Start()
