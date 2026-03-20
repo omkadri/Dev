@@ -4,8 +4,10 @@ using UnityEngine.InputSystem;
 
 public class InputHandler : MonoBehaviour, InputActions.IPlayerActions
 {
+    public bool IsAttacking { get; set; }
     public Vector2 MovementValue { get; set; }
     public Vector2 LookValue { get; set; }
+
     public event Action JumpEvent; //TODO: Find better name
     public event Action DodgeEvent;
     public event Action TargetActivateEvent;
@@ -43,6 +45,14 @@ public class InputHandler : MonoBehaviour, InputActions.IPlayerActions
 
     public void OnAttack(InputAction.CallbackContext context)
     {
+        if (context.performed)
+        {
+            IsAttacking = true;//TODO: investigate switcing this to an action event like the other inputs.
+        }
+        else if (context.canceled)
+        {
+            IsAttacking = false;
+        }
     }
 
     public void OnCrouch(InputAction.CallbackContext context)
