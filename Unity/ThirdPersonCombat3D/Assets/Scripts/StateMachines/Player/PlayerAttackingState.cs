@@ -1,12 +1,13 @@
 using UnityEngine;
 
-public class PlayerAttackingState : PlayerBaseState
+public class PlayerAttackState : PlayerBaseState
 {
     float _previousFrameTime;
+    bool _forceAlreadyApplied = false;
 
     Attack _attack;
 
-    public PlayerAttackingState(PlayerStateMachine stateMachine, int attackIndex) : base(stateMachine)
+    public PlayerAttackState(PlayerStateMachine stateMachine, int attackIndex) : base(stateMachine)
     {
         _attack = _stateMachine.Attacks[attackIndex];
     }
@@ -23,8 +24,13 @@ public class PlayerAttackingState : PlayerBaseState
 
         float normalizedTime = GetNormalizedTime();//TODO: Does this cause performance issues?
 
-        if (normalizedTime >= _previousFrameTime && normalizedTime < 1f)
+        if (normalizedTime >= _previousFrameTime && normalizedTime < 1f)//TODO: investigate if _previousFrameTime check is even necessary
         {
+            if (normalizedTime > _attack.ForceTime)
+            {
+                TryApplyForce();
+            }
+
             if (_stateMachine.InputHandler.IsAttacking)//TODO: Investigate timed button press over holding the button.
             {
                 TryComboAttack(normalizedTime);
@@ -32,7 +38,14 @@ public class PlayerAttackingState : PlayerBaseState
         }
         else
         {
-            //go back to locomotion
+            if (_stateMachine.Targeter.CurrentTarget != null)
+            {
+                _stateMachine.SwitchState(new PlayerTargetingState(_stateMachine));
+            }
+            else
+            {
+                _stateMachine.SwitchState(new PlayerFreeLookState(_stateMachine));//TODO: Add support for returning to other camera states by caching lastKnownCameraState
+            }
         }
 
         _previousFrameTime = normalizedTime;
@@ -49,7 +62,17 @@ public class PlayerAttackingState : PlayerBaseState
 
         if (normalizedTime < _attack.ComboAttackTime) { return; }
 
-        _stateMachine.SwitchState( new PlayerAttackingState(_stateMachine, _attack.ComboStateIndex));
+        _stateMachine.SwitchState( new PlayerAttackState(_stateMachine, _attack.ComboStateIndex));
+    }
+
+    
+    void TryApplyForce()
+    {
+        if (_forceAlreadyApplied) { return; }
+
+        _stateMachine.ForceReceiver.AddForce(_stateMachine.transform.forward * _attack.Force);
+
+        _forceAlreadyApplied = true;
     }
 
 
