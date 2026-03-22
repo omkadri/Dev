@@ -24,6 +24,12 @@ public class PlayerSideScrollState : PlayerBaseState
 
     public override void Tick(float deltaTime)
     {
+        if (_stateMachine.InputHandler.IsAttacking)
+        {
+            _stateMachine.SwitchState(new PlayerAttackingState(_stateMachine, 0));
+            return;
+        }
+
         Vector3 movement = CalculateMovement();
         Move(movement * _stateMachine.FreeLookMovementSpeed, deltaTime);
 
