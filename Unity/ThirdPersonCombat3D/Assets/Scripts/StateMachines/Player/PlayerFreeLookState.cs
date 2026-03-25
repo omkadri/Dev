@@ -5,6 +5,8 @@ public class PlayerFreeLookState : PlayerBaseState
     readonly int FreeLookSpeedHash = Animator.StringToHash("FreeLookSpeed"); //integers are processed faster than strings.
     readonly int FreeLookBlendTreeHash = Animator.StringToHash("FreeLookBlendTree");
     const float AnimatorDampTime = 0.075f;
+    const float CrossFadeDuration = 0.2f;
+
     public PlayerFreeLookState(PlayerStateMachine stateMachine) : base(stateMachine)
     {
     }
@@ -17,7 +19,8 @@ public class PlayerFreeLookState : PlayerBaseState
         _stateMachine.InputHandler.TopDownActivateEvent += OnTopDownActivate;
         _stateMachine.InputHandler.SideScrollActivateEvent += OnSideScrollActivate;
         _stateMachine.InputHandler.ChaseCameraActivateEvent += OnChaseCameraActive;
-        _stateMachine.Animator.Play(FreeLookBlendTreeHash);
+
+        _stateMachine.Animator.CrossFadeInFixedTime(FreeLookBlendTreeHash, CrossFadeDuration);
     }
 
     public override void Tick(float deltaTime)

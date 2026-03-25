@@ -6,6 +6,8 @@ public class PlayerTargetingState : PlayerBaseState
     readonly int TargetingForwardSpeedHash = Animator.StringToHash("TargetingForwardSpeed");
     readonly int TargetingRightSpeedHash = Animator.StringToHash("TargetingRightSpeed");
 
+    const float CrossFadeDuration = 0.2f;
+
     public PlayerTargetingState(PlayerStateMachine stateMachine) : base(stateMachine)
     {
     }
@@ -13,7 +15,7 @@ public class PlayerTargetingState : PlayerBaseState
     public override void Enter()
     {
         _stateMachine.InputHandler.TargetCancelEvent += OnCancel; //TODO: Blend Target Activate and Target cancel into the same input action
-        _stateMachine.Animator.Play(TargetingBlendTreeHash);
+        _stateMachine.Animator.CrossFadeInFixedTime(TargetingBlendTreeHash, CrossFadeDuration);
     }
 
     public override void Tick(float deltaTime)
