@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class PlayerAttackState : PlayerBaseState
 {
-    float _previousFrameTime;
     bool _forceAlreadyApplied = false;
 
     Attack _attack;
@@ -25,7 +24,7 @@ public class PlayerAttackState : PlayerBaseState
 
         float normalizedTime = GetNormalizedTime(_stateMachine.Animator);//TODO: Does this cause performance issues?
 
-        if (normalizedTime >= _previousFrameTime && normalizedTime < 1f)//TODO: investigate if _previousFrameTime check is even necessary
+        if (normalizedTime < 1f)//TODO: investigate if _previousFrameTime check is even necessary
         {
             if (normalizedTime > _attack.ForceTime)
             {
@@ -48,8 +47,6 @@ public class PlayerAttackState : PlayerBaseState
                 _stateMachine.SwitchState(new PlayerFreeLookState(_stateMachine));//TODO: Add support for returning to other camera states by caching lastKnownCameraState
             }
         }
-
-        _previousFrameTime = normalizedTime;
     }
 
 
