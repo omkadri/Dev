@@ -25,6 +25,12 @@ public class EnemyChasingState : EnemyBaseState
             _stateMachine.SwitchState(new EnemyIdleState(_stateMachine));
             return;
         }
+        else if(IsInAttackRange()) // leaving IsInAttackRange in EnemyBaseState because i want some enemies to attack the player from states other than chasing state 
+        {
+            _stateMachine.SwitchState(new EnemyAttackingState(_stateMachine));
+            return;
+        }
+    
         MoveToPlayer(deltaTime);
         FacePlayer();
         _stateMachine.Animator.SetFloat(SpeedHash, 1f, AnimatorDampTime, deltaTime);
