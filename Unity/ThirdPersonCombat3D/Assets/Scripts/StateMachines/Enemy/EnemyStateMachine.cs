@@ -7,6 +7,8 @@ public class EnemyStateMachine : StateMachine
     [field: SerializeField] public Animator Animator { get; set; }
     [field: SerializeField] public ForceReceiver ForceReceiver { get; set; }
     [field: SerializeField] public NavMeshAgent NavMeshAgent { get; set; }
+    [field: SerializeField] public WeaponDamage Weapon { get; set; }
+    [field: SerializeField] public int DamageAmount { get; set; }
     [field: SerializeField] public float MovementSpeed { get; set; }
     [field: SerializeField] public float PlayerChasingRange { get; set; }
     [field: SerializeField] public float PlayerAttackRange { get; set; }
