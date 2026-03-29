@@ -23,7 +23,7 @@ public class PlayerAttackState : PlayerBaseState
         Move(deltaTime);
         FaceTarget();
 
-        float normalizedTime = GetNormalizedTime();//TODO: Does this cause performance issues?
+        float normalizedTime = GetNormalizedTime(_stateMachine.Animator);//TODO: Does this cause performance issues?
 
         if (normalizedTime >= _previousFrameTime && normalizedTime < 1f)//TODO: investigate if _previousFrameTime check is even necessary
         {
@@ -74,25 +74,5 @@ public class PlayerAttackState : PlayerBaseState
         _stateMachine.ForceReceiver.AddForce(_stateMachine.transform.forward * _attack.Force);
 
         _forceAlreadyApplied = true;
-    }
-
-
-    float GetNormalizedTime()//TODO: Rename this to something more specific
-    {
-        AnimatorStateInfo currentInfo = _stateMachine.Animator.GetCurrentAnimatorStateInfo(0);
-        AnimatorStateInfo nextInfo = _stateMachine.Animator.GetNextAnimatorStateInfo(0);
-
-        if (_stateMachine.Animator.IsInTransition(0) && nextInfo.IsTag("Attack"))
-        {
-            return nextInfo.normalizedTime;// normalizedTime is how far along an animation is
-        }
-        else if (!_stateMachine.Animator.IsInTransition(0) && currentInfo.IsTag("Attack"))
-        {
-            return currentInfo.normalizedTime;
-        }
-        else
-        {
-            return 0f;
-        }
     }
 }
