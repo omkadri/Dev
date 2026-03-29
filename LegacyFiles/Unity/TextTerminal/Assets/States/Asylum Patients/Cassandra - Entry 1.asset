@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a88b22bc2ab974469ac44a1525515ca, type: 3}
+  m_Name: Cassandra - Entry 1
+  m_EditorClassIdentifier: 
+  storyText: "PATIENT: Cassandra Bouchat\nDATE: June 3/1981\n\n\tToday's session with
+    Cassandra had a rocky start. When she realized that I had a mustard stain on my
+    coat, it was difficult to for her to concentrate. After practicing a few breathing
+    excersises, she regained focus and was able to converse normally again. The theme
+    of today's meeting revolved around her husband. She expressed disapppointment
+    with his inability to keep their apartment up to her standards. She also expressed
+    some trust issues regarding his constant overtime hours... \n\t\t>> 1. BACK"
+  nextStates:
+  - {fileID: 11400000, guid: 4cbbb4a98db14f648b39e216ab0f3eff, type: 2}

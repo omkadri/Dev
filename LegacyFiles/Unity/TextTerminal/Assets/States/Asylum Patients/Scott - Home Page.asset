@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a88b22bc2ab974469ac44a1525515ca, type: 3}
+  m_Name: Scott - Home Page
+  m_EditorClassIdentifier: 
+  storyText: "Scott Melanson\nBorn: Nov 11, 1989\nAdmission Date: April 7, 1981\nDiagnosis:
+    Generalized Anxiety Disorder\n\t\t\n\t\tPatient Notes\n\t\t>> 1. June 3/1981\n\t\t>>
+    2. June 17/1981\n\t\t>> 3. June 24/1981\n\t\t>> 4. BACK"
+  nextStates:
+  - {fileID: 11400000, guid: 24004e2ee3c69e545b63ea60d5e8b96c, type: 2}
+  - {fileID: 11400000, guid: 9cba7c26d8a34114282e55b2d9534b14, type: 2}
+  - {fileID: 11400000, guid: ac06b93718d0a794596e968933006ba3, type: 2}
+  - {fileID: 11400000, guid: 8c497533903cd4546818332c34844231, type: 2}

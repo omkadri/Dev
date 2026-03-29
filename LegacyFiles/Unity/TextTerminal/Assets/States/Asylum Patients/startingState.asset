@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a88b22bc2ab974469ac44a1525515ca, type: 3}
+  m_Name: startingState
+  m_EditorClassIdentifier: 
+  storyText: "Patient Directory\n\n\t>> 1. Scott Melanson\n\t>> 2. Nick McLauglin\n\t>>
+    3. Cassandra Bouchat-Laird\n\t>> 4. Jeremy Hunsberger\n"
+  nextStates:
+  - {fileID: 11400000, guid: fe96665fbbf61754c8ee1aef1acf1378, type: 2}
+  - {fileID: 11400000, guid: 20bbd02c6705d1c46bf0c12dda78244f, type: 2}
+  - {fileID: 11400000, guid: 4cbbb4a98db14f648b39e216ab0f3eff, type: 2}
+  - {fileID: 11400000, guid: 8d886e4860851db489cd4730f111fa8b, type: 2}

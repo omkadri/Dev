@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a88b22bc2ab974469ac44a1525515ca, type: 3}
+  m_Name: Jeremy - Homepage
+  m_EditorClassIdentifier: 
+  storyText: "Jeremy Hunsberger\nBorn: Nov 11, 1989\nAdmission Date: April 7, 1981\nDiagnosis:
+    Post-Traumatic Stress Disorder\n\t\t\n\t\tPatient Notes\n\t\t>> 1. June 3/1981\n\t\t>>
+    2. June 17/1981\n\t\t>> 3. June 24/1981\n\t\t>> 4. BACK"
+  nextStates:
+  - {fileID: 11400000, guid: 95d8552ea7db3f6429405344965e55fc, type: 2}
+  - {fileID: 11400000, guid: 283c8352760bb284893de830cf445ef8, type: 2}
+  - {fileID: 11400000, guid: 67edf904f6edc8d4b89774923f870df2, type: 2}
+  - {fileID: 11400000, guid: 8c497533903cd4546818332c34844231, type: 2}
