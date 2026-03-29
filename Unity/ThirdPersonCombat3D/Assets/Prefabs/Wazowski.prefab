@@ -1059,6 +1059,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6537186341034344144}
   - component: {fileID: 9128487367616790552}
+  - component: {fileID: 1989167989866191364}
   - component: {fileID: 5444686434213678998}
   - component: {fileID: 1836063997022880074}
   - component: {fileID: 489695260241569228}
@@ -1104,6 +1105,28 @@ MonoBehaviour:
   <Animator>k__BackingField: {fileID: 7397785720179732644}
   <ForceReceiver>k__BackingField: {fileID: 7994015910732752700}
   <PlayerChasingRange>k__BackingField: 10
+--- !u!195 &1989167989866191364
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3838146622586911683}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 1
+  m_Acceleration: 0
+  avoidancePriority: 50
+  m_AngularSpeed: 0
+  m_StoppingDistance: 1
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 1
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!143 &5444686434213678998
 CharacterController:
   m_ObjectHideFlags: 0

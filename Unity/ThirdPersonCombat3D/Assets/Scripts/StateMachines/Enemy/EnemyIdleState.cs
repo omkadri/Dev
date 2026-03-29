@@ -25,7 +25,7 @@ public class EnemyIdleState : EnemyBaseState
     
         if (IsInChaseRange())
         {
-            Debug.Log("InRange");
+            _stateMachine.SwitchState(new EnemyChasingState(_stateMachine));
             return;
         }
         _stateMachine.Animator.SetFloat(SpeedHash, 0, AnimatorDampTime, deltaTime);
