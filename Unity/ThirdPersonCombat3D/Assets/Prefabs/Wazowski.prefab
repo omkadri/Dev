@@ -1109,6 +1109,7 @@ MonoBehaviour:
   <NavMeshAgent>k__BackingField: {fileID: 1989167989866191364}
   <Weapon>k__BackingField: {fileID: 3886495462525394932}
   <DamageAmount>k__BackingField: 20
+  <AttackKnockback>k__BackingField: 20
   <MovementSpeed>k__BackingField: 3
   <PlayerChasingRange>k__BackingField: 10
   <PlayerAttackRange>k__BackingField: 1.25
@@ -1219,6 +1220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ForceReceiver
   _charcaterController: {fileID: 5444686434213678998}
+  _navMeshAgent: {fileID: 1989167989866191364}
   _drag: 0.3
 --- !u!114 &520682072626230563
 MonoBehaviour:

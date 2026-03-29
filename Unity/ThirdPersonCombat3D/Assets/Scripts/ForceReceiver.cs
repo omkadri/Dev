@@ -1,8 +1,10 @@
 using UnityEngine;
+using UnityEngine.AI;
 
-public class ForceReceiver : MonoBehaviour
+public class ForceReceiver : MonoBehaviour//TODO: investigate the benefit of having seperate force recievers for the player and enemies
 {
     [SerializeField] CharacterController _charcaterController;
+    [SerializeField] NavMeshAgent _navMeshAgent;
     [SerializeField] float _drag = 0.3f;
 
     Vector3 _dampingVelocity;
@@ -24,11 +26,23 @@ public class ForceReceiver : MonoBehaviour
         }
 
         _impact = Vector3.SmoothDamp(_impact, Vector3.zero, ref _dampingVelocity, _drag);//TODO: Understand this function
+
+        if (_navMeshAgent != null)
+        {
+            if (_impact == Vector3.zero)
+            {
+                _navMeshAgent.enabled = true; //turn agent back on since we are no longer applying phusics
+            }
+        }
     }
 
 
     public void AddForce(Vector3 force)
     {
         _impact += force;
+        if (_navMeshAgent != null)
+        {
+            _navMeshAgent.enabled = false; //turn agent off to avoid any issues with applying physics to enemy
+        }
     }
 }

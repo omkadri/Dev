@@ -13,7 +13,7 @@ public class PlayerAttackState : PlayerBaseState
 
     public override void Enter()
     {
-        _stateMachine.Weapon.SetAttack(_attack.DamageAmount);
+        _stateMachine.Weapon.SetAttack(_attack.DamageAmount, _attack.Knockback);
         _stateMachine.Animator.CrossFadeInFixedTime(_attack.AnimationName, _attack.TransitionDuration); //CrossFadeInFixedTime plays new animations in a way that blends them from the current animation
     }
 
