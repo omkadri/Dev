@@ -29,8 +29,15 @@ public class ForceReceiver : MonoBehaviour//TODO: investigate the benefit of hav
 
         if (_navMeshAgent != null)
         {
-            if (_impact == Vector3.zero)
+            
+            if (_impact.sqrMagnitude < 0.2f * 0.2f)
+            /*
+                Use a small threshold instead of Vector3.zero because floating point
+                values rarely reach exactly zero. This prevents tiny residual movement
+                that can cause "running on the spot" before re-enabling the NavMeshAgent.
+            */
             {
+                _impact = Vector3.zero;
                 _navMeshAgent.enabled = true; //turn agent back on since we are no longer applying phusics
             }
         }

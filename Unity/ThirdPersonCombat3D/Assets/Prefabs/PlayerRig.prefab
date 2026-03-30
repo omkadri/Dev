@@ -3772,6 +3772,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 7415530963736064839}
     m_Modifications:
     - target: {fileID: 828489942326955059, guid: a0f1f7de2b21a0742a5b3844189199a0, type: 3}
+      propertyPath: <Health>k__BackingField
+      value: 
+      objectReference: {fileID: 6840680628841694351}
+    - target: {fileID: 828489942326955059, guid: a0f1f7de2b21a0742a5b3844189199a0, type: 3}
       propertyPath: <Weapon>k__BackingField
       value: 
       objectReference: {fileID: 397783631595010528}
@@ -3800,8 +3804,20 @@ PrefabInstance:
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 828489942326955059, guid: a0f1f7de2b21a0742a5b3844189199a0, type: 3}
+      propertyPath: <Attacks>k__BackingField.Array.data[0].<Knockback>k__BackingField
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 828489942326955059, guid: a0f1f7de2b21a0742a5b3844189199a0, type: 3}
+      propertyPath: <Attacks>k__BackingField.Array.data[1].<Knockback>k__BackingField
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 828489942326955059, guid: a0f1f7de2b21a0742a5b3844189199a0, type: 3}
       propertyPath: <Attacks>k__BackingField.Array.data[2].<ForceTime>k__BackingField
       value: 0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 828489942326955059, guid: a0f1f7de2b21a0742a5b3844189199a0, type: 3}
+      propertyPath: <Attacks>k__BackingField.Array.data[2].<Knockback>k__BackingField
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 828489942326955059, guid: a0f1f7de2b21a0742a5b3844189199a0, type: 3}
       propertyPath: <Attacks>k__BackingField.Array.data[0].<DamageAmount>k__BackingField
@@ -3952,6 +3968,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ForceReceiver
   _charcaterController: {fileID: 8464713503686248408}
+  _navMeshAgent: {fileID: 0}
   _drag: 0.1
 --- !u!114 &7524787393464955900
 MonoBehaviour:

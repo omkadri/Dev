@@ -28,4 +28,16 @@ public abstract class PlayerBaseState : State
 
         _stateMachine.transform.rotation = Quaternion.LookRotation(lookPos);
     }
+
+    protected void ReturnToLocomotion()
+    {
+        if (_stateMachine.Targeter.CurrentTarget != null)
+        {
+            _stateMachine.SwitchState(new PlayerTargetingState(_stateMachine));
+        }
+        else
+        {
+            _stateMachine.SwitchState(new PlayerFreeLookState(_stateMachine));//TODO: Add support for returning to other camera states by caching lastKnownCameraState
+        }
+    }
 }

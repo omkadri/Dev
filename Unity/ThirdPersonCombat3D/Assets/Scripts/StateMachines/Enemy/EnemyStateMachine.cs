@@ -3,10 +3,11 @@ using UnityEngine.AI;
 
 public class EnemyStateMachine : StateMachine
 {
-    [field: SerializeField] public CharacterController CharacterController { get; set; }
+    [field: SerializeField] public CharacterController CharacterController { get; set; }//TODO: use category headers
     [field: SerializeField] public Animator Animator { get; set; }
     [field: SerializeField] public ForceReceiver ForceReceiver { get; set; }
     [field: SerializeField] public NavMeshAgent NavMeshAgent { get; set; }
+    [field: SerializeField] public Health Health { get; set; }
     [field: SerializeField] public WeaponDamage Weapon { get; set; }
     [field: SerializeField] public int DamageAmount { get; set; }
     [field: SerializeField] public int AttackKnockback { get; set; }
@@ -22,6 +23,21 @@ public class EnemyStateMachine : StateMachine
         NavMeshAgent.updatePosition = false;//by default, we do not want the agent to move
         NavMeshAgent.updateRotation = false;
         SwitchState(new EnemyIdleState(this));
+    }
+
+    void OnEnable()
+    {
+        Health.OnTakeDamage += HandleTakeDamage;
+    }
+
+    void OnDisable()
+    {
+        Health.OnTakeDamage -= HandleTakeDamage;
+    }
+
+    void HandleTakeDamage()
+    {
+        SwitchState(new EnemyImpactState(this));
     }
 
     void OnDrawGizmosSelected() //Will draw only when enemy is selected
