@@ -8,7 +8,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Impact
-  m_Speed: 1
+  m_Speed: 2
   m_CycleOffset: 0
   m_Transitions: []
   m_StateMachineBehaviours: []
@@ -20,7 +20,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: f88d2b25d16f64a4681b3d6eb62c6942, type: 2}
+  m_Motion: {fileID: 7400000, guid: d111e0dd2046735488f430ee2b2ff4e1, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -465,7 +465,7 @@ BlendTree:
   m_Name: Blend Tree
   m_Childs:
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: ccba8ab01f8e12842a547fcaaa06e117, type: 2}
+    m_Motion: {fileID: 7400000, guid: b0049e8e8af40984ead468b0413e743b, type: 2}
     m_Threshold: 0
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
@@ -473,34 +473,34 @@ BlendTree:
     m_DirectBlendParameter: FreeLookSpeed
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: 0233d7c0f5fd9374987e54ed82c7e892, type: 2}
+    m_Motion: {fileID: 7400000, guid: 8b221ba99dc986c4c89b6b55a7aba1fe, type: 2}
     m_Threshold: 0.2
     m_Position: {x: 0, y: 1}
-    m_TimeScale: 1
+    m_TimeScale: -1.5
     m_CycleOffset: 0
     m_DirectBlendParameter: FreeLookSpeed
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: 478cd3396eec5424892703660f6ab408, type: 2}
+    m_Motion: {fileID: 7400000, guid: 8b221ba99dc986c4c89b6b55a7aba1fe, type: 2}
     m_Threshold: 0.4
     m_Position: {x: 0, y: -1}
-    m_TimeScale: 1
+    m_TimeScale: 1.5
     m_CycleOffset: 0
     m_DirectBlendParameter: FreeLookSpeed
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: b8e953a39e144124fbd998945727ba7a, type: 2}
+    m_Motion: {fileID: 7400000, guid: 9d80d08517813db48a8f190f95713374, type: 2}
     m_Threshold: 0.6
     m_Position: {x: -1, y: 0}
-    m_TimeScale: 1
+    m_TimeScale: 1.5
     m_CycleOffset: 0
     m_DirectBlendParameter: FreeLookSpeed
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: e03f1fa568328e648b519d422cc7d443, type: 2}
+    m_Motion: {fileID: 7400000, guid: a3c7dc3edadd1364db9d1d1e8245b402, type: 2}
     m_Threshold: 0.8
     m_Position: {x: 1, y: 0}
-    m_TimeScale: 1
+    m_TimeScale: 1.5
     m_CycleOffset: 0
     m_DirectBlendParameter: FreeLookSpeed
     m_Mirror: 0
