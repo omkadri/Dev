@@ -8,6 +8,7 @@ public class Health : MonoBehaviour
     int _currentHealth;
 
     public event Action OnTakeDamage;
+    public event Action OnDie;
 
     void Start()
     {
@@ -21,6 +22,11 @@ public class Health : MonoBehaviour
         _currentHealth = Mathf.Max( _currentHealth - damageAmount, 0); //returns whatever number is higher
 
         OnTakeDamage?.Invoke();
+
+        if (_currentHealth == 0)
+        {
+            OnDie?.Invoke();
+        }
 
         Debug.Log(_currentHealth);
     }

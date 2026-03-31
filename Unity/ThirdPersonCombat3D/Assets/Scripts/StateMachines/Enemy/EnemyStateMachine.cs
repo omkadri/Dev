@@ -8,6 +8,7 @@ public class EnemyStateMachine : StateMachine
     [field: SerializeField] public ForceReceiver ForceReceiver { get; set; }
     [field: SerializeField] public NavMeshAgent NavMeshAgent { get; set; }
     [field: SerializeField] public Health Health { get; set; }
+    [field: SerializeField] public Target Target { get; set; }
     [field: SerializeField] public WeaponDamage Weapon { get; set; }
     [field: SerializeField] public int DamageAmount { get; set; }
     [field: SerializeField] public int AttackKnockback { get; set; }
@@ -28,16 +29,23 @@ public class EnemyStateMachine : StateMachine
     void OnEnable()
     {
         Health.OnTakeDamage += HandleTakeDamage;
+        Health.OnDie += HandleDeath;
     }
 
     void OnDisable()
     {
         Health.OnTakeDamage -= HandleTakeDamage;
+        Health.OnDie -= HandleDeath;
     }
 
     void HandleTakeDamage()
     {
         SwitchState(new EnemyImpactState(this));
+    }
+
+    void HandleDeath()
+    {
+        SwitchState(new EnemyDeadState(this));
     }
 
     void OnDrawGizmosSelected() //Will draw only when enemy is selected

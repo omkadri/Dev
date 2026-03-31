@@ -25,15 +25,22 @@ public class PlayerStateMachine : StateMachine
     void OnEnable()
     {
         Health.OnTakeDamage += HandleTakeDamage;
+        Health.OnDie += HandleDeath;
     }
 
     void OnDisable()
     {
         Health.OnTakeDamage -= HandleTakeDamage;
+        Health.OnDie -= HandleDeath;
     }
 
     void HandleTakeDamage()
     {
         SwitchState(new PlayerImpactState(this));
+    }
+
+    void HandleDeath()
+    {
+        SwitchState(new PlayerDeadState(this));
     }
 }
