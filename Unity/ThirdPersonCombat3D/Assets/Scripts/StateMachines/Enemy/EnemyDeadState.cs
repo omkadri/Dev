@@ -8,7 +8,7 @@ public class EnemyDeadState : EnemyBaseState
 
     public override void Enter()
     {
-        //toggle rag doll
+        _stateMachine.Ragdoll.ToggleRagdoll(true);
         _stateMachine.Weapon.gameObject.SetActive(false);
         GameObject.Destroy(_stateMachine.Target); //TODO: Object pool
     }

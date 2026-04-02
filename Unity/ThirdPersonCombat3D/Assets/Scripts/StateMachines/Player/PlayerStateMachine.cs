@@ -8,6 +8,7 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public Targeter Targeter { get; set; }
     [field: SerializeField] public ForceReceiver ForceReceiver { get; set; }
     [field: SerializeField] public Health Health { get; set; }
+    [field: SerializeField] public Ragdoll Ragdoll { get; set; }
     [field: SerializeField] public WeaponDamage Weapon { get; set; }
     [field: SerializeField] public float FreeLookMovementSpeed { get; set; }
     [field: SerializeField] public float TargetingMovementSpeed { get; set; }
