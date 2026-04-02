@@ -11,7 +11,7 @@ public class PlayerSideScrollState : PlayerBaseState
 
     public override void Enter()
     {
-        _stateMachine.InputHandler.SideScrollCancelEvent += OnSideScrollCancel;
+        _stateMachine.InputReader.SideScrollCancelEvent += OnSideScrollCancel;
 
         Vector3 cameraForward = _stateMachine.MainCameraTransform.forward;
         cameraForward.y = 0f;
@@ -24,7 +24,7 @@ public class PlayerSideScrollState : PlayerBaseState
 
     public override void Tick(float deltaTime)
     {
-        if (_stateMachine.InputHandler.IsAttacking)
+        if (_stateMachine.InputReader.IsAttacking)
         {
             _stateMachine.SwitchState(new PlayerAttackState(_stateMachine, 0));
             return;
@@ -33,7 +33,7 @@ public class PlayerSideScrollState : PlayerBaseState
         Vector3 movement = CalculateMovement();
         Move(movement * _stateMachine.FreeLookMovementSpeed, deltaTime);
 
-        if (_stateMachine.InputHandler.MovementValue == Vector2.zero)
+        if (_stateMachine.InputReader.MovementValue == Vector2.zero)
         {
             _stateMachine.Animator.SetFloat(FreeLookSpeedHash, 0, AnimatorDampTime, deltaTime); //TODO: Fix magic numbers
             return;
@@ -46,7 +46,7 @@ public class PlayerSideScrollState : PlayerBaseState
 
     public override void Exit()
     {
-        _stateMachine.InputHandler.SideScrollCancelEvent -= OnSideScrollCancel;
+        _stateMachine.InputReader.SideScrollCancelEvent -= OnSideScrollCancel;
     }
 
     void OnSideScrollCancel()
@@ -61,7 +61,7 @@ public class PlayerSideScrollState : PlayerBaseState
         right.Normalize();
 
         // Combine camera forward/right directions with input so movement is relative to the camera's facing direction
-        return right * _stateMachine.InputHandler.MovementValue.x;
+        return right * _stateMachine.InputReader.MovementValue.x;
     }
 
     void FaceMovementDirection(Vector3 movement, float deltaTime) //TODO: Investigate adding this to base class

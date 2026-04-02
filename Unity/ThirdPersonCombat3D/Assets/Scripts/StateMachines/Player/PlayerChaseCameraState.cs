@@ -12,7 +12,7 @@ public class PlayerChaseCameraState : PlayerBaseState
 
     public override void Enter()
     {
-        _stateMachine.InputHandler.TopDownCancelEvent += OnChaseCameraCancel;
+        _stateMachine.InputReader.TopDownCancelEvent += OnChaseCameraCancel;
 
         Vector3 cameraForward = _stateMachine.MainCameraTransform.forward;
         cameraForward.y = 0f;
@@ -28,7 +28,7 @@ public class PlayerChaseCameraState : PlayerBaseState
         Vector3 movement = CalculateMovement();
         Move(movement * _stateMachine.FreeLookMovementSpeed, deltaTime);
 
-        if (_stateMachine.InputHandler.MovementValue == Vector2.zero)
+        if (_stateMachine.InputReader.MovementValue == Vector2.zero)
         {
             _stateMachine.Animator.SetFloat(FreeLookSpeedHash, 0, AnimatorDampTime, deltaTime); //TODO: Fix magic numbers
             return;
@@ -41,7 +41,7 @@ public class PlayerChaseCameraState : PlayerBaseState
 
     public override void Exit()
     {
-        _stateMachine.InputHandler.TopDownCancelEvent -= OnChaseCameraCancel;
+        _stateMachine.InputReader.TopDownCancelEvent -= OnChaseCameraCancel;
     }
 
     void OnChaseCameraCancel()
@@ -60,7 +60,7 @@ public class PlayerChaseCameraState : PlayerBaseState
         right.Normalize();
 
         // Combine camera forward/right directions with input so movement is relative to the camera's facing direction
-        return (forward * _stateMachine.InputHandler.MovementValue.y) + (right * _stateMachine.InputHandler.MovementValue.x);
+        return (forward * _stateMachine.InputReader.MovementValue.y) + (right * _stateMachine.InputReader.MovementValue.x);
     }
 
     void FaceMovementDirection(Vector3 movement, float deltaTime) //TODO: Investigate adding this to base class

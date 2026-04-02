@@ -31,7 +31,7 @@ public class PlayerAttackState : PlayerBaseState
                 TryApplyForce();
             }
 
-            if (_stateMachine.InputHandler.IsAttacking)//TODO: Investigate timed button press over holding the button.
+            if (_stateMachine.InputReader.IsAttacking)//TODO: Investigate timed button press over holding the button.
             {
                 TryComboAttack(normalizedTime);
             }

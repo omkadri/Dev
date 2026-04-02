@@ -11,8 +11,8 @@ public class PlayerAimingState : PlayerBaseState
 
     public override void Enter()
     {
-        _stateMachine.InputHandler.AimCancelEvent += OnCancel;
-        _stateMachine.InputHandler.AimCancelEvent += OnAttack;
+        _stateMachine.InputReader.AimCancelEvent += OnCancel;
+        _stateMachine.InputReader.AimCancelEvent += OnAttack;
 
         Vector3 cameraForward = _stateMachine.MainCameraTransform.forward;
         cameraForward.y = 0f;
@@ -33,8 +33,8 @@ public class PlayerAimingState : PlayerBaseState
 
     public override void Exit()
     {
-        _stateMachine.InputHandler.AimCancelEvent -= OnCancel;
-        _stateMachine.InputHandler.AimCancelEvent -= OnAttack;
+        _stateMachine.InputReader.AimCancelEvent -= OnCancel;
+        _stateMachine.InputReader.AimCancelEvent -= OnAttack;
     }
 
     void OnCancel()
@@ -50,8 +50,8 @@ public class PlayerAimingState : PlayerBaseState
     {
         Vector3 movement = new Vector3();
 
-        movement += _stateMachine.transform.right * _stateMachine.InputHandler.MovementValue.x;
-        movement += _stateMachine.transform.forward * _stateMachine.InputHandler.MovementValue.y;
+        movement += _stateMachine.transform.right * _stateMachine.InputReader.MovementValue.x;
+        movement += _stateMachine.transform.forward * _stateMachine.InputReader.MovementValue.y;
 
         return movement;
     }

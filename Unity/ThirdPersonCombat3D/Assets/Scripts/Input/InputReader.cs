@@ -2,9 +2,10 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class InputHandler : MonoBehaviour, InputActions.IPlayerActions
+public class InputReader : MonoBehaviour, InputActions.IPlayerActions
 {
     public bool IsAttacking { get; set; }
+    public bool IsBlocking { get; set; }
     public Vector2 MovementValue { get; set; }
     public Vector2 LookValue { get; set; }
 
@@ -122,6 +123,18 @@ public class InputHandler : MonoBehaviour, InputActions.IPlayerActions
         else if (context.canceled)
         {
             AimCancelEvent?.Invoke();
+        }
+    }
+
+    public void OnBlock(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            IsBlocking = true;
+        }
+        else if (context.canceled)
+        {
+            IsBlocking = false;
         }
     }
 

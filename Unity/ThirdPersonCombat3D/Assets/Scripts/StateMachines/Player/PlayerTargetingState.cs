@@ -14,18 +14,23 @@ public class PlayerTargetingState : PlayerBaseState
 
     public override void Enter()
     {
-        _stateMachine.InputHandler.TargetCancelEvent += OnCancel; //TODO: Blend Target Activate and Target cancel into the same input action
+        _stateMachine.InputReader.TargetCancelEvent += OnCancel; //TODO: Blend Target Activate and Target cancel into the same input action
         _stateMachine.Animator.CrossFadeInFixedTime(TargetingBlendTreeHash, CrossFadeDuration);
     }
 
     public override void Tick(float deltaTime)
     {
-        if (_stateMachine.InputHandler.IsAttacking)
+        if (_stateMachine.InputReader.IsAttacking)
         {
             _stateMachine.SwitchState(new PlayerAttackState(_stateMachine, 0));
             return;
         }
-    
+
+        if (_stateMachine.InputReader.IsBlocking)
+        {
+            _stateMachine.SwitchState(new PlayerBlockingState(_stateMachine));
+        }
+
         if (_stateMachine.Targeter.CurrentTarget == null)
         {
             _stateMachine.SwitchState(new PlayerFreeLookState(_stateMachine));
@@ -41,7 +46,7 @@ public class PlayerTargetingState : PlayerBaseState
 
     public override void Exit()
     {
-        _stateMachine.InputHandler.TargetCancelEvent -= OnCancel;
+        _stateMachine.InputReader.TargetCancelEvent -= OnCancel;
     }
 
     void OnCancel()
@@ -54,31 +59,31 @@ public class PlayerTargetingState : PlayerBaseState
     {
         Vector3 movement = new Vector3();
 
-        movement += _stateMachine.transform.right * _stateMachine.InputHandler.MovementValue.x;
-        movement += _stateMachine.transform.forward * _stateMachine.InputHandler.MovementValue.y;
+        movement += _stateMachine.transform.right * _stateMachine.InputReader.MovementValue.x;
+        movement += _stateMachine.transform.forward * _stateMachine.InputReader.MovementValue.y;
 
         return movement;
     }
 
     void UpdateAnimator(float deltaTime)
     {
-        if (_stateMachine.InputHandler.MovementValue.y == 0)
+        if (_stateMachine.InputReader.MovementValue.y == 0)
         {
             _stateMachine.Animator.SetFloat(TargetingForwardSpeedHash, 0, 0.1f, deltaTime);
         }
         else
         {
-            float value = _stateMachine.InputHandler.MovementValue.y > 0 ? 1f : -1f;
+            float value = _stateMachine.InputReader.MovementValue.y > 0 ? 1f : -1f;
             _stateMachine.Animator.SetFloat(TargetingForwardSpeedHash, value, 0.1f, deltaTime);
         }
 
-        if (_stateMachine.InputHandler.MovementValue.x == 0)
+        if (_stateMachine.InputReader.MovementValue.x == 0)
         {
             _stateMachine.Animator.SetFloat(TargetingRightSpeedHash, 0, 0.1f, deltaTime);
         }
         else
         {
-            float value = _stateMachine.InputHandler.MovementValue.x > 0 ? 1f : -1f;
+            float value = _stateMachine.InputReader.MovementValue.x > 0 ? 1f : -1f;
             _stateMachine.Animator.SetFloat(TargetingRightSpeedHash, value, 0.1f, deltaTime);
         }        
     }

@@ -13,19 +13,19 @@ public class PlayerFreeLookState : PlayerBaseState
 
     public override void Enter()
     {
-        _stateMachine.InputHandler.TargetActivateEvent += OnTarget;
-        _stateMachine.InputHandler.AimActivateEvent += OnAim;
-        _stateMachine.InputHandler.VantagePointActivateEvent += OnVantagePointActivate;
-        _stateMachine.InputHandler.TopDownActivateEvent += OnTopDownActivate;
-        _stateMachine.InputHandler.SideScrollActivateEvent += OnSideScrollActivate;
-        _stateMachine.InputHandler.ChaseCameraActivateEvent += OnChaseCameraActive;
+        _stateMachine.InputReader.TargetActivateEvent += OnTarget;
+        _stateMachine.InputReader.AimActivateEvent += OnAim;
+        _stateMachine.InputReader.VantagePointActivateEvent += OnVantagePointActivate;
+        _stateMachine.InputReader.TopDownActivateEvent += OnTopDownActivate;
+        _stateMachine.InputReader.SideScrollActivateEvent += OnSideScrollActivate;
+        _stateMachine.InputReader.ChaseCameraActivateEvent += OnChaseCameraActive;
 
         _stateMachine.Animator.CrossFadeInFixedTime(FreeLookBlendTreeHash, CrossFadeDuration);
     }
 
     public override void Tick(float deltaTime)
     {
-        if (_stateMachine.InputHandler.IsAttacking)
+        if (_stateMachine.InputReader.IsAttacking)
         {
             _stateMachine.SwitchState(new PlayerAttackState(_stateMachine, 0));
             return;
@@ -34,7 +34,7 @@ public class PlayerFreeLookState : PlayerBaseState
         Vector3 movement = CalculateMovement();
         Move(movement * _stateMachine.FreeLookMovementSpeed, deltaTime);
 
-        if (_stateMachine.InputHandler.MovementValue == Vector2.zero)
+        if (_stateMachine.InputReader.MovementValue == Vector2.zero)
         {
             _stateMachine.Animator.SetFloat(FreeLookSpeedHash, 0, AnimatorDampTime, deltaTime); //TODO: Fix magic numbers
             return;
@@ -47,12 +47,12 @@ public class PlayerFreeLookState : PlayerBaseState
 
     public override void Exit()
     {
-        _stateMachine.InputHandler.TargetActivateEvent -= OnTarget;
-        _stateMachine.InputHandler.AimActivateEvent -= OnAim;
-        _stateMachine.InputHandler.VantagePointActivateEvent -= OnVantagePointActivate;
-        _stateMachine.InputHandler.TopDownActivateEvent -= OnTopDownActivate;
-        _stateMachine.InputHandler.SideScrollActivateEvent -= OnSideScrollActivate;
-        _stateMachine.InputHandler.ChaseCameraActivateEvent -= OnChaseCameraActive;
+        _stateMachine.InputReader.TargetActivateEvent -= OnTarget;
+        _stateMachine.InputReader.AimActivateEvent -= OnAim;
+        _stateMachine.InputReader.VantagePointActivateEvent -= OnVantagePointActivate;
+        _stateMachine.InputReader.TopDownActivateEvent -= OnTopDownActivate;
+        _stateMachine.InputReader.SideScrollActivateEvent -= OnSideScrollActivate;
+        _stateMachine.InputReader.ChaseCameraActivateEvent -= OnChaseCameraActive;
     }
 
     Vector3 CalculateMovement()//TODO: Investigate adding this to base class
@@ -66,7 +66,7 @@ public class PlayerFreeLookState : PlayerBaseState
         right.Normalize();
 
         // Combine camera forward/right directions with input so movement is relative to the camera's facing direction
-        return (forward * _stateMachine.InputHandler.MovementValue.y) + (right * _stateMachine.InputHandler.MovementValue.x);
+        return (forward * _stateMachine.InputReader.MovementValue.y) + (right * _stateMachine.InputReader.MovementValue.x);
     }
 
     void FaceMovementDirection(Vector3 movement, float deltaTime) //TODO: Investigate adding this to base class
