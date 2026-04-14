@@ -764,8 +764,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7381423984789751166}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.062391493, y: -0.6955844, z: -0.060855735, w: 0.7131383}
-  m_LocalPosition: {x: -6.5346394, y: -6.009451, z: -81.48828}
+  m_LocalRotation: {x: 0.1521234, y: -0.000000003455629, z: 5.318719e-10, w: 0.98836154}
+  m_LocalPosition: {x: -11.4571495, y: -3.637681, z: -86.13417}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -848,7 +848,7 @@ MonoBehaviour:
     SplineCurvature: 0.5
   RecenteringTarget: 2
   HorizontalAxis:
-    Value: -88.57217
+    Value: 0
     Center: 0
     Range: {x: -180, y: 180}
     Wrap: 1
@@ -858,7 +858,7 @@ MonoBehaviour:
       Time: 2
     Restrictions: 0
   VerticalAxis:
-    Value: -10
+    Value: 17.5
     Center: 17.5
     Range: {x: -10, y: 45}
     Wrap: 0
@@ -1320,7 +1320,7 @@ MonoBehaviour:
     BindingMode: 3
     PositionDamping: {x: 1, y: 1, z: 1}
     AngularDampingMode: 0
-    RotationDamping: {x: 1, y: 1, z: 1}
+    RotationDamping: {x: 0, y: 0, z: 0}
     QuaternionDamping: 1
   FollowOffset: {x: 0, y: 1.5, z: -4}
 --- !u!114 &4112487502042942568
@@ -1346,7 +1346,7 @@ MonoBehaviour:
       Offset: {x: 0, y: 0}
   CenterOnActivate: 1
   TargetOffset: {x: 0, y: 0, z: 0}
-  Damping: {x: 0.5, y: 0.5}
+  Damping: {x: 0, y: 0.1}
   Lookahead:
     Enabled: 0
     Time: 0
@@ -1429,6 +1429,10 @@ PrefabInstance:
       propertyPath: _cinemachineTargetGroup
       value: 
       objectReference: {fileID: 5830207283280868505}
+    - target: {fileID: 7408650662654824565, guid: a0f1f7de2b21a0742a5b3844189199a0, type: 3}
+      propertyPath: <InputReader>k__BackingField
+      value: 
+      objectReference: {fileID: 3241432454906616836}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1439,6 +1443,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1848580225192294119, guid: a0f1f7de2b21a0742a5b3844189199a0, type: 3}
   m_PrefabInstance: {fileID: 2249597676892659163}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3241432454906616836 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3730049834243752415, guid: a0f1f7de2b21a0742a5b3844189199a0, type: 3}
+  m_PrefabInstance: {fileID: 2249597676892659163}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52ad1917bb9c34249926671b8327693a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InputHandler
 --- !u!95 &6247305178428810898 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5299276467586087753, guid: a0f1f7de2b21a0742a5b3844189199a0, type: 3}
