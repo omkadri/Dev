@@ -12,6 +12,8 @@ public class EnemyAttackingState : EnemyBaseState
 
     public override void Enter()
     {
+        FacePlayer(); //TODO: Explore adding this to Tick method to make enemy encounter harder
+
         _stateMachine.Weapon.SetAttack(_stateMachine.DamageAmount, _stateMachine.AttackKnockback);
 
         _stateMachine.Animator.CrossFadeInFixedTime(AttackAnimHash, CrossFadeDuration);
