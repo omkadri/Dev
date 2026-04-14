@@ -31,6 +31,8 @@ public abstract class EnemyBaseState : State
 
     protected bool IsInChaseRange()
     {
+        if (_stateMachine.Player.GetComponent<Health>().IsDead) { return false; }
+
         float playerDistanceSqr = (_stateMachine.Player.transform.position - _stateMachine.transform.position).sqrMagnitude;
 
         return playerDistanceSqr <= _stateMachine.PlayerChasingRange * _stateMachine.PlayerChasingRange;
@@ -38,6 +40,8 @@ public abstract class EnemyBaseState : State
 
     protected bool IsInAttackRange()
     {
+        if (_stateMachine.Player.GetComponent<Health>().IsDead) { return false; }
+
         float playerDistanceSqr = (_stateMachine.Player.transform.position - _stateMachine.transform.position).sqrMagnitude;
 
         return playerDistanceSqr <= _stateMachine.PlayerAttackRange * _stateMachine.PlayerAttackRange;
