@@ -44,7 +44,7 @@ public class Targeter : MonoBehaviour
         {
             Vector2 viewPos = _mainCamera.WorldToViewportPoint(target.transform.position);
             //check if the targets position is within the screen
-            if (viewPos.x < 0 || viewPos.x > 1 || viewPos.y < 0 || viewPos.y > 1)
+            if (!target.GetComponentInChildren<Renderer>().isVisible)//TODO: explore alternative solutions to checking if target is on screen
             {
                 continue;
             }
