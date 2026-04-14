@@ -3097,6 +3097,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3609716007117137549, guid: d54931614431a3b4d81ab545a4a8416e, type: 3}
+      propertyPath: TrackerSettings.RotationDamping.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3609716007117137549, guid: d54931614431a3b4d81ab545a4a8416e, type: 3}
+      propertyPath: TrackerSettings.RotationDamping.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3609716007117137549, guid: d54931614431a3b4d81ab545a4a8416e, type: 3}
+      propertyPath: TrackerSettings.RotationDamping.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4112487502042942568, guid: d54931614431a3b4d81ab545a4a8416e, type: 3}
+      propertyPath: Damping.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4112487502042942568, guid: d54931614431a3b4d81ab545a4a8416e, type: 3}
+      propertyPath: Damping.y
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 5621611823309135758, guid: d54931614431a3b4d81ab545a4a8416e, type: 3}
       propertyPath: m_Name
       value: PlayerRig
