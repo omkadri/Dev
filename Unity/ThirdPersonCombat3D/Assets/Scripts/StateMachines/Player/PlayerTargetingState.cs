@@ -19,6 +19,9 @@ public class PlayerTargetingState : PlayerBaseState
     {
         _stateMachine.InputReader.TargetCancelEvent += OnCancel;
         _stateMachine.InputReader.DodgeEvent += OnDodge;
+        _stateMachine.InputReader.JumpActivateEvent += OnJump;
+
+
         _stateMachine.Animator.CrossFadeInFixedTime(TargetingBlendTreeHash, CrossFadeDuration);
     }
 
@@ -52,6 +55,8 @@ public class PlayerTargetingState : PlayerBaseState
     {
         _stateMachine.InputReader.TargetCancelEvent -= OnCancel;
         _stateMachine.InputReader.DodgeEvent -= OnDodge;
+        _stateMachine.InputReader.JumpActivateEvent -= OnJump;
+
     }
 
     void OnCancel()
@@ -67,6 +72,11 @@ public class PlayerTargetingState : PlayerBaseState
         _stateMachine.SetDodgeTime(Time.time);
         _dodgingDirectionInput = _stateMachine.InputReader.MovementValue;
         _remainingDodgeDuration = _stateMachine.DodgeDuration;
+    }
+
+    void OnJump()
+    {
+            _stateMachine.SwitchState(new PlayerJumpingState(_stateMachine));
     }
 
     Vector3 CalculateMovement(float deltaTime)

@@ -16,6 +16,7 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public float DodgeDuration { get; set; }
     [field: SerializeField] public float DodgeDistance { get; set; }
     [field: SerializeField] public float DodgeCooldown { get; set; }
+    [field: SerializeField] public float JumpForce { get; set; }
     [field: SerializeField] public Attack[] Attacks { get; set; }
 
     public float PreviousDodgeTime { get; set; } = Mathf.NegativeInfinity; //prevents the first dodge from having strange behaviour

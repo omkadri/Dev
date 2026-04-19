@@ -19,6 +19,7 @@ public class PlayerFreeLookState : PlayerBaseState
         _stateMachine.InputReader.TopDownActivateEvent += OnTopDownActivate;
         _stateMachine.InputReader.SideScrollActivateEvent += OnSideScrollActivate;
         _stateMachine.InputReader.ChaseCameraActivateEvent += OnChaseCameraActive;
+        _stateMachine.InputReader.JumpActivateEvent += OnJump;
 
         _stateMachine.Animator.CrossFadeInFixedTime(FreeLookBlendTreeHash, CrossFadeDuration);
     }
@@ -53,6 +54,7 @@ public class PlayerFreeLookState : PlayerBaseState
         _stateMachine.InputReader.TopDownActivateEvent -= OnTopDownActivate;
         _stateMachine.InputReader.SideScrollActivateEvent -= OnSideScrollActivate;
         _stateMachine.InputReader.ChaseCameraActivateEvent -= OnChaseCameraActive;
+        _stateMachine.InputReader.JumpActivateEvent -= OnJump;
     }
 
     Vector3 CalculateMovement()//TODO: Investigate adding this to base class
@@ -107,5 +109,10 @@ public class PlayerFreeLookState : PlayerBaseState
     void OnChaseCameraActive()
     {
         _stateMachine.SwitchState(new PlayerChaseCameraState(_stateMachine));
+    }
+
+    void OnJump()
+    {
+            _stateMachine.SwitchState(new PlayerJumpingState(_stateMachine));
     }
 }

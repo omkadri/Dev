@@ -1,0 +1,41 @@
+using UnityEngine;
+
+public class PlayerJumpingState : PlayerBaseState
+{
+    readonly int JumpBeginAnimHash = Animator.StringToHash("JumpBegin");
+
+    Vector3 _momentum; //TODO: better name????
+
+    const float CrossFadeDuration = 0.2f;
+
+    public PlayerJumpingState(PlayerStateMachine stateMachine) : base(stateMachine)
+    {
+    }
+
+    public override void Enter()
+    {
+        _stateMachine.ForceReceiver.Jump(_stateMachine.JumpForce);
+
+        _momentum = _stateMachine.CharacterController.velocity;
+        _momentum.y = 0;
+
+        _stateMachine.Animator.CrossFadeInFixedTime(JumpBeginAnimHash, CrossFadeDuration);
+    }
+
+    public override void Tick(float deltaTime)
+    {
+        Move(_momentum, deltaTime);
+
+        if (_stateMachine.CharacterController.velocity.y <= 0)
+        {
+            _stateMachine.SwitchState(new PlayerFallingState(_stateMachine));
+            return;
+        }
+
+        FaceTarget();
+    }
+
+    public override void Exit()
+    {
+    }
+}

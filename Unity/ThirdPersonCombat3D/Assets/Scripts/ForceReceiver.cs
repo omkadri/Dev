@@ -52,4 +52,9 @@ public class ForceReceiver : MonoBehaviour//TODO: investigate the benefit of hav
             _navMeshAgent.enabled = false; //turn agent off to avoid any issues with applying physics to enemy
         }
     }
+
+    public void Jump(float jumpForce)
+    {
+        _vertivalVelocity = jumpForce;
+    }
 }
