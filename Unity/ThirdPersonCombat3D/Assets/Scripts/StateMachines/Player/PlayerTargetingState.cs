@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class PlayerTargetingState : PlayerBaseState
 {
-    Vector2 _dodgingDirectionInput;
-    float _remainingDodgeDuration;
 
     readonly int TargetingBlendTreeHash = Animator.StringToHash("TargetingBlendTree");
     readonly int TargetingForwardSpeedHash = Animator.StringToHash("TargetingForwardSpeed");
@@ -67,11 +65,7 @@ public class PlayerTargetingState : PlayerBaseState
 
     void OnDodge()
     {
-        if (Time.time - _stateMachine.PreviousDodgeTime < _stateMachine.DodgeCooldown) { return; }
-
-        _stateMachine.SetDodgeTime(Time.time);
-        _dodgingDirectionInput = _stateMachine.InputReader.MovementValue;
-        _remainingDodgeDuration = _stateMachine.DodgeDuration;
+        _stateMachine.SwitchState(new PlayerDodgingState(_stateMachine, _stateMachine.InputReader.MovementValue)); //dodging state requires player movement direction to blend animation accordingly
     }
 
     void OnJump()
@@ -83,18 +77,8 @@ public class PlayerTargetingState : PlayerBaseState
     {
         Vector3 movement = new Vector3();
 
-        if (_remainingDodgeDuration > 0f)
-        {
-            movement += _stateMachine.transform.right * _dodgingDirectionInput.x * _stateMachine.DodgeDistance / _stateMachine.DodgeDuration;
-            movement += _stateMachine.transform.forward * _dodgingDirectionInput.y * _stateMachine.DodgeDistance / _stateMachine.DodgeDuration;
-
-            _remainingDodgeDuration = Mathf.Max(_remainingDodgeDuration - deltaTime, 0f);//prevents _remainingDodgeDuration from becoming negative
-        }
-        else
-        {
-            movement += _stateMachine.transform.right * _stateMachine.InputReader.MovementValue.x;
-            movement += _stateMachine.transform.forward * _stateMachine.InputReader.MovementValue.y;
-        }
+        movement += _stateMachine.transform.right * _stateMachine.InputReader.MovementValue.x;
+        movement += _stateMachine.transform.forward * _stateMachine.InputReader.MovementValue.y;
 
         return movement;
     }
