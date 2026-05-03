@@ -15,7 +15,7 @@ public class PlayerFreeLookState : PlayerBaseState
 
     public override void Enter()
     {
-        _stateMachine.InputReader.TargetActivateEvent += OnTarget;
+        _stateMachine.InputReader.TargetEvent += OnTarget;
         _stateMachine.InputReader.AimActivateEvent += OnAim;
         _stateMachine.InputReader.VantagePointActivateEvent += OnVantagePointActivate;
         _stateMachine.InputReader.TopDownActivateEvent += OnTopDownActivate;
@@ -59,7 +59,7 @@ public class PlayerFreeLookState : PlayerBaseState
 
     public override void Exit()
     {
-        _stateMachine.InputReader.TargetActivateEvent -= OnTarget;
+        _stateMachine.InputReader.TargetEvent -= OnTarget;
         _stateMachine.InputReader.AimActivateEvent -= OnAim;
         _stateMachine.InputReader.VantagePointActivateEvent -= OnVantagePointActivate;
         _stateMachine.InputReader.TopDownActivateEvent -= OnTopDownActivate;

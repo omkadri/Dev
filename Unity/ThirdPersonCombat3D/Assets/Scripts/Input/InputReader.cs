@@ -11,8 +11,7 @@ public class InputReader : MonoBehaviour, InputActions.IPlayerActions
 
     public event Action JumpActivateEvent;
     public event Action DodgeEvent;
-    public event Action TargetActivateEvent;
-    public event Action TargetCancelEvent;
+    public event Action TargetEvent;
     public event Action AimActivateEvent;
     public event Action AimCancelEvent;
     public event Action VantagePointActivateEvent;
@@ -100,18 +99,11 @@ public class InputReader : MonoBehaviour, InputActions.IPlayerActions
     {
     }
 
-    public void OnTargetActivate(InputAction.CallbackContext context)
+    public void OnTarget(InputAction.CallbackContext context)
     {
         if (!context.performed) { return; }
 
-        TargetActivateEvent?.Invoke();
-    }
-
-    public void OnTargetCancel(InputAction.CallbackContext context)//TODO: Blend Target Activate and Target cancel into the same input action
-    {
-        if (!context.performed) { return; }
-
-        TargetCancelEvent?.Invoke();
+        TargetEvent?.Invoke();
     }
 
     public void OnAim(InputAction.CallbackContext context)

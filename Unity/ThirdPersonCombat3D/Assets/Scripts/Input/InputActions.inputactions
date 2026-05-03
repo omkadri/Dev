@@ -61,18 +61,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "TargetActivate",
+                    "name": "Target",
                     "type": "Button",
                     "id": "18d3aef1-c38d-4920-a22a-356a53ddd2ca",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "TargetCancel",
-                    "type": "Button",
-                    "id": "e17c0b9f-7d08-4ac6-b822-09498719acdf",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -496,7 +487,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "TargetActivate",
+                    "action": "Target",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -507,29 +498,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "TargetActivate",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "16ec0d60-cc66-4397-8065-32af6e7e5c68",
-                    "path": "<Keyboard>/escape",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "TargetCancel",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "a75b26d4-eae7-467e-ac2d-23f36283b92c",
-                    "path": "<Gamepad>/leftShoulder",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "TargetCancel",
+                    "action": "Target",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
