@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -43,6 +44,12 @@ public class ForceReceiver : MonoBehaviour//TODO: investigate the benefit of hav
         }
     }
 
+
+    public void Reset()
+    {
+        _impact = Vector3.zero;
+        _vertivalVelocity = 0f;
+    }
 
     public void AddForce(Vector3 force)
     {
