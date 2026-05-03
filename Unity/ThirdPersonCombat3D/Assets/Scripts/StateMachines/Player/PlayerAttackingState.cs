@@ -22,7 +22,7 @@ public class PlayerAttackState : PlayerBaseState
         Move(deltaTime);
         FaceTarget();
 
-        float normalizedTime = GetNormalizedTime(_stateMachine.Animator);//TODO: Does this cause performance issues?
+        float normalizedTime = GetNormalizedTime(_stateMachine.Animator, "Attack");//TODO: Does this cause performance issues?
 
         if (normalizedTime < 1f)//TODO: investigate if _previousFrameTime check is even necessary
         {
