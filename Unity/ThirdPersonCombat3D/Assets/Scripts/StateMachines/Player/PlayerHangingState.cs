@@ -22,7 +22,11 @@ public class PlayerHangingState : PlayerBaseState
 
     public override void Tick(float deltaTime)
     {
-        if (_stateMachine.InputReader.MovementValue.y < 0f)//if player uses backwards input
+        if (_stateMachine.InputReader.MovementValue.y > 0f)//if player uses forward input
+        {
+            _stateMachine.SwitchState(new PlayerHangClimbState(_stateMachine));            
+        }
+        else if (_stateMachine.InputReader.MovementValue.y < 0f)//if player uses backward input
         {
             _stateMachine.CharacterController.Move(Vector3.zero);
             _stateMachine.ForceReceiver.Reset();

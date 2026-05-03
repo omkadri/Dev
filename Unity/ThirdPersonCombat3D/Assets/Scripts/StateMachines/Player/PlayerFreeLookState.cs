@@ -2,13 +2,15 @@ using UnityEngine;
 
 public class PlayerFreeLookState : PlayerBaseState
 {
+    bool _shouldFadeAnim;
     readonly int FreeLookSpeedHash = Animator.StringToHash("FreeLookSpeed"); //integers are processed faster than strings.
     readonly int FreeLookBlendTreeHash = Animator.StringToHash("FreeLookBlendTree");
     const float AnimatorDampTime = 0.075f;
     const float CrossFadeDuration = 0.2f;
 
-    public PlayerFreeLookState(PlayerStateMachine stateMachine) : base(stateMachine)
+    public PlayerFreeLookState(PlayerStateMachine stateMachine, bool shouldFadeAnim = true) : base(stateMachine)
     {
+        this._shouldFadeAnim = shouldFadeAnim;
     }
 
     public override void Enter()
@@ -21,7 +23,16 @@ public class PlayerFreeLookState : PlayerBaseState
         _stateMachine.InputReader.ChaseCameraActivateEvent += OnChaseCameraActive;
         _stateMachine.InputReader.JumpActivateEvent += OnJump;
 
-        _stateMachine.Animator.CrossFadeInFixedTime(FreeLookBlendTreeHash, CrossFadeDuration);
+        _stateMachine.Animator.SetFloat(FreeLookSpeedHash, 0f); //prevents player from being in the middle of another animation when this state begins
+
+        if (_shouldFadeAnim)
+        {
+            _stateMachine.Animator.CrossFadeInFixedTime(FreeLookBlendTreeHash, CrossFadeDuration);
+        }
+        else
+        {
+            _stateMachine.Animator.Play(FreeLookBlendTreeHash);
+        }
     }
 
     public override void Tick(float deltaTime)
