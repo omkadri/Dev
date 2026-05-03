@@ -2,16 +2,14 @@ using UnityEngine;
 
 public class PlayerHangingState : PlayerBaseState
 {
-    Vector3 _closestPoint;
     Vector3 _ledgeForward;
 
     readonly int HangingAnimHash = Animator.StringToHash("Hanging");
 
     const float CrossFadeDuration = 0.2f;
 
-    public PlayerHangingState(PlayerStateMachine stateMachine, Vector3 closestPoint, Vector3 ledgeForward) : base(stateMachine)
+    public PlayerHangingState(PlayerStateMachine stateMachine, Vector3 ledgeForward) : base(stateMachine)
     {
-        this._closestPoint = closestPoint;
         this._ledgeForward = ledgeForward;
     }
 
