@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class Card : MonoBehaviour
 {
@@ -13,11 +14,25 @@ public class Card : MonoBehaviour
 
     [SerializeField] CardData _tempCardData;
 
+    [SerializeField] float _hoverScale = 2f;
+
+    [SerializeField] float _hoverOffest = 2f;
+
     Vector3 _originalScale;
+    Vector3 _originalPos;
+    SortingGroup _sortingGroup;
+    int _originalSortingOrder;
+
+    void Awake()
+    {
+        _sortingGroup = GetComponent<SortingGroup>();
+    }
 
     void Start()
     {
         _originalScale = transform.localScale;
+        _originalPos = transform.localPosition;
+        _originalSortingOrder = _sortingGroup.sortingOrder;
         LoadCardData(_tempCardData);
     }
 
@@ -31,11 +46,15 @@ public class Card : MonoBehaviour
 
     void OnMouseEnter() //TODO: Support New Input System only (not Both)
     {
-        transform.localScale = _originalScale * 2; //TODO: Magic Number
+        transform.localScale = _originalScale * _hoverScale;
+        transform.localPosition += new Vector3(0, _hoverOffest, 0f);
+        _sortingGroup.sortingOrder += 1;
     }
 
     void OnMouseExit() //TODO: Support New Input System only (not Both)
     {
         transform.localScale = _originalScale;
+        transform.localPosition = _originalPos;
+        _sortingGroup.sortingOrder = _originalSortingOrder;
     }
 }
