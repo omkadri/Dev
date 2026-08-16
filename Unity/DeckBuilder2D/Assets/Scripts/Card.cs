@@ -12,7 +12,6 @@ public class Card : MonoBehaviour
 
     [SerializeField] TextMeshPro _descriptionText;
 
-    [SerializeField] CardData _tempCardData;
 
     [SerializeField] float _hoverScale = 2f;
 
@@ -33,7 +32,6 @@ public class Card : MonoBehaviour
         _originalScale = transform.localScale;
         _originalPos = transform.localPosition;
         _originalSortingOrder = _sortingGroup.sortingOrder;
-        LoadCardData(_tempCardData);
     }
 
     public void LoadCardData(CardData cardData)

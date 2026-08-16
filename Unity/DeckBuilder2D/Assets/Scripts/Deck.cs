@@ -11,7 +11,6 @@ public class Deck : MonoBehaviour
 
     void Start()
     {
-        Debug.Log(DrawCard());
         DeckDrawVisuals();
     }
 
