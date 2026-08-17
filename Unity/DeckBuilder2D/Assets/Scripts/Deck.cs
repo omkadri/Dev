@@ -40,12 +40,6 @@ public class Deck : MonoBehaviour
 
     public void Shuffle()
     {
-        for (int i = 0; i < _drawPile.Count; i++)
-        {
-            CardData card = _drawPile[i];
-            int randomIndex = Random.Range(i, _drawPile.Count);
-            _drawPile[i] = _drawPile[randomIndex];
-            _drawPile[randomIndex] = card;
-        }
+        Algorithms.FisherYatesShuffle(_drawPile);
     }
 }
