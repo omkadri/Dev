@@ -24,10 +24,12 @@ public class Card : MonoBehaviour
     int _originalSortingOrder;
     static bool _isBeingDragged = false; //static prevents inactive cards from expanding on hover during drag
     CardData _cardData;
+    Collider2D _cardCollider;
 
     void Awake()
     {
         _sortingGroup = GetComponent<SortingGroup>();
+        _cardCollider = GetComponent<Collider2D>();
     }
 
     void Start()
@@ -92,4 +94,14 @@ public class Card : MonoBehaviour
     }
 
     public CardData GetCardData() => _cardData;
+
+    void OnDestroy()
+    {
+        _isBeingDragged = false;
+    }
+
+    public void SetInteractable(bool interactable)
+    {
+        _cardCollider.enabled = interactable;
+    }
 }

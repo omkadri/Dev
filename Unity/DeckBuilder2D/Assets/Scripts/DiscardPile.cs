@@ -20,10 +20,12 @@ public class DiscardPile : MonoBehaviour
 
         GameObject discardedCard = Instantiate(_cardPrefab, transform);
 
+        discardedCard.GetComponent<Card>().LoadCardData(cardData);
+        discardedCard.GetComponent<Card>().SetInteractable(false);
+
         SortingGroup sortingGroup = discardedCard.GetComponent<SortingGroup>();
         sortingGroup.sortingOrder = _discardPile.Count - 1; //the last card in the deck should have the highest sorting order
 
-        discardedCard.GetComponent<Card>().LoadCardData(cardData);
         discardedCard.transform.SetParent(transform);
 
         int index = _discardPile.Count - 1;
