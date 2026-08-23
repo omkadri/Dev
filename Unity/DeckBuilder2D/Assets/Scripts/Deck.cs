@@ -7,6 +7,8 @@ public class Deck : MonoBehaviour
 
     [SerializeField] GameObject _cardBack;
 
+    [SerializeField] PlayerHand _playerHand;
+
     const float VERTICAL_SPACING = 0.1f;
 
     void Start()
@@ -41,5 +43,15 @@ public class Deck : MonoBehaviour
     public void Shuffle()
     {
         Algorithms.FisherYatesShuffle(_drawPile);
+    }
+    
+    void OnMouseDown()
+    {
+        if (_drawPile.Count <= 0)
+        {
+            Debug.Log("No More Cards left");
+            return;
+        }
+        _playerHand.DrawNextCard();
     }
 }

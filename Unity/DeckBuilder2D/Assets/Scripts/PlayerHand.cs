@@ -53,5 +53,22 @@ public class PlayerHand : MonoBehaviour
         _cardsInHand.Remove(card);
         _discardPile.DiscardCard(card.GetCardData());
         Destroy(card.gameObject);
+        RepositionCards();
+    }
+
+    void RepositionCards()
+    {
+        //unparent each card from current slot
+        for(int i = 0; i < _cardsInHand.Count; i++)
+        {
+            _cardsInHand[i].transform.SetParent(null);
+        }
+
+        //reparent each card to new slot
+        for(int i = 0; i < _cardsInHand.Count; i++)
+        {
+            _cardsInHand[i].transform.SetParent(_cardSlots[i]);
+            _cardsInHand[i].transform.position = _cardSlots[i].position;
+        }
     }
 }
