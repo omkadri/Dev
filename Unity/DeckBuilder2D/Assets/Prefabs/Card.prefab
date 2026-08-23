@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8049230542405276121}
@@ -51,8 +51,8 @@ MonoBehaviour:
   _actionCostText: {fileID: 1162490716589887717}
   _illustrationRenderer: {fileID: 1246302921727377875}
   _descriptionText: {fileID: 5179631090972585923}
-  _hoverScale: 3
-  _hoverOffest: 1
+  _hoverScale: 2
+  _hoverOffest: 2
 --- !u!61 &5855996344115020101
 BoxCollider2D:
   m_ObjectHideFlags: 0

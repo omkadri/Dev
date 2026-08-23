@@ -238,6 +238,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9467d14a896cd6047953c3992b86d722, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayZoneTrigger
+  _playerHand: {fileID: 1943473597}
 --- !u!1 &422528735
 GameObject:
   m_ObjectHideFlags: 0
@@ -270,6 +271,8 @@ MonoBehaviour:
   _drawPile:
   - {fileID: 11400000, guid: 8734684ad5ccf8c49a375659cf8e86b4, type: 2}
   - {fileID: 11400000, guid: 8734684ad5ccf8c49a375659cf8e86b4, type: 2}
+  - {fileID: 11400000, guid: 8734684ad5ccf8c49a375659cf8e86b4, type: 2}
+  - {fileID: 11400000, guid: 1ec51d78ab28fdb408a8e6a718378933, type: 2}
   - {fileID: 11400000, guid: 1ec51d78ab28fdb408a8e6a718378933, type: 2}
   - {fileID: 11400000, guid: 1ec51d78ab28fdb408a8e6a718378933, type: 2}
   _cardBack: {fileID: 4904616455295837882, guid: 3005690067d64594d899e797e8872747, type: 3}
@@ -282,8 +285,8 @@ Transform:
   m_GameObject: {fileID: 422528735}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8, y: -1.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -9, y: -0.62, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -654,6 +657,53 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1943473596}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1802406848
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1802406850}
+  - component: {fileID: 1802406851}
+  m_Layer: 0
+  m_Name: DiscardPile
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1802406850
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1802406848}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 9, y: -0.62, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1802406851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1802406848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7af25e7201f9ad64ab039301bddd2539, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  _discardPile: []
+  _cardPrefab: {fileID: 1651275585208046368, guid: 997a3e449d431dd43b732efd83fee91a, type: 3}
+  _cardBack: {fileID: 4904616455295837882, guid: 3005690067d64594d899e797e8872747, type: 3}
 --- !u!1 &1943473595
 GameObject:
   m_ObjectHideFlags: 0
@@ -680,7 +730,7 @@ Transform:
   m_GameObject: {fileID: 1943473595}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.5, z: 0}
+  m_LocalPosition: {x: 0, y: -0.97, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -711,7 +761,8 @@ MonoBehaviour:
   - {fileID: 1058466036}
   - {fileID: 1187684572}
   _cardPrefab: {fileID: 1651275585208046368, guid: 997a3e449d431dd43b732efd83fee91a, type: 3}
-  _startingHandSize: 3
+  _startingHandSize: 5
+  _discardPile: {fileID: 1802406851}
 --- !u!1 &2050551784
 GameObject:
   m_ObjectHideFlags: 0
@@ -750,5 +801,6 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 619394802}
   - {fileID: 422528737}
+  - {fileID: 1802406850}
   - {fileID: 1943473596}
   - {fileID: 194406546}

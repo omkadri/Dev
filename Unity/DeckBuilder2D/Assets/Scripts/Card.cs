@@ -23,6 +23,7 @@ public class Card : MonoBehaviour
     SortingGroup _sortingGroup;
     int _originalSortingOrder;
     static bool _isBeingDragged = false; //static prevents inactive cards from expanding on hover during drag
+    CardData _cardData;
 
     void Awake()
     {
@@ -38,6 +39,7 @@ public class Card : MonoBehaviour
 
     public void LoadCardData(CardData cardData)
     {
+        _cardData = cardData;
         _cardNameText.text = cardData.CardName;
         _actionCostText.text = cardData.ActionCost.ToString();
         _illustrationRenderer.sprite = cardData.Illustration;
@@ -88,4 +90,6 @@ public class Card : MonoBehaviour
         transform.localPosition = _originalPosition;
         _sortingGroup.sortingOrder = _originalSortingOrder;
     }
+
+    public CardData GetCardData() => _cardData;
 }

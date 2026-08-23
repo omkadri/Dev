@@ -11,6 +11,8 @@ public class PlayerHand : MonoBehaviour
 
     [SerializeField] int _startingHandSize = 2;
 
+    [SerializeField] DiscardPile _discardPile;
+
     List<Card> _cardsInHand = new List<Card>();
 
     void Start()
@@ -43,5 +45,13 @@ public class PlayerHand : MonoBehaviour
         cardComponent.LoadCardData(cardData);
         _cardsInHand.Add(cardComponent);
         _cardsInHand[slotIndex].transform.SetParent(_cardSlots[slotIndex]);
+    }
+
+    public void PlayCard(Card card)
+    {
+        Debug.Log("Play Card");
+        _cardsInHand.Remove(card);
+        _discardPile.DiscardCard(card.GetCardData());
+        Destroy(card.gameObject);
     }
 }
