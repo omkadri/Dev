@@ -49,7 +49,6 @@ public class Deck : MonoBehaviour
     {
         if (_drawPile.Count <= 0)
         {
-            Debug.Log("No More Cards left");
             return;
         }
         _playerHand.DrawNextCard();

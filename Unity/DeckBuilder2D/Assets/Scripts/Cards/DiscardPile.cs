@@ -15,7 +15,6 @@ public class DiscardPile : MonoBehaviour
 
     public void DiscardCard(CardData cardData)
     {
-        Debug.Log("Discard card + " + cardData);
         _discardPile.Add(cardData);
 
         GameObject discardedCard = Instantiate(_cardPrefab, transform);
