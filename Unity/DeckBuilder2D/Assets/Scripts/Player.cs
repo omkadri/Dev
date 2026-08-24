@@ -47,17 +47,17 @@ public class Player : MonoBehaviour
     void Attack(CardData cardData)
     {
         Debug.Log("Attack: " + cardData.AttackPower);
-        StartCoroutine(PlayerAttackAnimRoutine());
+        StartCoroutine(PlayerAttackAnimRoutine(cardData));
     }
 
     void Heal(CardData cardData)
     {
         Debug.Log("Heal: " + cardData.HealPower);
-        _health.HealDamage(cardData.HealPower);
+        _health.Heal(cardData.HealPower);
         _healVFX.Play();
     }
 
-    IEnumerator PlayerAttackAnimRoutine()
+    IEnumerator PlayerAttackAnimRoutine(CardData cardData) //TODO: Avoid passing in cardData?
     {
         Vector3 targerPosition = _originalPosition + new Vector3(4f, 0, 0); //TODO: Magic Number
 
@@ -74,6 +74,7 @@ public class Player : MonoBehaviour
         }
 
         _animator.Play("Attack"); //TODO: expose as serialized field???
+        EnemyEvents.EnemyHit(cardData);
 
         yield return new WaitForSeconds(0.5f); //TODO: Magic number. maybe a more systematic approach???
 

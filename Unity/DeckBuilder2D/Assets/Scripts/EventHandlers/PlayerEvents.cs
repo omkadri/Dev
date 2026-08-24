@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class PlayerEvents : MonoBehaviour //TODO: is MonoBehaviour necessary?
+public static class PlayerEvents
 {
     public static event Action<CardData> OnCardPlayed;
 

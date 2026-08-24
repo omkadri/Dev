@@ -11,7 +11,7 @@ public class Health : MonoBehaviour
         _currentHealth = _totalHealth;
     }
 
-    public void HealDamage(int amount)
+    public void Heal(int amount)
     {
         if (amount <= 0)
         {
@@ -25,5 +25,23 @@ public class Health : MonoBehaviour
             _currentHealth = _totalHealth;
         }
         Debug.Log("Heal Activated. Current Health: " + _currentHealth);
+    }
+
+    public void TakeDamage(int amount)
+    {
+        _currentHealth -= amount;
+        Debug.Log("Enemy Damage Taken. Current Health: " + _currentHealth);
+
+        if(_currentHealth <= 0)
+        {
+            _currentHealth = 0;
+            Debug.Log("Health is Zero. Death has occured!");
+        }
+    }
+
+    
+    public bool IsAlive()
+    {
+        return _currentHealth > 0;
     }
 }
