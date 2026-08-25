@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d3ce6acf20f9df043a1d2f2bd9f1ec37, type: 3}
-  m_Name: Heal
+  m_Name: ChickenLeg
   m_EditorClassIdentifier: Assembly-CSharp::CardData
-  CardName: Heal
-  Description: Restores 3 Health
-  ActionCost: 1
-  Illustration: {fileID: -98272708732530083, guid: 9fb2839dc9ac9c84f93fe43ec0e7ee89, type: 3}
+  CardName: Chicken (Leg)
+  Description: Restores 2 Health
+  ActionCost: 2
+  Illustration: {fileID: 21300000, guid: c952c46c60aa6b04b8de1bd43344e39b, type: 3}
   AttackPower: 0
-  HealPower: 3
+  HealPower: 2
