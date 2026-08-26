@@ -1,5 +1,17 @@
 using UnityEngine;
 
+public enum StatusEffect
+{
+    None,
+    Poison,
+    Bleed,
+    Stunned,
+    Strength,
+    Intoxicated,
+    Vulnerable,
+    Regeneration
+}
+
 [CreateAssetMenu(fileName = "CardData", menuName = "Scriptable Objects/CardData")]
 public class CardData : ScriptableObject
 {
@@ -14,4 +26,8 @@ public class CardData : ScriptableObject
     public int AttackPower;
 
     public int HealPower;
+
+    public StatusEffect StatusEffect;
+
+    public int StatusDurationTurns;
 }

@@ -28,6 +28,6 @@ public class DiscardPile : MonoBehaviour
         discardedCard.transform.SetParent(transform);
 
         int index = _discardPile.Count - 1;
-        discardedCard.transform.localPosition = new Vector3(0f, (index) * -VERTICAL_SPACING, 0f);
+        discardedCard.transform.localPosition = new Vector3(0f, (index) * VERTICAL_SPACING, 0f);
     }
 }

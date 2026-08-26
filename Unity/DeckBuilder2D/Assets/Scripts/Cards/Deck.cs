@@ -9,7 +9,7 @@ public class Deck : MonoBehaviour
 
     [SerializeField] PlayerHand _playerHand;
 
-    const float VERTICAL_SPACING = 0.1f;
+    const float VERTICAL_SPACING = -0.1f;
 
     void Start()
     {
