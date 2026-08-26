@@ -13,8 +13,11 @@ MonoBehaviour:
   m_Name: Bandage
   m_EditorClassIdentifier: Assembly-CSharp::CardData
   CardName: Bandage
-  Description: Restores 3 Health
-  ActionCost: 1
+  Description: Heals Bleeding
+  ActionCost: 0
   Illustration: {fileID: 21300000, guid: 208a0e2940129d349850800deeb38c09, type: 3}
   AttackPower: 0
-  HealPower: 3
+  HealPower: 0
+  StatusEffect: 0
+  StatusDurationTurns: 0
+  DeckLimit: 0

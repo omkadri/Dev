@@ -30,4 +30,6 @@ public class CardData : ScriptableObject
     public StatusEffect StatusEffect;
 
     public int StatusDurationTurns;
+
+    public int DeckLimit;
 }

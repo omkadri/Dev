@@ -13,8 +13,11 @@ MonoBehaviour:
   m_Name: WaterBottle
   m_EditorClassIdentifier: Assembly-CSharp::CardData
   CardName: Water Bottle
-  Description: Restores 2 Health
+  Description: Heals Fatigue
   ActionCost: 2
   Illustration: {fileID: 21300000, guid: a05d033203a2aed47b5c0dd2823cf8e1, type: 3}
   AttackPower: 0
-  HealPower: 2
+  HealPower: 0
+  StatusEffect: 0
+  StatusDurationTurns: 0
+  DeckLimit: 0

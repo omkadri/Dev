@@ -13,8 +13,11 @@ MonoBehaviour:
   m_Name: BrassKnuckles
   m_EditorClassIdentifier: Assembly-CSharp::CardData
   CardName: Brass Knuckles
-  Description: Deals 3 Damage
-  ActionCost: 3
+  Description: Punches deal 2 extra damage for 3 turns
+  ActionCost: 0
   Illustration: {fileID: 21300000, guid: 6c5c4240e890d3846b277a5f3ebc3cfb, type: 3}
-  AttackPower: 3
+  AttackPower: 0
   HealPower: 0
+  StatusEffect: 0
+  StatusDurationTurns: 0
+  DeckLimit: 0

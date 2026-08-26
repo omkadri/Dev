@@ -10,14 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d3ce6acf20f9df043a1d2f2bd9f1ec37, type: 3}
-  m_Name: BrokenBottle
+  m_Name: Belt
   m_EditorClassIdentifier: Assembly-CSharp::CardData
-  CardName: Broken Bottle
-  Description: Deals 4 Damage. 25% Chance of causing Bleeding to you.
-  ActionCost: 3
-  Illustration: {fileID: 21300000, guid: e8051e2e8a485e64a98e8975839b83e7, type: 3}
-  AttackPower: 3
+  CardName: Belt
+  Description: Deal 2 Damage
+  ActionCost: 2
+  Illustration: {fileID: 21300000, guid: aff784ed3155c7443a52d4bc55d7af20, type: 3}
+  AttackPower: 2
   HealPower: 0
   StatusEffect: 0
   StatusDurationTurns: 0
-  DeckLimit: 0
