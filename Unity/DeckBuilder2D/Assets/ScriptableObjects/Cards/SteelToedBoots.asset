@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d3ce6acf20f9df043a1d2f2bd9f1ec37, type: 3}
-  m_Name: BrokenBottle
+  m_Name: SteelToedBoots
   m_EditorClassIdentifier: Assembly-CSharp::CardData
-  CardName: Broken Bottle
-  Description: Deals 4 Damage. 25% chance to cause Bleeding.
+  CardName: Steel Toed Boots
+  Description: Kicks deal 2 additional points of damage.
   ActionCost: 3
-  Illustration: {fileID: 21300000, guid: e8051e2e8a485e64a98e8975839b83e7, type: 3}
-  AttackPower: 3
+  Illustration: {fileID: 21300000, guid: afa33b211af385e4a83af65402100575, type: 3}
+  AttackPower: 0
   HealPower: 0
   StatusEffect: 0
   StatusDurationTurns: 0

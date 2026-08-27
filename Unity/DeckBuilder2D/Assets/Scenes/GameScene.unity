@@ -464,6 +464,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a7ada7b337aa38741a7e6d0d4c5cafc9, type: 2}
   - {fileID: 11400000, guid: d45b0f471eac1e049a6db4d12959dbce, type: 2}
   - {fileID: 11400000, guid: d45b0f471eac1e049a6db4d12959dbce, type: 2}
+  - {fileID: 11400000, guid: 6a8557b466f5fde4a8003e61ef055116, type: 2}
+  - {fileID: 11400000, guid: 6a8557b466f5fde4a8003e61ef055116, type: 2}
+  - {fileID: 11400000, guid: 6445cbaa1c78d9541a46c23c2f215fc3, type: 2}
+  - {fileID: 11400000, guid: 6445cbaa1c78d9541a46c23c2f215fc3, type: 2}
   _cardBack: {fileID: 4904616455295837882, guid: 3005690067d64594d899e797e8872747, type: 3}
   _playerHand: {fileID: 1943473597}
 --- !u!4 &422528737
@@ -515,7 +519,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 1.7}
+  m_Offset: {x: 0, y: 2.6}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -525,7 +529,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 2, y: 3.7}
+  m_Size: {x: 2, y: 5.5}
   m_EdgeRadius: 0
 --- !u!1 &519420028
 GameObject:
