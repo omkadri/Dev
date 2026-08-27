@@ -24,8 +24,11 @@ public class TurnSystem : MonoBehaviour
 
     IEnumerator EnemyTurnRoutine()
     {
-        yield return new WaitForSeconds(_turnEndDelay);//TODO: Magic Number
+        yield return new WaitForSeconds(_turnEndDelay);
         Debug.Log("Enemy Turn Beginning");
         TurnEvents.EnemyTurnBegin();
+        yield return new WaitForSeconds(_turnEndDelay);
+        Debug.Log("Player Turn Beginning");
+        TurnEvents.PlayerTurnStart();
     }
 }

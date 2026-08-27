@@ -13,16 +13,18 @@ public class Card : MonoBehaviour
 
     [SerializeField] TextMeshPro _descriptionText;
 
-
     [SerializeField] float _hoverScale = 2f;
 
     [SerializeField] float _hoverOffest = 2f;
 
     Vector3 _originalScale;
     Vector3 _originalPosition;
+
     SortingGroup _sortingGroup;
     int _originalSortingOrder;
+
     static bool _isBeingDragged = false; //static prevents inactive cards from expanding on hover during drag
+
     CardData _cardData;
     Collider2D _cardCollider;
 
@@ -37,15 +39,6 @@ public class Card : MonoBehaviour
         _originalScale = transform.localScale;
         _originalPosition = transform.localPosition;
         _originalSortingOrder = _sortingGroup.sortingOrder;
-    }
-
-    public void LoadCardData(CardData cardData)
-    {
-        _cardData = cardData;
-        _cardNameText.text = cardData.CardName;
-        _actionCostText.text = cardData.ActionCost.ToString();
-        _illustrationRenderer.sprite = cardData.Illustration;
-        _descriptionText.text = cardData.Description;
     }
 
     void OnMouseEnter() //TODO: Support New Input System only (not Both)
@@ -93,13 +86,22 @@ public class Card : MonoBehaviour
         _sortingGroup.sortingOrder = _originalSortingOrder;
     }
 
-    public CardData GetCardData() => _cardData;
-
     void OnDestroy()
     {
         _isBeingDragged = false;
     }
 
+    public CardData GetCardData() => _cardData;
+    
+    public void LoadCardData(CardData cardData)
+    {
+        _cardData = cardData;
+        _cardNameText.text = cardData.CardName;
+        _actionCostText.text = cardData.ActionCost.ToString();
+        _illustrationRenderer.sprite = cardData.Illustration;
+        _descriptionText.text = cardData.Description;
+    }
+    
     public void SetInteractable(bool interactable)
     {
         _cardCollider.enabled = interactable;

@@ -23,6 +23,50 @@ public class PlayerHand : MonoBehaviour
         }
     }
 
+    void OnEnable()
+    {
+        TurnEvents.OnPlayerTurnEnd += DisableHand;
+        TurnEvents.OnPlayerTurnBegin += EnableHand;
+    }
+
+    void OnDisable()
+    {
+        TurnEvents.OnPlayerTurnEnd -= DisableHand;
+        TurnEvents.OnPlayerTurnBegin -= EnableHand;
+    }
+
+    void DisableHand()
+    {
+        foreach (Card card in _cardsInHand)
+        {
+            card.SetInteractable(false);
+        }
+    }
+
+    void EnableHand()
+    {
+        foreach (Card card in _cardsInHand)
+        {
+            card.SetInteractable(true);
+        }
+    }
+
+    void RepositionCards()
+    {
+        //unparent each card from current slot
+        for(int i = 0; i < _cardsInHand.Count; i++)
+        {
+            _cardsInHand[i].transform.SetParent(null);
+        }
+
+        //reparent each card to new slot
+        for(int i = 0; i < _cardsInHand.Count; i++)
+        {
+            _cardsInHand[i].transform.SetParent(_cardSlots[i]);
+            _cardsInHand[i].transform.position = _cardSlots[i].position;
+        }
+    }
+
     public void DrawNextCard()
     {
         if (_cardSlots == null || _cardsInHand.Count >= _cardSlots.Length)
@@ -54,21 +98,5 @@ public class PlayerHand : MonoBehaviour
         Destroy(card.gameObject);
         RepositionCards();
         PlayerEvents.CardPlayed(card.GetCardData());
-    }
-
-    void RepositionCards()
-    {
-        //unparent each card from current slot
-        for(int i = 0; i < _cardsInHand.Count; i++)
-        {
-            _cardsInHand[i].transform.SetParent(null);
-        }
-
-        //reparent each card to new slot
-        for(int i = 0; i < _cardsInHand.Count; i++)
-        {
-            _cardsInHand[i].transform.SetParent(_cardSlots[i]);
-            _cardsInHand[i].transform.position = _cardSlots[i].position;
-        }
     }
 }
