@@ -363,7 +363,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2ba05dab1258c14a84c8a88aaec8608, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
-  _totalHealth: 100
+  _totalHealth: 3
 --- !u!114 &205651312
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1276,6 +1276,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   _enemySprite: {fileID: 1652501629}
+  _attackDamage: 2
 --- !u!1 &1187684571
 GameObject:
   m_ObjectHideFlags: 0

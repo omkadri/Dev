@@ -24,11 +24,13 @@ public class Player : MonoBehaviour
     void OnEnable()
     {
         PlayerEvents.OnCardPlayed += HandleCardPlayed;
+        PlayerEvents.OnPlayerHit += HandlePlayerHit;
     }
 
     void OnDisable()
     {
         PlayerEvents.OnCardPlayed -= HandleCardPlayed;
+        PlayerEvents.OnPlayerHit -= HandlePlayerHit;
     }
 
     void HandleCardPlayed(CardData cardData)
@@ -44,6 +46,16 @@ public class Player : MonoBehaviour
         }
     }
 
+    void HandlePlayerHit(int damage)
+    {
+        Debug.Log("Player Was Hit");
+        _health.TakeDamage(damage);
+        if (!_health.IsAlive())
+        {
+            Die();
+        }
+    }
+
     void Attack(CardData cardData)
     {
         Debug.Log("Attack: " + cardData.AttackPower);
@@ -55,6 +67,11 @@ public class Player : MonoBehaviour
         Debug.Log("Heal: " + cardData.HealPower);
         _health.Heal(cardData.HealPower);
         _healVFX.Play();
+    }
+
+    void Die()
+    {
+        _animator.Play("Death"); //TODO: Serialize
     }
 
     IEnumerator PlayerAttackAnimRoutine(CardData cardData) //TODO: Avoid passing in cardData?

@@ -4,6 +4,7 @@ using System.Collections;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] GameObject _enemySprite;
+    [SerializeField] int _attackDamage = 2;
     Health _health;
     Animator _animator;
     Vector3 _originalPosition;
@@ -73,6 +74,8 @@ public class Enemy : MonoBehaviour
         yield return new WaitForSeconds(0.5f); //TODO: Magic number. maybe a more systematic approach???
 
         timeElapsed = 0;
+
+        PlayerEvents.PlayerHit(_attackDamage);
 
         //move back to starting position
         while(timeElapsed < duration)
