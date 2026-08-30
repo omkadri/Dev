@@ -1,7 +1,11 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
+    [SerializeField] TextMeshProUGUI _healthText;
+    [SerializeField] Slider _healthSlider;
     [SerializeField] int _totalHealth = 100;
 
     int _currentHealth;
@@ -9,7 +13,15 @@ public class Health : MonoBehaviour
     void Start()
     {
         _currentHealth = _totalHealth;
+        UpdateHealthUI();
     }
+
+    void UpdateHealthUI()
+    {
+        _healthText.text = _currentHealth + " / " + _totalHealth;
+        _healthSlider.maxValue = _totalHealth;
+        _healthSlider.value = _currentHealth;
+    } 
 
     public void Heal(int amount)
     {
@@ -24,19 +36,19 @@ public class Health : MonoBehaviour
         {
             _currentHealth = _totalHealth;
         }
-        Debug.Log("Heal Activated. Current Health: " + _currentHealth);
+        UpdateHealthUI();
     }
 
     public void TakeDamage(int amount)
     {
         _currentHealth -= amount;
-        Debug.Log("Enemy Damage Taken. Current Health: " + _currentHealth);
 
-        if(_currentHealth <= 0)
+        if(_currentHealth < 0)
         {
             _currentHealth = 0;
-            Debug.Log("Health is Zero. Death has occured!");
         }
+
+        UpdateHealthUI();
     }
 
     
