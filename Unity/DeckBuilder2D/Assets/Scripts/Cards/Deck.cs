@@ -7,8 +7,6 @@ public class Deck : MonoBehaviour
 
     [SerializeField] GameObject _cardBack;
 
-    [SerializeField] PlayerHand _playerHand;
-
     const float VERTICAL_SPACING = -0.1f;
 
     void Start()
@@ -51,6 +49,9 @@ public class Deck : MonoBehaviour
         {
             return;
         }
-        _playerHand.DrawNextCard();
+        if (TurnSystem.Instance.HasActionsRemaining())
+        {
+            PlayerEvents.DrawCardRequested();            
+        }
     }
 }

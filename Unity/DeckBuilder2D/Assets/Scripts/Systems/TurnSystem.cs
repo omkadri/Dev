@@ -7,6 +7,8 @@ public class TurnSystem : Singleton<TurnSystem>
 {
     [SerializeField] int _maxActionsPerTurn;
 
+    [SerializeField] int _drawCost = 1;
+
     [SerializeField] TextMeshProUGUI _remainingActionsText;
 
     [SerializeField] float _turnEndDelay;
@@ -22,16 +24,28 @@ public class TurnSystem : Singleton<TurnSystem>
     void OnEnable()
     {
         PlayerEvents.OnCardPlayed += CardPlayed;
+        PlayerEvents.OnDrawCardRequested += DrawRequested;
     }
 
     void OnDisable()
     {
         PlayerEvents.OnCardPlayed -= CardPlayed;
+        PlayerEvents.OnDrawCardRequested -= DrawRequested;
     }
 
     void CardPlayed(CardData cardData)
     {
         ConsumeAction(cardData.ActionCost);
+    }
+
+    void DrawRequested()
+    {
+        ConsumeAction(_drawCost);
+    }
+
+    public bool HasActionsRemaining()
+    {
+        return _actionsRemaining > 0;
     }
 
     void ConsumeAction(int amount)

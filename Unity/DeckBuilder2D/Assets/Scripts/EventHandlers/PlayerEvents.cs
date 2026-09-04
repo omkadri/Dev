@@ -9,6 +9,8 @@ public static class PlayerEvents
 
     public static event Action OnPlayerDeath;
 
+    public static event Action OnDrawCardRequested;
+
     public static void CardPlayed(CardData cardData)
     {
         OnCardPlayed?.Invoke(cardData);
@@ -22,5 +24,10 @@ public static class PlayerEvents
     public static void PlayerDeath()
     {
         OnPlayerDeath?.Invoke();
+    }
+
+    public static void DrawCardRequested()
+    {
+        OnDrawCardRequested?.Invoke();
     }
 }

@@ -27,12 +27,14 @@ public class PlayerHand : MonoBehaviour
     {
         TurnEvents.OnPlayerTurnEnd += DisableHand;
         TurnEvents.OnPlayerTurnBegin += EnableHand;
+        PlayerEvents.OnDrawCardRequested += DrawNextCard;
     }
 
     void OnDisable()
     {
         TurnEvents.OnPlayerTurnEnd -= DisableHand;
         TurnEvents.OnPlayerTurnBegin -= EnableHand;
+        PlayerEvents.OnDrawCardRequested -= DrawNextCard;
     }
 
     void DisableHand()
@@ -89,6 +91,11 @@ public class PlayerHand : MonoBehaviour
         cardComponent.LoadCardData(cardData);
         _cardsInHand.Add(cardComponent);
         _cardsInHand[slotIndex].transform.SetParent(_cardSlots[slotIndex]);
+
+        if (!TurnSystem.Instance.HasActionsRemaining())
+        {
+            cardComponent.SetInteractable(false); //Prevents a timing specific bug that makes the last card in the hand interactable
+        }
     }
 
     public void PlayCard(Card card)

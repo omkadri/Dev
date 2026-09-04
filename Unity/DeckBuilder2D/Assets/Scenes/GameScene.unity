@@ -518,7 +518,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Health
   _healthText: {fileID: 59991394}
   _healthSlider: {fileID: 782626902}
-  _totalHealth: 3
+  _totalHealth: 100
 --- !u!114 &205651312
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -625,7 +625,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6445cbaa1c78d9541a46c23c2f215fc3, type: 2}
   - {fileID: 11400000, guid: 6445cbaa1c78d9541a46c23c2f215fc3, type: 2}
   _cardBack: {fileID: 4904616455295837882, guid: 3005690067d64594d899e797e8872747, type: 3}
-  _playerHand: {fileID: 1943473597}
 --- !u!4 &422528737
 Transform:
   m_ObjectHideFlags: 0
@@ -994,6 +993,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TurnSystem
   _maxActionsPerTurn: 3
+  _drawCost: 1
   _remainingActionsText: {fileID: 36140407}
   _turnEndDelay: 2
 --- !u!4 &542819725
@@ -2146,7 +2146,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 197}
+  m_AnchoredPosition: {x: 0, y: 152.6}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1322107300
