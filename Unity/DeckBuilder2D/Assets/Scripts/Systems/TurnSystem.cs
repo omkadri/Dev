@@ -2,7 +2,7 @@ using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class TurnSystem : MonoBehaviour
+public class TurnSystem : Singleton<TurnSystem>
 {
     [SerializeField] float _turnEndDelay;
     void OnEnable()
