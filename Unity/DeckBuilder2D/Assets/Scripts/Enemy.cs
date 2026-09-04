@@ -44,6 +44,8 @@ public class Enemy : MonoBehaviour
 
     void Attack()
     {
+        //if (!_health.IsAlive()) return;
+
         Debug.Log("Enemy Attack");
         StartCoroutine(EnemyAttackAnimRoutine());
     }
@@ -51,6 +53,7 @@ public class Enemy : MonoBehaviour
     void Die()
     {
         _animator.Play("Death"); //TODO: Serialize
+        EnemyEvents.EnemyDeath();
     }
 
     IEnumerator EnemyAttackAnimRoutine() //TODO: Avoid passing in cardData?

@@ -72,6 +72,7 @@ public class Player : MonoBehaviour
     void Die()
     {
         _animator.Play("Death"); //TODO: Serialize
+        PlayerEvents.PlayerDeath();
     }
 
     IEnumerator PlayerAttackAnimRoutine(CardData cardData) //TODO: Avoid passing in cardData?
