@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using System.Collections;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
@@ -81,7 +82,7 @@ public class PlayerController : MonoBehaviour
 
     void OnDestroy()
     {
-        ScreenFade fade = FindFirstObjectByType<ScreenFade>();
+        ScreenFade fade = FindAnyObjectByType<ScreenFade>();
         fade?.FadeInAndOut();
     }
 
@@ -192,7 +193,7 @@ public class PlayerController : MonoBehaviour
 
     void HandleSpriteFlip()
     {
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
 
         if (mousePos.x < transform.position.x)
         {

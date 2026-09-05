@@ -24,7 +24,7 @@ public class DiscoBallManager : MonoBehaviour
 
         void Start()
     {
-        _spotlights = FindObjectsByType<ColorSpotlight>(FindObjectsSortMode.None);//TODO: Investigate making this Serialized
+        _spotlights = FindObjectsByType<ColorSpotlight>();//TODO: Investigate making this Serialized
     }
 
 

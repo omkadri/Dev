@@ -1,9 +1,9 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
 using Unity.Cinemachine;
+using UnityEngine.InputSystem;
 
 public class RangedWeapon : MonoBehaviour
 {
@@ -124,7 +124,7 @@ public class RangedWeapon : MonoBehaviour
 
     void HandleShooting()
     {
-        if (Input.GetMouseButton(0) && Time.time >= _lastFireTime)//Time.time returns the time since game has started
+        if (Mouse.current.leftButton.isPressed && Time.time >= _lastFireTime)//Time.time returns the time since game has started
         {
             OnShoot?.Invoke();
         }
@@ -176,7 +176,7 @@ public class RangedWeapon : MonoBehaviour
 
     void RotateGunWithMouse()
     {
-        _mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        _mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
         Vector2 dir = PlayerController.Instance.transform.InverseTransformPoint(_mousePos);//This ensures that the gun sprite is flipping properly
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         transform.localRotation = Quaternion.Euler(0, 0, angle);

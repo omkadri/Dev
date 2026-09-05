@@ -18,7 +18,7 @@ public class ScreenFade : MonoBehaviour
     void Awake()
     {
         _image = GetComponent<Image>();
-        _camera = FindFirstObjectByType<CinemachineCamera>();
+        _camera = FindAnyObjectByType<CinemachineCamera>();
     }
 
 

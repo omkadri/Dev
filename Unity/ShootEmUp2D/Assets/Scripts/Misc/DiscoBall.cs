@@ -8,7 +8,7 @@ public class DiscoBall : MonoBehaviour, IHitable
     void Awake()
     {
         _flash = GetComponent<DamageFlash>();
-        _discoBallManager = FindFirstObjectByType<DiscoBallManager>();
+        _discoBallManager = FindAnyObjectByType<DiscoBallManager>();
     }
 
 
