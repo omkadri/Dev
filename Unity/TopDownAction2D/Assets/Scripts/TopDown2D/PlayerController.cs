@@ -1,7 +1,6 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Scripting.APIUpdating;
+using UnityEngine.InputSystem;
 
 public class PlayerController : Singleton<PlayerController>
 {
@@ -106,7 +105,7 @@ public class PlayerController : Singleton<PlayerController>
 
     void AdjustPlayerFacingDir()
     {
-        Vector3 mousePos = Input.mousePosition;
+        Vector3 mousePos = Mouse.current.position.ReadValue();
         Vector3 playerScreenPoint = Camera.main.WorldToScreenPoint(transform.position);
 
         if (mousePos.x < playerScreenPoint.x)

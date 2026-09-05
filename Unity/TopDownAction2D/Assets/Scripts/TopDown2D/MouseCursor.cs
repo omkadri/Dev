@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class MouseCursor : MonoBehaviour
 {
@@ -29,7 +30,7 @@ public class MouseCursor : MonoBehaviour
 
     void Update()
     {
-        Vector2 cursorPos = Input.mousePosition;
+        Vector2 cursorPos = Mouse.current.position.ReadValue();
         cursorImage.rectTransform.position = cursorPos;
         transform.position = cursorPos;
 

@@ -1,5 +1,6 @@
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Staff : MonoBehaviour, IWeapon
 {
@@ -46,7 +47,7 @@ public class Staff : MonoBehaviour, IWeapon
 
     void MouseFollowWithOffset() //orients the sword relative to the mouse
     {
-        Vector2 mousePos = Input.mousePosition;
+        Vector2 mousePos = Mouse.current.position.ReadValue();
         Vector2 playerPos = Camera.main.WorldToScreenPoint(PlayerController.Instance.transform.position);
 
         float angle = Mathf.Atan2(mousePos.y - playerPos.y, Mathf.Abs(mousePos.x - playerPos.x)) * Mathf.Rad2Deg;
