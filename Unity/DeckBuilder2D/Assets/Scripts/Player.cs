@@ -67,6 +67,7 @@ public class Player : MonoBehaviour
         Debug.Log("Heal: " + cardData.HealPower);
         _health.Heal(cardData.HealPower);
         _healVFX.Play();
+        PlayerEvents.PlayerHealed();
     }
 
     void Die()
