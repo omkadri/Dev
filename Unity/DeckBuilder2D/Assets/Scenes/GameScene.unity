@@ -586,45 +586,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9750c83deec21c74d919e9d25f5356cf, type: 2}
   - {fileID: 11400000, guid: 1cde321525d096049975f32c5f4fafab, type: 2}
   - {fileID: 11400000, guid: 1cde321525d096049975f32c5f4fafab, type: 2}
-  - {fileID: 11400000, guid: 1ec51d78ab28fdb408a8e6a718378933, type: 2}
-  - {fileID: 11400000, guid: 1ec51d78ab28fdb408a8e6a718378933, type: 2}
-  - {fileID: 11400000, guid: 9df03226d7f042e4abc985e31a064d21, type: 2}
-  - {fileID: 11400000, guid: 9df03226d7f042e4abc985e31a064d21, type: 2}
-  - {fileID: 11400000, guid: 4ffaaf0d43662e24488d8aafc617ba08, type: 2}
-  - {fileID: 11400000, guid: 4ffaaf0d43662e24488d8aafc617ba08, type: 2}
-  - {fileID: 11400000, guid: c405c8ae4896b06498a97176124be30e, type: 2}
-  - {fileID: 11400000, guid: c405c8ae4896b06498a97176124be30e, type: 2}
-  - {fileID: 11400000, guid: b8cb5abe56b80684e9209f79141a422e, type: 2}
-  - {fileID: 11400000, guid: b8cb5abe56b80684e9209f79141a422e, type: 2}
-  - {fileID: 11400000, guid: 85e84afaeb69dbc4ba062c69ac218084, type: 2}
-  - {fileID: 11400000, guid: 85e84afaeb69dbc4ba062c69ac218084, type: 2}
-  - {fileID: 11400000, guid: cb31baf58cb9fad45bff1afba3f0eeb1, type: 2}
-  - {fileID: 11400000, guid: cb31baf58cb9fad45bff1afba3f0eeb1, type: 2}
-  - {fileID: 11400000, guid: e5255c9c9eb500646ac4d699491609d2, type: 2}
-  - {fileID: 11400000, guid: e5255c9c9eb500646ac4d699491609d2, type: 2}
-  - {fileID: 11400000, guid: 12f6a37e4732fe04fb6dd023ea8e7751, type: 2}
-  - {fileID: 11400000, guid: 12f6a37e4732fe04fb6dd023ea8e7751, type: 2}
-  - {fileID: 11400000, guid: 1ec51d78ab28fdb408a8e6a718378933, type: 2}
-  - {fileID: 11400000, guid: 1ec51d78ab28fdb408a8e6a718378933, type: 2}
-  - {fileID: 11400000, guid: 6c2ae6fcb05b98c499354da83b0d3629, type: 2}
-  - {fileID: 11400000, guid: 6c2ae6fcb05b98c499354da83b0d3629, type: 2}
-  - {fileID: 11400000, guid: 708e1b701af073c43bf60f12c22e4dd3, type: 2}
-  - {fileID: 11400000, guid: 708e1b701af073c43bf60f12c22e4dd3, type: 2}
-  - {fileID: 11400000, guid: 528de3f1e94609b4d88a02ee5d0a79c4, type: 2}
-  - {fileID: 11400000, guid: 528de3f1e94609b4d88a02ee5d0a79c4, type: 2}
-  - {fileID: 11400000, guid: 2adeb773b3b957a40b3aec5a1eed7832, type: 2}
-  - {fileID: 11400000, guid: 2adeb773b3b957a40b3aec5a1eed7832, type: 2}
-  - {fileID: 11400000, guid: c9c69f933add3ec4fa03c136e5ff8fde, type: 2}
-  - {fileID: 11400000, guid: c9c69f933add3ec4fa03c136e5ff8fde, type: 2}
-  - {fileID: 11400000, guid: a7ada7b337aa38741a7e6d0d4c5cafc9, type: 2}
-  - {fileID: 11400000, guid: a7ada7b337aa38741a7e6d0d4c5cafc9, type: 2}
-  - {fileID: 11400000, guid: d45b0f471eac1e049a6db4d12959dbce, type: 2}
-  - {fileID: 11400000, guid: d45b0f471eac1e049a6db4d12959dbce, type: 2}
-  - {fileID: 11400000, guid: 6a8557b466f5fde4a8003e61ef055116, type: 2}
-  - {fileID: 11400000, guid: 6a8557b466f5fde4a8003e61ef055116, type: 2}
-  - {fileID: 11400000, guid: 6445cbaa1c78d9541a46c23c2f215fc3, type: 2}
-  - {fileID: 11400000, guid: 6445cbaa1c78d9541a46c23c2f215fc3, type: 2}
   _cardBack: {fileID: 4904616455295837882, guid: 3005690067d64594d899e797e8872747, type: 3}
+  _discardPile: {fileID: 1802406851}
 --- !u!4 &422528737
 Transform:
   m_ObjectHideFlags: 0
@@ -634,7 +597,7 @@ Transform:
   m_GameObject: {fileID: 422528735}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9, y: -5.8, z: 0}
+  m_LocalPosition: {x: -9, y: -4.17, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -994,6 +957,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TurnSystem
   _maxActionsPerTurn: 3
   _drawCost: 1
+  _reshuffleCost: 3
   _remainingActionsText: {fileID: 36140407}
   _turnEndDelay: 2
 --- !u!4 &542819725
@@ -1703,7 +1667,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Health
   _healthText: {fileID: 1772010274}
   _healthSlider: {fileID: 503467219}
-  _totalHealth: 6
+  _totalHealth: 20
 --- !u!114 &1155796121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1717,7 +1681,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   _enemySprite: {fileID: 1652501629}
-  _attackDamage: 2
+  _attackDamage: 1
 --- !u!1 &1168710868
 GameObject:
   m_ObjectHideFlags: 0
@@ -2610,6 +2574,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1802406850}
   - component: {fileID: 1802406851}
+  - component: {fileID: 1802406852}
   m_Layer: 0
   m_Name: DiscardPile
   m_TagString: Untagged
@@ -2647,6 +2612,53 @@ MonoBehaviour:
   _discardPile: []
   _cardPrefab: {fileID: 1651275585208046368, guid: 997a3e449d431dd43b732efd83fee91a, type: 3}
   _cardBack: {fileID: 4904616455295837882, guid: 3005690067d64594d899e797e8872747, type: 3}
+  _deck: {fileID: 422528736}
+--- !u!61 &1802406852
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1802406848}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0.009391308, y: 0.0563457}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 1.5071115, y: 1.8389249}
+  m_EdgeRadius: 0
 --- !u!4 &1804284046 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8145866148658856861, guid: 33209159709f83a4e8276651f78cc8f5, type: 3}
@@ -2709,7 +2721,7 @@ MonoBehaviour:
   - {fileID: 1058466036}
   - {fileID: 1187684572}
   _cardPrefab: {fileID: 1651275585208046368, guid: 997a3e449d431dd43b732efd83fee91a, type: 3}
-  _startingHandSize: 5
+  _startingHandSize: 3
   _discardPile: {fileID: 1802406851}
 --- !u!1 &1948946854
 GameObject:

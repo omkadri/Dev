@@ -11,6 +11,8 @@ public static class PlayerEvents
 
     public static event Action OnDrawCardRequested;
 
+    public static event Action OnReshuffleRequested;
+
     public static void CardPlayed(CardData cardData)
     {
         OnCardPlayed?.Invoke(cardData);
@@ -29,5 +31,10 @@ public static class PlayerEvents
     public static void DrawCardRequested()
     {
         OnDrawCardRequested?.Invoke();
+    }
+
+    public static void ReshuffleRequested()
+    {
+        OnReshuffleRequested?.Invoke();
     }
 }

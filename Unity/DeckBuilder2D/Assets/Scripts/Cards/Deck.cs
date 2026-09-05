@@ -7,6 +7,8 @@ public class Deck : MonoBehaviour
 
     [SerializeField] GameObject _cardBack;
 
+    [SerializeField] DiscardPile _discardPile; //TODO: tight Coupling
+
     const float VERTICAL_SPACING = -0.1f;
 
     void Start()
@@ -23,17 +25,30 @@ public class Deck : MonoBehaviour
             int topIndex = _drawPile.Count - 1;
             CardData data = _drawPile[topIndex];
             _drawPile.RemoveAt(topIndex);
+            DeckDrawVisuals();
             return data;
         }
         return null;
     }
 
+    public void ReshuffleFromDiscardPile()
+    {
+        _discardPile.MoveCardToDeck(_drawPile);
+        Shuffle();
+        DeckDrawVisuals();
+    }
+
     void DeckDrawVisuals()
     {
+        foreach (Transform discardedCard in transform)
+        {
+            Destroy(discardedCard.gameObject);
+        }
+
         for (int i = 0; i < _drawPile.Count; i++)
         {
             GameObject newCardBack = Instantiate(_cardBack, transform);
-
+            newCardBack.GetComponent<SpriteRenderer>().sortingOrder = i;
             newCardBack.transform.localPosition = new Vector3(0f, -i * VERTICAL_SPACING, 0f);
         }
     }

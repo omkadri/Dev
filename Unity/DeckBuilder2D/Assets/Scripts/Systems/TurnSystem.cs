@@ -9,6 +9,8 @@ public class TurnSystem : Singleton<TurnSystem>
 
     [SerializeField] int _drawCost = 1;
 
+    [SerializeField] int _reshuffleCost = 3;
+
     [SerializeField] TextMeshProUGUI _remainingActionsText;
 
     [SerializeField] float _turnEndDelay;
@@ -25,12 +27,14 @@ public class TurnSystem : Singleton<TurnSystem>
     {
         PlayerEvents.OnCardPlayed += CardPlayed;
         PlayerEvents.OnDrawCardRequested += DrawRequested;
+        PlayerEvents.OnReshuffleRequested += ReshuffleRequested;
     }
 
     void OnDisable()
     {
         PlayerEvents.OnCardPlayed -= CardPlayed;
         PlayerEvents.OnDrawCardRequested -= DrawRequested;
+        PlayerEvents.OnReshuffleRequested -= ReshuffleRequested;
     }
 
     void CardPlayed(CardData cardData)
@@ -41,6 +45,11 @@ public class TurnSystem : Singleton<TurnSystem>
     void DrawRequested()
     {
         ConsumeAction(_drawCost);
+    }
+
+    void ReshuffleRequested()
+    {
+        ConsumeAction(_reshuffleCost);
     }
 
     public bool HasActionsRemaining()
@@ -73,6 +82,10 @@ public class TurnSystem : Singleton<TurnSystem>
 
     void UpdateActionsUI()
     {
+        if (_actionsRemaining < 0)
+        {
+            _actionsRemaining = 0;
+        }
         _remainingActionsText.text = "Remaining Actions: " + _actionsRemaining;
     }
 }

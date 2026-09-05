@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -9,6 +10,8 @@ public class DiscardPile : MonoBehaviour
     [SerializeField] GameObject _cardPrefab;
 
     [SerializeField] GameObject _cardBack;
+
+    [SerializeField] Deck _deck; //TODO: tight Coupling
 
     const float VERTICAL_SPACING = 0.2f;
 
@@ -29,5 +32,31 @@ public class DiscardPile : MonoBehaviour
 
         int index = _discardPile.Count - 1;
         discardedCard.transform.localPosition = new Vector3(0f, (index) * VERTICAL_SPACING, 0f);
+    }
+
+    public void MoveCardToDeck(List<CardData> drawPile)
+    {
+        if (drawPile == null || _discardPile.Count == 0)
+        {
+            return;
+        }
+
+        drawPile.AddRange(_discardPile);
+        ClearPile();
+    }
+
+    void ClearPile()
+    {
+        _discardPile.Clear();
+        foreach (Transform discardedCard in transform)
+        {
+            Destroy(discardedCard.gameObject);
+        }
+    }
+
+    void OnMouseDown()
+    {
+        PlayerEvents.ReshuffleRequested();
+        _deck.ReshuffleFromDiscardPile();
     }
 }
