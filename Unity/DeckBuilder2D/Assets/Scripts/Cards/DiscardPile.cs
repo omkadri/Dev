@@ -56,6 +56,8 @@ public class DiscardPile : MonoBehaviour
 
     void OnMouseDown()
     {
+        if (!TurnSystem.Instance.HasActionsRemaining() || _discardPile.Count <=0 ) { return; }
+
         PlayerEvents.ReshuffleRequested();
         _deck.ReshuffleFromDiscardPile();
     }
