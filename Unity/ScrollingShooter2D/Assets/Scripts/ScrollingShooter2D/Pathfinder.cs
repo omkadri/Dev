@@ -12,7 +12,7 @@ public class Pathfinder : MonoBehaviour
 
     void Awake()
     {
-        _enemySpawner = FindFirstObjectByType<EnemySpawner>();
+        _enemySpawner = FindAnyObjectByType<EnemySpawner>();
     }
 
 

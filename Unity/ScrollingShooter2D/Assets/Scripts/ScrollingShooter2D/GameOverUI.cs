@@ -10,7 +10,7 @@ public class GameOverUI : MonoBehaviour
 
     void Awake()
     {
-        _scoreKeeper = FindFirstObjectByType<ScoreKeeper>();
+        _scoreKeeper = FindAnyObjectByType<ScoreKeeper>();
     }
     
 

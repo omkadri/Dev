@@ -40,7 +40,6 @@ public class ScoreKeeper : MonoBehaviour
     {
         _currentScore += value;
         Mathf.Clamp(_currentScore, 0, int.MaxValue);
-        Debug.Log(_currentScore);
     }
     
 

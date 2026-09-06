@@ -22,9 +22,9 @@ public class Health : MonoBehaviour
     void Awake()
     {
         _cameraShake = Camera.main.GetComponent<CameraShake>();
-        _audioPlayer = FindFirstObjectByType<AudioPlayer>();
-        _scoreKeeper = FindFirstObjectByType<ScoreKeeper>();
-        _gameManager = FindFirstObjectByType<GameManager>();
+        _audioPlayer = FindAnyObjectByType<AudioPlayer>();
+        _scoreKeeper = FindAnyObjectByType<ScoreKeeper>();
+        _gameManager = FindAnyObjectByType<GameManager>();
     }
 
 

@@ -18,6 +18,5 @@ public class BackgroundParallaxScroller : MonoBehaviour
     {
         _offset = _moveSpeed * Time.deltaTime;
         _material.mainTextureOffset += _offset;
-        Debug.Log(_offset);
     }
 }

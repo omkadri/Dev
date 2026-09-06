@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, Input_Actions.IPlayerActions
 {
     [SerializeField] float _moveSpeed = 10f;
     [SerializeField] float _paddingLeft = 0.5f;
@@ -16,11 +14,33 @@ public class PlayerController : MonoBehaviour
     Vector2 _maxBounds;
 
     Shooter _shooter;
+    Input_Actions _input;
 
 
     void Awake()
     {
         _shooter = GetComponent<Shooter>();
+
+        _input = new Input_Actions();
+        _input.Player.AddCallbacks(this);
+    }
+
+
+    void OnEnable()
+    {
+        _input.Player.Enable();
+    }
+
+
+    void OnDisable()
+    {
+        _input.Player.Disable();
+    }
+
+
+    void OnDestroy()
+    {
+        _input.Dispose();
     }
 
 
@@ -47,24 +67,36 @@ public class PlayerController : MonoBehaviour
     void Move()
     {
         Vector2 delta = _rawInput * _moveSpeed * Time.deltaTime;
+
         Vector2 newPos = new Vector2();
-        newPos.x = Mathf.Clamp(transform.position.x + delta.x, _minBounds.x + _paddingLeft, _maxBounds.x - _paddingRight);
-        newPos.y = Mathf.Clamp(transform.position.y + delta.y, _minBounds.y + _paddingBottom, _maxBounds.y - _paddingTop);
+
+        newPos.x = Mathf.Clamp(
+            transform.position.x + delta.x,
+            _minBounds.x + _paddingLeft,
+            _maxBounds.x - _paddingRight
+        );
+
+        newPos.y = Mathf.Clamp(
+            transform.position.y + delta.y,
+            _minBounds.y + _paddingBottom,
+            _maxBounds.y - _paddingTop
+        );
+
         transform.position = newPos;
     }
 
 
-    void OnMove(InputValue value)
+    public void OnMove(InputAction.CallbackContext context)
     {
-        _rawInput = value.Get<Vector2>();
+        _rawInput = context.ReadValue<Vector2>();
     }
-    
 
-    void OnFire(InputValue value)
+
+    public void OnFire(InputAction.CallbackContext context)
     {
         if (_shooter != null)
         {
-            _shooter._isFiring = value.isPressed;
+            _shooter._isFiring = context.ReadValueAsButton();
         }
     }
 }
