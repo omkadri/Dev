@@ -1,6 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class DefenderSpawner : MonoBehaviour
 {
@@ -44,7 +43,7 @@ public class DefenderSpawner : MonoBehaviour
             return;
         }
         
-        StarDisplay starDisplay = FindFirstObjectByType<StarDisplay>();
+        StarDisplay starDisplay = FindAnyObjectByType<StarDisplay>();
         int defenderCost = _defender.GetStarCost();
         if (starDisplay.HasEnoughStars(defenderCost))
         {
@@ -60,7 +59,7 @@ public class DefenderSpawner : MonoBehaviour
 
     Vector2 GetSquareClicked()
     {
-        Vector2 rawMousePos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+        Vector2 rawMousePos = Mouse.current.position.ReadValue();
 
         Vector2 inGameMousePos = Camera.main.ScreenToWorldPoint(rawMousePos);
         //this gets mouse coordinates relative the withing the game window (as opposed to raw mouse coordinate data)

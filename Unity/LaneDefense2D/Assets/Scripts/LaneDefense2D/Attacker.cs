@@ -16,10 +16,10 @@ public class Attacker : MonoBehaviour
     void Awake()
     {
         _animator = GetComponent<Animator>();
-        _levelController = FindFirstObjectByType<LevelController>();
+        _levelController = FindAnyObjectByType<LevelController>();
         if (_levelController)
         {
-            FindFirstObjectByType<LevelController>().AttackerSpawned(); //TODO: Fix Tight Coupling
+            FindAnyObjectByType<LevelController>().AttackerSpawned(); //TODO: Fix Tight Coupling
         }
     }
 
@@ -28,7 +28,7 @@ public class Attacker : MonoBehaviour
     {
         if (_levelController)
         {
-            FindFirstObjectByType<LevelController>().AttackerKilled(); //TODO: Fix Tight Coupling
+            FindAnyObjectByType<LevelController>().AttackerKilled(); //TODO: Fix Tight Coupling
         }
     }
 

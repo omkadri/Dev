@@ -43,7 +43,7 @@ public class LifeDisplay : MonoBehaviour
 
         if (_lifePoints <= 0)
         {
-            FindFirstObjectByType<LevelController>().HandleLoseConditionRoutine();
+            FindAnyObjectByType<LevelController>().HandleLoseConditionRoutine();
         }
     }
 }

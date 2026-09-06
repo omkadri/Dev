@@ -13,6 +13,6 @@ public class Defender : MonoBehaviour
 
         public void AddStars(int amount)
         {
-              FindFirstObjectByType<StarDisplay>().AddStars(amount);//TODO: Fix tight coupling
+              FindAnyObjectByType<StarDisplay>().AddStars(amount);//TODO: Fix tight coupling
         }
 }

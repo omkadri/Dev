@@ -17,7 +17,7 @@ public class GameTimer : MonoBehaviour
         if (timerFinished)
         {
             Debug.Log("level timer expired");
-            FindFirstObjectByType<LevelController>().LevelTimerFinished(); //TODO: Fix Tight Coupling
+            FindAnyObjectByType<LevelController>().LevelTimerFinished(); //TODO: Fix Tight Coupling
             _triggerLevelFinished = true;
         }
     }

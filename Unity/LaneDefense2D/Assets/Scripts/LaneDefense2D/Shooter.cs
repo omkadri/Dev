@@ -57,7 +57,7 @@ public class Shooter : MonoBehaviour
 
     void SetCurrentLaneAttackerSpawner()
     {
-        AttackerSpawner[] spawners = FindObjectsByType<AttackerSpawner>(FindObjectsSortMode.None);
+        AttackerSpawner[] spawners = FindObjectsByType<AttackerSpawner>();
 
         foreach (AttackerSpawner spawner in spawners)
         {

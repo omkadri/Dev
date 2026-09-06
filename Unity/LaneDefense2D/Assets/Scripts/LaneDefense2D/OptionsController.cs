@@ -18,7 +18,7 @@ public class OptionsController : MonoBehaviour
 
     void Update()
     {
-        var musicPlayer = FindFirstObjectByType<MusicPlayer>();//TODO: improve this
+        var musicPlayer = FindAnyObjectByType<MusicPlayer>();//TODO: improve this
         if (musicPlayer)
         {
             musicPlayer.SetVolume(_volumeSlider.value);
@@ -34,7 +34,7 @@ public class OptionsController : MonoBehaviour
     {
         PlayerPrefsController.SetMasterVolume(_volumeSlider.value);
         PlayerPrefsController.SetDifficulty(_difficultySlider.value);
-        FindFirstObjectByType<LevelController>().LoadMainMenuScene(); //TODO: Fix Tight Coupling
+        FindAnyObjectByType<LevelController>().LoadMainMenuScene(); //TODO: Fix Tight Coupling
     }
 
 
