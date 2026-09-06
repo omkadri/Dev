@@ -34,7 +34,7 @@ public class Enemy : MonoBehaviour
 
     void HandleEnemyHit(CardData cardData)
     {
-        Debug.Log("Enemy Was Hit");
+        Debug.Log("Enemy took " + cardData.AttackPower + " damage.");
         _health.TakeDamage(cardData.AttackPower);
         if (!_health.IsAlive())
         {
@@ -46,7 +46,7 @@ public class Enemy : MonoBehaviour
     {
         //if (!_health.IsAlive()) return;
 
-        Debug.Log("Enemy Attack");
+        Debug.Log("Enemy Attack: " + _attackDamage + " damage was dealt.");
         StartCoroutine(EnemyAttackAnimRoutine());
     }
 
