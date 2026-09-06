@@ -15,7 +15,7 @@ public class GameSession : MonoBehaviour
     
     void Awake()
     {
-        int numGameSessions = FindObjectsByType<GameSession>(FindObjectsSortMode.None).Length;
+        int numGameSessions = FindObjectsByType<GameSession>().Length;
         if (numGameSessions > 1) // ensures that only one game session can exits at a time
         {
             Destroy(gameObject);
@@ -65,7 +65,7 @@ public class GameSession : MonoBehaviour
 
     void ResetGameSession()
     {
-        FindFirstObjectByType<ScenePersist>().ResetScenePersist();
+        FindAnyObjectByType<ScenePersist>().ResetScenePersist();
         SceneUtils.LoadSceneByName(_gameOverSceneName);
         Destroy(gameObject); //allows future game sessions to exist without duplication
     }

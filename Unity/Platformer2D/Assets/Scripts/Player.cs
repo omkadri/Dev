@@ -128,7 +128,7 @@ public class Player : MonoBehaviour
             _isAlive = false;
             _animator.SetTrigger("Dying");
             _rb2d.linearVelocity = _deathKnockback;
-            FindFirstObjectByType<GameSession>().ProcessPlayerDeath();
+            FindAnyObjectByType<GameSession>().ProcessPlayerDeath();
         }
     }
 }

@@ -82,8 +82,6 @@ Unity 6 upgrade notes
 Adjust materials to use current URP
 Disable compatibility mode for scriptable render
 Ensure all packages work
-FindObjectOfType() is replaced with FindFirstObjectByType()
-FindObjectsOfType has been replaced with FindObjectsByType<>( FindObjectsSortMode.None ) 
 Velocity has been replaced with linear velocity
 Update all canvas event systems to use newer input modules
 

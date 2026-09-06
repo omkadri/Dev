@@ -20,7 +20,7 @@ public class LevelExit : MonoBehaviour
 
     IEnumerator LoadNextLevelRoutine()
     {
-        FindFirstObjectByType<ScenePersist>().ResetScenePersist();
+        FindAnyObjectByType<ScenePersist>().ResetScenePersist();
         yield return new WaitForSecondsRealtime(_levelLoadDelay);
         SceneUtils.LoadSceneByName(_nextSceneName);
     }

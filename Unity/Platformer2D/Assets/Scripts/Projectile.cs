@@ -15,7 +15,7 @@ public class Projectile : MonoBehaviour
     void Start()
     {
         _rb2d = GetComponent<Rigidbody2D>();
-        _player = FindFirstObjectByType<Player>();
+        _player = FindAnyObjectByType<Player>();
         _xSpeed = _player.transform.localScale.x * _projectileSpeed;
     }
 
