@@ -17,12 +17,17 @@ public class TurnSystem : Singleton<TurnSystem>
 
     [SerializeField] TextMeshProUGUI _remainingActionsText;
 
-    [SerializeField] float _turnEndDelay;
+    [SerializeField] int _TurnEndDelay = 3;
+
+    [SerializeField] float _enemyTurnDelay = 1f;
+
+    [SerializeField] TextMeshProUGUI _turnStateDisplay;
     
     int _actionsRemaining;
 
     void Start()
     {
+        _turnStateDisplay.text = "Player's Turn"; //TODO: Serialize???
         StartPlayerTurn();
     }
 
@@ -31,6 +36,8 @@ public class TurnSystem : Singleton<TurnSystem>
         PlayerEvents.OnCardPlayed += CardPlayed;
         PlayerEvents.OnDrawCardRequested += DrawRequested;
         PlayerEvents.OnReshuffleRequested += ReshuffleRequested;
+        PlayerEvents.OnPlayerDeath += ClearTurnDisplay;
+        EnemyEvents.OnEnemyDeath += ClearTurnDisplay;
     }
 
     void OnDisable()
@@ -38,6 +45,8 @@ public class TurnSystem : Singleton<TurnSystem>
         PlayerEvents.OnCardPlayed -= CardPlayed;
         PlayerEvents.OnDrawCardRequested -= DrawRequested;
         PlayerEvents.OnReshuffleRequested -= ReshuffleRequested;
+        PlayerEvents.OnPlayerDeath -= ClearTurnDisplay;
+        EnemyEvents.OnEnemyDeath -= ClearTurnDisplay;
     }
 
     void StartPlayerTurn()
@@ -56,19 +65,21 @@ public class TurnSystem : Singleton<TurnSystem>
         StartCoroutine(WaitBetweenTurnsRoutine());
     }
 
-    void StartEnemyTurn()
+    IEnumerator StartEnemyTurnRoutine()
     {
         Debug.Log("Enemy Turn Starting");
         _currentTurn = TurnState.EnemyTurn;
+        yield return new WaitForSeconds(_enemyTurnDelay);
         EnemyTurn();
     }
 
-    void EndEnemyTurn()
+    IEnumerator EndEnemyTurnRoutine()
     {
         Debug.Log("Enemy Turn Ending");
         TurnEvents.EnemyTurnEnd();
-        StartCoroutine(WaitBetweenTurnsRoutine())
-;    }
+        yield return new WaitForSeconds(_enemyTurnDelay);
+        StartCoroutine(WaitBetweenTurnsRoutine());    
+    }
 
     void CardPlayed(CardData cardData)
     {
@@ -103,7 +114,7 @@ public class TurnSystem : Singleton<TurnSystem>
     void EnemyTurn()
     {
         TurnEvents.EnemyTurnBegin();
-        EndEnemyTurn();
+        StartCoroutine(EndEnemyTurnRoutine());
     }
 
     void UpdateActionsUI()
@@ -115,18 +126,30 @@ public class TurnSystem : Singleton<TurnSystem>
         _remainingActionsText.text = "Remaining Actions: " + _actionsRemaining;
     }
 
+    void ClearTurnDisplay()
+    {
+        _turnStateDisplay.text = "";
+    }
+
     IEnumerator WaitBetweenTurnsRoutine()
     {
-        yield return new WaitForSeconds(_turnEndDelay);
+        for (int i = _TurnEndDelay; i > 0; i--)
+        {
+            _turnStateDisplay.text = i + "...";
+            yield return new WaitForSeconds(1f); //TODO: Magic Number
+        }
+
         if (GameManager.Instance.IsGameActive())
         {
             if (_currentTurn != TurnState.PlayerTurn)
             {
+                _turnStateDisplay.text = "Player's Turn"; //TODO: Serialize???
                 StartPlayerTurn();
             }
             else
             {
-                StartEnemyTurn();
+                _turnStateDisplay.text = "Enemy's Turn"; //TODO: Serialize???
+                StartCoroutine(StartEnemyTurnRoutine());
             }
         }
     }
