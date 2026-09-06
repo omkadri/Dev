@@ -7,6 +7,9 @@ public class GameManager : Singleton<GameManager>
 {
     [SerializeField] float _transitionTime = 3f;
     [SerializeField] TextMeshProUGUI _winLoseDisplay;
+
+    bool _isGameActive = true;
+
     void OnEnable()
     {
         PlayerEvents.OnPlayerDeath += PlayerLose;
@@ -21,12 +24,14 @@ public class GameManager : Singleton<GameManager>
 
     void PlayerWin()
     {
+        _isGameActive = false;
         _winLoseDisplay.text = "You defeated the Enemy";
         StartCoroutine(RestartGame());
     }
 
     void PlayerLose()
     {
+        _isGameActive = false;
         _winLoseDisplay.text = "Game Over";
         StartCoroutine(RestartGame());
     }
@@ -35,5 +40,10 @@ public class GameManager : Singleton<GameManager>
     {
         yield return new WaitForSeconds(_transitionTime);
         SceneManager.LoadScene("GameScene");
+    }
+
+    public bool IsGameActive()
+    {
+        return _isGameActive;
     }
 }

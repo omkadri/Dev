@@ -597,7 +597,7 @@ Transform:
   m_GameObject: {fileID: 422528735}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9, y: -4.17, z: 0}
+  m_LocalPosition: {x: -9, y: -3.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -679,7 +679,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: f873d665e5ab2d741aeda30eb13a0c01, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.7
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -1600,7 +1600,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaacb0cb70d7e614a8c26622a2311446, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  _transitionTime: 2
+  _transitionTime: 5
   _winLoseDisplay: {fileID: 1251503114}
 --- !u!4 &1132462661
 Transform:
@@ -1627,8 +1627,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1155796119}
-  - component: {fileID: 1155796120}
   - component: {fileID: 1155796121}
+  - component: {fileID: 1155796120}
   m_Layer: 0
   m_Name: StreetBrawlerBruiser1
   m_TagString: Untagged
@@ -1667,7 +1667,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Health
   _healthText: {fileID: 1772010274}
   _healthSlider: {fileID: 503467219}
-  _totalHealth: 20
+  _totalHealth: 5
 --- !u!114 &1155796121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1681,7 +1681,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   _enemySprite: {fileID: 1652501629}
-  _attackDamage: 1
+  _attackDamage: 5
 --- !u!1 &1168710868
 GameObject:
   m_ObjectHideFlags: 0

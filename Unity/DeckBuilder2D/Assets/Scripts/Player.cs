@@ -35,7 +35,7 @@ public class Player : MonoBehaviour
 
     void HandleCardPlayed(CardData cardData)
     {
-        Debug.Log("Handler Ran");
+        Debug.Log("Card Played: " + cardData.CardName);
         if(cardData.AttackPower > 0)
         {
             Attack(cardData);
@@ -48,7 +48,7 @@ public class Player : MonoBehaviour
 
     void HandlePlayerHit(int damage)
     {
-        Debug.Log("Player Was Hit");
+        Debug.Log("Player took " + damage + " damage.");
         _health.TakeDamage(damage);
         if (!_health.IsAlive())
         {

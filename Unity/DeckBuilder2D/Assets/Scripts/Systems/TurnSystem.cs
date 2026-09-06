@@ -5,6 +5,10 @@ using UnityEngine;
 
 public class TurnSystem : Singleton<TurnSystem>
 {
+    enum TurnState {PlayerTurn, EnemyTurn}
+
+    TurnState _currentTurn = TurnState.PlayerTurn;
+
     [SerializeField] int _maxActionsPerTurn;
 
     [SerializeField] int _drawCost = 1;
@@ -19,8 +23,7 @@ public class TurnSystem : Singleton<TurnSystem>
 
     void Start()
     {
-        _actionsRemaining = _maxActionsPerTurn;
-        UpdateActionsUI();
+        StartPlayerTurn();
     }
 
     void OnEnable()
@@ -36,6 +39,36 @@ public class TurnSystem : Singleton<TurnSystem>
         PlayerEvents.OnDrawCardRequested -= DrawRequested;
         PlayerEvents.OnReshuffleRequested -= ReshuffleRequested;
     }
+
+    void StartPlayerTurn()
+    {
+        Debug.Log("Player Turn Starting");
+        _currentTurn = TurnState.PlayerTurn;
+        _actionsRemaining = _maxActionsPerTurn;
+        UpdateActionsUI();
+        TurnEvents.PlayerTurnStart();
+    }
+
+    void EndPlayerTurn()
+    {
+        Debug.Log("Player Turn Ending");
+        TurnEvents.PlayerTurnEnd();
+        StartCoroutine(WaitBetweenTurnsRoutine());
+    }
+
+    void StartEnemyTurn()
+    {
+        Debug.Log("Enemy Turn Starting");
+        _currentTurn = TurnState.EnemyTurn;
+        EnemyTurn();
+    }
+
+    void EndEnemyTurn()
+    {
+        Debug.Log("Enemy Turn Ending");
+        TurnEvents.EnemyTurnEnd();
+        StartCoroutine(WaitBetweenTurnsRoutine())
+;    }
 
     void CardPlayed(CardData cardData)
     {
@@ -63,21 +96,14 @@ public class TurnSystem : Singleton<TurnSystem>
         UpdateActionsUI();
         if (_actionsRemaining <= 0)
         {
-            TurnEvents.PlayerTurnEnd();
-            Debug.Log("Player Turn Ending");
-            StartCoroutine(EnemyTurnRoutine());
+            EndPlayerTurn();
         }
     }
 
-    IEnumerator EnemyTurnRoutine()
+    void EnemyTurn()
     {
-        yield return new WaitForSeconds(_turnEndDelay);
-
         TurnEvents.EnemyTurnBegin();
-        yield return new WaitForSeconds(_turnEndDelay);
-        _actionsRemaining = _maxActionsPerTurn; //this ensures the player has actions on their next turn
-        UpdateActionsUI();
-        TurnEvents.PlayerTurnStart();
+        EndEnemyTurn();
     }
 
     void UpdateActionsUI()
@@ -87,5 +113,21 @@ public class TurnSystem : Singleton<TurnSystem>
             _actionsRemaining = 0;
         }
         _remainingActionsText.text = "Remaining Actions: " + _actionsRemaining;
+    }
+
+    IEnumerator WaitBetweenTurnsRoutine()
+    {
+        yield return new WaitForSeconds(_turnEndDelay);
+        if (GameManager.Instance.IsGameActive())
+        {
+            if (_currentTurn != TurnState.PlayerTurn)
+            {
+                StartPlayerTurn();
+            }
+            else
+            {
+                StartEnemyTurn();
+            }
+        }
     }
 }
