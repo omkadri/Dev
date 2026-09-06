@@ -2,6 +2,7 @@ using UnityEngine;
 using Unity.Cinemachine;
 using System;
 using System.Collections;
+using UnityEngine.InputSystem;
 
 public class Grenade : MonoBehaviour
 {
@@ -71,7 +72,7 @@ public class Grenade : MonoBehaviour
 
     void LaunchGrenade()
     {
-        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition); //TODO: Investigate exactly what ScreenToWorldPoint does
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()); //TODO: Investigate exactly what ScreenToWorldPoint does
         Vector2 dirToMouse = (mousePos - (Vector2)transform.position).normalized; //TODO: investigate vector2 casting and normalization
         _rb2d.AddForce(dirToMouse * _launchForce, ForceMode2D.Impulse);
         _rb2d.AddTorque(_torqueAmount, ForceMode2D.Impulse);
