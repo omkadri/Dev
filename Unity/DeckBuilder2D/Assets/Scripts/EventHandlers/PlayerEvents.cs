@@ -13,6 +13,8 @@ public static class PlayerEvents
 
     public static event Action OnPlayerHealed;
 
+    public static event Action OnAttackComplete;
+
     public static event Action OnReshuffleRequested;
 
     public static void CardPlayed(CardData cardData)
@@ -43,5 +45,10 @@ public static class PlayerEvents
     public static void ReshuffleRequested()
     {
         OnReshuffleRequested?.Invoke();
+    }
+
+    public static void AttackComplete()
+    {
+        OnAttackComplete?.Invoke();
     }
 }

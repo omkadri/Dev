@@ -108,6 +108,8 @@ public class Player : MonoBehaviour
             yield return null;
         }
 
+        PlayerEvents.AttackComplete();
+
         yield return null;
     }
 }

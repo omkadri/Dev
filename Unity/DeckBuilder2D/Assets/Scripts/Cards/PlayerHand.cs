@@ -28,6 +28,7 @@ public class PlayerHand : MonoBehaviour
         TurnEvents.OnPlayerTurnEnd += DisableHand;
         TurnEvents.OnPlayerTurnBegin += EnableHand;
         PlayerEvents.OnDrawCardRequested += DrawNextCard;
+        PlayerEvents.OnAttackComplete += EnableHand;
     }
 
     void OnDisable()
@@ -35,6 +36,7 @@ public class PlayerHand : MonoBehaviour
         TurnEvents.OnPlayerTurnEnd -= DisableHand;
         TurnEvents.OnPlayerTurnBegin -= EnableHand;
         PlayerEvents.OnDrawCardRequested -= DrawNextCard;
+        PlayerEvents.OnAttackComplete -= EnableHand;
     }
 
     void DisableHand()
@@ -100,6 +102,7 @@ public class PlayerHand : MonoBehaviour
 
     public void PlayCard(Card card)
     {
+        DisableHand();
         _cardsInHand.Remove(card);
         _discardPile.DiscardCard(card.GetCardData());
         Destroy(card.gameObject);
