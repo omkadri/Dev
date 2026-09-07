@@ -5,11 +5,9 @@ public class DeckUI : MonoBehaviour
 {
     [SerializeField] GameObject _cardTabPrefab;
 
-    [SerializeField] List<CardData> _tempDeck;
-
     List<GameObject> _cardTabs = new List<GameObject>();
 
-    const float VERTICAL_SPACING = 0.8f;
+    const float VERTICAL_SPACING = 0.65f; //TODO: Serialize?
 
     void Start()
     {
@@ -18,18 +16,12 @@ public class DeckUI : MonoBehaviour
 
     void OnEnable()
     {
-        DeckEvents.OnRemoveCardFromDeck += RemoveFromDeck;
+        DeckEvents.OnDeckProcessed += BuildUI;
     }
 
     void OnDisable()
     {
-        DeckEvents.OnRemoveCardFromDeck -= RemoveFromDeck;
-    }
-
-    void RemoveFromDeck(CardData card)
-    {
-        _tempDeck.Remove(card);
-        BuildUI();
+        DeckEvents.OnDeckProcessed -= BuildUI;
     }
 
     void BuildUI()
@@ -41,10 +33,12 @@ public class DeckUI : MonoBehaviour
 
         _cardTabs.Clear(); // this prevents a memory leak
 
-        for (int i = 0; i < _tempDeck.Count; i++)
+        List<CardData> deck = DeckManager.Instance.GetDeck();
+
+        for (int i = 0; i < deck.Count; i++)
         {
             GameObject cardTab = Instantiate(_cardTabPrefab, transform);
-            cardTab.GetComponent<CardTab>().LoadCardTabData(_tempDeck[i]);
+            cardTab.GetComponent<CardTab>().LoadCardTabData(deck[i]);
             cardTab.transform.localPosition = new Vector3(0f, -i * VERTICAL_SPACING, 0f);
             _cardTabs.Add(cardTab);
         }
