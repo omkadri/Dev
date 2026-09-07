@@ -7,6 +7,16 @@ public class DeckManager : Singleton<DeckManager>
 
     [SerializeField] int _maxDeckSize = 9;
 
+    [SerializeField] DeckPreset _deckPreset;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        DontDestroyOnLoad(gameObject);
+
+        _currentDeck = new List<CardData>(_deckPreset.Cards);
+    }
+
     void OnEnable()
     {
         DeckEvents.OnAddCardToDeck += AddCard;
@@ -38,6 +48,7 @@ public class DeckManager : Singleton<DeckManager>
 
     public List<CardData> GetDeck()
     {
-        return _currentDeck;
+        return new List<CardData>(_currentDeck); 
+        //we are returning a copy of the deck instead of a reference, because passing the reference will cause a bug with the way cards are displayed between scenes
     }
 }

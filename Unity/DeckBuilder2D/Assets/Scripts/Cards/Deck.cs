@@ -13,6 +13,7 @@ public class Deck : MonoBehaviour
 
     void Start()
     {
+        _drawPile = DeckManager.Instance.GetDeck();
         Shuffle();
         DeckDrawVisuals();
     }
