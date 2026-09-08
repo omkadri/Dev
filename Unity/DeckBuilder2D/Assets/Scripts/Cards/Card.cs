@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -17,6 +18,10 @@ public class Card : MonoBehaviour
 
     [SerializeField] float _hoverOffest = 2f;
 
+    [SerializeField] SpriteRenderer _glowOverlay;
+
+    [SerializeField] float _glowDuration = 0.5f;
+
     Vector3 _originalScale;
     Vector3 _originalPosition;
 
@@ -26,7 +31,10 @@ public class Card : MonoBehaviour
     static bool _isBeingDragged = false; //static prevents inactive cards from expanding on hover during drag
 
     CardData _cardData;
+
     Collider2D _cardCollider;
+
+    bool _isPlaying = false;
 
     void Awake()
     {
@@ -78,9 +86,20 @@ public class Card : MonoBehaviour
         return Camera.main.ScreenToWorldPoint(mousePosition);
     }
 
+    public void SetIsPlaying(bool playing)
+    {
+        _isPlaying = playing;
+    }
+    
     void OnMouseUp()
     {
         _isBeingDragged = false;
+
+        if (_isPlaying)
+        {
+            return;
+        }
+
         transform.localScale = _originalScale;
         transform.localPosition = _originalPosition;
         _sortingGroup.sortingOrder = _originalSortingOrder;
@@ -105,5 +124,17 @@ public class Card : MonoBehaviour
     public void SetInteractable(bool interactable)
     {
         _cardCollider.enabled = interactable;
+    }
+
+    public void Glow()
+    {
+        StartCoroutine(GlowRoutine());
+    }
+
+    IEnumerator GlowRoutine()
+    {
+        _glowOverlay.gameObject.SetActive(true);
+        yield return new WaitForSeconds(_glowDuration);
+        _glowOverlay.gameObject.SetActive(false);
     }
 }

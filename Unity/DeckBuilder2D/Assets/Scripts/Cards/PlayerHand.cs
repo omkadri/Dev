@@ -1,5 +1,6 @@
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 public class PlayerHand : MonoBehaviour
 {
@@ -12,6 +13,10 @@ public class PlayerHand : MonoBehaviour
     [SerializeField] int _startingHandSize = 2;
 
     [SerializeField] DiscardPile _discardPile;
+
+    [SerializeField] float _cardPlayDelay = 0.3f;
+
+    [SerializeField] ParticleSystem _cardPlayedVFXPrefab;
 
     List<Card> _cardsInHand = new List<Card>();
 
@@ -49,9 +54,12 @@ public class PlayerHand : MonoBehaviour
 
     void EnableHand()
     {
-        foreach (Card card in _cardsInHand)
+        if (TurnSystem.Instance.HasActionsRemaining())
         {
-            card.SetInteractable(true);
+            foreach (Card card in _cardsInHand)
+            {
+                card.SetInteractable(true);
+            }
         }
     }
 
@@ -100,13 +108,27 @@ public class PlayerHand : MonoBehaviour
         }
     }
 
-    public void PlayCard(Card card)
+    IEnumerator PlayCardWithDelayRoutine(Card card)
     {
         DisableHand();
+        card.SetIsPlaying(true);
+
+        ParticleSystem cardPlayVFX = Instantiate(_cardPlayedVFXPrefab, card.transform.position, Quaternion.identity);
+        card.Glow();
+        cardPlayVFX.Play();
+        Destroy(cardPlayVFX.gameObject, cardPlayVFX.main.duration);
+
         _cardsInHand.Remove(card);
         _discardPile.DiscardCard(card.GetCardData());
+        PlayerEvents.CardPlayed(card.GetCardData());
+        yield return new WaitForSeconds(_cardPlayDelay);
+
         Destroy(card.gameObject);
         RepositionCards();
-        PlayerEvents.CardPlayed(card.GetCardData());
+    }
+
+    public void PlayCard(Card card)
+    {
+        StartCoroutine(PlayCardWithDelayRoutine(card));
     }
 }
