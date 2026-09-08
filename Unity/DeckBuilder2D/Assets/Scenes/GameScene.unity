@@ -2447,6 +2447,7 @@ GameObject:
   - component: {fileID: 1652501630}
   - component: {fileID: 1652501632}
   - component: {fileID: 1652501631}
+  - component: {fileID: 1652501633}
   m_Layer: 0
   m_Name: EnemySprite
   m_TagString: Untagged
@@ -2551,6 +2552,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
+--- !u!114 &1652501633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1652501629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 819c3d48b3adff947b4c77a74b294382, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Flash
+  _flashColor: {r: 1, g: 0, b: 0, a: 1}
+  _flashDuration: 0.2
 --- !u!1001 &1741463953
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2993,6 +3008,7 @@ GameObject:
   - component: {fileID: 2090507044}
   - component: {fileID: 2090507043}
   - component: {fileID: 2090507042}
+  - component: {fileID: 2090507045}
   m_Layer: 0
   m_Name: PlayerSprite
   m_TagString: Untagged
@@ -3098,6 +3114,20 @@ Transform:
   - {fileID: 1804284046}
   m_Father: {fileID: 205651313}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2090507045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2090507041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 819c3d48b3adff947b4c77a74b294382, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Flash
+  _flashColor: {r: 1, g: 0, b: 0, a: 1}
+  _flashDuration: 0.2
 --- !u!1 &2128542180
 GameObject:
   m_ObjectHideFlags: 0

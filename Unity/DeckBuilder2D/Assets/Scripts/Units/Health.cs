@@ -10,6 +10,13 @@ public class Health : MonoBehaviour
 
     int _currentHealth;
 
+    Flash _flash;
+
+    void Awake()
+    {
+        _flash = GetComponentInChildren<Flash>();
+    }
+
     void Start()
     {
         _currentHealth = _totalHealth;
@@ -41,6 +48,7 @@ public class Health : MonoBehaviour
 
     public void TakeDamage(int amount)
     {
+        StartCoroutine(_flash.FlashRoutine());
         _currentHealth -= amount;
 
         if(_currentHealth < 0)
