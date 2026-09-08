@@ -13,7 +13,7 @@ public static class PlayerEvents
 
     public static event Action OnPlayerHealed;
 
-    public static event Action OnAttackComplete;
+    public static event Action OnCardActionCompleted;
 
     public static event Action OnReshuffleRequested;
 
@@ -47,8 +47,8 @@ public static class PlayerEvents
         OnReshuffleRequested?.Invoke();
     }
 
-    public static void AttackComplete()
+    public static void CardActionComplete()
     {
-        OnAttackComplete?.Invoke();
+        OnCardActionCompleted?.Invoke();
     }
 }

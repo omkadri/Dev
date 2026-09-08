@@ -68,6 +68,7 @@ public class Player : MonoBehaviour
         _health.Heal(cardData.HealPower);
         _healVFX.Play();
         PlayerEvents.PlayerHealed();
+        PlayerEvents.CardActionComplete();
     }
 
     void Die()
@@ -108,7 +109,7 @@ public class Player : MonoBehaviour
             yield return null;
         }
 
-        PlayerEvents.AttackComplete();
+        PlayerEvents.CardActionComplete();
 
         yield return null;
     }

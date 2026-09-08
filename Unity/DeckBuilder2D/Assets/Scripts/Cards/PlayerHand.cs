@@ -33,7 +33,7 @@ public class PlayerHand : MonoBehaviour
         TurnEvents.OnPlayerTurnEnd += DisableHand;
         TurnEvents.OnPlayerTurnBegin += EnableHand;
         PlayerEvents.OnDrawCardRequested += DrawNextCard;
-        PlayerEvents.OnAttackComplete += EnableHand;
+        PlayerEvents.OnCardActionCompleted += EnableHand;
     }
 
     void OnDisable()
@@ -41,7 +41,7 @@ public class PlayerHand : MonoBehaviour
         TurnEvents.OnPlayerTurnEnd -= DisableHand;
         TurnEvents.OnPlayerTurnBegin -= EnableHand;
         PlayerEvents.OnDrawCardRequested -= DrawNextCard;
-        PlayerEvents.OnAttackComplete -= EnableHand;
+        PlayerEvents.OnCardActionCompleted -= EnableHand;
     }
 
     void DisableHand()
