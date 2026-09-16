@@ -1,6 +1,7 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-public class PlayerPosessionState : PlayerBaseState
+public class PlayerControlState : PlayerBaseState
 {
     readonly int PosessionIdleAnimHash = Animator.StringToHash("Player_Idle");
     readonly int PosessionSkateRightAnimHash = Animator.StringToHash("Player_SkateRight");
@@ -12,7 +13,7 @@ public class PlayerPosessionState : PlayerBaseState
     bool _isMoving;
     int _currentAnimationHash;
 
-    public PlayerPosessionState(PlayerStateMachine stateMachine) : base(stateMachine)
+    public PlayerControlState(PlayerStateMachine stateMachine) : base(stateMachine)
     {
     }
 
@@ -29,6 +30,7 @@ public class PlayerPosessionState : PlayerBaseState
     public override void Tick(float deltaTime)
     {
         Vector2 movement = _stateMachine.InputReader.MovementValue;
+
         UpdateAnimation(movement);
     }
 
@@ -36,26 +38,45 @@ public class PlayerPosessionState : PlayerBaseState
     {
         bool newIsMoving = movement.sqrMagnitude > 0.01f;
 
-        if (movement.x != 0)
-            _stateMachine.SpriteRenderer.flipX = movement.x < 0;
-
-        int newAnimationHash = PosessionIdleAnimHash;
-
-        if (newIsMoving)
+        if (!newIsMoving)
         {
-            newAnimationHash = movement.y > 0
-                ? PosessionSkateUpAnimHash
-                : PosessionSkateRightAnimHash;
+            if (_currentAnimationHash != PosessionIdleAnimHash)
+            {
+                _currentAnimationHash = PosessionIdleAnimHash;
+
+                _stateMachine.Animator.CrossFade(
+                    _currentAnimationHash,
+                    CrossFadeDuration
+                );
+            }
+
+            _isMoving = false;
+            return;
         }
+
+        Vector2 mousePosition = Mouse.current.position.ReadValue();
+
+        Vector3 playerScreenPosition = Camera.main.WorldToScreenPoint(
+            _stateMachine.transform.position
+        );
+
+        Vector2 mouseDirection = mousePosition - (Vector2)playerScreenPosition;
+
+        if (mouseDirection.x != 0)
+            _stateMachine.SpriteRenderer.flipX = mouseDirection.x < 0;
+
+        int newAnimationHash = mouseDirection.y > 0
+            ? PosessionSkateUpAnimHash
+            : PosessionSkateRightAnimHash;
 
         if (newAnimationHash == _currentAnimationHash)
         {
-            _isMoving = newIsMoving;
+            _isMoving = true;
             return;
         }
 
         _currentAnimationHash = newAnimationHash;
-        _isMoving = newIsMoving;
+        _isMoving = true;
 
         _stateMachine.Animator.CrossFade(
             _currentAnimationHash,
@@ -66,8 +87,11 @@ public class PlayerPosessionState : PlayerBaseState
     public override void FixedTick(float deltaTime)
     {
         Vector2 movement = _stateMachine.InputReader.MovementValue;
-        _stateMachine.Rigidbody.linearVelocity = movement * _stateMachine.MoveSpeed;
+
+        _stateMachine.Rigidbody.linearVelocity =
+            movement * _stateMachine.MoveSpeed;
     }
+
     public override void Exit()
     {
         _stateMachine.Rigidbody.linearVelocity = Vector2.zero;

@@ -12,7 +12,7 @@ public class PlayerStateMachine : StateMachine
 
     private void Start()
     {
-        SwitchState(new PlayerPosessionState(this));
+        SwitchState(new PlayerControlState(this));
     }
 
     private void OnEnable()
