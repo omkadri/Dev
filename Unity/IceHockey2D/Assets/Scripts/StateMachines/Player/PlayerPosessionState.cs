@@ -5,6 +5,7 @@ public class PlayerPosessionState : PlayerBaseState
     readonly int PosessionIdleAnimHash = Animator.StringToHash("Player_Idle");
     readonly int PosessionSkateRightAnimHash = Animator.StringToHash("Player_SkateRight");
     readonly int PosessionSkateUpAnimHash = Animator.StringToHash("Player_SkateUp");
+    readonly int PosessionShootAnimHash = Animator.StringToHash("Player_Shoot");
 
     const float CrossFadeDuration = 0.1f;
 
@@ -21,14 +22,13 @@ public class PlayerPosessionState : PlayerBaseState
         _currentAnimationHash = PosessionIdleAnimHash;
 
         _stateMachine.Animator.Play(_currentAnimationHash);
+
+        _stateMachine.InputReader.ShootEvent += OnShoot;
     }
 
     public override void Tick(float deltaTime)
     {
         Vector2 movement = _stateMachine.InputReader.MovementValue;
-
-        _stateMachine.Rigidbody.linearVelocity = movement * _stateMachine.MoveSpeed;
-
         UpdateAnimation(movement);
     }
 
@@ -63,8 +63,19 @@ public class PlayerPosessionState : PlayerBaseState
         );
     }
 
+    public override void FixedTick(float deltaTime)
+    {
+        Vector2 movement = _stateMachine.InputReader.MovementValue;
+        _stateMachine.Rigidbody.linearVelocity = movement * _stateMachine.MoveSpeed;
+    }
     public override void Exit()
     {
         _stateMachine.Rigidbody.linearVelocity = Vector2.zero;
+        _stateMachine.InputReader.ShootEvent -= OnShoot;
+    }
+
+    void OnShoot()
+    {
+        _stateMachine.Animator.Play(PosessionShootAnimHash);
     }
 }

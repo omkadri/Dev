@@ -14,5 +14,6 @@ public abstract class StateMachine : MonoBehaviour
     private void Update()
     {
         currentState?.Tick(Time.deltaTime);
+        currentState?.FixedTick(Time.deltaTime);
     }
 }
