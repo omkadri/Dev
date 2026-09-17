@@ -6,6 +6,7 @@ public class InputReader : MonoBehaviour, InputActions.IPlayerActions
 {
     public Vector2 MovementValue { get; private set; }
     public event Action ShootEvent;
+    public event Action PlayerSwitchEvent;
 
     InputActions _inputActions;
 
@@ -27,5 +28,12 @@ public class InputReader : MonoBehaviour, InputActions.IPlayerActions
         if (!context.performed) { return; }
 
         ShootEvent?.Invoke();
+    }
+
+    public void OnSwitchPlayer(InputAction.CallbackContext context)
+    {
+        if (!context.performed) { return; }
+
+        PlayerSwitchEvent?.Invoke();
     }
 }

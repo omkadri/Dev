@@ -11,21 +11,18 @@ public class PuckHandler : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (!_canAcquire)
-            return;
+        if (!_canAcquire) return;
 
         Puck puck = other.GetComponent<Puck>();
 
-        if (puck == null)
-            return;
+        if (puck == null) return;
 
         Acquire(puck);
     }
 
     public void Acquire(Puck puck)
     {
-        if (HasPossession)
-            return;
+        if (HasPossession) return;
 
         _puck = puck;
         _puck.Acquire(_puckHoldPoint);
@@ -33,8 +30,7 @@ public class PuckHandler : MonoBehaviour
 
     public void LosePossession(Vector2 velocity)
     {
-        if (!HasPossession)
-            return;
+        if (!HasPossession) return;
 
         Puck puck = _puck;
         _puck = null;

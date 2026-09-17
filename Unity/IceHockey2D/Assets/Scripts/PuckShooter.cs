@@ -20,19 +20,14 @@ public class PuckShooter : MonoBehaviour
 
     void OnShoot()
     {
-        Debug.Log("SHOOT INPUT");
         Shoot();
     }
 
     void Shoot()
     {
-        if (!_puckHandler.HasPossession)
-            return;
+        if (!_puckHandler.HasPossession) return;
 
-        Vector2 direction = (
-            (Vector2)_mouseCursor.position -
-            (Vector2)_puckHoldPoint.position
-        ).normalized;
+        Vector2 direction = ((Vector2)_mouseCursor.position - (Vector2)_puckHoldPoint.position).normalized; //casting converts vector3 into vector2
 
         _puckHandler.LosePossession(direction * _shotSpeed);
     }

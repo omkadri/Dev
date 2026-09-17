@@ -29,33 +29,19 @@ public class Referee : MonoBehaviour
             Vector2 direction = offset.normalized;
             Vector2 targetPosition = (Vector2)_puck.position + direction * _distance;
 
-            _rigidbody2D.MovePosition(
-                Vector2.MoveTowards(
-                    _rigidbody2D.position,
-                    targetPosition,
-                    _moveSpeed * Time.fixedDeltaTime
-                )
-            );
+            _rigidbody2D.MovePosition(Vector2.MoveTowards(_rigidbody2D.position, targetPosition, _moveSpeed * Time.fixedDeltaTime));
         }
 
         UpdateAnimation();
         UpdateSpriteFlip();
-
         _previousPosition = _rigidbody2D.position;
     }
 
     void UpdateAnimation()
     {
-        bool isMoving = Vector2.Distance(
-            _rigidbody2D.position,
-            _previousPosition
-        ) > 0.001f;
+        bool isMoving = Vector2.Distance(_rigidbody2D.position, _previousPosition) > 0.001f;
 
-        _animator.Play(
-            isMoving
-                ? RefereeSkateAnimHash
-                : RefereeIdleAnimHash
-        );
+        _animator.Play(isMoving ? RefereeSkateAnimHash : RefereeIdleAnimHash);
     }
 
     void UpdateSpriteFlip()

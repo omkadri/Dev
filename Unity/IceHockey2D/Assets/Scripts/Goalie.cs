@@ -32,21 +32,13 @@ public class Goalie : MonoBehaviour
         float targetX = Mathf.Clamp(_puck.position.x, _minX, _maxX);
         float targetY = Mathf.Clamp(_puck.position.y, _minY, _maxY);
 
-        Vector3 targetPosition = new Vector3(
-            targetX,
-            targetY,
-            transform.position.z
-        );
+        Vector3 targetPosition = new Vector3(targetX, targetY, transform.position.z);
 
         Vector2 direction = targetPosition - transform.position;
 
         UpdateAnimation(direction);
 
-        transform.position = Vector3.MoveTowards(
-            transform.position,
-            targetPosition,
-            _moveSpeed * Time.deltaTime
-        );
+        transform.position = Vector3.MoveTowards(transform.position, targetPosition, _moveSpeed * Time.deltaTime);
     }
 
     void UpdateAnimation(Vector2 movement)
@@ -62,23 +54,17 @@ public class Goalie : MonoBehaviour
         if (movement.x != 0)
             _spriteRenderer.flipX = movement.x < 0;
 
-        int newAnimationHash = movement.y > 0
-            ? GoalieSkateUpAnimHash
-            : GoalieSkateRightAnimHash;
+        int newAnimationHash = movement.y > 0 ? GoalieSkateUpAnimHash : GoalieSkateRightAnimHash;
 
         PlayAnimation(newAnimationHash);
     }
 
     void PlayAnimation(int animationHash)
     {
-        if (_currentAnimationHash == animationHash)
-            return;
+        if (_currentAnimationHash == animationHash) return;
 
         _currentAnimationHash = animationHash;
 
-        _animator.CrossFade(
-            _currentAnimationHash,
-            CrossFadeDuration
-        );
+        _animator.CrossFade(_currentAnimationHash, CrossFadeDuration);
     }
 }
