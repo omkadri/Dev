@@ -1,6 +1,5 @@
 using System.Collections;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class TurnSystem : Singleton<TurnSystem>
@@ -17,7 +16,7 @@ public class TurnSystem : Singleton<TurnSystem>
 
     [SerializeField] TextMeshProUGUI _remainingActionsText;
 
-    [SerializeField] int _TurnEndDelay = 3;
+    [SerializeField] int _turnEndDelay = 3;
 
     [SerializeField] float _enemyTurnDelay = 1f;
 
@@ -133,7 +132,7 @@ public class TurnSystem : Singleton<TurnSystem>
 
     IEnumerator WaitBetweenTurnsRoutine()
     {
-        for (int i = _TurnEndDelay; i > 0; i--)
+        for (int i = _turnEndDelay; i > 0; i--)
         {
             _turnStateDisplay.text = i + "...";
             yield return new WaitForSeconds(1f); //TODO: Magic Number
