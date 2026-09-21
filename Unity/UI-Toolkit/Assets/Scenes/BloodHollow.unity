@@ -2792,6 +2792,7 @@ GameObject:
   - component: {fileID: 1258844141}
   - component: {fileID: 1258844140}
   - component: {fileID: 1258844142}
+  - component: {fileID: 1258844143}
   m_Layer: 5
   m_Name: PanelRenderer
   m_TagString: Untagged
@@ -2884,6 +2885,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4af9605cd3d25bd4db051554927d0232, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainMenuController
+--- !u!114 &1258844143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1258844139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa981293ee96ca54b8e0f5264d066536, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SettingsMenuController
 --- !u!4 &1330311148 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6547806710296635085, guid: 5bc71a82d2e7d8f47b22e83d86f4b36b, type: 3}
