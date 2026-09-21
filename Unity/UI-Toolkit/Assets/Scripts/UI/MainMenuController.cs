@@ -51,5 +51,4 @@ public class MainMenuController : MonoBehaviour
     {
         Debug.Log("Quit Was Clicked");
     }
-
 }

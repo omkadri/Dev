@@ -7,5 +7,12 @@
             <ui:Button text="Settings" name="settings-button"/>
             <ui:Button text="Quit" name="quit-button"/>
         </ui:VisualElement>
+        <ui:VisualElement name="settings-menu" class="hidden">
+            <ui:Label name="settings-menu-header" text="Settings"/>
+            <ui:Slider label="Volume" name="volume-slider" />
+            <ui:DropdownField label="Difficulty" name="difficulty-dropdown" 
+                              choices="Normal,Hard,Insane" index="0"/>
+            <ui:Button text="Back" name="back-button"/>
+        </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>
