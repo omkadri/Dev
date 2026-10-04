@@ -15,7 +15,12 @@ AMovingPlatform::AMovingPlatform()
 void AMovingPlatform::BeginPlay()
 {
 	Super::BeginPlay();
-	UE_LOG(LogTemp, Display, TEXT("This is my message"));
+	int ten = 10;
+	int twenty = 20;
+	int thirty = 30;
+
+	UE_LOG(LogTemp, Display, TEXT("10 = %d, 20 = %d, 30 = %d"), ten, twenty, thirty);
+
 
 }
 
